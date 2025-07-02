@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빅시즌스 - 모바일 애플리케이션 1인 개발회사</title>
+    <title>빅시즌스 - 모바일 애플리케이션 개발 1인 기업</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #f8f9fa;
             min-height: 100vh;
         }
 
@@ -27,42 +27,70 @@
 
         .header {
             text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 60px 0;
-            margin-bottom: 40px;
+            padding: 80px 40px;
+            margin-bottom: 60px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         .header h1 {
             font-size: 3.5rem;
-            font-weight: 700;
+            font-weight: 300;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
         }
 
         .header .tagline {
-            font-size: 1.3rem;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            opacity: 0.8;
             font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .main-content {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            padding: 50px;
-            margin-bottom: 40px;
+            border-radius: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 60px;
+            margin-bottom: 60px;
+            border: 1px solid #e9ecef;
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
         }
 
         .section h2 {
-            color: #5a67d8;
-            font-size: 2rem;
-            margin-bottom: 25px;
+            color: #1a1a1a;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            letter-spacing: -1px;
         }
 
         .section h2::after {
@@ -70,10 +98,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #5a67d8, #667eea);
-            border-radius: 2px;
+            width: 50px;
+            height: 1px;
+            background: #1a1a1a;
         }
 
         .section p {
@@ -81,106 +108,127 @@
             line-height: 1.8;
             color: #555;
             margin-bottom: 20px;
+            font-weight: 300;
         }
 
         .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border: 1px solid #e9ecef;
+            border-radius: 3px;
+            font-weight: 400;
+            color: #1a1a1a;
         }
 
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .service-card {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #5a67d8;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fafafa;
+            padding: 40px 30px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .service-card h3 {
-            color: #2d3748;
+            color: #1a1a1a;
             font-size: 1.3rem;
+            font-weight: 400;
             margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: white;
         }
 
         .service-card p {
             color: #666;
             font-size: 1rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover p {
+            color: #e9ecef;
         }
 
         .contact-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1a1a1a;
             color: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 30px;
+            padding: 60px 40px;
+            margin-top: 60px;
         }
 
         .contact-section h2 {
             color: white;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            font-weight: 300;
         }
 
         .contact-section h2::after {
-            background: rgba(255,255,255,0.3);
+            background: white;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .contact-info {
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .contact-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
             font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
         }
 
         .contact-item strong {
-            min-width: 120px;
+            min-width: 140px;
             display: inline-block;
-        }
-
-        .icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            fill: currentColor;
+            font-weight: 400;
+            opacity: 0.8;
         }
 
         .footer {
             text-align: center;
-            color: white;
-            padding: 30px 0;
-            opacity: 0.8;
+            color: #666;
+            padding: 40px 0;
+            font-weight: 300;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
+            .header {
+                padding: 60px 20px;
+            }
+            
             .header h1 {
                 font-size: 2.5rem;
             }
@@ -190,29 +238,63 @@
             }
             
             .main-content {
-                padding: 30px 20px;
+                padding: 40px 30px;
             }
             
             .contact-section {
-                padding: 30px 20px;
+                padding: 40px 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding: 25px;
             }
         }
 
         .fade-in {
-            animation: fadeIn 0.8s ease-in;
+            animation: fadeIn 1s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* 미니멀한 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header fade-in">
-            <h1>빅시즌스</h1>
-            <p class="tagline">창의적인 모바일 솔루션의 새로운 시작</p>
+            <div class="header-content">
+                <h1>빅시즌스</h1>
+                <p class="tagline">Bigseasons — 창의적인 모바일 솔루션의 새로운 시작</p>
+            </div>
         </header>
 
         <main class="main-content fade-in">
@@ -226,7 +308,7 @@
                 <p>
                     우리는 단순한 개발사가 아닌, 고객의 비전을 현실로 만드는 <span class="highlight">디지털 파트너</span>입니다. 
                     빠른 프로토타이핑과 민첩한 개발 방법론을 통해 시장 변화에 신속하게 대응하며, 
-                    사용자 중심의 서비스를 창조합니다.
+                    사용자 중심의 혁신적인 서비스를 창조합니다.
                 </p>
             </section>
 
@@ -234,19 +316,19 @@
                 <h2>사업 분야</h2>
                 <div class="services">
                     <div class="service-card">
-                        <h3>📱 모바일 애플리케이션 개발</h3>
+                        <h3>모바일 애플리케이션 개발</h3>
                         <p>iOS와 Android 플랫폼을 위한 네이티브 및 크로스플랫폼 앱 개발로 최고의 사용자 경험을 제공합니다.</p>
                     </div>
                     <div class="service-card">
-                        <h3>🚀 MVP 개발 및 검증</h3>
+                        <h3>MVP 개발 및 검증</h3>
                         <p>빠른 프로토타이핑으로 아이디어를 실현하고 시장 검증을 통해 성공 가능성을 높입니다.</p>
                     </div>
                     <div class="service-card">
-                        <h3>💡 디지털 컨설팅</h3>
+                        <h3>디지털 컨설팅</h3>
                         <p>비즈니스 목표에 맞는 최적의 기술 솔루션과 디지털 전략을 제시합니다.</p>
                     </div>
                     <div class="service-card">
-                        <h3>🔧 기술 지원 및 유지보수</h3>
+                        <h3>기술 지원 및 유지보수</h3>
                         <p>지속적인 업데이트와 안정적인 서비스 운영을 위한 전문 기술 지원을 제공합니다.</p>
                     </div>
                 </div>
@@ -268,27 +350,27 @@
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <strong>회사명:</strong> 빅시즌스 (Bigseasons)
+                        <strong>회사명</strong> 빅시즌스 (Bigseasons)
                     </div>
                     <div class="contact-item">
-                        <strong>설립:</strong> 2025년
+                        <strong>설립</strong> 2025년
                     </div>
                     <div class="contact-item">
-                        <strong>사업분야:</strong> 모바일 애플리케이션 개발
+                        <strong>사업분야</strong> 모바일 애플리케이션 개발
                     </div>
                 </div>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <strong>주소:</strong> 서울특별시 은평구 통일로 796
+                        <strong>주소</strong> 서울특별시 은평구 통일로 796
                     </div>
                     <div class="contact-item">
-                        <strong>이메일:</strong> bigseasons.dev@gmail.com
+                        <strong>이메일</strong> bigseasons.dev@gmail.com
                     </div>
                     <div class="contact-item">
-                        <strong>전화:</strong> 070-7954-7118
+                        <strong>전화</strong> 070-7954-7118
                     </div>
                     <div class="contact-item">
-                        <strong>사업자등록번호:</strong> 674-66-00675
+                        <strong>사업자등록번호</strong> 674-66-00675
                     </div>
                 </div>
             </div>
