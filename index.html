@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빅시즌스 - 모바일 애플리케이션 개발 1인 기업</title>
+    <title>빅시즌스 - 모바일 애플리케이션 개발 전문 기업</title>
     <style>
         * {
             margin: 0;
@@ -165,6 +165,119 @@
             color: #e9ecef;
         }
 
+        .project-showcase {
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: #fafafa;
+            border: 1px solid #e9ecef;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .project-content h3 {
+            color: #1a1a1a;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .project-features {
+            margin-bottom: 30px;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #333;
+            padding: 6px 12px;
+            margin: 4px 8px 4px 0;
+            border: 1px solid #e9ecef;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .feature-tag:hover {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .feature-tag.disabled {
+            background: #f1f1f1;
+            color: #999;
+            border-color: #e1e1e1;
+            opacity: 0.7;
+        }
+
+        .feature-tag.disabled:hover {
+            background: #f1f1f1;
+            color: #999;
+            border-color: #e1e1e1;
+            cursor: default;
+        }
+
+        .app-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .app-link {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border: 2px solid #1a1a1a;
+        }
+
+        .app-link:hover {
+            background: white;
+            color: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+
+        .app-link.ios {
+            background: #333;
+            border-color: #333;
+        }
+
+        .app-link.android {
+            background: #666;
+            border-color: #666;
+        }
+
+        .app-link.ios:hover {
+            background: white;
+            color: #333;
+            border-color: #333;
+        }
+
+        .app-link.android:hover {
+            background: white;
+            color: #666;
+            border-color: #666;
+        }
+
         .contact-section {
             background: #1a1a1a;
             color: white;
@@ -301,7 +414,7 @@
             <section class="section">
                 <h2>회사 소개</h2>
                 <p>
-                    저희 <span class="highlight">빅시즌스</span>는 2025년에 설립되어 주로 모바일 애플리케이션 개발을 전문으로 하는 1인 기업입니다. 
+                    저희 <span class="highlight">빅시즌스</span>는 2025년에 설립되어 주로 모바일 애플리케이션 개발을 전문으로 하는 혁신적인 기업입니다. 
                     창의적인 아이디어와 비즈니스 모델을 빠르게 구현하여 시장의 반응을 확인하고, 
                     고객의 성공을 위한 최적의 디지털 솔루션을 제공합니다.
                 </p>
@@ -330,6 +443,36 @@
                     <div class="service-card">
                         <h3>기술 지원 및 유지보수</h3>
                         <p>지속적인 업데이트와 안정적인 서비스 운영을 위한 전문 기술 지원을 제공합니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>대표 프로젝트</h2>
+                <div class="project-showcase">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>노포지도</h3>
+                            <p class="project-description">
+                                전통과 역사가 깃든 오래된 가게들을 소개하는 모바일 애플리케이션입니다. 
+                                사라져가는 골목상권의 소중한 이야기를 발굴하고, 지역 상생을 위한 
+                                디지털 플랫폼을 구현했습니다.
+                            </p>
+                            <div class="project-features">
+                                <span class="feature-tag">지도 기반 검색</span>
+                                <span class="feature-tag">가게 스토리텔링</span>
+                                <span class="feature-tag disabled">리뷰 & 평점 (예정)</span>
+                                <span class="feature-tag disabled">즐겨찾기 (예정)</span>
+                            </div>
+                            <div class="app-links">
+                                <a href="https://apps.apple.com/kr/app/%EB%85%B8%ED%8F%AC%EC%A7%80%EB%8F%84/id6745243638" target="_blank" class="app-link ios">
+                                    App Store
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.nopo.nopospot" target="_blank" class="app-link android">
+                                    Google Play
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
