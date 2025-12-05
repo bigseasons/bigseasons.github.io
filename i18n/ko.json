@@ -7,28 +7,178 @@
   },
   "hero": {
     "title": "모바일 앱 개발 스튜디오 <span class=\"text-indigo-400\">BigSeasons</span>",
-    "description": "실생활을 더 편리하게 만드는 모바일 앱을 만듭니다."
+    "subtitle": "실생활을 더 편리하게",
+    "description": "복잡한 일상을 단순하게, 잊기 쉬운 것들을 기억하게.<br/>BigSeasons는 사용자 중심의 모바일 앱을 만듭니다."
+  },
+  "stats": {
+    "apps": "출시 앱",
+    "downloads": "누적 다운로드",
+    "rating": "평균 평점",
+    "updates": "지속적인 업데이트"
   },
   "about": {
     "title": "회사소개",
-    "description": "BigSeasons는 실용적이고 완성도 높은 모바일 앱을 만듭니다."
+    "description": "BigSeasons는 '실용성'과 '완성도'를 핵심 가치로 삼는 1인 개발 스튜디오입니다.<br/>화려함보다는 실제로 쓸모 있는, 오래 사용할 수 있는 앱을 만듭니다.",
+    "values": {
+      "title": "핵심 가치",
+      "quality": {
+        "title": "품질 우선",
+        "description": "버그 없는 안정적인 앱을 위해 철저한 테스트와 코드 리뷰를 거칩니다."
+      },
+      "ux": {
+        "title": "사용자 경험",
+        "description": "복잡한 기능도 직관적으로 사용할 수 있도록 UX를 설계합니다."
+      },
+      "improvement": {
+        "title": "지속적 개선",
+        "description": "사용자 피드백을 반영하여 끊임없이 앱을 발전시킵니다."
+      },
+      "privacy": {
+        "title": "개인정보 보호",
+        "description": "최소한의 데이터만 수집하고, 사용자의 프라이버시를 존중합니다."
+      }
+    }
   },
   "apps": {
     "title": "Our Apps",
     "amatdda": {
       "name": "까먹지마",
-      "description": "반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱."
+      "description": "반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.",
+      "features": ["주기별 알림", "위젯 지원", "클라우드 동기화"]
     },
     "nopo": {
       "name": "노포지도",
-      "description": "전국 오래된 가게를 탐험하는 지도 서비스."
+      "description": "전국 오래된 가게를 탐험하는 지도 서비스.",
+      "features": ["전국 노포 정보", "지도 기반 탐색", "사용자 리뷰"]
     }
   },
+  "features": {
+    "title": "까먹지마의 주요 기능",
+    "subtitle": "일상의 반복을 놓치지 않도록",
+    "list": {
+      "cycle": {
+        "title": "스마트 주기 관리",
+        "description": "매일, 매주, 매월 또는 커스텀 주기로 일정을 설정하세요."
+      },
+      "notification": {
+        "title": "강력한 알림 시스템",
+        "description": "지정된 시간에 정확히 알림을 받고, 놓친 알림도 다시 확인할 수 있습니다."
+      },
+      "widget": {
+        "title": "홈 화면 위젯",
+        "description": "앱을 열지 않아도 홈 화면에서 다가오는 일정을 확인하세요."
+      },
+      "sync": {
+        "title": "클라우드 동기화",
+        "description": "여러 기기에서 동일한 데이터를 안전하게 동기화합니다."
+      }
+    }
+  },
+  "tech": {
+    "title": "기술 스택",
+    "subtitle": "까먹지마를 만드는 기술들",
+    "description": "안정성과 성능을 위해 검증된 기술 스택을 사용합니다.",
+    "architecture": {
+      "title": "아키텍처",
+      "clean": {
+        "title": "Clean Architecture",
+        "description": "관심사 분리와 테스트 용이성을 위한 계층형 아키텍처"
+      },
+      "riverpod": {
+        "title": "Riverpod + Freezed",
+        "description": "타입 안전한 상태 관리와 불변 데이터 모델"
+      }
+    },
+    "frontend": {
+      "title": "프론트엔드",
+      "flutter": {
+        "title": "Flutter",
+        "description": "iOS/Android 크로스플랫폼 개발"
+      },
+      "kotlin": {
+        "title": "Kotlin Native",
+        "description": "Android 네이티브 위젯 및 알림"
+      },
+      "swift": {
+        "title": "Swift",
+        "description": "iOS 위젯 및 시스템 연동"
+      }
+    },
+    "backend": {
+      "title": "백엔드",
+      "nodejs": {
+        "title": "Node.js",
+        "description": "Express 기반 REST API 서버"
+      },
+      "prisma": {
+        "title": "Prisma ORM",
+        "description": "타입 안전한 데이터베이스 접근"
+      },
+      "postgresql": {
+        "title": "PostgreSQL",
+        "description": "안정적인 관계형 데이터베이스"
+      }
+    },
+    "infra": {
+      "title": "인프라",
+      "cloudrun": {
+        "title": "Cloud Run",
+        "description": "자동 스케일링 서버리스 배포"
+      },
+      "firebase": {
+        "title": "Firebase",
+        "description": "인증, 푸시 알림, 원격 설정"
+      },
+      "cloudsql": {
+        "title": "Cloud SQL",
+        "description": "관리형 PostgreSQL 데이터베이스"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "사용자 리뷰",
+    "subtitle": "실제 사용자들의 이야기",
+    "reviews": [
+      {
+        "text": "정말 유용해요! 반복 일정 관리가 이렇게 편할 줄 몰랐습니다.",
+        "author": "App Store 리뷰"
+      },
+      {
+        "text": "위젯 기능이 최고예요. 앱 열지 않아도 한눈에 확인됩니다.",
+        "author": "Google Play 리뷰"
+      },
+      {
+        "text": "심플하면서도 필요한 기능은 다 있어요. 광고도 없고 좋습니다.",
+        "author": "App Store 리뷰"
+      }
+    ]
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "question": "까먹지마는 무료인가요?",
+        "answer": "네, 까먹지마는 기본 기능 모두 무료로 사용할 수 있습니다. 광고도 없습니다."
+      },
+      {
+        "question": "데이터는 어디에 저장되나요?",
+        "answer": "기본적으로 기기에 저장되며, 로그인하면 클라우드에 안전하게 동기화됩니다."
+      },
+      {
+        "question": "여러 기기에서 사용할 수 있나요?",
+        "answer": "네, 계정으로 로그인하면 iOS, Android 기기 간 데이터가 동기화됩니다."
+      }
+    ]
+  },
   "contact": {
-    "title": "문의"
+    "title": "문의",
+    "subtitle": "궁금한 점이 있으신가요?",
+    "email_label": "이메일",
+    "response_time": "영업일 기준 24시간 내 답변드립니다."
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved."
+    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관"
   }
 }
-

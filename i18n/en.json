@@ -7,28 +7,178 @@
   },
   "hero": {
     "title": "Mobile App Studio <span class=\"text-indigo-400\">BigSeasons</span>",
-    "description": "We build mobile apps that make everyday life easier."
+    "subtitle": "Making everyday life easier",
+    "description": "Simplify the complex, remember the forgettable.<br/>BigSeasons creates user-centered mobile apps."
+  },
+  "stats": {
+    "apps": "Published Apps",
+    "downloads": "Total Downloads",
+    "rating": "Average Rating",
+    "updates": "Continuous Updates"
   },
   "about": {
     "title": "About Us",
-    "description": "BigSeasons builds practical and high-quality mobile apps."
+    "description": "BigSeasons is a solo development studio with 'practicality' and 'quality' as core values.<br/>We build apps that are genuinely useful and built to last, rather than flashy.",
+    "values": {
+      "title": "Core Values",
+      "quality": {
+        "title": "Quality First",
+        "description": "Thorough testing and code reviews for stable, bug-free apps."
+      },
+      "ux": {
+        "title": "User Experience",
+        "description": "Complex features designed to be intuitive and easy to use."
+      },
+      "improvement": {
+        "title": "Continuous Improvement",
+        "description": "Constantly evolving apps based on user feedback."
+      },
+      "privacy": {
+        "title": "Privacy Protection",
+        "description": "Minimal data collection with respect for user privacy."
+      }
+    }
   },
   "apps": {
     "title": "Our Apps",
     "amatdda": {
       "name": "Amatdda",
-      "description": "A cycle management app with recurring schedule management and powerful notification features."
+      "description": "A cycle management app with recurring schedules and powerful notifications.",
+      "features": ["Cycle Reminders", "Widget Support", "Cloud Sync"]
     },
     "nopo": {
       "name": "Nopo Map",
-      "description": "A map service for exploring long-established shops across the country."
+      "description": "A map service for exploring long-established shops across the country.",
+      "features": ["Nationwide Info", "Map-based Search", "User Reviews"]
     }
   },
+  "features": {
+    "title": "Key Features of Amatdda",
+    "subtitle": "Never miss your daily routines",
+    "list": {
+      "cycle": {
+        "title": "Smart Cycle Management",
+        "description": "Set schedules for daily, weekly, monthly, or custom cycles."
+      },
+      "notification": {
+        "title": "Powerful Notification System",
+        "description": "Get notified exactly when scheduled, with missed notification recovery."
+      },
+      "widget": {
+        "title": "Home Screen Widget",
+        "description": "Check upcoming schedules from your home screen without opening the app."
+      },
+      "sync": {
+        "title": "Cloud Sync",
+        "description": "Safely sync your data across multiple devices."
+      }
+    }
+  },
+  "tech": {
+    "title": "Tech Stack",
+    "subtitle": "Technologies behind Amatdda",
+    "description": "We use proven technologies for stability and performance.",
+    "architecture": {
+      "title": "Architecture",
+      "clean": {
+        "title": "Clean Architecture",
+        "description": "Layered architecture for separation of concerns and testability"
+      },
+      "riverpod": {
+        "title": "Riverpod + Freezed",
+        "description": "Type-safe state management with immutable data models"
+      }
+    },
+    "frontend": {
+      "title": "Frontend",
+      "flutter": {
+        "title": "Flutter",
+        "description": "iOS/Android cross-platform development"
+      },
+      "kotlin": {
+        "title": "Kotlin Native",
+        "description": "Android native widgets and notifications"
+      },
+      "swift": {
+        "title": "Swift",
+        "description": "iOS widgets and system integration"
+      }
+    },
+    "backend": {
+      "title": "Backend",
+      "nodejs": {
+        "title": "Node.js",
+        "description": "Express-based REST API server"
+      },
+      "prisma": {
+        "title": "Prisma ORM",
+        "description": "Type-safe database access"
+      },
+      "postgresql": {
+        "title": "PostgreSQL",
+        "description": "Reliable relational database"
+      }
+    },
+    "infra": {
+      "title": "Infrastructure",
+      "cloudrun": {
+        "title": "Cloud Run",
+        "description": "Auto-scaling serverless deployment"
+      },
+      "firebase": {
+        "title": "Firebase",
+        "description": "Auth, push notifications, remote config"
+      },
+      "cloudsql": {
+        "title": "Cloud SQL",
+        "description": "Managed PostgreSQL database"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "User Reviews",
+    "subtitle": "What our users say",
+    "reviews": [
+      {
+        "text": "Really useful! I never knew managing recurring schedules could be this easy.",
+        "author": "App Store Review"
+      },
+      {
+        "text": "The widget feature is amazing. I can check everything at a glance.",
+        "author": "Google Play Review"
+      },
+      {
+        "text": "Simple yet has all the features I need. No ads either, which is great.",
+        "author": "App Store Review"
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Is Amatdda free?",
+        "answer": "Yes, all basic features are free to use. There are no ads."
+      },
+      {
+        "question": "Where is my data stored?",
+        "answer": "Data is stored locally by default. Sign in to sync securely to the cloud."
+      },
+      {
+        "question": "Can I use it on multiple devices?",
+        "answer": "Yes, your data syncs across iOS and Android devices when signed in."
+      }
+    ]
+  },
   "contact": {
-    "title": "Contact"
+    "title": "Contact",
+    "subtitle": "Have any questions?",
+    "email_label": "Email",
+    "response_time": "We respond within 24 business hours."
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved."
+    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   }
 }
-
