@@ -8,7 +8,7 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Inter Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -19,6 +19,10 @@
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    .lang-btn-active {
+      font-weight: 600;
+      border-bottom: 2px solid white;
+    }
   </style>
 </head>
 
@@ -27,13 +31,21 @@
   <!-- NAVIGATION -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
       <div class="text-2xl font-bold">BigSeasons</div>
-      <div class="hidden md:flex space-x-8 text-sm font-medium">
-        <a href="#about" class="hover:text-neutral-300">About</a>
-        <a href="#apps" class="hover:text-neutral-300">Apps</a>
-        <a href="#tech" class="hover:text-neutral-300">Tech</a>
-        <a href="#contact" class="hover:text-neutral-300">Contact</a>
+
+      <div class="flex space-x-6 text-sm font-medium">
+        <a href="#about" class="hover:text-neutral-300 lang" data-kr="소개" data-en="About"></a>
+        <a href="#apps" class="hover:text-neutral-300 lang" data-kr="앱" data-en="Apps"></a>
+        <a href="#contact" class="hover:text-neutral-300 lang" data-kr="문의" data-en="Contact"></a>
       </div>
+
+      <!-- Language -->
+      <div class="flex space-x-3 text-sm">
+        <button id="lang-kr" class="lang-btn-active">KR</button>
+        <button id="lang-en" class="opacity-60">EN</button>
+      </div>
+
     </div>
   </nav>
 
@@ -44,24 +56,21 @@
 
       <!-- TEXT -->
       <div>
-        <h1 class="text-5xl font-bold leading-tight mb-6">
-          모바일 앱 개발 스튜디오  
-          <span class="text-indigo-400">BigSeasons</span>
-        </h1>
-        <p class="text-neutral-300 text-lg leading-relaxed mb-8">
-          우리는 실생활을 더 편리하게 만드는 모바일 앱을 만듭니다.  
-          심플하지만 영향력 있는 서비스, 지속 가능한 운영,  
-          그리고 탄탄한 기술 기반을 목표로 합니다.
-        </p>
+        <h1 class="text-5xl font-bold leading-tight mb-6 lang"
+            data-kr="일상을 더 편하게 만드는"
+            data-en="Building tools that make life easier"></h1>
 
-        <a href="#apps" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold">
-          만든 앱 보러가기
-        </a>
+        <p class="text-neutral-300 text-lg leading-relaxed mb-8 lang"
+           data-kr="BigSeasons는 생활 속 필요한 경험을 부드럽고 세련된 기술로 만듭니다."
+           data-en="BigSeasons creates simple, elegant mobile experiences for everyday life."></p>
+
+        <a href="#apps" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold lang"
+           data-kr="앱 보러가기" data-en="View Apps"></a>
       </div>
 
       <!-- RIGHT IMAGE -->
       <div class="flex justify-center">
-        <img src="https://bigseasons.co.kr/app-preview.png"
+        <img src="./assets/hero_mock.png"
              class="w-80 drop-shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
       </div>
 
@@ -72,81 +81,56 @@
   <!-- ABOUT SECTION -->
   <section id="about" class="py-24 border-t border-neutral-800">
     <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">About Us</h2>
-      <p class="text-neutral-400 leading-relaxed text-lg">
-        BigSeasons는 실제 문제를 해결하는 실용적 앱을 고민하며
-        기획부터 디자인, 개발, 운영까지 전 과정을 직접 수행합니다.  
-        Flutter·Node.js·Cloud를 기반으로 빠르고 안정적인 서비스를 제공합니다.
-      </p>
+      <h2 class="text-4xl font-bold mb-6 lang" data-kr="About BigSeasons" data-en="About BigSeasons"></h2>
+
+      <p class="text-neutral-400 leading-relaxed text-lg lang"
+         data-kr="실제 생활에서 필요한 문제를 해결하는 모바일 앱을 기획하고 디자인하며 직접 개발합니다."
+         data-en="We design and develop mobile apps that solve real everyday problems with clarity and precision."></p>
     </div>
   </section>
 
 
-  <!-- APP SHOWCASE -->
+  <!-- OUR APPS -->
   <section id="apps" class="py-24 border-t border-neutral-800">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12 text-center">Our Apps</h2>
+      <h2 class="text-4xl font-bold mb-12 text-center lang" data-kr="Our Apps" data-en="Our Apps"></h2>
 
-      <div class="grid md:grid-cols-3 gap-10">
+      <div class="grid md:grid-cols-2 gap-10">
 
-        <!-- App 1 -->
+        <!-- Nopo Map -->
         <div class="glass p-6 rounded-2xl">
-          <img src="https://bigseasons.co.kr/app-nopo.png" class="w-full rounded-xl mb-4" />
-          <h3 class="text-xl font-semibold mb-2">노포지도</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed">
-            전국 오래된 가게를 탐험하는 지도 서비스. 장인의 역사와 스토리를 기록합니다.
-          </p>
+          <img src="./assets/nopo_icon_1024.png" class="w-full rounded-xl mb-4 bg-neutral-900 p-6" />
+          <h3 class="text-2xl font-semibold mb-2">노포지도</h3>
+
+          <p class="text-neutral-300 text-sm leading-relaxed mb-4 lang"
+             data-kr="세월의 흔적을 담은 오래된 가게들을 탐색하고 기록하는 지도 서비스."
+             data-en="A map service for discovering and documenting timeless traditional shops."></p>
+
+          <img src="./assets/nopo_screenshot.jpg" class="w-full rounded-xl shadow mb-6" />
+
+          <!-- Download buttons -->
+          <div class="flex space-x-3">
+            <a href="#" class="px-4 py-2 bg-neutral-800 rounded-lg text-sm hover:bg-neutral-700">Google Play</a>
+            <a href="#" class="px-4 py-2 bg-neutral-800 rounded-lg text-sm hover:bg-neutral-700">App Store</a>
+          </div>
         </div>
 
-        <!-- App 2 -->
+        <!-- Amatdda -->
         <div class="glass p-6 rounded-2xl">
-          <img src="https://bigseasons.co.kr/app-dday.png" class="w-full rounded-xl mb-4" />
-          <h3 class="text-xl font-semibold mb-2">까먹지마</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed">
-            반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.
-          </p>
-        </div>
+          <img src="./assets/logo.png" class="w-full rounded-xl mb-4 bg-neutral-100 p-6" />
+          <h3 class="text-2xl font-semibold mb-2">까먹지마 (Amatdda)</h3>
 
-        <!-- App 3 -->
-        <div class="glass p-6 rounded-2xl">
-          <img src="https://bigseasons.co.kr/app-nadri.png" class="w-full rounded-xl mb-4" />
-          <h3 class="text-xl font-semibold mb-2">나들이</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed">
-            여행·동선 계획을 쉽게 정리할 수 있는 경로 기반 일정 플래너.
-          </p>
-        </div>
+          <p class="text-neutral-300 text-sm leading-relaxed mb-4 lang"
+             data-kr="중요한 일정과 루틴을 정확하고 부드럽게 관리하는 D-day & 반복 앱."
+             data-en="A refined D-day & recurring task manager that helps you never forget important routines."></p>
 
-      </div>
+          <img src="./assets/amatdda_screenshot.png" class="w-full rounded-xl shadow mb-6" />
 
-    </div>
-  </section>
-
-
-  <!-- TECH STACK -->
-  <section id="tech" class="py-24 border-t border-neutral-800">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-12">Tech Stack</h2>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-neutral-400">
-
-        <div class="p-6 glass rounded-xl">
-          <div class="text-xl font-semibold mb-1">Flutter</div>
-          <div class="text-sm">Cross-platform UI</div>
-        </div>
-
-        <div class="p-6 glass rounded-xl">
-          <div class="text-xl font-semibold mb-1">Node.js</div>
-          <div class="text-sm">Backend / APIs</div>
-        </div>
-
-        <div class="p-6 glass rounded-xl">
-          <div class="text-xl font-semibold mb-1">PostgreSQL</div>
-          <div class="text-sm">Cloud SQL</div>
-        </div>
-
-        <div class="p-6 glass rounded-xl">
-          <div class="text-xl font-semibold mb-1">AWS · GCP</div>
-          <div class="text-sm">Infra / Scaling</div>
+          <!-- Download buttons -->
+          <div class="flex space-x-3">
+            <a href="#" class="px-4 py-2 bg-neutral-800 rounded-lg text-sm hover:bg-neutral-700">Google Play</a>
+            <a href="#" class="px-4 py-2 bg-neutral-800 rounded-lg text-sm hover:bg-neutral-700">App Store</a>
+          </div>
         </div>
 
       </div>
@@ -157,8 +141,9 @@
   <!-- CONTACT -->
   <section id="contact" class="py-24 border-t border-neutral-800">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">Contact</h2>
-      <p class="text-neutral-400 mb-6">문의 및 협업 제안</p>
+      <h2 class="text-4xl font-bold mb-6 lang" data-kr="Contact" data-en="Contact"></h2>
+
+      <p class="text-neutral-400 mb-6 lang" data-kr="문의 및 협업 제안" data-en="For inquiries and collaboration"></p>
 
       <a href="mailto:bigseasons.dev@gmail.com"
          class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold">
@@ -172,6 +157,32 @@
   <footer class="py-10 text-center text-neutral-500 border-t border-neutral-800">
     © 2025 BigSeasons. All rights reserved.
   </footer>
+
+  <!-- LANGUAGE SWITCH SCRIPT -->
+  <script>
+    const krBtn = document.getElementById("lang-kr");
+    const enBtn = document.getElementById("lang-en");
+    const langElements = document.querySelectorAll(".lang");
+
+    function setLang(lang) {
+      langElements.forEach(el => el.textContent = el.dataset[lang]);
+
+      if (lang === "kr") {
+        krBtn.classList.add("lang-btn-active");
+        enBtn.classList.remove("lang-btn-active");
+        enBtn.classList.add("opacity-60");
+        krBtn.classList.remove("opacity-60");
+      } else {
+        enBtn.classList.add("lang-btn-active");
+        krBtn.classList.remove("lang-btn-active");
+        krBtn.classList.add("opacity-60");
+        enBtn.classList.remove("opacity-60");
+      }
+    }
+
+    krBtn.addEventListener("click", () => setLang("kr"));
+    enBtn.addEventListener("click", () => setLang("en"));
+  </script>
 
 </body>
 </html>
