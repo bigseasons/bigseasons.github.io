@@ -131,7 +131,9 @@
   <!-- NAVIGATION -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-800/50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold tracking-tight">BigSeasons</a>
+      <a href="#" class="flex items-center">
+        <img src="assets/bigseasons_text_logo.png" alt="BigSeasons" class="h-8" />
+      </a>
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-8 text-sm font-medium">
@@ -158,17 +160,23 @@
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
     
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <!-- Logo Image -->
+      <div class="fade-up mb-8">
+        <img src="assets/bigseasons_text_logo.png" alt="BigSeasons" 
+             class="h-16 md:h-20 mx-auto drop-shadow-[0_0_40px_rgba(99,102,241,0.4)]" />
+      </div>
+      
       <!-- Text -->
-      <div class="fade-up">
+      <div class="fade-up" style="animation-delay: 0.1s;">
         <p class="text-indigo-400 font-medium mb-4 tracking-wide" data-i18n="hero.subtitle">실생활을 더 편리하게</p>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-i18n-html="hero.title">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6" data-i18n-html="hero.title">
           모바일 앱 개발 스튜디오 <span class="text-indigo-400">BigSeasons</span>
         </h1>
-        <p class="text-neutral-300 text-lg leading-relaxed mb-8" data-i18n-html="hero.description">
+        <p class="text-neutral-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto" data-i18n-html="hero.description">
           복잡한 일상을 단순하게, 잊기 쉬운 것들을 기억하게.<br/>BigSeasons는 사용자 중심의 모바일 앱을 만듭니다.
         </p>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
           <a href="#apps" class="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/25">
             <span>Our Apps</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,12 +187,6 @@
             Tech Stack
           </a>
         </div>
-      </div>
-
-      <!-- Logo -->
-      <div class="flex justify-center fade-up" style="animation-delay: 0.2s;">
-        <img src="assets/bigseasons_logo.png" alt="BigSeasons Logo"
-             class="w-64 md:w-80 drop-shadow-[0_0_60px_rgba(99,102,241,0.3)]" />
       </div>
     </div>
   </section>
