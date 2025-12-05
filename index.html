@@ -1,552 +1,177 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빅시즌스 - 모바일 애플리케이션 개발 전문 기업</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BigSeasons</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            min-height: 100vh;
-        }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        .header {
-            text-align: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 80px 40px;
-            margin-bottom: 60px;
-            border-radius: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header h1 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-        }
-
-        .header .tagline {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .main-content {
-            background: white;
-            border-radius: 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 60px;
-            margin-bottom: 60px;
-            border: 1px solid #e9ecef;
-        }
-
-        .section {
-            margin-bottom: 60px;
-        }
-
-        .section:last-child {
-            margin-bottom: 0;
-        }
-
-        .section h2 {
-            color: #1a1a1a;
-            font-size: 2.2rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 1px;
-            background: #1a1a1a;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .highlight {
-            background: #f8f9fa;
-            padding: 2px 6px;
-            border: 1px solid #e9ecef;
-            border-radius: 3px;
-            font-weight: 400;
-            color: #1a1a1a;
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background: #fafafa;
-            padding: 40px 30px;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .service-card:hover {
-            background: #1a1a1a;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .service-card h3 {
-            color: #1a1a1a;
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 15px;
-            transition: color 0.3s ease;
-        }
-
-        .service-card:hover h3 {
-            color: white;
-        }
-
-        .service-card p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
-            transition: color 0.3s ease;
-        }
-
-        .service-card:hover p {
-            color: #e9ecef;
-        }
-
-        .project-showcase {
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: #fafafa;
-            border: 1px solid #e9ecef;
-            padding: 40px;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            background: white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-
-        .project-content h3 {
-            color: #1a1a1a;
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        .project-description {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .project-features {
-            margin-bottom: 30px;
-        }
-
-        .feature-tag {
-            display: inline-block;
-            background: #f8f9fa;
-            color: #333;
-            padding: 6px 12px;
-            margin: 4px 8px 4px 0;
-            border: 1px solid #e9ecef;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
-
-        .feature-tag:hover {
-            background: #1a1a1a;
-            color: white;
-            border-color: #1a1a1a;
-        }
-
-        .feature-tag.disabled {
-            background: #f1f1f1;
-            color: #999;
-            border-color: #e1e1e1;
-            opacity: 0.7;
-        }
-
-        .feature-tag.disabled:hover {
-            background: #f1f1f1;
-            color: #999;
-            border-color: #e1e1e1;
-            cursor: default;
-        }
-
-        .app-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .app-link {
-            display: inline-block;
-            background: #1a1a1a;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            border: 2px solid #1a1a1a;
-        }
-
-        .app-link:hover {
-            background: white;
-            color: #1a1a1a;
-            border-color: #1a1a1a;
-        }
-
-        .app-link.ios {
-            background: #333;
-            border-color: #333;
-        }
-
-        .app-link.android {
-            background: #666;
-            border-color: #666;
-        }
-
-        .app-link.ios:hover {
-            background: white;
-            color: #333;
-            border-color: #333;
-        }
-
-        .app-link.android:hover {
-            background: white;
-            color: #666;
-            border-color: #666;
-        }
-
-        .contact-section {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 40px;
-            margin-top: 60px;
-        }
-
-        .contact-section h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
-
-        .contact-section h2::after {
-            background: white;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .contact-info {
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        .contact-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-item strong {
-            min-width: 140px;
-            display: inline-block;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-
-        .footer {
-            text-align: center;
-            color: #666;
-            padding: 40px 0;
-            font-weight: 300;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 60px 20px;
-            }
-            
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .header .tagline {
-                font-size: 1.1rem;
-            }
-            
-            .main-content {
-                padding: 40px 30px;
-            }
-            
-            .contact-section {
-                padding: 40px 20px;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                padding: 25px;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        /* 미니멀한 스크롤바 */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a1a1a1;
-        }
-    </style>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <header class="header fade-in">
-            <div class="header-content">
-                <h1>빅시즌스</h1>
-                <p class="tagline">Bigseasons — 창의적인 모바일 솔루션의 새로운 시작</p>
-            </div>
-        </header>
 
-        <main class="main-content fade-in">
-            <section class="section">
-                <h2>회사 소개</h2>
-                <p>
-                    저희 <span class="highlight">빅시즌스</span>는 2025년에 설립되어 주로 모바일 애플리케이션 개발을 전문으로 하는 혁신적인 기업입니다. 
-                    창의적인 아이디어와 비즈니스 모델을 빠르게 구현하여 시장의 반응을 확인하고, 
-                    고객의 성공을 위한 최적의 디지털 솔루션을 제공합니다.
-                </p>
-                <p>
-                    우리는 단순한 개발사가 아닌, 고객의 비전을 현실로 만드는 <span class="highlight">디지털 파트너</span>입니다. 
-                    빠른 프로토타이핑과 민첩한 개발 방법론을 통해 시장 변화에 신속하게 대응하며, 
-                    사용자 중심의 혁신적인 서비스를 창조합니다.
-                </p>
-            </section>
+<body class="bg-neutral-950 text-white">
 
-            <section class="section">
-                <h2>사업 분야</h2>
-                <div class="services">
-                    <div class="service-card">
-                        <h3>모바일 애플리케이션 개발</h3>
-                        <p>iOS와 Android 플랫폼을 위한 네이티브 및 크로스플랫폼 앱 개발로 최고의 사용자 경험을 제공합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>MVP 개발 및 검증</h3>
-                        <p>빠른 프로토타이핑으로 아이디어를 실현하고 시장 검증을 통해 성공 가능성을 높입니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>디지털 컨설팅</h3>
-                        <p>비즈니스 목표에 맞는 최적의 기술 솔루션과 디지털 전략을 제시합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>기술 지원 및 유지보수</h3>
-                        <p>지속적인 업데이트와 안정적인 서비스 운영을 위한 전문 기술 지원을 제공합니다.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>대표 프로젝트</h2>
-                <div class="project-showcase">
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>노포지도</h3>
-                            <p class="project-description">
-                                전통과 역사가 깃든 오래된 가게들을 소개하는 모바일 애플리케이션입니다. 
-                                사라져가는 골목상권의 소중한 이야기를 발굴하고, 지역 상생을 위한 
-                                디지털 플랫폼을 구현했습니다.
-                            </p>
-                            <div class="project-features">
-                                <span class="feature-tag">지도 기반 검색</span>
-                                <span class="feature-tag">가게 스토리텔링</span>
-                                <span class="feature-tag disabled">리뷰 & 평점 (예정)</span>
-                                <span class="feature-tag disabled">즐겨찾기 (예정)</span>
-                            </div>
-                            <div class="app-links">
-                                <a href="https://apps.apple.com/kr/app/%EB%85%B8%ED%8F%AC%EC%A7%80%EB%8F%84/id6745243638" target="_blank" class="app-link ios">
-                                    App Store
-                                </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.nopo.nopospot" target="_blank" class="app-link android">
-                                    Google Play
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card" style="margin-top: 30px;">
-                        <div class="project-content">
-                            <h3>까먹지마</h3>
-                            <p class="project-description">
-                                생활 속 정기 점검과 주기적 할 일을 잊지 않도록 도와주는 라이프 케어 앱입니다.
-                                자동차·가전·건강 등 다양한 카테고리의 루틴을 만들고, 알림과 위젯으로 간편하게 관리할 수 있습니다.
-                                현재 스토어 출시 전으로 내부 검증 단계에 있으며, 아래 임시 링크를 통해 데모 정보를 확인하실 수 있습니다.
-                            </p>
-                            <div class="project-features">
-                                <span class="feature-tag">루틴/정기점검 관리</span>
-                                <span class="feature-tag">푸시 알림</span>
-                                <span class="feature-tag">홈 위젯</span>
-                                <span class="feature-tag">사진 · 메모 첨부</span>
-                                <span class="feature-tag disabled">캘린더 연동 (예정)</span>
-                            </div>
-                            <div class="app-links">
-                                <a href="https://example.com/kka-meok-jima-ios" target="_blank" rel="noopener noreferrer" class="app-link ios">
-                                    App Store (임시 링크)
-                                </a>
-                                <a href="https://example.com/kka-meok-jima-android" target="_blank" rel="noopener noreferrer" class="app-link android">
-                                    Google Play (임시 링크)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>우리의 강점</h2>
-                <p>
-                    빅시즌스는 <span class="highlight">빠른 실행력</span>과 <span class="highlight">혁신적 사고</span>를 바탕으로 
-                    고객의 아이디어를 성공적인 비즈니스로 발전시킵니다. 
-                    최신 기술 트렌드를 적극 수용하며, 사용자 중심의 디자인과 안정적인 기술 구조를 통해 
-                    지속 가능한 디지털 솔루션을 제공합니다.
-                </p>
-            </section>
-        </main>
-
-        <section class="contact-section">
-            <h2>연락처</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <strong>회사명</strong> 빅시즌스 (Bigseasons)
-                    </div>
-                    <div class="contact-item">
-                        <strong>설립</strong> 2025년
-                    </div>
-                    <div class="contact-item">
-                        <strong>사업분야</strong> 모바일 애플리케이션 개발
-                    </div>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <strong>주소</strong> 서울특별시 은평구 통일로 796
-                    </div>
-                    <div class="contact-item">
-                        <strong>이메일</strong> bigseasons.dev@gmail.com
-                    </div>
-                    <div class="contact-item">
-                        <strong>전화</strong> 070-7954-7118
-                    </div>
-                    <div class="contact-item">
-                        <strong>사업자등록번호</strong> 674-66-00675
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <p>&copy; 2025 빅시즌스(Bigseasons). All rights reserved.</p>
-        </footer>
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">BigSeasons</div>
+      <div class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="#about" class="hover:text-neutral-300">About</a>
+        <a href="#apps" class="hover:text-neutral-300">Apps</a>
+        <a href="#tech" class="hover:text-neutral-300">Tech</a>
+        <a href="#contact" class="hover:text-neutral-300">Contact</a>
+      </div>
     </div>
+  </nav>
+
+
+  <!-- HERO SECTION -->
+  <section class="min-h-screen flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+
+      <!-- TEXT -->
+      <div>
+        <h1 class="text-5xl font-bold leading-tight mb-6">
+          모바일 앱 개발 스튜디오  
+          <span class="text-indigo-400">BigSeasons</span>
+        </h1>
+        <p class="text-neutral-300 text-lg leading-relaxed mb-8">
+          우리는 실생활을 더 편리하게 만드는 모바일 앱을 만듭니다.  
+          심플하지만 영향력 있는 서비스, 지속 가능한 운영,  
+          그리고 탄탄한 기술 기반을 목표로 합니다.
+        </p>
+
+        <a href="#apps" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold">
+          만든 앱 보러가기
+        </a>
+      </div>
+
+      <!-- RIGHT IMAGE -->
+      <div class="flex justify-center">
+        <img src="https://bigseasons.co.kr/app-preview.png"
+             class="w-80 drop-shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-24 border-t border-neutral-800">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">About Us</h2>
+      <p class="text-neutral-400 leading-relaxed text-lg">
+        BigSeasons는 실제 문제를 해결하는 실용적 앱을 고민하며
+        기획부터 디자인, 개발, 운영까지 전 과정을 직접 수행합니다.  
+        Flutter·Node.js·Cloud를 기반으로 빠르고 안정적인 서비스를 제공합니다.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- APP SHOWCASE -->
+  <section id="apps" class="py-24 border-t border-neutral-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center">Our Apps</h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- App 1 -->
+        <div class="glass p-6 rounded-2xl">
+          <img src="https://bigseasons.co.kr/app-nopo.png" class="w-full rounded-xl mb-4" />
+          <h3 class="text-xl font-semibold mb-2">노포지도</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">
+            전국 오래된 가게를 탐험하는 지도 서비스. 장인의 역사와 스토리를 기록합니다.
+          </p>
+        </div>
+
+        <!-- App 2 -->
+        <div class="glass p-6 rounded-2xl">
+          <img src="https://bigseasons.co.kr/app-dday.png" class="w-full rounded-xl mb-4" />
+          <h3 class="text-xl font-semibold mb-2">까먹지마</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">
+            반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.
+          </p>
+        </div>
+
+        <!-- App 3 -->
+        <div class="glass p-6 rounded-2xl">
+          <img src="https://bigseasons.co.kr/app-nadri.png" class="w-full rounded-xl mb-4" />
+          <h3 class="text-xl font-semibold mb-2">나들이</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">
+            여행·동선 계획을 쉽게 정리할 수 있는 경로 기반 일정 플래너.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TECH STACK -->
+  <section id="tech" class="py-24 border-t border-neutral-800">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-12">Tech Stack</h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-neutral-400">
+
+        <div class="p-6 glass rounded-xl">
+          <div class="text-xl font-semibold mb-1">Flutter</div>
+          <div class="text-sm">Cross-platform UI</div>
+        </div>
+
+        <div class="p-6 glass rounded-xl">
+          <div class="text-xl font-semibold mb-1">Node.js</div>
+          <div class="text-sm">Backend / APIs</div>
+        </div>
+
+        <div class="p-6 glass rounded-xl">
+          <div class="text-xl font-semibold mb-1">PostgreSQL</div>
+          <div class="text-sm">Cloud SQL</div>
+        </div>
+
+        <div class="p-6 glass rounded-xl">
+          <div class="text-xl font-semibold mb-1">AWS · GCP</div>
+          <div class="text-sm">Infra / Scaling</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 border-t border-neutral-800">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">Contact</h2>
+      <p class="text-neutral-400 mb-6">문의 및 협업 제안</p>
+
+      <a href="mailto:bigseasons.dev@gmail.com"
+         class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold">
+        bigseasons.dev@gmail.com
+      </a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-neutral-500 border-t border-neutral-800">
+    © 2025 BigSeasons. All rights reserved.
+  </footer>
+
 </body>
 </html>
