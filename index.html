@@ -27,14 +27,31 @@
   <!-- NAVIGATION -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
       <div class="text-2xl font-bold">BigSeasons</div>
 
-      <!-- LANG TOGGLE -->
-      <div class="flex space-x-4 items-center text-sm font-medium">
-        <button id="lang-ko" class="hover:text-neutral-300">한국어</button>
-        <span>|</span>
-        <button id="lang-en" class="hover:text-neutral-300">EN</button>
+      <!-- ORIGINAL MENU RESTORED -->
+      <div class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="#about" class="hover:text-neutral-300 lang-ko">회사소개</a>
+        <a href="#about" class="hover:text-neutral-300 lang-en hidden">About</a>
+
+        <a href="#apps" class="hover:text-neutral-300 lang-ko">앱</a>
+        <a href="#apps" class="hover:text-neutral-300 lang-en hidden">Apps</a>
+
+        <a href="#tech" class="hover:text-neutral-300 lang-ko">기술</a>
+        <a href="#tech" class="hover:text-neutral-300 lang-en hidden">Tech</a>
+
+        <a href="#contact" class="hover:text-neutral-300 lang-ko">문의</a>
+        <a href="#contact" class="hover:text-neutral-300 lang-en hidden">Contact</a>
       </div>
+
+      <!-- LANGUAGE TOGGLE -->
+      <div class="flex space-x-4 items-center text-sm font-medium">
+        <button id="lang-ko-btn" class="hover:text-neutral-300">한국어</button>
+        <span>|</span>
+        <button id="lang-en-btn" class="hover:text-neutral-300">EN</button>
+      </div>
+
     </div>
   </nav>
 
@@ -69,61 +86,63 @@
         <img src="assets/bigseasons_logo.png"
              class="w-72 drop-shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
       </div>
+
     </div>
   </section>
 
 
-  <!-- OUR APPS -->
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-24 border-t border-neutral-800">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6 lang-ko">회사소개</h2>
+      <h2 class="text-4xl font-bold mb-6 lang-en hidden">About Us</h2>
+
+      <p class="text-neutral-400 leading-relaxed text-lg lang-ko">
+        BigSeasons는 실용적이고 완성도 높은 모바일 앱을 만듭니다.
+      </p>
+      <p class="text-neutral-400 leading-relaxed text-lg lang-en hidden">
+        BigSeasons builds practical and high-quality mobile apps.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- OUR APPS (GRID 1x2 + IMAGE TOP) -->
   <section id="apps" class="py-24 border-t border-neutral-800">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-4xl font-bold mb-12 text-center">Our Apps</h2>
 
-      <div class="space-y-16">
+      <div class="grid md:grid-cols-2 gap-10">
 
         <!-- App 1: 까먹지마 -->
-        <div class="glass p-8 rounded-2xl flex flex-col md:flex-row items-center gap-8">
-          <!-- TEXT -->
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-2">까먹지마</h3>
-            <p class="text-neutral-400 mb-4 text-sm leading-relaxed">
-              반복 일정 & D-Day 관리 앱. 강력한 알림 기능을 제공합니다.
-            </p>
+        <div class="glass p-6 rounded-2xl">
+          <img src="assets/amatdda_screenshot.png"
+               class="w-full max-h-72 object-cover rounded-xl mb-4" />
 
-            <!-- DOWNLOAD BUTTONS -->
-            <div class="flex gap-3 mt-4">
-              <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android 다운로드</a>
-              <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS 다운로드</a>
-            </div>
-          </div>
+          <h3 class="text-xl font-semibold mb-2">까먹지마</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">
+            반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.
+          </p>
 
-          <!-- IMAGE -->
-          <div class="flex-1 flex justify-center">
-            <img src="assets/amatdda_screenshot.png"
-                 class="w-full max-w-md max-h-72 object-contain rounded-xl" />
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android</a>
+            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS</a>
           </div>
         </div>
 
-
         <!-- App 2: 노포지도 -->
-        <div class="glass p-8 rounded-2xl flex flex-col md:flex-row items-center gap-8">
-          <!-- TEXT -->
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-2">노포지도</h3>
-            <p class="text-neutral-400 mb-4 text-sm leading-relaxed">
-              전국 오래된 가게들을 탐험하는 앱. 장인의 역사와 스토리를 기록합니다.
-            </p>
+        <div class="glass p-6 rounded-2xl">
+          <img src="assets/nopo_screenshot.jpg"
+               class="w-full max-h-72 object-cover rounded-xl mb-4" />
 
-            <!-- DOWNLOAD BUTTONS -->
-            <div class="flex gap-3 mt-4">
-              <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android 다운로드</a>
-              <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS 다운로드</a>
-            </div>
-          </div>
+          <h3 class="text-xl font-semibold mb-2">노포지도</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">
+            전국 오래된 가게를 탐험하는 지도 서비스.
+          </p>
 
-          <!-- IMAGE -->
-          <div class="flex-1 flex justify-center">
-            <img src="assets/nopo_screenshot.jpg"
-                 class="w-full max-w-md max-h-72 object-contain rounded-xl" />
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android</a>
+            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS</a>
           </div>
         </div>
 
@@ -135,28 +154,30 @@
   <!-- CONTACT -->
   <section id="contact" class="py-24 border-t border-neutral-800">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">Contact</h2>
+      <h2 class="text-4xl font-bold mb-6 lang-ko">문의</h2>
+      <h2 class="text-4xl font-bold mb-6 lang-en hidden">Contact</h2>
+
       <p class="text-neutral-400 mb-6">bigseasons.dev@gmail.com</p>
     </div>
   </section>
 
 
-  <!-- FOOTER -->
   <footer class="py-10 text-center text-neutral-500 border-t border-neutral-800">
     © 2025 BigSeasons. All rights reserved.
   </footer>
 
 
-  <!-- LANGUAGE TOGGLE SCRIPT -->
+  <!-- LANGUAGE TOGGLE -->
   <script>
     const ko = document.querySelectorAll(".lang-ko");
     const en = document.querySelectorAll(".lang-en");
 
-    document.getElementById("lang-ko").onclick = () => {
+    document.getElementById("lang-ko-btn").onclick = () => {
       ko.forEach(e => e.classList.remove("hidden"));
       en.forEach(e => e.classList.add("hidden"));
     };
-    document.getElementById("lang-en").onclick = () => {
+
+    document.getElementById("lang-en-btn").onclick = () => {
       en.forEach(e => e.classList.remove("hidden"));
       ko.forEach(e => e.classList.add("hidden"));
     };
