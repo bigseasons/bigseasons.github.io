@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "about": "About",
+    "apps": "Apps",
+    "tech": "Tech",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Mobile App Studio <span class=\"text-indigo-400\">BigSeasons</span>",
+    "description": "We build mobile apps that make everyday life easier."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "BigSeasons builds practical and high-quality mobile apps."
+  },
+  "apps": {
+    "title": "Our Apps",
+    "amatdda": {
+      "name": "Amatdda",
+      "description": "A cycle management app with recurring schedule management and powerful notification features."
+    },
+    "nopo": {
+      "name": "Nopo Map",
+      "description": "A map service for exploring long-established shops across the country."
+    }
+  },
+  "contact": {
+    "title": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 BigSeasons. All rights reserved."
+  }
+}
+

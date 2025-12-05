@@ -1,1 +1,34 @@
+{
+  "nav": {
+    "about": "회사소개",
+    "apps": "앱",
+    "tech": "기술",
+    "contact": "문의"
+  },
+  "hero": {
+    "title": "모바일 앱 개발 스튜디오 <span class=\"text-indigo-400\">BigSeasons</span>",
+    "description": "실생활을 더 편리하게 만드는 모바일 앱을 만듭니다."
+  },
+  "about": {
+    "title": "회사소개",
+    "description": "BigSeasons는 실용적이고 완성도 높은 모바일 앱을 만듭니다."
+  },
+  "apps": {
+    "title": "Our Apps",
+    "amatdda": {
+      "name": "까먹지마",
+      "description": "반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱."
+    },
+    "nopo": {
+      "name": "노포지도",
+      "description": "전국 오래된 가게를 탐험하는 지도 서비스."
+    }
+  },
+  "contact": {
+    "title": "문의"
+  },
+  "footer": {
+    "copyright": "© 2025 BigSeasons. All rights reserved."
+  }
+}
 
