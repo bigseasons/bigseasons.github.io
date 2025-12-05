@@ -8,16 +8,39 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Inter Font -->
+  <!-- Noto Sans KR + Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { 
+      font-family: 'Noto Sans KR', 'Poppins', sans-serif; 
+    }
     .glass {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+    .app-card {
+      transition: all 0.3s ease;
+    }
+    .badge-link img {
+      height: 40px;
+      transition: transform 0.2s ease;
+    }
+    .badge-link:hover img {
+      transform: scale(1.05);
+    }
+    .lang-btn {
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      color: #818cf8;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -28,28 +51,21 @@
   <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-      <div class="text-2xl font-bold">BigSeasons</div>
+      <div class="text-2xl font-bold tracking-tight">BigSeasons</div>
 
-      <!-- ORIGINAL MENU RESTORED -->
+      <!-- MENU -->
       <div class="hidden md:flex space-x-8 text-sm font-medium">
-        <a href="#about" class="hover:text-neutral-300 lang-ko">회사소개</a>
-        <a href="#about" class="hover:text-neutral-300 lang-en hidden">About</a>
-
-        <a href="#apps" class="hover:text-neutral-300 lang-ko">앱</a>
-        <a href="#apps" class="hover:text-neutral-300 lang-en hidden">Apps</a>
-
-        <a href="#tech" class="hover:text-neutral-300 lang-ko">기술</a>
-        <a href="#tech" class="hover:text-neutral-300 lang-en hidden">Tech</a>
-
-        <a href="#contact" class="hover:text-neutral-300 lang-ko">문의</a>
-        <a href="#contact" class="hover:text-neutral-300 lang-en hidden">Contact</a>
+        <a href="#about" class="hover:text-indigo-400 transition-colors" data-i18n="nav.about">회사소개</a>
+        <a href="#apps" class="hover:text-indigo-400 transition-colors" data-i18n="nav.apps">앱</a>
+        <a href="#tech" class="hover:text-indigo-400 transition-colors" data-i18n="nav.tech">기술</a>
+        <a href="#contact" class="hover:text-indigo-400 transition-colors" data-i18n="nav.contact">문의</a>
       </div>
 
       <!-- LANGUAGE TOGGLE -->
-      <div class="flex space-x-4 items-center text-sm font-medium">
-        <button id="lang-ko-btn" class="hover:text-neutral-300">한국어</button>
-        <span>|</span>
-        <button id="lang-en-btn" class="hover:text-neutral-300">EN</button>
+      <div class="flex space-x-3 items-center text-sm font-medium">
+        <button id="lang-ko-btn" class="lang-btn hover:text-indigo-400 active">한국어</button>
+        <span class="text-neutral-600">|</span>
+        <button id="lang-en-btn" class="lang-btn hover:text-indigo-400">EN</button>
       </div>
 
     </div>
@@ -62,21 +78,15 @@
 
       <!-- TEXT -->
       <div>
-        <h1 class="text-5xl font-bold leading-tight mb-6 lang-ko">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6" data-i18n-html="hero.title">
           모바일 앱 개발 스튜디오 <span class="text-indigo-400">BigSeasons</span>
         </h1>
-        <h1 class="text-5xl font-bold leading-tight mb-6 lang-en hidden">
-          Mobile App Studio <span class="text-indigo-400">BigSeasons</span>
-        </h1>
 
-        <p class="text-neutral-300 text-lg leading-relaxed mb-8 lang-ko">
+        <p class="text-neutral-300 text-lg leading-relaxed mb-8" data-i18n="hero.description">
           실생활을 더 편리하게 만드는 모바일 앱을 만듭니다.
         </p>
-        <p class="text-neutral-300 text-lg leading-relaxed mb-8 lang-en hidden">
-          We build mobile apps that make everyday life easier.
-        </p>
 
-        <a href="#apps" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-semibold">
+        <a href="#apps" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-semibold transition-colors">
           Our Apps
         </a>
       </div>
@@ -84,7 +94,8 @@
       <!-- RIGHT IMAGE -->
       <div class="flex justify-center">
         <img src="assets/bigseasons_logo.png"
-             class="w-72 drop-shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
+             alt="BigSeasons Logo"
+             class="w-72 drop-shadow-[0_0_40px_rgba(99,102,241,0.4)]" />
       </div>
 
     </div>
@@ -94,55 +105,97 @@
   <!-- ABOUT SECTION -->
   <section id="about" class="py-24 border-t border-neutral-800">
     <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6 lang-ko">회사소개</h2>
-      <h2 class="text-4xl font-bold mb-6 lang-en hidden">About Us</h2>
+      <h2 class="text-4xl font-bold mb-6" data-i18n="about.title">회사소개</h2>
 
-      <p class="text-neutral-400 leading-relaxed text-lg lang-ko">
+      <p class="text-neutral-400 leading-relaxed text-lg max-w-2xl mx-auto" data-i18n="about.description">
         BigSeasons는 실용적이고 완성도 높은 모바일 앱을 만듭니다.
-      </p>
-      <p class="text-neutral-400 leading-relaxed text-lg lang-en hidden">
-        BigSeasons builds practical and high-quality mobile apps.
       </p>
     </div>
   </section>
 
 
-  <!-- OUR APPS (GRID 1x2 + IMAGE TOP) -->
+  <!-- OUR APPS SECTION -->
   <section id="apps" class="py-24 border-t border-neutral-800">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12 text-center">Our Apps</h2>
+      <h2 class="text-4xl font-bold mb-12 text-center" data-i18n="apps.title">Our Apps</h2>
 
-      <div class="grid md:grid-cols-2 gap-10">
+      <div class="grid md:grid-cols-2 gap-8">
 
-        <!-- App 1: 까먹지마 -->
-        <div class="glass p-6 rounded-2xl">
+        <!-- App 1: 까먹지마 (Amatdda) -->
+        <div class="glass p-6 rounded-2xl app-card">
+          <!-- Screenshot -->
           <img src="assets/amatdda_screenshot.png"
-               class="w-full max-h-72 object-cover rounded-xl mb-4" />
+               alt="까먹지마 Screenshot"
+               class="w-full h-56 object-cover rounded-xl mb-5" />
 
-          <h3 class="text-xl font-semibold mb-2">까먹지마</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed">
+          <!-- App Header: Icon + Name -->
+          <div class="flex items-center gap-4 mb-3">
+            <img src="assets/amatdda_icon.png" 
+                 alt="까먹지마 Icon" 
+                 class="w-14 h-14 rounded-xl shadow-lg" />
+            <h3 class="text-xl font-semibold" data-i18n="apps.amatdda.name">까먹지마</h3>
+          </div>
+
+          <!-- Description -->
+          <p class="text-neutral-400 text-sm leading-relaxed mb-5" data-i18n="apps.amatdda.description">
             반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.
           </p>
 
-          <div class="flex gap-3 mt-4">
-            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android</a>
-            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS</a>
+          <!-- Store Badges -->
+          <div class="flex flex-wrap gap-3">
+            <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                   alt="Get it on Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/id6743387781" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="badge-link">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                   alt="Download on the App Store" />
+            </a>
           </div>
         </div>
 
-        <!-- App 2: 노포지도 -->
-        <div class="glass p-6 rounded-2xl">
+        <!-- App 2: 노포지도 (Nopo Map) -->
+        <div class="glass p-6 rounded-2xl app-card">
+          <!-- Screenshot -->
           <img src="assets/nopo_screenshot.jpg"
-               class="w-full max-h-72 object-cover rounded-xl mb-4" />
+               alt="노포지도 Screenshot"
+               class="w-full h-56 object-cover rounded-xl mb-5" />
 
-          <h3 class="text-xl font-semibold mb-2">노포지도</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed">
+          <!-- App Header: Icon + Name -->
+          <div class="flex items-center gap-4 mb-3">
+            <img src="assets/nopo_icon.png" 
+                 alt="노포지도 Icon" 
+                 class="w-14 h-14 rounded-xl shadow-lg" />
+            <h3 class="text-xl font-semibold" data-i18n="apps.nopo.name">노포지도</h3>
+          </div>
+
+          <!-- Description -->
+          <p class="text-neutral-400 text-sm leading-relaxed mb-5" data-i18n="apps.nopo.description">
             전국 오래된 가게를 탐험하는 지도 서비스.
           </p>
 
-          <div class="flex gap-3 mt-4">
-            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">Android</a>
-            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm">iOS</a>
+          <!-- Store Badges -->
+          <div class="flex flex-wrap gap-3">
+            <a href="https://play.google.com/store/apps/details?id=com.bigseasons.nopomap" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="badge-link">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                   alt="Get it on Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/nopomap" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="badge-link">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                   alt="Download on the App Store" />
+            </a>
           </div>
         </div>
 
@@ -151,36 +204,100 @@
   </section>
 
 
-  <!-- CONTACT -->
+  <!-- CONTACT SECTION -->
   <section id="contact" class="py-24 border-t border-neutral-800">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6 lang-ko">문의</h2>
-      <h2 class="text-4xl font-bold mb-6 lang-en hidden">Contact</h2>
+      <h2 class="text-4xl font-bold mb-6" data-i18n="contact.title">문의</h2>
 
-      <p class="text-neutral-400 mb-6">bigseasons.dev@gmail.com</p>
+      <a href="mailto:bigseasons.dev@gmail.com" 
+         class="text-neutral-400 hover:text-indigo-400 transition-colors text-lg">
+        bigseasons.dev@gmail.com
+      </a>
     </div>
   </section>
 
 
+  <!-- FOOTER -->
   <footer class="py-10 text-center text-neutral-500 border-t border-neutral-800">
-    © 2025 BigSeasons. All rights reserved.
+    <span data-i18n="footer.copyright">© 2025 BigSeasons. All rights reserved.</span>
   </footer>
 
 
-  <!-- LANGUAGE TOGGLE -->
+  <!-- i18n SCRIPT -->
   <script>
-    const ko = document.querySelectorAll(".lang-ko");
-    const en = document.querySelectorAll(".lang-en");
+    let currentLang = 'ko';
+    let translations = {};
 
-    document.getElementById("lang-ko-btn").onclick = () => {
-      ko.forEach(e => e.classList.remove("hidden"));
-      en.forEach(e => e.classList.add("hidden"));
-    };
+    // Load translations
+    async function loadTranslations(lang) {
+      try {
+        const response = await fetch(`i18n/${lang}.json`);
+        if (!response.ok) throw new Error('Failed to load translations');
+        return await response.json();
+      } catch (error) {
+        console.error('Error loading translations:', error);
+        return null;
+      }
+    }
 
-    document.getElementById("lang-en-btn").onclick = () => {
-      en.forEach(e => e.classList.remove("hidden"));
-      ko.forEach(e => e.classList.add("hidden"));
-    };
+    // Get nested value from object using dot notation
+    function getNestedValue(obj, path) {
+      return path.split('.').reduce((current, key) => 
+        current && current[key] !== undefined ? current[key] : null, obj);
+    }
+
+    // Apply translations to DOM
+    function applyTranslations() {
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const value = getNestedValue(translations, key);
+        if (value) el.textContent = value;
+      });
+
+      // HTML content (for elements with spans, etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        const value = getNestedValue(translations, key);
+        if (value) el.innerHTML = value;
+      });
+
+      // Update html lang attribute
+      document.documentElement.lang = currentLang;
+    }
+
+    // Switch language
+    async function switchLanguage(lang) {
+      if (lang === currentLang && Object.keys(translations).length > 0) return;
+      
+      const newTranslations = await loadTranslations(lang);
+      if (newTranslations) {
+        translations = newTranslations;
+        currentLang = lang;
+        applyTranslations();
+        
+        // Update button states
+        document.getElementById('lang-ko-btn').classList.toggle('active', lang === 'ko');
+        document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+        
+        // Save preference
+        localStorage.setItem('preferred-lang', lang);
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check saved preference or browser language
+      const savedLang = localStorage.getItem('preferred-lang');
+      const browserLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+      const initialLang = savedLang || browserLang;
+      
+      await switchLanguage(initialLang);
+
+      // Language button handlers
+      document.getElementById('lang-ko-btn').addEventListener('click', () => switchLanguage('ko'));
+      document.getElementById('lang-en-btn').addEventListener('click', () => switchLanguage('en'));
+    });
   </script>
 
 </body>
