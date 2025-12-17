@@ -145,8 +145,8 @@
 
   <!-- NAVIGATION -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-800/50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold tracking-tight">BigSeasons</a>
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+      <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">BigSeasons</a>
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-8 text-sm font-medium">
@@ -156,61 +156,82 @@
         <a href="#contact" class="hover:text-indigo-400 transition-colors" data-i18n="nav.contact">문의</a>
       </div>
 
-      <!-- Language Toggle -->
-      <div class="flex space-x-3 items-center text-sm font-medium">
-        <button id="lang-ko-btn" class="lang-btn hover:text-indigo-400 active">한국어</button>
-        <span class="text-neutral-600">|</span>
-        <button id="lang-en-btn" class="lang-btn hover:text-indigo-400">EN</button>
+      <!-- Mobile & Language Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Language Toggle -->
+        <div class="flex space-x-2 items-center text-xs md:text-sm font-medium">
+          <button id="lang-ko-btn" class="lang-btn hover:text-indigo-400 active">한국어</button>
+          <span class="text-neutral-600">|</span>
+          <button id="lang-en-btn" class="lang-btn hover:text-indigo-400">EN</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-400 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-neutral-900/95 backdrop-blur-lg border-t border-neutral-800/50">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#about" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.about" onclick="closeMobileMenu()">회사소개</a>
+        <a href="#apps" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.apps" onclick="closeMobileMenu()">앱</a>
+        <a href="#tech" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.tech" onclick="closeMobileMenu()">기술</a>
+        <a href="#contact" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.contact" onclick="closeMobileMenu()">문의</a>
       </div>
     </div>
   </nav>
 
 
   <!-- HERO SECTION - Landing Page -->
-  <section class="min-h-screen flex flex-col justify-center pt-16 pb-8 relative overflow-hidden">
+  <section class="h-screen flex flex-col justify-center pt-14 pb-4 relative overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
 
-    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <div class="max-w-lg mx-auto px-4 text-center relative z-10 flex flex-col h-full justify-center">
       
       <!-- App Icon & Title -->
-      <div class="fade-up mb-8">
-        <div class="flex items-center justify-center gap-4 mb-4">
-          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-20 h-20 rounded-3xl shadow-2xl shadow-indigo-500/20">
+      <div class="fade-up mb-4">
+        <div class="flex items-center justify-center gap-3 mb-2">
+          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-xl shadow-indigo-500/20">
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2" id="hero-title">까먹지마</h1>
-        <p class="text-lg text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</p>
+        <h1 class="text-2xl md:text-3xl font-bold text-white mb-1" id="hero-title">까먹지마</h1>
+        <p class="text-sm md:text-base text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</p>
       </div>
 
       <!-- Image Carousel -->
-      <div class="fade-up mb-8">
-        <div class="relative max-w-md mx-auto">
+      <div class="fade-up mb-4 flex-shrink-0">
+        <div class="relative max-w-xs mx-auto">
           <!-- Carousel Container -->
-          <div id="carousel" class="relative overflow-hidden rounded-3xl shadow-2xl">
+          <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-xl">
             <!-- Korean Images -->
             <div class="carousel-slide active" data-lang="ko">
-              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요" class="w-full">
+              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
             <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들" class="w-full">
+              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
             <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요" class="w-full">
+              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
             <!-- English Images -->
             <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_1.png" alt="Quick memos for daily life" class="w-full">
+              <img src="assets/landing/en_1.png" alt="Quick memos for daily life" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
             <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks" class="w-full">
+              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
             <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes" class="w-full">
+              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
             </div>
           </div>
 
           <!-- Carousel Indicators -->
-          <div class="flex justify-center gap-2 mt-4">
+          <div class="flex justify-center gap-2 mt-3">
             <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="0"></button>
             <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="1"></button>
             <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="2"></button>
@@ -219,17 +240,17 @@
       </div>
 
       <!-- Download Buttons (Same as apps section style) -->
-      <div class="fade-up mb-6">
-        <div class="flex flex-wrap justify-center gap-3">
+      <div class="fade-up mb-3">
+        <div class="flex flex-wrap justify-center gap-2">
           <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda&pcampaignid=web_share" 
              target="_blank" rel="noopener noreferrer" class="badge-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                 alt="Get it on Google Play" />
+                 alt="Get it on Google Play" class="h-10" />
           </a>
           <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" 
              target="_blank" rel="noopener noreferrer" class="badge-link">
             <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                 alt="Download on the App Store" />
+                 alt="Download on the App Store" class="h-10" />
           </a>
         </div>
       </div>
@@ -237,8 +258,8 @@
       <!-- Scroll indicator -->
       <div class="fade-up">
         <a href="#features" class="inline-flex flex-col items-center text-neutral-500 hover:text-neutral-300 transition-colors">
-          <span class="text-xs mb-2" id="hero-more">더 알아보기</span>
-          <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-xs mb-1" id="hero-more">더 알아보기</span>
+          <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
           </svg>
         </a>
@@ -962,6 +983,42 @@
       item.classList.toggle('active');
     }
 
+    // Mobile Menu
+    function initMobileMenu() {
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      
+      if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          
+          if (isOpen) {
+            mobileMenu.classList.add('hidden');
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('hidden');
+            openIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+          }
+        });
+      }
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
     // Scroll animations
     function handleScrollAnimations() {
       const elements = document.querySelectorAll('.fade-up');
@@ -983,6 +1040,7 @@
       const initialLang = savedLang || browserLang;
       
       initCarousel();
+      initMobileMenu();
       updateHeroText(initialLang);
       await switchLanguage(initialLang);
 
