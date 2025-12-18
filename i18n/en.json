@@ -8,12 +8,13 @@
   "hero": {
     "title": "Mobile App Studio <span class=\"text-indigo-400\">BigSeasons</span>",
     "subtitle": "Making everyday life easier",
-    "description": "Simplify the complex, remember the forgettable.<br/>BigSeasons creates user-centered mobile apps."
+    "description": "Simplify the complex, remember the forgettable.<br/>BigSeasons creates user-centered mobile apps.",
+    "cta": "Start free today"
   },
   "stats": {
     "apps": "Published Apps",
-    "downloads": "Total Downloads",
-    "rating": "Average Rating",
+    "downloads": "Downloads in First Month",
+    "free": "100% Free & No Ads",
     "updates": "Continuous Updates"
   },
   "about": {
@@ -44,6 +45,8 @@
     "amatdda": {
       "name": "Amatdda",
       "description": "A cycle management app with recurring schedules and powerful notifications.",
+      "badge": "NEW",
+      "badge2": "100% Free",
       "features": ["Cycle Reminders", "Widget Support", "Cloud Sync"]
     },
     "nopo": {
@@ -68,9 +71,9 @@
         "title": "Home Screen Widget",
         "description": "Check upcoming schedules from your home screen without opening the app."
       },
-      "sync": {
-        "title": "Cloud Sync",
-        "description": "Safely sync your data across multiple devices."
+      "history": {
+        "title": "Completion History",
+        "description": "Track when tasks were completed and view past records at a glance."
       }
     }
   },
@@ -135,23 +138,25 @@
       }
     }
   },
-  "testimonials": {
-    "title": "User Reviews",
-    "subtitle": "What our users say",
-    "reviews": [
-      {
-        "text": "Really useful! I never knew managing recurring schedules could be this easy.",
-        "author": "App Store Review"
-      },
-      {
-        "text": "The widget feature is amazing. I can check everything at a glance.",
-        "author": "Google Play Review"
-      },
-      {
-        "text": "Simple yet has all the features I need. No ads either, which is great.",
-        "author": "App Store Review"
-      }
-    ]
+  "usecases": {
+    "title": "Perfect for these situations!",
+    "subtitle": "Amatdda helps you remember the things you easily forget in daily life",
+    "coupon": {
+      "title": "Convenience Store Coupon Expiration Alerts",
+      "description": "Register mobile coupons and gift cards to get notifications before they expire. Never miss a coupon again."
+    },
+    "items": {
+      "title": "Household Item Replacement Cycles",
+      "description": "Toothbrushes, razors, water filters... Set cycle notifications so you don't miss replacement times."
+    },
+    "birthday": {
+      "title": "Lunar Calendar Birthdays Too",
+      "description": "Automatically converts lunar calendar anniversaries to solar calendar. Never forget your loved ones' birthdays."
+    },
+    "car": {
+      "title": "Vehicle Maintenance & Service History",
+      "description": "Manage engine oil, tires, and regular inspection schedules, and view years of service history at a glance."
+    }
   },
   "faq": {
     "title": "FAQ",
@@ -166,7 +171,7 @@
       },
       {
         "question": "Can I use it on multiple devices?",
-        "answer": "Yes, your data syncs across iOS and Android devices when signed in."
+        "answer": "Currently, each device operates independently. Data is stored locally on each device, with cloud sync features coming soon."
       }
     ]
   },
@@ -175,6 +180,41 @@
     "subtitle": "Have any questions?",
     "email_label": "Email",
     "response_time": "We respond within 24 business hours."
+  },
+  "roadmap": {
+    "title": "Always Evolving",
+    "subtitle": "Amatdda grows with your feedback",
+    "status": {
+      "completed": "Completed",
+      "inprogress": "In Progress",
+      "planned": "Planned"
+    },
+    "items": [
+      {
+        "title": "Official iOS & Android Release",
+        "description": "Available on App Store and Play Store",
+        "status": "completed",
+        "date": "2024.12"
+      },
+      {
+        "title": "Cloud Synchronization",
+        "description": "Safely sync data across multiple devices",
+        "status": "inprogress",
+        "date": "2025 Q1"
+      },
+      {
+        "title": "Apple Watch Support",
+        "description": "Check and complete tasks right from your wrist",
+        "status": "planned",
+        "date": "2025"
+      },
+      {
+        "title": "Enhanced Smart Notifications",
+        "description": "More notification types and repeat patterns",
+        "status": "planned",
+        "date": "2025"
+      }
+    ]
   },
   "footer": {
     "copyright": "© 2025 BigSeasons. All rights reserved.",
