@@ -148,15 +148,15 @@
     /* Carousel */
     #carousel {
       position: relative;
-      height: 55vh;
-      max-height: 700px;
-      min-height: 400px;
+      height: 58vh;
+      max-height: 750px;
+      min-height: 420px;
     }
     
     @media (max-width: 640px) {
       #carousel {
-        height: 50vh;
-        min-height: 350px;
+        height: 55vh;
+        min-height: 380px;
       }
     }
     
@@ -201,21 +201,27 @@
       -webkit-user-drag: none;
     }
     
+    .carousel-indicators {
+      pointer-events: auto;
+    }
+    
     .carousel-dot {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
     
     .carousel-dot:hover {
-      background: rgba(255, 255, 255, 0.7) !important;
-      transform: scale(1.2);
+      background: rgba(255, 255, 255, 0.8) !important;
+      transform: scale(1.15);
     }
     
     .carousel-dot.active {
       background: white !important;
-      width: 1.5rem;
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+      width: 1.25rem;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+      border-color: white;
     }
   </style>
 </head>
@@ -274,19 +280,16 @@
     <div class="max-w-lg mx-auto px-4 text-center relative z-10 flex flex-col h-full justify-center">
       
       <!-- App Icon & Title -->
-      <div class="fade-up mb-6">
-        <div class="flex items-center justify-center gap-3 mb-3">
-          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-xl shadow-indigo-500/20">
-          <div class="text-left">
-            <h1 class="text-2xl md:text-4xl font-bold text-white whitespace-nowrap" id="hero-title">까먹지마</h1>
-            <p class="text-sm md:text-lg text-indigo-400 font-medium whitespace-nowrap" id="hero-subtitle">일상 관리의 시작</p>
-          </div>
+      <div class="fade-up mb-3">
+        <div class="flex justify-center mb-2">
+          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-xl shadow-indigo-500/20">
         </div>
+        <h1 class="text-xl md:text-2xl font-bold text-white" id="hero-title">까먹지마 <span class="text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</span></h1>
       </div>
 
       <!-- Image Carousel -->
-      <div class="fade-up mb-4 flex-shrink-0">
-        <div class="relative max-w-sm mx-auto">
+      <div class="fade-up mb-3 flex-shrink-0">
+        <div class="relative max-w-md mx-auto px-2">
           <!-- Carousel Container -->
           <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-xl">
             <!-- Korean Images -->
@@ -310,11 +313,11 @@
               <img src="assets/landing/en_3.png" alt="Get reminders and keep notes">
             </div>
 
-            <!-- Carousel Indicators (Inside) -->
-            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
-              <button class="carousel-dot w-2 h-2 rounded-full bg-white/40 transition-all backdrop-blur-sm" data-index="0" aria-label="Slide 1"></button>
-              <button class="carousel-dot w-2 h-2 rounded-full bg-white/40 transition-all backdrop-blur-sm" data-index="1" aria-label="Slide 2"></button>
-              <button class="carousel-dot w-2 h-2 rounded-full bg-white/40 transition-all backdrop-blur-sm" data-index="2" aria-label="Slide 3"></button>
+            <!-- Carousel Indicators (Inside, overlaying image) -->
+            <div class="carousel-indicators absolute bottom-3 left-0 right-0 flex justify-center gap-2.5 z-20">
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all" data-index="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all" data-index="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all" data-index="2" aria-label="Slide 3"></button>
             </div>
           </div>
         </div>
@@ -1068,12 +1071,12 @@
       const heroCta = document.querySelector('[data-i18n="hero.cta"]');
       
       if (lang === 'en') {
-        heroTitle.textContent = 'Amatdda';
+        heroTitle.childNodes[0].textContent = 'Amatdda ';
         heroSubtitle.textContent = 'Daily Life Manager';
         heroMore.textContent = 'Learn more';
         if (heroCta) heroCta.textContent = 'Start free today';
       } else {
-        heroTitle.textContent = '까먹지마';
+        heroTitle.childNodes[0].textContent = '까먹지마 ';
         heroSubtitle.textContent = '일상 관리의 시작';
         heroMore.textContent = '더 알아보기';
         if (heroCta) heroCta.textContent = '지금 무료로 시작하세요';
