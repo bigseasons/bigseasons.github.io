@@ -14,9 +14,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    body { 
-      font-family: 'Noto Sans KR', system-ui, sans-serif; 
+    * {
+      box-sizing: border-box;
     }
+    
+    html {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+    
+    body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+      font-family: 'Noto Sans KR', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    section, div {
+      max-width: 100%;
+    }
+    
     .font-mono {
       font-family: 'JetBrains Mono', monospace;
     }
@@ -125,18 +146,87 @@
     }
 
     /* Carousel */
+    #carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    
     .carousel-slide {
-      display: none;
+      width: 100%;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transform: translateX(100%);
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      pointer-events: none;
+      will-change: opacity, transform;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
+    
     .carousel-slide.active {
-      display: block;
       opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      z-index: 2;
+      position: relative;
     }
+    
+    .carousel-slide.prev {
+      opacity: 0;
+      transform: translateX(-100%);
+      z-index: 1;
+    }
+    
+    .carousel-slide.next {
+      opacity: 0;
+      transform: translateX(100%);
+      z-index: 1;
+    }
+    
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      max-height: 54vh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      display: block;
+    }
+    
+    @media (max-width: 640px) {
+      .carousel-slide img {
+        max-height: 48vh;
+      }
+    }
+    
+    /* Indicators overlay on image */
+    .carousel-indicators {
+      position: absolute !important;
+      bottom: 12px !important;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      pointer-events: auto;
+    }
+    
+    .carousel-dot {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .carousel-dot:hover {
+      background: rgba(255, 255, 255, 0.8) !important;
+      transform: scale(1.15);
+    }
+    
     .carousel-dot.active {
-      background: white;
-      width: 1.5rem;
+      background: white !important;
+      width: 1.25rem;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+      border-color: white;
     }
   </style>
 </head>
@@ -158,11 +248,32 @@
 
       <!-- Mobile & Language Controls -->
       <div class="flex items-center gap-3">
-        <!-- Language Toggle -->
-        <div class="flex space-x-2 items-center text-xs md:text-sm font-medium">
-          <button id="lang-ko-btn" class="lang-btn hover:text-indigo-400 active">한국어</button>
-          <span class="text-neutral-600">|</span>
-          <button id="lang-en-btn" class="lang-btn hover:text-indigo-400">EN</button>
+        <!-- Language Dropdown -->
+        <div class="relative" id="lang-dropdown-container">
+          <button id="lang-dropdown-btn" class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs md:text-sm font-medium text-neutral-300 hover:text-white transition-colors rounded-lg hover:bg-neutral-800/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+            <span id="current-lang-label">한국어</span>
+            <svg class="w-3 h-3 transition-transform" id="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <!-- Dropdown Menu -->
+          <div id="lang-dropdown-menu" class="hidden absolute right-0 top-full mt-1 py-1 bg-neutral-900/95 backdrop-blur-sm border border-neutral-700/50 rounded-lg shadow-xl min-w-[120px] z-50">
+            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="ko">
+              <span class="w-5">🇰🇷</span> 한국어
+            </button>
+            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="en">
+              <span class="w-5">🇺🇸</span> English
+            </button>
+            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="ja">
+              <span class="w-5">🇯🇵</span> 日本語
+            </button>
+            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="zh">
+              <span class="w-5">🇨🇳</span> 中文
+            </button>
+          </div>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -188,78 +299,102 @@
 
 
   <!-- HERO SECTION - Landing Page -->
-  <section class="h-screen flex flex-col justify-center pt-14 pb-4 relative overflow-hidden">
+  <section class="h-screen flex flex-col justify-center pt-14 pb-2 relative overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
 
-    <div class="max-w-lg mx-auto px-4 text-center relative z-10 flex flex-col h-full justify-center">
+    <div class="max-w-lg mx-auto px-4 text-center relative z-10 flex flex-col">
       
       <!-- App Icon & Title -->
-      <div class="fade-up mb-4">
-        <div class="flex items-center justify-center gap-3 mb-2">
-          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-xl shadow-indigo-500/20">
+      <div class="fade-up">
+        <div class="flex justify-center mb-0.5">
+          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-lg shadow-indigo-500/20">
         </div>
-        <h1 class="text-2xl md:text-3xl font-bold text-white mb-1" id="hero-title">까먹지마</h1>
-        <p class="text-sm md:text-base text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</p>
+        <h1 class="text-base md:text-lg font-bold text-white mb-1" id="hero-title">까먹지마 <span class="text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</span></h1>
       </div>
 
       <!-- Image Carousel -->
-      <div class="fade-up mb-4 flex-shrink-0">
-        <div class="relative max-w-xs mx-auto">
+      <div class="fade-up flex-shrink-0 my-4">
+        <div class="relative w-full max-w-md mx-auto">
           <!-- Carousel Container -->
           <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-xl">
             <!-- Korean Images -->
-            <div class="carousel-slide active" data-lang="ko">
-              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide active" data-lang="ko" data-index="0">
+              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요">
             </div>
-            <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="ko" data-index="1">
+              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들">
             </div>
-            <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="ko" data-index="2">
+              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요">
             </div>
             <!-- English Images -->
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_1.png" alt="Quick memos for daily life" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="0">
+              <img src="assets/landing/en_1.png" alt="Quick memos for daily life">
             </div>
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="1">
+              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks">
             </div>
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="2">
+              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes">
             </div>
-          </div>
+            <!-- Japanese Images -->
+            <div class="carousel-slide" data-lang="ja" data-index="0">
+              <img src="assets/landing/ja_1.png" alt="日常を素早くメモ">
+            </div>
+            <div class="carousel-slide" data-lang="ja" data-index="1">
+              <img src="assets/landing/ja_2.png" alt="毎回忘れがちな日常のこと">
+            </div>
+            <div class="carousel-slide" data-lang="ja" data-index="2">
+              <img src="assets/landing/ja_3.png" alt="処理してメモしておく">
+            </div>
+            <!-- Chinese Images -->
+            <div class="carousel-slide" data-lang="zh" data-index="0">
+              <img src="assets/landing/zh_1.png" alt="快速记录日常生活">
+            </div>
+            <div class="carousel-slide" data-lang="zh" data-index="1">
+              <img src="assets/landing/zh_2.png" alt="总是忘记的日常事项">
+            </div>
+            <div class="carousel-slide" data-lang="zh" data-index="2">
+              <img src="assets/landing/zh_3.png" alt="处理并记录">
+            </div>
 
-          <!-- Carousel Indicators -->
-          <div class="flex justify-center gap-2 mt-3">
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="0"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="1"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="2"></button>
+            <!-- Carousel Indicators (Inside, overlaying image) -->
+            <div class="carousel-indicators flex justify-center gap-2.5">
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="2" aria-label="Slide 3"></button>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- CTA Text -->
+      <div class="fade-up mt-1">
+        <p class="text-neutral-300 text-xs font-medium" data-i18n="hero.cta">지금 무료로 시작하세요</p>
+      </div>
+
       <!-- Download Buttons (Same as apps section style) -->
-      <div class="fade-up mb-3">
-        <div class="flex flex-wrap justify-center gap-2">
+      <div class="fade-up mt-1">
+        <div class="flex flex-wrap justify-center gap-1.5">
           <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda&pcampaignid=web_share" 
              target="_blank" rel="noopener noreferrer" class="badge-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                 alt="Get it on Google Play" class="h-10" />
+                 alt="Get it on Google Play" class="h-8" />
           </a>
           <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" 
              target="_blank" rel="noopener noreferrer" class="badge-link">
             <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                 alt="Download on the App Store" class="h-10" />
+                 alt="Download on the App Store" class="h-8" />
           </a>
         </div>
       </div>
 
       <!-- Scroll indicator -->
-      <div class="fade-up">
+      <div class="fade-up mt-2">
         <a href="#features" class="inline-flex flex-col items-center text-neutral-500 hover:text-neutral-300 transition-colors">
-          <span class="text-xs mb-1" id="hero-more">더 알아보기</span>
-          <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-[11px]" id="hero-more">더 알아보기</span>
+          <svg class="w-3 h-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
           </svg>
         </a>
@@ -277,12 +412,12 @@
           <div class="text-neutral-400 text-sm" data-i18n="stats.apps">출시 앱</div>
         </div>
         <div class="fade-up" style="animation-delay: 0.1s;">
-          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">1K+</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.downloads">누적 다운로드</div>
+          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">100+</div>
+          <div class="text-neutral-400 text-sm" data-i18n="stats.downloads">출시 한달 다운로드</div>
         </div>
         <div class="fade-up" style="animation-delay: 0.2s;">
-          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">4.8</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.rating">평균 평점</div>
+          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">iOS+AOS</div>
+          <div class="text-neutral-400 text-sm" data-i18n="stats.platform">멀티 플랫폼</div>
         </div>
         <div class="fade-up" style="animation-delay: 0.3s;">
           <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">Weekly</div>
@@ -369,8 +504,8 @@
   <section id="features" class="py-24 bg-neutral-900/30 border-y border-neutral-800/50">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl font-bold mb-4">까먹지마의 강력한 기능들</h2>
-        <p class="text-neutral-400 text-lg">반복 일정을 스마트하게 관리하세요</p>
+        <h2 class="text-4xl font-bold mb-4" data-i18n="features.title">까먹지마의 강력한 기능들</h2>
+        <p class="text-neutral-400 text-lg" data-i18n="features.subtitle">반복 일정을 스마트하게 관리하세요</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
@@ -419,17 +554,17 @@
           </div>
         </div>
 
-        <!-- Feature 4: Sync -->
+        <!-- Feature 4: History -->
         <div class="flex gap-5 fade-up" style="animation-delay: 0.3s;">
           <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
             </svg>
           </div>
           <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.sync.title">클라우드 동기화</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.sync.description">
-              여러 기기에서 동일한 데이터를 안전하게 동기화합니다.
+            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.history.title">완료 히스토리</h3>
+            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.history.description">
+              언제 완료했는지 기록이 남아 과거 내역을 한눈에 확인할 수 있습니다.
             </p>
           </div>
         </div>
@@ -456,15 +591,9 @@
                  class="w-16 h-16 rounded-2xl shadow-lg" />
             <div>
               <h3 class="text-xl font-bold" data-i18n="apps.amatdda.name">까먹지마</h3>
-              <div class="flex items-center gap-1 mt-1">
-                <div class="flex text-yellow-400">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                </div>
-                <span class="text-neutral-500 text-sm ml-1">4.8</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs font-medium px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full" data-i18n="apps.amatdda.badge">NEW</span>
+                <span class="text-xs font-medium px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-full" data-i18n="apps.amatdda.badge2">100% 무료</span>
               </div>
             </div>
           </div>
@@ -709,58 +838,146 @@
   </section>
 
 
-  <!-- TESTIMONIALS SECTION -->
+  <!-- USE CASES SECTION -->
   <section class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="testimonials.title">사용자 리뷰</h2>
-        <p class="text-neutral-400 text-lg" data-i18n="testimonials.subtitle">실제 사용자들의 이야기</p>
+        <h2 class="text-4xl font-bold mb-4" data-i18n="usecases.title">이런 상황에 딱!</h2>
+        <p class="text-neutral-400 text-lg" data-i18n="usecases.subtitle">일상 속 깜빡하기 쉬운 것들, 까먹지마가 챙겨드려요</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Review 1 -->
-        <div class="glass rounded-2xl p-6 fade-up">
-          <div class="flex text-yellow-400 mb-4">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Use Case 1: 쿠폰 -->
+        <div class="glass rounded-2xl p-6 card-lift fade-up">
+          <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/>
+            </svg>
           </div>
-          <p class="text-neutral-300 leading-relaxed mb-4" data-i18n="testimonials.reviews.0.text">
-            "정말 유용해요! 반복 일정 관리가 이렇게 편할 줄 몰랐습니다."
+          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.coupon.title">편의점 쿠폰 기한 알림</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.coupon.description">
+            모바일 쿠폰, 기프티콘 유효기간을 등록하고 만료 전 알림을 받으세요. 더 이상 쿠폰을 놓치지 마세요.
           </p>
-          <p class="text-neutral-500 text-sm" data-i18n="testimonials.reviews.0.author">- App Store 리뷰</p>
         </div>
 
-        <!-- Review 2 -->
-        <div class="glass rounded-2xl p-6 fade-up" style="animation-delay: 0.1s;">
-          <div class="flex text-yellow-400 mb-4">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <!-- Use Case 2: 일상 아이템 -->
+        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.1s;">
+          <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
           </div>
-          <p class="text-neutral-300 leading-relaxed mb-4" data-i18n="testimonials.reviews.1.text">
-            "위젯 기능이 최고예요. 앱 열지 않아도 한눈에 확인됩니다."
+          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.items.title">일상 아이템 교체 주기</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.items.description">
+            칫솔, 면도기, 정수기 필터... 교체 시기를 놓치지 않도록 주기별로 알림을 설정하세요.
           </p>
-          <p class="text-neutral-500 text-sm" data-i18n="testimonials.reviews.1.author">- Google Play 리뷰</p>
         </div>
 
-        <!-- Review 3 -->
-        <div class="glass rounded-2xl p-6 fade-up" style="animation-delay: 0.2s;">
-          <div class="flex text-yellow-400 mb-4">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <!-- Use Case 3: 음력 생일 -->
+        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.2s;">
+          <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 01-1.5.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/>
+            </svg>
           </div>
-          <p class="text-neutral-300 leading-relaxed mb-4" data-i18n="testimonials.reviews.2.text">
-            "심플하면서도 필요한 기능은 다 있어요. 광고도 없고 좋습니다."
+          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.birthday.title">부모님 음력 생일도 정확히</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.birthday.description">
+            음력 기념일도 양력으로 자동 변환하여 알려드려요. 소중한 분의 생일을 잊지 마세요.
           </p>
-          <p class="text-neutral-500 text-sm" data-i18n="testimonials.reviews.2.author">- App Store 리뷰</p>
+        </div>
+
+        <!-- Use Case 4: 차량 관리 -->
+        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.3s;">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.car.title">차량 점검 & 관리 내역</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.car.description">
+            엔진오일, 타이어, 정기 점검 일정을 관리하고 수년간의 관리 내역을 한눈에 확인하세요.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ROADMAP SECTION -->
+  <section class="py-24 bg-neutral-900/30 border-y border-neutral-800/50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12 fade-up">
+        <h2 class="text-4xl font-bold mb-4" data-i18n="roadmap.title">계속 발전하는 앱</h2>
+        <p class="text-neutral-400 text-lg" data-i18n="roadmap.subtitle">까먹지마는 여러분의 피드백과 함께 성장합니다</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-neutral-700"></div>
+
+        <!-- Timeline items -->
+        <div class="space-y-8">
+          <!-- Item 1: Completed -->
+          <div class="relative flex items-center md:justify-center fade-up">
+            <div class="flex items-center w-full md:w-1/2 md:pr-8 md:justify-end pl-12 md:pl-0">
+              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xs font-medium px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full" data-i18n="roadmap.status.completed">완료</span>
+                  <span class="text-neutral-500 text-xs">2024.12</span>
+                </div>
+                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.0.title">iOS & Android 정식 출시</h4>
+                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.0.description">앱스토어와 플레이스토어에서 만나보세요</p>
+              </div>
+            </div>
+            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-emerald-500 rounded-full transform md:-translate-x-1/2 ring-4 ring-emerald-500/20"></div>
+          </div>
+
+          <!-- Item 2: In Progress -->
+          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.1s;">
+            <div class="flex items-center w-full md:w-1/2 md:pl-8 md:justify-start pl-12">
+              <div class="glass rounded-xl p-5 w-full md:max-w-sm gradient-border">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xs font-medium px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-full" data-i18n="roadmap.status.inprogress">진행중</span>
+                  <span class="text-neutral-500 text-xs">2025 Q1</span>
+                </div>
+                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.1.title">클라우드 동기화</h4>
+                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.1.description">여러 기기에서 안전하게 데이터를 동기화</p>
+              </div>
+            </div>
+            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-indigo-500 rounded-full transform md:-translate-x-1/2 ring-4 ring-indigo-500/20 animate-pulse"></div>
+          </div>
+
+          <!-- Item 3: Planned -->
+          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.2s;">
+            <div class="flex items-center w-full md:w-1/2 md:pr-8 md:justify-end pl-12 md:pl-0">
+              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xs font-medium px-2 py-1 bg-neutral-700 text-neutral-400 rounded-full" data-i18n="roadmap.status.planned">예정</span>
+                  <span class="text-neutral-500 text-xs">2025</span>
+                </div>
+                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.2.title">Apple Watch 지원</h4>
+                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.2.description">손목에서 바로 확인하고 완료 처리</p>
+              </div>
+            </div>
+            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-neutral-600 rounded-full transform md:-translate-x-1/2 ring-4 ring-neutral-700/50"></div>
+          </div>
+
+          <!-- Item 4: Planned -->
+          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.3s;">
+            <div class="flex items-center w-full md:w-1/2 md:pl-8 md:justify-start pl-12">
+              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xs font-medium px-2 py-1 bg-neutral-700 text-neutral-400 rounded-full" data-i18n="roadmap.status.planned">예정</span>
+                  <span class="text-neutral-500 text-xs">2025</span>
+                </div>
+                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.3.title">스마트 알림 고도화</h4>
+                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.3.description">더 다양한 알림 유형과 반복 패턴 지원</p>
+              </div>
+            </div>
+            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-neutral-600 rounded-full transform md:-translate-x-1/2 ring-4 ring-neutral-700/50"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -768,7 +985,7 @@
 
 
   <!-- FAQ SECTION -->
-  <section class="py-24 bg-neutral-900/30 border-y border-neutral-800/50">
+  <section class="py-24">
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-12 fade-up">
         <h2 class="text-4xl font-bold mb-4" data-i18n="faq.title">자주 묻는 질문</h2>
@@ -810,7 +1027,7 @@
             </svg>
           </button>
           <div class="faq-answer px-6 pb-5">
-            <p class="text-neutral-400" data-i18n="faq.items.2.answer">네, 계정으로 로그인하면 iOS, Android 기기 간 데이터가 동기화됩니다.</p>
+            <p class="text-neutral-400" data-i18n="faq.items.2.answer">현재는 기기별로 독립적으로 사용하는 방식입니다. 데이터는 각 기기에 저장되며, 향후 클라우드 동기화 기능을 준비 중입니다.</p>
           </div>
         </div>
       </div>
@@ -897,15 +1114,28 @@
       const heroTitle = document.getElementById('hero-title');
       const heroSubtitle = document.getElementById('hero-subtitle');
       const heroMore = document.getElementById('hero-more');
+      const heroCta = document.querySelector('[data-i18n="hero.cta"]');
       
       if (lang === 'en') {
-        heroTitle.textContent = 'Amatdda';
-        heroSubtitle.textContent = 'Your Daily Life Manager';
+        heroTitle.childNodes[0].textContent = 'Amatdda ';
+        heroSubtitle.textContent = 'Daily Life Manager';
         heroMore.textContent = 'Learn more';
+        if (heroCta) heroCta.textContent = 'Start free today';
+      } else if (lang === 'ja') {
+        heroTitle.childNodes[0].textContent = '忘れないで ';
+        heroSubtitle.textContent = '日常管理の始まり';
+        heroMore.textContent = 'もっと見る';
+        if (heroCta) heroCta.textContent = '今すぐ無料で始める';
+      } else if (lang === 'zh') {
+        heroTitle.childNodes[0].textContent = '别忘记 ';
+        heroSubtitle.textContent = '日常管理的开始';
+        heroMore.textContent = '了解更多';
+        if (heroCta) heroCta.textContent = '立即免费开始';
       } else {
-        heroTitle.textContent = '까먹지마';
+        heroTitle.childNodes[0].textContent = '까먹지마 ';
         heroSubtitle.textContent = '일상 관리의 시작';
         heroMore.textContent = '더 알아보기';
+        if (heroCta) heroCta.textContent = '지금 무료로 시작하세요';
       }
     }
 
@@ -917,31 +1147,91 @@
       // Dot click handlers
       document.querySelectorAll('.carousel-dot').forEach(dot => {
         dot.addEventListener('click', () => {
-          carouselIndex = parseInt(dot.dataset.index);
-          updateCarouselSlides();
-          resetCarouselAutoplay();
+          const newIndex = parseInt(dot.dataset.index);
+          if (newIndex !== carouselIndex) {
+            carouselIndex = newIndex;
+            updateCarouselSlides();
+            resetCarouselAutoplay();
+          }
         });
       });
+      
+      // Touch swipe handlers
+      const carousel = document.getElementById('carousel');
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+      
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            // Swipe left - next slide
+            nextSlide();
+            resetCarouselAutoplay();
+          } else {
+            // Swipe right - previous slide
+            carouselIndex = (carouselIndex - 1 + 3) % 3;
+            updateCarouselSlides();
+            resetCarouselAutoplay();
+          }
+        }
+      }
     }
 
+    let prevCarouselIndex = 0;
+    
     function updateCarouselSlides() {
       const slides = document.querySelectorAll(`.carousel-slide[data-lang="${currentLang}"]`);
+      const allSlides = document.querySelectorAll('.carousel-slide');
       const dots = document.querySelectorAll('.carousel-dot');
       
-      // Hide all slides
-      document.querySelectorAll('.carousel-slide').forEach(slide => {
-        slide.classList.remove('active');
+      // Hide all slides from other languages
+      allSlides.forEach(slide => {
+        if (slide.dataset.lang !== currentLang) {
+          slide.classList.remove('active', 'prev', 'next');
+          slide.style.display = 'none';
+        } else {
+          slide.style.display = '';
+        }
       });
       
-      // Show current slide for current language
-      if (slides[carouselIndex]) {
-        slides[carouselIndex].classList.add('active');
-      }
+      // Remove all classes from current language slides
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'prev', 'next');
+      });
+      
+      // Determine direction and apply classes
+      const totalSlides = slides.length;
+      
+      slides.forEach((slide, i) => {
+        if (i === carouselIndex) {
+          slide.classList.add('active');
+        } else if (i === prevCarouselIndex) {
+          // Previous active slide slides out
+          slide.classList.add('prev');
+        } else {
+          // Other slides wait on the right
+          slide.classList.add('next');
+        }
+      });
       
       // Update dots
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === carouselIndex);
       });
+      
+      prevCarouselIndex = carouselIndex;
     }
 
     function nextSlide() {
@@ -950,7 +1240,7 @@
     }
 
     function startCarouselAutoplay() {
-      carouselInterval = setInterval(nextSlide, 4000);
+      carouselInterval = setInterval(nextSlide, 4500);
     }
 
     function resetCarouselAutoplay() {
@@ -970,8 +1260,23 @@
         carouselIndex = 0;
         updateCarouselSlides();
         
-        document.getElementById('lang-ko-btn').classList.toggle('active', lang === 'ko');
-        document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+        // Update dropdown label
+        const langLabels = {
+          'ko': '한국어',
+          'en': 'English',
+          'ja': '日本語',
+          'zh': '中文'
+        };
+        const labelEl = document.getElementById('current-lang-label');
+        if (labelEl) {
+          labelEl.textContent = langLabels[lang] || '한국어';
+        }
+        
+        // Update active state in dropdown menu
+        document.querySelectorAll('.lang-option').forEach(option => {
+          option.classList.toggle('text-indigo-400', option.dataset.lang === lang);
+          option.classList.toggle('font-medium', option.dataset.lang === lang);
+        });
         
         localStorage.setItem('preferred-lang', lang);
       }
@@ -1036,19 +1341,70 @@
     // Initialize
     document.addEventListener('DOMContentLoaded', async () => {
       const savedLang = localStorage.getItem('preferred-lang');
-      const browserLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+      const browserLangCode = navigator.language.toLowerCase();
+      let browserLang = 'ko';
+      
+      if (browserLangCode.startsWith('ko')) {
+        browserLang = 'ko';
+      } else if (browserLangCode.startsWith('ja')) {
+        browserLang = 'ja';
+      } else if (browserLangCode.startsWith('zh')) {
+        browserLang = 'zh';
+      } else {
+        browserLang = 'en';
+      }
+      
       const initialLang = savedLang || browserLang;
       
       initCarousel();
       initMobileMenu();
+      initLanguageDropdown();
       updateHeroText(initialLang);
       await switchLanguage(initialLang);
 
-      document.getElementById('lang-ko-btn').addEventListener('click', () => switchLanguage('ko'));
-      document.getElementById('lang-en-btn').addEventListener('click', () => switchLanguage('en'));
-
       handleScrollAnimations();
     });
+    
+    // Language Dropdown functionality
+    function initLanguageDropdown() {
+      const dropdownBtn = document.getElementById('lang-dropdown-btn');
+      const dropdownMenu = document.getElementById('lang-dropdown-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+      const langOptions = document.querySelectorAll('.lang-option');
+      
+      // Toggle dropdown
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !dropdownMenu.classList.contains('hidden');
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          dropdownMenu.classList.remove('hidden');
+          dropdownArrow.style.transform = 'rotate(180deg)';
+        }
+      });
+      
+      // Language option click
+      langOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const lang = option.dataset.lang;
+          switchLanguage(lang);
+          closeDropdown();
+        });
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!document.getElementById('lang-dropdown-container').contains(e.target)) {
+          closeDropdown();
+        }
+      });
+      
+      function closeDropdown() {
+        dropdownMenu.classList.add('hidden');
+        dropdownArrow.style.transform = 'rotate(0deg)';
+      }
+    }
   </script>
 
 </body>
