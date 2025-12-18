@@ -125,32 +125,66 @@
     }
 
     /* Carousel */
-    .carousel-container {
+    #carousel {
       position: relative;
-      overflow: hidden;
+      height: 45vh;
+      max-height: 600px;
+      min-height: 300px;
     }
+    
+    @media (max-width: 640px) {
+      #carousel {
+        height: 40vh;
+        min-height: 280px;
+      }
+    }
+    
     .carousel-slide {
       position: absolute;
       top: 0;
       left: 0;
+      right: 0;
+      bottom: 0;
       width: 100%;
       height: 100%;
       opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      visibility: hidden;
+      transform: translateX(100%) scale(0.95);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      will-change: opacity, transform;
     }
+    
     .carousel-slide.active {
       opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 2;
     }
+    
     .carousel-slide.prev {
-      transform: translateX(-100%);
+      transform: translateX(-100%) scale(0.95);
+      z-index: 1;
     }
-    .carousel-slide.next {
-      transform: translateX(100%);
+    
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
     }
+    
+    .carousel-dot {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .carousel-dot:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(1.2);
+    }
+    
     .carousel-dot.active {
       background: white;
       width: 1.5rem;
@@ -224,34 +258,34 @@
       <div class="fade-up mb-4 flex-shrink-0">
         <div class="relative max-w-xs mx-auto">
           <!-- Carousel Container -->
-          <div id="carousel" class="carousel-container relative overflow-hidden rounded-2xl shadow-xl">
+          <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-xl">
             <!-- Korean Images -->
-            <div class="carousel-slide active" data-lang="ko">
-              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide active" data-lang="ko" data-index="0">
+              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요">
             </div>
-            <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="ko" data-index="1">
+              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들">
             </div>
-            <div class="carousel-slide" data-lang="ko">
-              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="ko" data-index="2">
+              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요">
             </div>
             <!-- English Images -->
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_1.png" alt="Quick memos for daily life" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="0">
+              <img src="assets/landing/en_1.png" alt="Quick memos for daily life">
             </div>
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="1">
+              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks">
             </div>
-            <div class="carousel-slide" data-lang="en">
-              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes" class="w-full h-auto max-h-[45vh] object-contain mx-auto">
+            <div class="carousel-slide" data-lang="en" data-index="2">
+              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes">
             </div>
           </div>
 
           <!-- Carousel Indicators -->
           <div class="flex justify-center gap-2 mt-3">
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="0"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="1"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="2"></button>
+            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="0" aria-label="Slide 1"></button>
+            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="1" aria-label="Slide 2"></button>
+            <button class="carousel-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="2" aria-label="Slide 3"></button>
           </div>
         </div>
       </div>
@@ -1024,43 +1058,69 @@
       // Dot click handlers
       document.querySelectorAll('.carousel-dot').forEach(dot => {
         dot.addEventListener('click', () => {
-          carouselIndex = parseInt(dot.dataset.index);
-          updateCarouselSlides();
-          resetCarouselAutoplay();
+          const newIndex = parseInt(dot.dataset.index);
+          if (newIndex !== carouselIndex) {
+            carouselIndex = newIndex;
+            updateCarouselSlides();
+            resetCarouselAutoplay();
+          }
         });
       });
+      
+      // Touch swipe handlers
+      const carousel = document.getElementById('carousel');
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+      
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            // Swipe left - next slide
+            nextSlide();
+            resetCarouselAutoplay();
+          } else {
+            // Swipe right - previous slide
+            carouselIndex = (carouselIndex - 1 + 3) % 3;
+            updateCarouselSlides();
+            resetCarouselAutoplay();
+          }
+        }
+      }
     }
 
     function updateCarouselSlides() {
       const slides = document.querySelectorAll(`.carousel-slide[data-lang="${currentLang}"]`);
       const dots = document.querySelectorAll('.carousel-dot');
-
-      // Reset all slides
+      
+      // Remove all active and prev classes
       document.querySelectorAll('.carousel-slide').forEach(slide => {
-        slide.classList.remove('active', 'prev', 'next');
-        slide.style.visibility = 'hidden';
+        slide.classList.remove('active', 'prev');
       });
-
-      // Set current slide as active
+      
+      // Add prev class to slides that should slide out to the left
+      slides.forEach((slide, i) => {
+        if (i < carouselIndex) {
+          slide.classList.add('prev');
+        }
+      });
+      
+      // Show current slide for current language
       if (slides[carouselIndex]) {
         slides[carouselIndex].classList.add('active');
-        slides[carouselIndex].style.visibility = 'visible';
       }
-
-      // Set previous slide
-      const prevIndex = carouselIndex === 0 ? slides.length - 1 : carouselIndex - 1;
-      if (slides[prevIndex]) {
-        slides[prevIndex].classList.add('prev');
-        slides[prevIndex].style.visibility = 'visible';
-      }
-
-      // Set next slide
-      const nextIndex = carouselIndex === slides.length - 1 ? 0 : carouselIndex + 1;
-      if (slides[nextIndex]) {
-        slides[nextIndex].classList.add('next');
-        slides[nextIndex].style.visibility = 'visible';
-      }
-
+      
       // Update dots
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === carouselIndex);
@@ -1068,13 +1128,12 @@
     }
 
     function nextSlide() {
-      const slides = document.querySelectorAll(`.carousel-slide[data-lang="${currentLang}"]`);
-      carouselIndex = (carouselIndex + 1) % slides.length;
+      carouselIndex = (carouselIndex + 1) % 3;
       updateCarouselSlides();
     }
 
     function startCarouselAutoplay() {
-      carouselInterval = setInterval(nextSlide, 4000);
+      carouselInterval = setInterval(nextSlide, 4500);
     }
 
     function resetCarouselAutoplay() {
