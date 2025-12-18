@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "about": "公司介绍",
+    "apps": "应用",
+    "tech": "技术",
+    "contact": "咨询"
+  },
+  "hero": {
+    "title": "移动应用开发工作室 <span class=\"text-indigo-400\">BigSeasons</span>",
+    "subtitle": "让日常生活更便利",
+    "description": "简化复杂日常，记住容易忘记的事。<br/>BigSeasons致力于打造以用户为中心的移动应用。",
+    "cta": "立即免费开始"
+  },
+  "stats": {
+    "apps": "已发布应用",
+    "downloads": "首月下载量",
+    "platform": "多平台",
+    "updates": "持续更新"
+  },
+  "about": {
+    "title": "公司介绍",
+    "description": "BigSeasons是以'实用性'和'完成度'为核心价值的个人开发工作室。<br/>我们专注于打造真正有用、能长期使用的应用，而非华而不实的产品。",
+    "values": {
+      "title": "核心价值",
+      "quality": {
+        "title": "品质优先",
+        "description": "通过严格的测试和代码审查，确保应用稳定无bug。"
+      },
+      "ux": {
+        "title": "用户体验",
+        "description": "设计直观的UX，让复杂功能也能轻松使用。"
+      },
+      "improvement": {
+        "title": "持续改进",
+        "description": "根据用户反馈不断改进应用。"
+      },
+      "privacy": {
+        "title": "隐私保护",
+        "description": "仅收集最少必要数据，尊重用户隐私。"
+      }
+    }
+  },
+  "apps": {
+    "title": "我们的应用",
+    "amatdda": {
+      "name": "别忘记",
+      "description": "重复日程管理 + 强大提醒功能的周期管理应用。",
+      "badge": "NEW",
+      "badge2": "100% 免费",
+      "features": ["周期提醒", "小组件支持", "云端同步"]
+    },
+    "nopo": {
+      "name": "老铺地图",
+      "description": "探索全国各地老店的地图服务。",
+      "features": ["全国老铺信息", "地图搜索", "用户评价"]
+    }
+  },
+  "features": {
+    "title": "别忘记的主要功能",
+    "subtitle": "不错过日常重复事项",
+    "list": {
+      "cycle": {
+        "title": "智能周期管理",
+        "description": "设置每日、每周、每月或自定义周期的日程。"
+      },
+      "notification": {
+        "title": "强大的提醒系统",
+        "description": "在指定时间准确接收提醒，错过的提醒也可重新查看。"
+      },
+      "widget": {
+        "title": "主屏幕小组件",
+        "description": "无需打开应用，在主屏幕即可查看即将到来的日程。"
+      },
+      "history": {
+        "title": "完成历史",
+        "description": "记录完成时间，一目了然地查看过往记录。"
+      }
+    }
+  },
+  "tech": {
+    "title": "技术栈",
+    "subtitle": "打造别忘记的技术",
+    "description": "使用经过验证的技术栈，确保稳定性和性能。",
+    "architecture": {
+      "title": "架构",
+      "clean": {
+        "title": "Clean Architecture",
+        "description": "分层架构，实现关注点分离和易于测试"
+      },
+      "riverpod": {
+        "title": "Riverpod + Freezed",
+        "description": "类型安全的状态管理和不可变数据模型"
+      }
+    },
+    "frontend": {
+      "title": "前端",
+      "flutter": {
+        "title": "Flutter",
+        "description": "iOS/Android跨平台开发"
+      },
+      "kotlin": {
+        "title": "Kotlin Native",
+        "description": "Android原生小组件及通知"
+      },
+      "swift": {
+        "title": "Swift",
+        "description": "iOS小组件及系统集成"
+      }
+    },
+    "backend": {
+      "title": "后端",
+      "nodejs": {
+        "title": "Node.js",
+        "description": "基于Express的REST API服务器"
+      },
+      "prisma": {
+        "title": "Prisma ORM",
+        "description": "类型安全的数据库访问"
+      },
+      "postgresql": {
+        "title": "PostgreSQL",
+        "description": "稳定的关系型数据库"
+      }
+    },
+    "infra": {
+      "title": "基础设施",
+      "cloudrun": {
+        "title": "Cloud Run",
+        "description": "自动扩缩容无服务器部署"
+      },
+      "firebase": {
+        "title": "Firebase",
+        "description": "认证、推送通知、远程配置"
+      },
+      "cloudsql": {
+        "title": "Cloud SQL",
+        "description": "托管PostgreSQL数据库"
+      }
+    }
+  },
+  "usecases": {
+    "title": "这些情况正合适！",
+    "subtitle": "日常容易忘记的事，别忘记帮您记住",
+    "coupon": {
+      "title": "便利店优惠券到期提醒",
+      "description": "注册移动优惠券、礼品卡有效期，到期前接收提醒。再也不会错过优惠券了。"
+    },
+    "items": {
+      "title": "日常用品更换周期",
+      "description": "牙刷、剃须刀、净水器滤芯...设置周期提醒，不错过更换时机。"
+    },
+    "birthday": {
+      "title": "父母农历生日也准确",
+      "description": "自动将农历纪念日转换为公历提醒。不要忘记重要的人的生日。"
+    },
+    "car": {
+      "title": "车辆检查 & 保养记录",
+      "description": "管理机油、轮胎、定期检查日程，一目了然地查看多年的保养记录。"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "items": [
+      {
+        "question": "别忘记是免费的吗？",
+        "answer": "是的，别忘记的所有基本功能都可以免费使用。也没有广告。"
+      },
+      {
+        "question": "数据存储在哪里？",
+        "answer": "默认存储在设备上，登录后可以安全地同步到云端。"
+      },
+      {
+        "question": "可以在多个设备上使用吗？",
+        "answer": "目前每个设备独立使用。数据存储在各设备上，云端同步功能正在准备中。"
+      }
+    ]
+  },
+  "contact": {
+    "title": "咨询",
+    "subtitle": "有什么疑问吗？",
+    "email_label": "邮箱",
+    "response_time": "工作日24小时内回复。"
+  },
+  "roadmap": {
+    "title": "持续发展的应用",
+    "subtitle": "别忘记与您的反馈一起成长",
+    "status": {
+      "completed": "已完成",
+      "inprogress": "进行中",
+      "planned": "计划中"
+    },
+    "items": [
+      {
+        "title": "iOS & Android正式发布",
+        "description": "在App Store和Play Store上体验",
+        "status": "completed",
+        "date": "2024.12"
+      },
+      {
+        "title": "云端同步",
+        "description": "在多个设备间安全同步数据",
+        "status": "inprogress",
+        "date": "2025 Q1"
+      },
+      {
+        "title": "Apple Watch支持",
+        "description": "在手腕上直接查看并完成处理",
+        "status": "planned",
+        "date": "2025"
+      },
+      {
+        "title": "智能提醒升级",
+        "description": "支持更多提醒类型和重复模式",
+        "status": "planned",
+        "date": "2025"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "privacy": "隐私政策",
+    "terms": "使用条款"
+  }
+}
+

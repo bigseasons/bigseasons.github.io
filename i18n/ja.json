@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "about": "会社紹介",
+    "apps": "アプリ",
+    "tech": "技術",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "title": "モバイルアプリ開発スタジオ <span class=\"text-indigo-400\">BigSeasons</span>",
+    "subtitle": "日常生活をより便利に",
+    "description": "複雑な日常をシンプルに、忘れやすいことを記憶に。<br/>BigSeasonsはユーザー中心のモバイルアプリを作ります。",
+    "cta": "今すぐ無料で始める"
+  },
+  "stats": {
+    "apps": "リリースアプリ",
+    "downloads": "リリース1ヶ月のダウンロード",
+    "platform": "マルチプラットフォーム",
+    "updates": "継続的なアップデート"
+  },
+  "about": {
+    "title": "会社紹介",
+    "description": "BigSeasonsは'実用性'と'完成度'を核心価値とする1人開発スタジオです。<br/>華やかさよりも実際に役立つ、長く使えるアプリを作ります。",
+    "values": {
+      "title": "核心価値",
+      "quality": {
+        "title": "品質優先",
+        "description": "バグのない安定したアプリのために、徹底的なテストとコードレビューを行います。"
+      },
+      "ux": {
+        "title": "ユーザー体験",
+        "description": "複雑な機能も直感的に使えるようUXを設計します。"
+      },
+      "improvement": {
+        "title": "継続的改善",
+        "description": "ユーザーフィードバックを反映し、絶えずアプリを発展させます。"
+      },
+      "privacy": {
+        "title": "個人情報保護",
+        "description": "最小限のデータのみ収集し、ユーザーのプライバシーを尊重します。"
+      }
+    }
+  },
+  "apps": {
+    "title": "Our Apps",
+    "amatdda": {
+      "name": "忘れないで",
+      "description": "繰り返しスケジュール管理 + 強力な通知機能を備えた周期管理アプリ。",
+      "badge": "NEW",
+      "badge2": "100% 無料",
+      "features": ["周期別通知", "ウィジェット対応", "クラウド同期"]
+    },
+    "nopo": {
+      "name": "老舗マップ",
+      "description": "全国の古いお店を探索する地図サービス。",
+      "features": ["全国老舗情報", "地図ベース検索", "ユーザーレビュー"]
+    }
+  },
+  "features": {
+    "title": "忘れないでの主要機能",
+    "subtitle": "日常の繰り返しを見逃さないように",
+    "list": {
+      "cycle": {
+        "title": "スマート周期管理",
+        "description": "毎日、毎週、毎月、またはカスタム周期でスケジュールを設定してください。"
+      },
+      "notification": {
+        "title": "強力な通知システム",
+        "description": "指定された時間に正確に通知を受け取り、見逃した通知も再確認できます。"
+      },
+      "widget": {
+        "title": "ホーム画面ウィジェット",
+        "description": "アプリを開かなくてもホーム画面で近づくスケジュールを確認できます。"
+      },
+      "history": {
+        "title": "完了履歴",
+        "description": "いつ完了したかの記録が残り、過去の履歴を一目で確認できます。"
+      }
+    }
+  },
+  "tech": {
+    "title": "技術スタック",
+    "subtitle": "忘れないでを作る技術",
+    "description": "安定性とパフォーマンスのために検証済みの技術スタックを使用します。",
+    "architecture": {
+      "title": "アーキテクチャ",
+      "clean": {
+        "title": "Clean Architecture",
+        "description": "関心の分離とテスト容易性のための階層型アーキテクチャ"
+      },
+      "riverpod": {
+        "title": "Riverpod + Freezed",
+        "description": "型安全な状態管理と不変データモデル"
+      }
+    },
+    "frontend": {
+      "title": "フロントエンド",
+      "flutter": {
+        "title": "Flutter",
+        "description": "iOS/Androidクロスプラットフォーム開発"
+      },
+      "kotlin": {
+        "title": "Kotlin Native",
+        "description": "Androidネイティブウィジェット及び通知"
+      },
+      "swift": {
+        "title": "Swift",
+        "description": "iOSウィジェット及びシステム連携"
+      }
+    },
+    "backend": {
+      "title": "バックエンド",
+      "nodejs": {
+        "title": "Node.js",
+        "description": "ExpressベースのREST APIサーバー"
+      },
+      "prisma": {
+        "title": "Prisma ORM",
+        "description": "型安全なデータベースアクセス"
+      },
+      "postgresql": {
+        "title": "PostgreSQL",
+        "description": "安定したリレーショナルデータベース"
+      }
+    },
+    "infra": {
+      "title": "インフラ",
+      "cloudrun": {
+        "title": "Cloud Run",
+        "description": "自動スケーリングサーバーレスデプロイ"
+      },
+      "firebase": {
+        "title": "Firebase",
+        "description": "認証、プッシュ通知、リモート設定"
+      },
+      "cloudsql": {
+        "title": "Cloud SQL",
+        "description": "管理型PostgreSQLデータベース"
+      }
+    }
+  },
+  "usecases": {
+    "title": "こんな状況にぴったり！",
+    "subtitle": "日常で忘れやすいこと、忘れないでがお手伝いします",
+    "coupon": {
+      "title": "コンビニクーポン期限通知",
+      "description": "モバイルクーポン、ギフトカードの有効期限を登録し、期限前に通知を受け取ってください。もうクーポンを見逃しません。"
+    },
+    "items": {
+      "title": "日常アイテム交換周期",
+      "description": "歯ブラシ、カミソリ、浄水器フィルター...交換時期を見逃さないよう周期別に通知を設定してください。"
+    },
+    "birthday": {
+      "title": "両親の旧暦誕生日も正確に",
+      "description": "旧暦記念日も新暦に自動変換してお知らせします。大切な人の誕生日を忘れないでください。"
+    },
+    "car": {
+      "title": "車両点検 & 管理履歴",
+      "description": "エンジンオイル、タイヤ、定期点検スケジュールを管理し、数年間の管理履歴を一目で確認できます。"
+    }
+  },
+  "faq": {
+    "title": "よくある質問",
+    "items": [
+      {
+        "question": "忘れないでは無料ですか？",
+        "answer": "はい、忘れないでは基本機能すべて無料で使用できます。広告もありません。"
+      },
+      {
+        "question": "データはどこに保存されますか？",
+        "answer": "基本的にデバイスに保存され、ログインするとクラウドに安全に同期されます。"
+      },
+      {
+        "question": "複数のデバイスで使用できますか？",
+        "answer": "現在はデバイスごとに独立して使用する方式です。データは各デバイスに保存され、今後クラウド同期機能を準備中です。"
+      }
+    ]
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "ご質問がございますか？",
+    "email_label": "メール",
+    "response_time": "営業日基準24時間以内に回答いたします。"
+  },
+  "roadmap": {
+    "title": "継続的に発展するアプリ",
+    "subtitle": "忘れないでは皆様のフィードバックと共に成長します",
+    "status": {
+      "completed": "完了",
+      "inprogress": "進行中",
+      "planned": "予定"
+    },
+    "items": [
+      {
+        "title": "iOS & Android正式リリース",
+        "description": "App StoreとPlay Storeでお会いしましょう",
+        "status": "completed",
+        "date": "2024.12"
+      },
+      {
+        "title": "クラウド同期",
+        "description": "複数のデバイス間で安全にデータを同期",
+        "status": "inprogress",
+        "date": "2025 Q1"
+      },
+      {
+        "title": "Apple Watch対応",
+        "description": "手首から直接確認して完了処理",
+        "status": "planned",
+        "date": "2025"
+      },
+      {
+        "title": "スマート通知高度化",
+        "description": "より多様な通知タイプと繰り返しパターン対応",
+        "status": "planned",
+        "date": "2025"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "privacy": "個人情報保護方針",
+    "terms": "利用規約"
+  }
+}
+
