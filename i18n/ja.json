@@ -191,28 +191,28 @@
     },
     "items": [
       {
-        "title": "iOS & Android正式リリース",
-        "description": "App StoreとPlay Storeでお会いしましょう",
+        "title": "アプリリリース",
+        "description": "iOS & Android正式リリース",
         "status": "completed",
-        "date": "2024.12"
+        "date": "2025.11"
+      },
+      {
+        "title": "通知の高度化",
+        "description": "より正確な通知と多様なオプションを提供",
+        "status": "inprogress",
+        "date": "2026 Q1"
       },
       {
         "title": "クラウド同期",
         "description": "複数のデバイス間で安全にデータを同期",
-        "status": "inprogress",
-        "date": "2025 Q1"
+        "status": "planned",
+        "date": "2026 Q2-Q3"
       },
       {
-        "title": "Apple Watch対応",
-        "description": "手首から直接確認して完了処理",
+        "title": "複数デバイス対応",
+        "description": "同一アカウントで複数デバイスから利用",
         "status": "planned",
-        "date": "2025"
-      },
-      {
-        "title": "スマート通知高度化",
-        "description": "より多様な通知タイプと繰り返しパターン対応",
-        "status": "planned",
-        "date": "2025"
+        "date": "2026 Q4"
       }
     ]
   },

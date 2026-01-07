@@ -156,7 +156,7 @@
     "car": {
       "title": "차량 점검 & 관리 내역",
       "description": "엔진오일, 타이어, 정기 점검 일정을 관리하고 수년간의 관리 내역을 한눈에 확인하세요."
-    }
+      }
   },
   "faq": {
     "title": "자주 묻는 질문",
@@ -191,28 +191,28 @@
     },
     "items": [
       {
-        "title": "iOS & Android 정식 출시",
-        "description": "앱스토어와 플레이스토어에서 만나보세요",
+        "title": "앱 출시",
+        "description": "iOS & Android 정식 출시",
         "status": "completed",
-        "date": "2024.12"
+        "date": "2025.11"
+      },
+      {
+        "title": "알림 고도화",
+        "description": "더 정확하고 다양한 알림 옵션 제공",
+        "status": "inprogress",
+        "date": "2026 Q1"
       },
       {
         "title": "클라우드 동기화",
         "description": "여러 기기에서 안전하게 데이터를 동기화",
-        "status": "inprogress",
-        "date": "2025 Q1"
+        "status": "planned",
+        "date": "2026 Q2-Q3"
       },
       {
-        "title": "Apple Watch 지원",
-        "description": "손목에서 바로 확인하고 완료 처리",
+        "title": "다중기기 지원",
+        "description": "여러 기기에서 동일 계정으로 사용",
         "status": "planned",
-        "date": "2025"
-      },
-      {
-        "title": "스마트 알림 고도화",
-        "description": "더 다양한 알림 유형과 반복 패턴 지원",
-        "status": "planned",
-        "date": "2025"
+        "date": "2026 Q4"
       }
     ]
   },

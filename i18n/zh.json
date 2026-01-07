@@ -191,28 +191,28 @@
     },
     "items": [
       {
-        "title": "iOS & Android正式发布",
-        "description": "在App Store和Play Store上体验",
+        "title": "应用发布",
+        "description": "iOS & Android 正式发布",
         "status": "completed",
-        "date": "2024.12"
+        "date": "2025.11"
+      },
+      {
+        "title": "提醒升级",
+        "description": "提供更准确的提醒与更多选项",
+        "status": "inprogress",
+        "date": "2026 Q1"
       },
       {
         "title": "云端同步",
         "description": "在多个设备间安全同步数据",
-        "status": "inprogress",
-        "date": "2025 Q1"
+        "status": "planned",
+        "date": "2026 Q2-Q3"
       },
       {
-        "title": "Apple Watch支持",
-        "description": "在手腕上直接查看并完成处理",
+        "title": "多设备支持",
+        "description": "使用同一账号在多个设备上使用",
         "status": "planned",
-        "date": "2025"
-      },
-      {
-        "title": "智能提醒升级",
-        "description": "支持更多提醒类型和重复模式",
-        "status": "planned",
-        "date": "2025"
+        "date": "2026 Q4"
       }
     ]
   },

@@ -191,28 +191,28 @@
     },
     "items": [
       {
-        "title": "Official iOS & Android Release",
-        "description": "Available on App Store and Play Store",
+        "title": "App Launch",
+        "description": "Official iOS & Android release",
         "status": "completed",
-        "date": "2024.12"
+        "date": "2025.11"
+      },
+      {
+        "title": "Enhanced Notifications",
+        "description": "More accurate notifications and more options",
+        "status": "inprogress",
+        "date": "2026 Q1"
       },
       {
         "title": "Cloud Synchronization",
-        "description": "Safely sync data across multiple devices",
-        "status": "inprogress",
-        "date": "2025 Q1"
+        "description": "Safely sync data across devices",
+        "status": "planned",
+        "date": "2026 Q2-Q3"
       },
       {
-        "title": "Apple Watch Support",
-        "description": "Check and complete tasks right from your wrist",
+        "title": "Multi-Device Support",
+        "description": "Use the same account across multiple devices",
         "status": "planned",
-        "date": "2025"
-      },
-      {
-        "title": "Enhanced Smart Notifications",
-        "description": "More notification types and repeat patterns",
-        "status": "planned",
-        "date": "2025"
+        "date": "2026 Q4"
       }
     ]
   },
