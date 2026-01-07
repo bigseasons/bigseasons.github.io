@@ -1079,7 +1079,7 @@
 
     async function loadTranslations(lang) {
       try {
-        const response = await fetch(`landing_page/${lang}.json`);
+        const response = await fetch(`i18n/${lang}.json`);
         if (!response.ok) throw new Error('Failed to load translations');
         return await response.json();
       } catch (error) {
