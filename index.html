@@ -6,107 +6,139 @@
   <title>까먹지마 - 반복 일정 관리 앱</title>
   <meta name="description" content="까먹지마 — D-day·반복 일정·빠른 메모·시간표를 한곳에서. iOS, Android, 웹(PC 브라우저)에서 이용하세요." />
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Noto Sans KR + Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    
+    *, *::before, *::after { box-sizing: border-box; }
+
     html {
       overflow-x: hidden;
       width: 100%;
-      max-width: 100vw;
+      scroll-behavior: smooth;
     }
-    
+
     body {
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100vw;
-      position: relative;
-      font-family: 'Noto Sans KR', system-ui, sans-serif;
+      font-family: 'Noto Sans KR', 'Inter', system-ui, sans-serif;
+      background: #09090b;
+      color: #fafafa;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
-    
-    section, div {
-      max-width: 100%;
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
     }
-    
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-    
-    /* Glass morphism */
+
+    /* ── Glass ── */
     .glass {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.07);
     }
-    .glass-hover:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-    
-    /* Card animations */
-    .card-lift {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card-lift:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
-    }
-    
-    /* Badge styling */
-    .badge-link img {
-      height: 40px;
-      transition: transform 0.2s ease;
-    }
-    .badge-link:hover img {
-      transform: scale(1.05);
-    }
-    
-    /* Language toggle */
-    .lang-btn {
-      transition: all 0.2s ease;
-    }
-    .lang-btn.active {
-      color: #818cf8;
-      font-weight: 600;
-    }
-    
-    /* Gradient text */
+
+    /* ── Gradient text ── */
     .gradient-text {
-      background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+      background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
-    /* Animated gradient border */
-    .gradient-border {
-      position: relative;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(192, 132, 252, 0.1));
+
+    .gradient-text-warm {
+      background: linear-gradient(135deg, #f472b6 0%, #a78bfa 60%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .gradient-border::before {
+
+    /* ── Animated gradient border ── */
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(167,139,250,0.5), rgba(129,140,248,0.3), rgba(56,189,248,0.4));
+      z-index: -1;
+    }
+
+    /* ── Card lift ── */
+    .card-lift {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px -16px rgba(129,140,248,0.2);
+    }
+
+    /* ── Phone mockup ── */
+    .phone-mockup {
+      position: relative;
+      display: inline-block;
+    }
+    .phone-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2.5rem;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 40px 80px -20px rgba(0,0,0,0.8),
+        0 0 60px -10px rgba(129,140,248,0.15);
+    }
+    .phone-mockup::after {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, #818cf8, #c084fc);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      border-radius: 2.5rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.3);
+      pointer-events: none;
     }
-    
-    /* FAQ accordion — full answer height, no clipping */
+
+    /* ── Hero glow orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ── Badge links ── */
+    .badge-link img {
+      height: 38px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.9;
+    }
+    .badge-link:hover img {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    /* ── Scroll fade ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── FAQ ── */
     .faq-answer {
       display: grid;
       grid-template-rows: 0fr;
@@ -125,125 +157,168 @@
     .faq-icon {
       transition: transform 0.3s ease;
     }
-    
-    /* Scroll animations */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    /* ── Feature icon ── */
+    .feature-icon-wrap {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    /* Carousel */
-    #carousel {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
+    /* ── Tag pill ── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
-    
-    .carousel-slide {
-      width: 100%;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-      pointer-events: none;
-      will-change: opacity, transform;
+
+    /* ── Primary button ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #6d28d9, #4f46e5);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.875rem 1.75rem;
+      border-radius: 0.875rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 24px -4px rgba(99,102,241,0.4);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9375rem;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #7c3aed, #4338ca);
+      box-shadow: 0 12px 32px -4px rgba(99,102,241,0.55);
+      transform: translateY(-1px);
+    }
+
+    /* ── Section heading pill ── */
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: rgba(129,140,248,0.1);
+      border: 1px solid rgba(129,140,248,0.2);
+      color: #a5b4fc;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.875rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Divider ── */
+    .h-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+    }
+
+    /* ── Timeline ── */
+    .timeline-line {
       position: absolute;
+      left: 1.25rem;
       top: 0;
-      left: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #818cf8, #6d28d9, rgba(100,100,150,0.2));
     }
-    
-    .carousel-slide.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-      z-index: 2;
-      position: relative;
-    }
-    
-    .carousel-slide.prev {
-      opacity: 0;
-      transform: translateX(-100%);
-      z-index: 1;
-    }
-    
-    .carousel-slide.next {
-      opacity: 0;
-      transform: translateX(100%);
-      z-index: 1;
-    }
-    
-    .carousel-slide img {
-      width: 100%;
-      height: auto;
-      max-height: 54vh;
-      object-fit: contain;
-      user-select: none;
-      -webkit-user-drag: none;
-      display: block;
-    }
-    
-    @media (max-width: 640px) {
-      .carousel-slide img {
-        max-height: 48vh;
+    @media (min-width: 768px) {
+      .timeline-line {
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
-    
-    /* Indicators overlay on image */
-    .carousel-indicators {
-      position: absolute !important;
-      bottom: 12px !important;
-      left: 0;
-      right: 0;
-      z-index: 30;
-      pointer-events: auto;
+
+    /* ── Stat number ── */
+    .stat-number {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
     }
-    
-    .carousel-dot {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* ── Nav ── */
+    #nav-bar {
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
-    
-    .carousel-dot:hover {
-      background: rgba(255, 255, 255, 0.8) !important;
-      transform: scale(1.15);
+
+    /* ── Mobile screens layout ── */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
-    
-    .carousel-dot.active {
-      background: white !important;
-      width: 1.25rem;
-      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
-      border-color: white;
+    @media (min-width: 640px) {
+      .screens-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    /* staggered vertical offset for visual depth */
+    .screens-grid .phone-mockup:nth-child(1) { margin-top: 2rem; }
+    .screens-grid .phone-mockup:nth-child(2) { margin-top: 0; }
+    .screens-grid .phone-mockup:nth-child(3) { margin-top: 3rem; }
+    .screens-grid .phone-mockup:nth-child(4) { margin-top: 1rem; }
+
+    @media (max-width: 639px) {
+      .screens-grid .phone-mockup:nth-child(1) { margin-top: 0; }
+      .screens-grid .phone-mockup:nth-child(2) { margin-top: 1.5rem; }
+      .screens-grid .phone-mockup:nth-child(3) { margin-top: 0; }
+      .screens-grid .phone-mockup:nth-child(4) { margin-top: 1.5rem; }
+    }
+
+    /* ── Subtle glow under screens ── */
+    .screens-glow {
+      position: absolute;
+      bottom: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
   </style>
 </head>
 
-<body class="bg-neutral-950 text-white antialiased">
+<body>
 
-  <!-- NAVIGATION -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-800/50">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-      <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">BigSeasons</a>
+  <!-- ══════════════════════════ NAVIGATION ══════════════════════════ -->
+  <nav id="nav-bar" class="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex justify-between items-center">
+      <a href="#" class="text-lg font-bold tracking-tight text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-sm">B</span>
+        BigSeasons
+      </a>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex space-x-8 text-sm font-medium">
-        <a href="#features" class="hover:text-indigo-400 transition-colors" data-i18n="nav.features">기능</a>
-        <a href="#apps" class="hover:text-indigo-400 transition-colors" data-i18n="nav.apps">앱</a>
-        <a href="#faq" class="hover:text-indigo-400 transition-colors" data-i18n="nav.faq">FAQ</a>
-        <a href="#contact" class="hover:text-indigo-400 transition-colors" data-i18n="nav.contact">문의</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+        <a href="#features" class="hover:text-white transition-colors" data-i18n="nav.features">기능</a>
+        <a href="#apps" class="hover:text-white transition-colors" data-i18n="nav.apps">앱</a>
+        <a href="#faq" class="hover:text-white transition-colors" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" class="hover:text-white transition-colors" data-i18n="nav.contact">문의</a>
       </div>
 
-      <!-- Mobile & Language Controls -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <!-- Language Dropdown -->
         <div class="relative" id="lang-dropdown-container">
-          <button id="lang-dropdown-btn" class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs md:text-sm font-medium text-neutral-300 hover:text-white transition-colors rounded-lg hover:bg-neutral-800/50">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button id="lang-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
             </svg>
             <span id="current-lang-label">한국어</span>
@@ -251,26 +326,16 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <!-- Dropdown Menu -->
-          <div id="lang-dropdown-menu" class="hidden absolute right-0 top-full mt-1 py-1 bg-neutral-900/95 backdrop-blur-sm border border-neutral-700/50 rounded-lg shadow-xl min-w-[120px] z-50">
-            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="ko">
-              <span class="w-5">🇰🇷</span> 한국어
-            </button>
-            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="en">
-              <span class="w-5">🇺🇸</span> English
-            </button>
-            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="ja">
-              <span class="w-5">🇯🇵</span> 日本語
-            </button>
-            <button class="lang-option w-full px-3 py-2 text-left text-sm text-neutral-300 hover:text-white hover:bg-neutral-800/70 transition-colors flex items-center gap-2" data-lang="zh">
-              <span class="w-5">🇨🇳</span> 中文
-            </button>
+          <div id="lang-dropdown-menu" class="hidden absolute right-0 top-full mt-2 py-1.5 bg-zinc-900/95 backdrop-blur-sm border border-white/8 rounded-xl shadow-2xl min-w-[130px] z-50">
+            <button class="lang-option w-full px-3.5 py-2 text-left text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2.5" data-lang="ko"><span>🇰🇷</span>한국어</button>
+            <button class="lang-option w-full px-3.5 py-2 text-left text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2.5" data-lang="en"><span>🇺🇸</span>English</button>
+            <button class="lang-option w-full px-3.5 py-2 text-left text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2.5" data-lang="ja"><span>🇯🇵</span>日本語</button>
+            <button class="lang-option w-full px-3.5 py-2 text-left text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2.5" data-lang="zh"><span>🇨🇳</span>中文</button>
           </div>
         </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-400 hover:text-white transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
@@ -278,960 +343,700 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-neutral-900/95 backdrop-blur-lg border-t border-neutral-800/50">
-      <div class="px-4 py-4 space-y-3">
-        <a href="#features" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.features" onclick="closeMobileMenu()">기능</a>
-        <a href="#apps" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.apps" onclick="closeMobileMenu()">앱</a>
-        <a href="#faq" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.faq" onclick="closeMobileMenu()">FAQ</a>
-        <a href="#contact" class="block py-2 text-neutral-300 hover:text-indigo-400 transition-colors" data-i18n="nav.contact" onclick="closeMobileMenu()">문의</a>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-zinc-950/98 backdrop-blur-xl">
+      <div class="px-5 py-4 flex flex-col gap-1">
+        <a href="#features" class="py-2.5 px-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors" data-i18n="nav.features" onclick="closeMobileMenu()">기능</a>
+        <a href="#apps" class="py-2.5 px-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors" data-i18n="nav.apps" onclick="closeMobileMenu()">앱</a>
+        <a href="#faq" class="py-2.5 px-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors" data-i18n="nav.faq" onclick="closeMobileMenu()">FAQ</a>
+        <a href="#contact" class="py-2.5 px-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors" data-i18n="nav.contact" onclick="closeMobileMenu()">문의</a>
       </div>
     </div>
   </nav>
 
 
-  <!-- HERO SECTION - Landing Page -->
-  <section class="min-h-[100svh] flex flex-col justify-center pt-20 pb-10 md:pt-24 md:pb-14 relative overflow-hidden">
-    <!-- Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
+  <!-- ══════════════════════════ HERO ══════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16">
+    <!-- Background orbs -->
+    <div class="orb w-[600px] h-[600px] bg-violet-600/15 top-[-10%] left-[-15%]"></div>
+    <div class="orb w-[500px] h-[500px] bg-indigo-600/12 bottom-[-5%] right-[-10%]"></div>
+    <div class="orb w-[300px] h-[300px] bg-sky-500/8 top-[40%] left-[55%]"></div>
 
-    <div class="max-w-lg mx-auto px-4 text-center relative z-10 flex flex-col">
-      
-      <!-- App Icon & Title -->
-      <div class="fade-up">
-        <div class="flex justify-center mb-0.5">
-          <img src="assets/amatdda_icon.png" alt="까먹지마 아이콘" class="w-[4.5rem] h-[4.5rem] rounded-xl shadow-lg shadow-indigo-500/20">
-        </div>
-        <h1 class="text-base md:text-lg font-bold text-white mt-1 mb-1" id="hero-title">까먹지마 <span class="text-indigo-400 font-medium" id="hero-subtitle">일상 관리의 시작</span></h1>
-      </div>
+    <div class="relative z-10 max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28 flex flex-col items-center text-center gap-8">
 
-      <!-- Image Carousel -->
-      <div class="fade-up flex-shrink-0 my-4">
-        <div class="relative w-full max-w-md mx-auto">
-          <!-- Carousel Container -->
-          <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-xl">
-            <!-- Korean Images -->
-            <div class="carousel-slide active" data-lang="ko" data-index="0">
-              <img src="assets/landing/ko_1.png" alt="빠른 노트로 일상을 기록해요">
-            </div>
-            <div class="carousel-slide" data-lang="ko" data-index="1">
-              <img src="assets/landing/ko_2.png" alt="매번 깜빡하는 일상의 일들">
-            </div>
-            <div class="carousel-slide" data-lang="ko" data-index="2">
-              <img src="assets/landing/ko_3.png" alt="처리하고 메모해두세요">
-            </div>
-            <!-- English Images -->
-            <div class="carousel-slide" data-lang="en" data-index="0">
-              <img src="assets/landing/en_1.png" alt="Quick memos for daily life">
-            </div>
-            <div class="carousel-slide" data-lang="en" data-index="1">
-              <img src="assets/landing/en_2.png" alt="Never forget those everyday tasks">
-            </div>
-            <div class="carousel-slide" data-lang="en" data-index="2">
-              <img src="assets/landing/en_3.png" alt="Get reminders and keep notes">
-            </div>
-            <!-- Japanese Images -->
-            <div class="carousel-slide" data-lang="ja" data-index="0">
-              <img src="assets/landing/ja_1.png" alt="日常を素早くメモ">
-            </div>
-            <div class="carousel-slide" data-lang="ja" data-index="1">
-              <img src="assets/landing/ja_2.png" alt="毎回忘れがちな日常のこと">
-            </div>
-            <div class="carousel-slide" data-lang="ja" data-index="2">
-              <img src="assets/landing/ja_3.png" alt="処理してメモしておく">
-            </div>
-            <!-- Chinese Images -->
-            <div class="carousel-slide" data-lang="zh" data-index="0">
-              <img src="assets/landing/zh_1.png" alt="快速记录日常生活">
-            </div>
-            <div class="carousel-slide" data-lang="zh" data-index="1">
-              <img src="assets/landing/zh_2.png" alt="总是忘记的日常事项">
-            </div>
-            <div class="carousel-slide" data-lang="zh" data-index="2">
-              <img src="assets/landing/zh_3.png" alt="处理并记录">
-            </div>
-
-            <!-- Carousel Indicators (Inside, overlaying image) -->
-            <div class="carousel-indicators flex justify-center gap-2.5">
-              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="0" aria-label="Slide 1"></button>
-              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="1" aria-label="Slide 2"></button>
-              <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="2" aria-label="Slide 3"></button>
-            </div>
+      <!-- App icon + badge -->
+      <div class="fade-up flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-[1.5rem] bg-gradient-to-br from-violet-500 via-indigo-500 to-sky-500 p-0.5 shadow-2xl shadow-indigo-500/30">
+          <div class="w-full h-full rounded-[1.375rem] bg-zinc-950 flex items-center justify-center">
+            <img src="assets/amatdda_icon.png" alt="까먹지마" class="w-14 h-14 rounded-2xl" onerror="this.style.display='none'">
           </div>
         </div>
+        <div class="section-pill">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          100% 무료
+        </div>
       </div>
 
-      <!-- CTA Text -->
-      <div class="fade-up mt-1">
-        <p class="text-neutral-300 text-xs font-medium" data-i18n="hero.cta">지금 무료로 시작하세요</p>
+      <!-- Heading -->
+      <div class="fade-up flex flex-col gap-4 max-w-3xl">
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05]" id="hero-heading">
+          <span id="hero-app-name">까먹지마</span><br>
+          <span class="gradient-text" id="hero-tagline">일상 관리의 시작</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-xl mx-auto" data-i18n="hero.description">
+          D-day · 반복 일정 · 빠른 메모 · 시간표를<br class="hidden sm:block"> 한 앱에서 스마트하게 관리하세요.
+        </p>
       </div>
 
-      <!-- Download + Web (PC) — first screen -->
-      <div class="fade-up mt-3 w-full max-w-md mx-auto space-y-3">
-        <a href="https://amatdda.bigseasons.co.kr/home"
-           target="_blank" rel="noopener noreferrer"
-           class="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-neutral-950">
-          <svg class="h-5 w-5 shrink-0 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <!-- CTA buttons -->
+      <div class="fade-up flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm">
+        <a href="https://amatdda.bigseasons.co.kr/home" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto flex-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
           </svg>
-          <span data-i18n="hero.pcWeb">PC·브라우저에서 바로 열기</span>
+          <span data-i18n="hero.pcWeb">웹에서 바로 시작</span>
         </a>
-        <div class="flex flex-wrap justify-center gap-2">
-          <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda&pcampaignid=web_share" 
-             target="_blank" rel="noopener noreferrer" class="badge-link">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                 alt="Get it on Google Play" class="h-8" />
+        <div class="flex items-center gap-2">
+          <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener noreferrer" class="badge-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
           </a>
-          <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" 
-             target="_blank" rel="noopener noreferrer" class="badge-link">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                 alt="Download on the App Store" class="h-8" />
+          <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" target="_blank" rel="noopener noreferrer" class="badge-link">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
           </a>
         </div>
-        <p class="text-center text-[11px] text-neutral-500 leading-snug px-2" data-i18n="hero.pcWebHint">앱 설치 없이 체험·편집은 웹에서, 알림·위젯은 앱에서 이용할 수 있어요.</p>
       </div>
 
-      <!-- Scroll indicator -->
-      <div class="fade-up mt-2">
-        <a href="#features" class="inline-flex flex-col items-center text-neutral-500 hover:text-neutral-300 transition-colors">
-          <span class="text-[11px]" id="hero-more">더 알아보기</span>
-          <svg class="w-3 h-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-          </svg>
-        </a>
+      <p class="fade-up text-xs text-zinc-600 -mt-2" data-i18n="hero.pcWebHint">앱 없이 웹에서 체험·편집 가능 · 알림·위젯은 앱에서</p>
+
+      <!-- ── App Screenshots (4-up, staggered) ── -->
+      <div class="fade-up relative w-full max-w-4xl mt-4">
+        <div class="screens-glow"></div>
+        <div class="screens-grid">
+          <div class="phone-mockup">
+            <img src="assets/screen_notes.png" alt="메모 화면" loading="lazy">
+          </div>
+          <div class="phone-mockup">
+            <img src="assets/screen_dday.png" alt="D-day 화면" loading="lazy">
+          </div>
+          <div class="phone-mockup">
+            <img src="assets/screen_timetable.png" alt="시간표 화면" loading="lazy">
+          </div>
+          <div class="phone-mockup">
+            <img src="assets/screen_widget.png" alt="위젯 화면" loading="lazy">
+          </div>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-zinc-600">
+      <a href="#features" class="hover:text-zinc-400 transition-colors flex flex-col items-center gap-1">
+        <span class="text-[10px] tracking-widest uppercase" id="hero-more">스크롤</span>
+        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
     </div>
   </section>
 
 
-  <!-- STATS BANNER -->
-  <section class="py-12 border-y border-neutral-800/50 bg-neutral-900/50">
-    <div class="max-w-6xl mx-auto px-6">
+  <!-- ══════════════════════════ STATS ══════════════════════════ -->
+  <section class="py-16 relative z-10">
+    <div class="h-divider"></div>
+    <div class="max-w-5xl mx-auto px-5 md:px-8 py-16">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div class="fade-up">
-          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">2+</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.apps">출시 앱</div>
+        <div class="fade-up flex flex-col gap-1">
+          <div class="stat-number gradient-text">2+</div>
+          <div class="text-zinc-500 text-sm mt-2" data-i18n="stats.apps">출시 앱</div>
         </div>
-        <div class="fade-up" style="animation-delay: 0.1s;">
-          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">1500+</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.downloads">총 다운로드</div>
+        <div class="fade-up flex flex-col gap-1" style="transition-delay:.08s">
+          <div class="stat-number gradient-text">1,500+</div>
+          <div class="text-zinc-500 text-sm mt-2" data-i18n="stats.downloads">총 다운로드</div>
         </div>
-        <div class="fade-up" style="animation-delay: 0.2s;">
-          <div class="text-2xl md:text-3xl font-bold gradient-text mb-2 tracking-tight" data-i18n="stats.platformLine">iOS · Android · Web</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.platform">플랫폼</div>
+        <div class="fade-up flex flex-col gap-1" style="transition-delay:.16s">
+          <div class="stat-number gradient-text text-2xl md:text-3xl">3 Platforms</div>
+          <div class="text-zinc-500 text-sm mt-2" data-i18n="stats.platform">iOS · Android · Web</div>
         </div>
-        <div class="fade-up" style="animation-delay: 0.3s;">
-          <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">Weekly</div>
-          <div class="text-neutral-400 text-sm" data-i18n="stats.updates">지속적인 업데이트</div>
+        <div class="fade-up flex flex-col gap-1" style="transition-delay:.24s">
+          <div class="stat-number gradient-text">Weekly</div>
+          <div class="text-zinc-500 text-sm mt-2" data-i18n="stats.updates">지속적인 업데이트</div>
         </div>
+      </div>
+    </div>
+    <div class="h-divider"></div>
+  </section>
+
+
+  <!-- ══════════════════════════ FEATURES ══════════════════════════ -->
+  <section id="features" class="py-24 md:py-32 scroll-mt-20 relative z-10">
+    <div class="orb w-[400px] h-[400px] bg-violet-600/10 top-[20%] right-[-10%]"></div>
+    <div class="max-w-5xl mx-auto px-5 md:px-8">
+
+      <div class="fade-up text-center mb-16 flex flex-col items-center gap-3">
+        <div class="section-pill" data-i18n="features.pill">기능 소개</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="features.title">강력한 기능들</h2>
+        <p class="text-zinc-400 text-lg max-w-md" data-i18n="features.subtitle">반복 일정을 스마트하게 관리하세요</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <!-- Cycle -->
+        <div class="fade-up glass rounded-2xl p-6 card-lift flex gap-5">
+          <div class="feature-icon-wrap bg-gradient-to-br from-violet-500 to-indigo-600">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base mb-1.5" data-i18n="features.list.cycle.title">스마트 주기 관리</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="features.list.cycle.description">매일, 매주, 매월 또는 커스텀 주기로 일정을 설정하세요.</p>
+          </div>
+        </div>
+
+        <!-- Notification -->
+        <div class="fade-up glass rounded-2xl p-6 card-lift flex gap-5" style="transition-delay:.05s">
+          <div class="feature-icon-wrap bg-gradient-to-br from-orange-500 to-rose-600">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base mb-1.5" data-i18n="features.list.notification.title">강력한 알림 시스템</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="features.list.notification.description">지정된 시간에 정확히 알림을 받고, 놓친 알림도 다시 확인할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <!-- Timetable -->
+        <div class="fade-up glass rounded-2xl p-6 card-lift flex gap-5" style="transition-delay:.1s">
+          <div class="feature-icon-wrap bg-gradient-to-br from-violet-500 to-fuchsia-600">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base mb-1.5" data-i18n="features.list.timetable.title">시간표</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="features.list.timetable.description">요일별 시간표로 수업·루틴을 한눈에 정리하고, 앱·웹에서 함께 관리하세요.</p>
+          </div>
+        </div>
+
+        <!-- Widget -->
+        <div class="fade-up glass rounded-2xl p-6 card-lift flex gap-5" style="transition-delay:.15s">
+          <div class="feature-icon-wrap bg-gradient-to-br from-cyan-500 to-blue-600">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base mb-1.5" data-i18n="features.list.widget.title">홈 화면 위젯</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="features.list.widget.description">앱을 열지 않아도 홈 화면에서 다가오는 일정을 확인하세요.</p>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="fade-up glass rounded-2xl p-6 card-lift flex gap-5 md:col-span-2" style="transition-delay:.2s">
+          <div class="feature-icon-wrap bg-gradient-to-br from-emerald-500 to-teal-600">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base mb-1.5" data-i18n="features.list.history.title">완료 히스토리</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="features.list.history.description">언제 완료했는지 기록이 남아 과거 내역을 한눈에 확인할 수 있습니다.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
 
-  <!-- FEATURES SECTION -->
-  <section id="features" class="py-24 bg-neutral-900/30 border-y border-neutral-800/50 scroll-mt-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="features.title">까먹지마의 강력한 기능들</h2>
-        <p class="text-neutral-400 text-lg" data-i18n="features.subtitle">반복 일정을 스마트하게 관리하세요</p>
+  <!-- ══════════════════════════ USE CASES ══════════════════════════ -->
+  <section class="py-24 md:py-32 relative z-10">
+    <div class="h-divider"></div>
+    <div class="orb w-[350px] h-[350px] bg-indigo-600/10 top-[10%] left-[-5%]"></div>
+    <div class="max-w-5xl mx-auto px-5 md:px-8 py-24">
+
+      <div class="fade-up text-center mb-16 flex flex-col items-center gap-3">
+        <div class="section-pill" data-i18n="usecases.pill">활용 사례</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="usecases.title">이런 상황에 딱!</h2>
+        <p class="text-zinc-400 text-lg" data-i18n="usecases.subtitle">일상 속 깜빡하기 쉬운 것들, 까먹지마가 챙겨드려요</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Feature 1: Cycle -->
-        <div class="flex gap-5 fade-up">
-          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <div class="fade-up glass rounded-2xl p-5 card-lift flex flex-col gap-4">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
           </div>
           <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.cycle.title">스마트 주기 관리</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.cycle.description">
-              매일, 매주, 매월 또는 커스텀 주기로 일정을 설정하세요.
-            </p>
+            <h3 class="font-semibold text-sm mb-1" data-i18n="usecases.coupon.title">편의점 쿠폰 기한</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed" data-i18n="usecases.coupon.description">모바일 쿠폰, 기프티콘 유효기간을 등록하고 만료 전 알림을 받으세요.</p>
           </div>
         </div>
 
-        <!-- Feature 2: Notification -->
-        <div class="flex gap-5 fade-up" style="animation-delay: 0.1s;">
-          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
+        <div class="fade-up glass rounded-2xl p-5 card-lift flex flex-col gap-4" style="transition-delay:.06s">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </div>
           <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.notification.title">강력한 알림 시스템</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.notification.description">
-              지정된 시간에 정확히 알림을 받고, 놓친 알림도 다시 확인할 수 있습니다.
-            </p>
+            <h3 class="font-semibold text-sm mb-1" data-i18n="usecases.items.title">생활용품 교체 주기</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed" data-i18n="usecases.items.description">칫솔, 면도기, 정수기 필터... 교체 시기를 주기별로 알림 받으세요.</p>
           </div>
         </div>
 
-        <!-- Feature: Timetable -->
-        <div class="flex gap-5 fade-up" style="animation-delay: 0.2s;">
-          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-violet-500 to-fuchsia-600 rounded-2xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
+        <div class="fade-up glass rounded-2xl p-5 card-lift flex flex-col gap-4" style="transition-delay:.12s">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 01-1.5.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/></svg>
           </div>
           <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.timetable.title">시간표</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.timetable.description">
-              요일별 시간표로 수업·루틴을 한눈에 정리하고, 앱·웹에서 함께 관리하세요.
-            </p>
+            <h3 class="font-semibold text-sm mb-1" data-i18n="usecases.birthday.title">부모님 음력 생일</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed" data-i18n="usecases.birthday.description">음력 기념일도 양력으로 자동 변환하여 정확히 알려드려요.</p>
           </div>
         </div>
 
-        <!-- Feature 3: Widget -->
-        <div class="flex gap-5 fade-up" style="animation-delay: 0.25s;">
-          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-            </svg>
+        <div class="fade-up glass rounded-2xl p-5 card-lift flex flex-col gap-4" style="transition-delay:.18s">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
           </div>
           <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.widget.title">홈 화면 위젯</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.widget.description">
-              앱을 열지 않아도 홈 화면에서 다가오는 일정을 확인하세요.
-            </p>
+            <h3 class="font-semibold text-sm mb-1" data-i18n="usecases.car.title">차량 점검 관리</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed" data-i18n="usecases.car.description">엔진오일, 타이어, 정기 점검 일정과 관리 내역을 한눈에.</p>
           </div>
         </div>
 
-        <!-- Feature 4: History -->
-        <div class="flex gap-5 fade-up" style="animation-delay: 0.35s;">
-          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2" data-i18n="features.list.history.title">완료 히스토리</h3>
-            <p class="text-neutral-400 leading-relaxed" data-i18n="features.list.history.description">
-              언제 완료했는지 기록이 남아 과거 내역을 한눈에 확인할 수 있습니다.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
+    <div class="h-divider"></div>
   </section>
 
 
-  <!-- OUR APPS SECTION -->
-  <section id="apps" class="py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="apps.title">Our Apps</h2>
+  <!-- ══════════════════════════ OUR APPS ══════════════════════════ -->
+  <section id="apps" class="py-24 md:py-32 scroll-mt-20 relative z-10">
+    <div class="max-w-5xl mx-auto px-5 md:px-8">
+
+      <div class="fade-up text-center mb-16 flex flex-col items-center gap-3">
+        <div class="section-pill">Our Apps</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="apps.title">BigSeasons 앱</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- App 1: 까먹지마 -->
-        <div class="glass rounded-3xl p-6 card-lift fade-up">
-          <img src="assets/amatdda_screenshot.png" alt="까먹지마 Screenshot"
-               class="w-full h-56 object-cover rounded-2xl mb-6" />
-          
-          <div class="flex items-center gap-4 mb-4">
-            <img src="assets/amatdda_icon.png" alt="까먹지마 Icon" 
-                 class="w-16 h-16 rounded-2xl shadow-lg" />
-            <div>
-              <h3 class="text-xl font-bold" data-i18n="apps.amatdda.name">까먹지마</h3>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs font-medium px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full" data-i18n="apps.amatdda.badge">NEW</span>
-                <span class="text-xs font-medium px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-full" data-i18n="apps.amatdda.badge2">100% 무료</span>
-              </div>
-            </div>
-          </div>
+      <div class="grid md:grid-cols-2 gap-6">
 
-          <p class="text-neutral-400 leading-relaxed mb-3" data-i18n="apps.amatdda.description">
-            반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.
-          </p>
-          <p class="text-sm font-medium text-indigo-300/90 mb-4" data-i18n="apps.amatdda.platforms">iOS · Android · 웹</p>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <a href="https://amatdda.bigseasons.co.kr/home"
-               target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 rounded-lg border border-indigo-500/50 bg-indigo-600/20 px-3 py-2 text-sm font-semibold text-indigo-200 transition hover:bg-indigo-600/35">
-              <svg class="h-4 w-4 shrink-0 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-              </svg>
-              <span data-i18n="apps.amatdda.webCta">웹(PC)에서 열기</span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda&pcampaignid=web_share" 
-               target="_blank" rel="noopener noreferrer" class="badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                   alt="Get it on Google Play" />
-            </a>
-            <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" 
-               target="_blank" rel="noopener noreferrer" class="badge-link">
-              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                   alt="Download on the App Store" />
-            </a>
-          </div>
-        </div>
-
-        <!-- App 2: 노포지도 -->
-        <div class="glass rounded-3xl p-6 card-lift fade-up" style="animation-delay: 0.1s;">
-          <img src="assets/nopo_screenshot.jpg" alt="노포지도 Screenshot"
-               class="w-full h-56 object-cover rounded-2xl mb-6" />
-          
-          <div class="flex items-center gap-4 mb-4">
-            <img src="assets/nopo_icon.png" alt="노포지도 Icon" 
-                 class="w-16 h-16 rounded-2xl shadow-lg" />
-            <div>
-              <h3 class="text-xl font-bold" data-i18n="apps.nopo.name">노포지도</h3>
-              <div class="flex items-center gap-1 mt-1">
-                <div class="flex text-yellow-400">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <!-- 까먹지마 -->
+        <div class="fade-up glass rounded-3xl overflow-hidden card-lift">
+          <div class="h-48 bg-gradient-to-br from-violet-900/60 via-indigo-900/40 to-zinc-900 flex items-end px-6 pb-5">
+            <div class="flex items-center gap-3">
+              <img src="assets/amatdda_icon.png" alt="까먹지마" class="w-14 h-14 rounded-2xl shadow-lg" onerror="this.style.display='none'">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="tag bg-emerald-500/20 text-emerald-400 border border-emerald-500/20" data-i18n="apps.amatdda.badge">NEW</span>
+                  <span class="tag bg-indigo-500/20 text-indigo-400 border border-indigo-500/20" data-i18n="apps.amatdda.badge2">100% 무료</span>
                 </div>
-                <span class="text-neutral-500 text-sm ml-1">4.9</span>
+                <h3 class="text-xl font-bold" data-i18n="apps.amatdda.name">까먹지마</h3>
               </div>
             </div>
           </div>
-
-          <p class="text-neutral-400 leading-relaxed mb-5" data-i18n="apps.nopo.description">
-            전국 오래된 가게를 탐험하는 지도 서비스.
-          </p>
-
-          <div class="flex flex-wrap gap-3">
-            <a href="https://play.google.com/store/apps/details?id=com.nopo.nopospot&pcampaignid=web_share" 
-               target="_blank" rel="noopener noreferrer" class="badge-link">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                   alt="Get it on Google Play" />
-            </a>
-            <a href="https://apps.apple.com/kr/app/%EB%85%B8%ED%8F%AC%EC%A7%80%EB%8F%84/id6745243638" 
-               target="_blank" rel="noopener noreferrer" class="badge-link">
-              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                   alt="Download on the App Store" />
-            </a>
+          <div class="p-6 flex flex-col gap-4">
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="apps.amatdda.description">반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.</p>
+            <p class="text-xs font-semibold text-indigo-400" data-i18n="apps.amatdda.platforms">iOS · Android · 웹</p>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a href="https://amatdda.bigseasons.co.kr/home" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold hover:bg-indigo-600/35 transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                <span data-i18n="apps.amatdda.webCta">웹에서 열기</span>
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener noreferrer" class="badge-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+              </a>
+              <a href="https://apps.apple.com/kr/app/%EA%B9%8C%EB%A8%B9%EC%A7%80%EB%A7%88-%EC%9D%BC%EC%83%81-%EA%B4%80%EB%A6%AC%EC%9D%98-%EC%8B%9C%EC%9E%91/id6751563264" target="_blank" rel="noopener noreferrer" class="badge-link">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+              </a>
+            </div>
           </div>
         </div>
+
+        <!-- 노포지도 -->
+        <div class="fade-up glass rounded-3xl overflow-hidden card-lift" style="transition-delay:.08s">
+          <div class="h-48 bg-gradient-to-br from-amber-900/50 via-orange-900/30 to-zinc-900 flex items-end px-6 pb-5">
+            <div class="flex items-center gap-3">
+              <img src="assets/nopo_icon.png" alt="노포지도" class="w-14 h-14 rounded-2xl shadow-lg" onerror="this.style.display='none'">
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <div class="flex text-yellow-400">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  </div>
+                  <span class="text-zinc-400 text-xs">4.9</span>
+                </div>
+                <h3 class="text-xl font-bold" data-i18n="apps.nopo.name">노포지도</h3>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 flex flex-col gap-4">
+            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="apps.nopo.description">전국 오래된 가게를 탐험하는 지도 서비스.</p>
+            <div class="flex flex-wrap gap-2.5">
+              <a href="https://play.google.com/store/apps/details?id=com.nopo.nopospot" target="_blank" rel="noopener noreferrer" class="badge-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+              </a>
+              <a href="https://apps.apple.com/kr/app/%EB%85%B8%ED%8F%AC%EC%A7%80%EB%8F%84/id6745243638" target="_blank" rel="noopener noreferrer" class="badge-link">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
 
-  <!-- USE CASES SECTION -->
-  <section class="py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="usecases.title">이런 상황에 딱!</h2>
-        <p class="text-neutral-400 text-lg" data-i18n="usecases.subtitle">일상 속 깜빡하기 쉬운 것들, 까먹지마가 챙겨드려요</p>
+  <!-- ══════════════════════════ ROADMAP ══════════════════════════ -->
+  <section class="py-24 md:py-32 relative z-10">
+    <div class="h-divider"></div>
+    <div class="max-w-3xl mx-auto px-5 md:px-8 py-24">
+
+      <div class="fade-up text-center mb-16 flex flex-col items-center gap-3">
+        <div class="section-pill" data-i18n="roadmap.pill">로드맵</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="roadmap.title">계속 발전하는 앱</h2>
+        <p class="text-zinc-400 text-lg" data-i18n="roadmap.subtitle">까먹지마는 여러분의 피드백과 함께 성장합니다</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Use Case 1: 쿠폰 -->
-        <div class="glass rounded-2xl p-6 card-lift fade-up">
-          <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mb-5">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.coupon.title">편의점 쿠폰 기한 알림</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.coupon.description">
-            모바일 쿠폰, 기프티콘 유효기간을 등록하고 만료 전 알림을 받으세요. 더 이상 쿠폰을 놓치지 마세요.
-          </p>
-        </div>
-
-        <!-- Use Case 2: 일상 아이템 -->
-        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.1s;">
-          <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mb-5">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.items.title">일상 아이템 교체 주기</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.items.description">
-            칫솔, 면도기, 정수기 필터... 교체 시기를 놓치지 않도록 주기별로 알림을 설정하세요.
-          </p>
-        </div>
-
-        <!-- Use Case 3: 음력 생일 -->
-        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.2s;">
-          <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-5">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 01-1.5.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.birthday.title">부모님 음력 생일도 정확히</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.birthday.description">
-            음력 기념일도 양력으로 자동 변환하여 알려드려요. 소중한 분의 생일을 잊지 마세요.
-          </p>
-        </div>
-
-        <!-- Use Case 4: 차량 관리 -->
-        <div class="glass rounded-2xl p-6 card-lift fade-up" style="animation-delay: 0.3s;">
-          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-5">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2" data-i18n="usecases.car.title">차량 점검 & 관리 내역</h3>
-          <p class="text-neutral-400 text-sm leading-relaxed" data-i18n="usecases.car.description">
-            엔진오일, 타이어, 정기 점검 일정을 관리하고 수년간의 관리 내역을 한눈에 확인하세요.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ROADMAP SECTION -->
-  <section class="py-24 bg-neutral-900/30 border-y border-neutral-800/50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-12 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="roadmap.title">계속 발전하는 앱</h2>
-        <p class="text-neutral-400 text-lg" data-i18n="roadmap.subtitle">까먹지마는 여러분의 피드백과 함께 성장합니다</p>
-      </div>
-
-      <!-- Timeline -->
       <div class="relative">
-        <!-- Timeline line -->
-        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-neutral-700"></div>
+        <div class="timeline-line"></div>
 
-        <!-- Timeline items -->
-        <div class="space-y-8">
-          <!-- Item 1: Completed -->
-          <div class="relative flex items-center md:justify-center fade-up">
-            <div class="flex items-center w-full md:w-1/2 md:pr-8 md:justify-end pl-12 md:pl-0">
-              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-xs font-medium px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full" data-i18n="roadmap.status.completed">완료</span>
-                  <span class="text-neutral-500 text-xs">2025.11</span>
+        <div class="space-y-6">
+
+          <div class="fade-up relative flex items-start md:justify-center">
+            <div class="absolute left-5 md:left-1/2 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20 md:-translate-x-1.5 mt-5 z-10"></div>
+            <div class="w-full md:w-1/2 md:pr-10 pl-14 md:pl-0 md:text-right">
+              <div class="glass rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2 md:justify-end">
+                  <span class="tag bg-emerald-500/15 text-emerald-400 border border-emerald-500/20" data-i18n="roadmap.status.completed">완료</span>
+                  <span class="text-zinc-600 text-xs">2025.11</span>
                 </div>
-                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.0.title">앱 출시</h4>
-                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.0.description">iOS & Android 정식 출시</p>
+                <h4 class="font-semibold text-sm mb-0.5" data-i18n="roadmap.items.0.title">앱 출시</h4>
+                <p class="text-zinc-500 text-xs" data-i18n="roadmap.items.0.description">iOS & Android 정식 출시</p>
               </div>
             </div>
-            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-emerald-500 rounded-full transform md:-translate-x-1/2 ring-4 ring-emerald-500/20"></div>
           </div>
 
-          <!-- Item 2: In Progress -->
-          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.1s;">
-            <div class="flex items-center w-full md:w-1/2 md:pl-8 md:justify-start pl-12">
-              <div class="glass rounded-xl p-5 w-full md:max-w-sm gradient-border">
+          <div class="fade-up relative flex items-start md:justify-center" style="transition-delay:.08s">
+            <div class="absolute left-5 md:left-1/2 w-3 h-3 rounded-full bg-indigo-500 ring-4 ring-indigo-500/20 md:-translate-x-1.5 mt-5 animate-pulse z-10"></div>
+            <div class="w-full md:w-1/2 md:pl-10 pl-14 md:ml-auto">
+              <div class="glass rounded-xl p-4 border border-indigo-500/20">
                 <div class="flex items-center gap-2 mb-2">
-                  <span class="text-xs font-medium px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-full" data-i18n="roadmap.status.inprogress">진행중</span>
-                  <span class="text-neutral-500 text-xs">2026 Q1</span>
+                  <span class="tag bg-indigo-500/15 text-indigo-400 border border-indigo-500/20" data-i18n="roadmap.status.inprogress">진행중</span>
+                  <span class="text-zinc-600 text-xs">2026 Q1</span>
                 </div>
-                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.1.title">알림 고도화</h4>
-                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.1.description">더 정확하고 다양한 알림 옵션 제공</p>
+                <h4 class="font-semibold text-sm mb-0.5" data-i18n="roadmap.items.1.title">알림 고도화</h4>
+                <p class="text-zinc-500 text-xs" data-i18n="roadmap.items.1.description">더 정확하고 다양한 알림 옵션 제공</p>
               </div>
             </div>
-            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-indigo-500 rounded-full transform md:-translate-x-1/2 ring-4 ring-indigo-500/20 animate-pulse"></div>
           </div>
 
-          <!-- Item 3: Planned -->
-          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.2s;">
-            <div class="flex items-center w-full md:w-1/2 md:pr-8 md:justify-end pl-12 md:pl-0">
-              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-xs font-medium px-2 py-1 bg-neutral-700 text-neutral-400 rounded-full" data-i18n="roadmap.status.planned">예정</span>
-                  <span class="text-neutral-500 text-xs">2026 Q2-Q3</span>
+          <div class="fade-up relative flex items-start md:justify-center" style="transition-delay:.16s">
+            <div class="absolute left-5 md:left-1/2 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-zinc-700/50 md:-translate-x-1.5 mt-5 z-10"></div>
+            <div class="w-full md:w-1/2 md:pr-10 pl-14 md:pl-0 md:text-right">
+              <div class="glass rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2 md:justify-end">
+                  <span class="tag bg-zinc-700/50 text-zinc-400 border border-zinc-700" data-i18n="roadmap.status.planned">예정</span>
+                  <span class="text-zinc-600 text-xs">2026 Q2–Q3</span>
                 </div>
-                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.2.title">클라우드 동기화</h4>
-                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.2.description">여러 기기에서 안전하게 데이터를 동기화</p>
+                <h4 class="font-semibold text-sm mb-0.5" data-i18n="roadmap.items.2.title">클라우드 동기화</h4>
+                <p class="text-zinc-500 text-xs" data-i18n="roadmap.items.2.description">여러 기기에서 안전하게 데이터를 동기화</p>
               </div>
             </div>
-            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-neutral-600 rounded-full transform md:-translate-x-1/2 ring-4 ring-neutral-700/50"></div>
           </div>
 
-          <!-- Item 4: Planned -->
-          <div class="relative flex items-center md:justify-center fade-up" style="animation-delay: 0.3s;">
-            <div class="flex items-center w-full md:w-1/2 md:pl-8 md:justify-start pl-12">
-              <div class="glass rounded-xl p-5 w-full md:max-w-sm">
+          <div class="fade-up relative flex items-start md:justify-center" style="transition-delay:.24s">
+            <div class="absolute left-5 md:left-1/2 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-zinc-700/50 md:-translate-x-1.5 mt-5 z-10"></div>
+            <div class="w-full md:w-1/2 md:pl-10 pl-14 md:ml-auto">
+              <div class="glass rounded-xl p-4">
                 <div class="flex items-center gap-2 mb-2">
-                  <span class="text-xs font-medium px-2 py-1 bg-neutral-700 text-neutral-400 rounded-full" data-i18n="roadmap.status.planned">예정</span>
-                  <span class="text-neutral-500 text-xs">2026 Q4</span>
+                  <span class="tag bg-zinc-700/50 text-zinc-400 border border-zinc-700" data-i18n="roadmap.status.planned">예정</span>
+                  <span class="text-zinc-600 text-xs">2026 Q4</span>
                 </div>
-                <h4 class="font-semibold mb-1" data-i18n="roadmap.items.3.title">다중기기 지원</h4>
-                <p class="text-neutral-400 text-sm" data-i18n="roadmap.items.3.description">여러 기기에서 동일 계정으로 사용</p>
+                <h4 class="font-semibold text-sm mb-0.5" data-i18n="roadmap.items.3.title">다중기기 지원</h4>
+                <p class="text-zinc-500 text-xs" data-i18n="roadmap.items.3.description">여러 기기에서 동일 계정으로 사용</p>
               </div>
             </div>
-            <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-neutral-600 rounded-full transform md:-translate-x-1/2 ring-4 ring-neutral-700/50"></div>
           </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="h-divider"></div>
+  </section>
+
+
+  <!-- ══════════════════════════ FAQ ══════════════════════════ -->
+  <section id="faq" class="py-24 md:py-32 scroll-mt-20 relative z-10">
+    <div class="max-w-2xl mx-auto px-5 md:px-8">
+
+      <div class="fade-up text-center mb-14 flex flex-col items-center gap-3">
+        <div class="section-pill" data-i18n="faq.pill">FAQ</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="faq.title">자주 묻는 질문</h2>
+        <p class="text-zinc-500 text-sm" data-i18n="faq.subtitle">아래를 펼쳐 전체 답변을 확인할 수 있어요.</p>
+      </div>
+
+      <div class="space-y-2" id="faq-container">
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.0.question">까먹지마는 무료인가요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.0.answer">네. 핵심 기능은 무료로 이용할 수 있으며, 서비스 운영을 위해 일부 화면에 광고가 포함될 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up" style="transition-delay:.04s">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.1.question">데이터는 어디에 저장되나요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.1.answer">앱·웹 모두에서 입력한 내용은 계정에 연결되어 서버에 안전하게 보관·동기화됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up" style="transition-delay:.08s">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.2.question">앱과 웹(PC 브라우저)의 차이는 무엇인가요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.2.answer">웹은 PC에서 빠르게 확인·편집하기 좋고, iOS·Android 앱은 푸시 알림·홈 화면 위젯 등 기기에 가까운 기능을 제공합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up" style="transition-delay:.12s">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.3.question">시간표 기능은 무엇을 할 수 있나요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.3.answer">요일·교시(또는 시간 블록) 기준으로 과목·장소·메모를 넣어 한 주 일정을 표로 볼 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up" style="transition-delay:.16s">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.4.question">여러 기기에서 같은 데이터를 볼 수 있나요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.4.answer">같은 계정으로 로그인한 iOS, Android, 웹에서 동기화된 데이터를 이용할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden fade-up" style="transition-delay:.2s">
+          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
+            <span class="font-medium text-sm pr-4" data-i18n="faq.items.5.question">웹에서 '체험 모드'가 뜨는 이유는 무엇인가요?</span>
+            <svg class="faq-icon w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner px-6 pb-5">
+              <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="faq.items.5.answer">로그인하지 않았거나, 앱과의 연결이 필요한 기능은 제한될 수 있습니다. 앱에서 로그인 후 다시 웹을 열면 동일한 데이터로 이어져요.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+  <section id="contact" class="py-24 md:py-32 scroll-mt-20 relative z-10">
+    <div class="h-divider mb-24"></div>
+    <div class="max-w-2xl mx-auto px-5 md:px-8 text-center">
+      <div class="fade-up flex flex-col items-center gap-6">
+        <div class="section-pill" data-i18n="contact.pill">문의</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight" data-i18n="contact.title">문의</h2>
+        <p class="text-zinc-400 text-lg" data-i18n="contact.subtitle">궁금한 점이 있으신가요?</p>
+        <div class="glass rounded-2xl px-10 py-8 flex flex-col items-center gap-3 mt-2">
+          <p class="text-zinc-500 text-xs uppercase tracking-widest font-semibold" data-i18n="contact.email_label">이메일</p>
+          <a href="mailto:bigseasons.dev@gmail.com" class="text-xl font-bold hover:text-indigo-400 transition-colors">bigseasons.dev@gmail.com</a>
+          <p class="text-zinc-600 text-xs mt-1" data-i18n="contact.response_time">영업일 기준 24시간 내 답변드립니다.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- FAQ SECTION -->
-  <section id="faq" class="py-24 pb-32 md:pb-40 scroll-mt-24">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="text-center mb-12 fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="faq.title">자주 묻는 질문</h2>
-        <p class="text-neutral-500 text-sm" data-i18n="faq.subtitle">아래를 펼쳐 전체 답변을 확인할 수 있어요.</p>
-      </div>
-
-      <div class="space-y-4" id="faq-container">
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.0.question">까먹지마는 무료인가요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.0.answer">네. 핵심 기능은 무료로 이용할 수 있으며, 서비스 운영을 위해 일부 화면에 광고가 포함될 수 있습니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up" style="animation-delay: 0.05s;">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.1.question">데이터는 어디에 저장되나요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.1.answer">앱·웹 모두에서 입력한 내용은 계정에 연결되어 서버에 안전하게 보관·동기화됩니다. 네트워크가 없을 때는 일부 화면에서 제한될 수 있어요.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up" style="animation-delay: 0.1s;">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.2.question">앱과 웹(PC 브라우저)의 차이는 무엇인가요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.2.answer">웹은 PC에서 빠르게 확인·편집하기 좋고, iOS·Android 앱은 푸시 알림·홈 화면 위젯 등 기기에 가까운 기능을 제공합니다. 같은 계정으로 연결해 함께 쓰면 가장 편해요.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up" style="animation-delay: 0.15s;">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.3.question">시간표 기능은 무엇을 할 수 있나요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.3.answer">요일·교시(또는 시간 블록) 기준으로 과목·장소·메모를 넣어 한 주 일정을 표로 볼 수 있습니다. 학기 단위로 정리하거나 루틴과 함께 쓰기에도 좋아요.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up" style="animation-delay: 0.2s;">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.4.question">여러 기기에서 같은 데이터를 볼 수 있나요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.4.answer">같은 계정으로 로그인한 iOS, Android, 웹에서 동기화된 데이터를 이용할 수 있습니다. 기기마다 로그인 상태를 확인해 주세요.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item glass rounded-xl overflow-hidden fade-up" style="animation-delay: 0.25s;">
-          <button type="button" class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left" onclick="toggleFaq(this)">
-            <span class="font-semibold pr-2" data-i18n="faq.items.5.question">웹에서 ‘체험 모드’가 뜨는 이유는 무엇인가요?</span>
-            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner px-6 pb-6">
-              <p class="text-neutral-400 leading-relaxed" data-i18n="faq.items.5.answer">로그인하지 않았거나, 앱과의 연결이 필요한 기능은 제한될 수 있습니다. 앱에서 로그인·연동 후 다시 웹을 열면 동일한 데이터로 이어질 수 있어요.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="py-24 scroll-mt-24 pb-28 md:pb-24">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <div class="fade-up">
-        <h2 class="text-4xl font-bold mb-4" data-i18n="contact.title">문의</h2>
-        <p class="text-neutral-400 text-lg mb-8" data-i18n="contact.subtitle">궁금한 점이 있으신가요?</p>
-        
-        <div class="glass rounded-2xl p-8 inline-block">
-          <p class="text-neutral-400 text-sm mb-3" data-i18n="contact.email_label">이메일</p>
-          <a href="mailto:bigseasons.dev@gmail.com" 
-             class="text-2xl font-semibold hover:text-indigo-400 transition-colors">
-            bigseasons.dev@gmail.com
-          </a>
-          <p class="text-neutral-500 text-sm mt-4" data-i18n="contact.response_time">영업일 기준 24시간 내 답변드립니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer class="py-10 border-t border-neutral-800/50">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <span class="text-neutral-500 text-sm" data-i18n="footer.copyright">© 2025 BigSeasons. All rights reserved.</span>
-        <div class="flex gap-6 text-sm">
-          <a href="https://amatdda.bigseasons.co.kr/settings/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-300 transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
-          <a href="#" class="text-neutral-500 hover:text-neutral-300 transition-colors" data-i18n="footer.terms">이용약관</a>
-        </div>
+  <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="py-10 relative z-10">
+    <div class="h-divider mb-10"></div>
+    <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <span class="text-zinc-600 text-sm" data-i18n="footer.copyright">© 2025 BigSeasons. All rights reserved.</span>
+      <div class="flex gap-6 text-sm">
+        <a href="https://amatdda.bigseasons.co.kr/settings/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-zinc-300 transition-colors" data-i18n="footer.privacy">개인정보처리방침</a>
+        <a href="#" class="text-zinc-600 hover:text-zinc-300 transition-colors" data-i18n="footer.terms">이용약관</a>
       </div>
     </div>
   </footer>
 
 
-  <!-- SCRIPTS -->
+  <!-- ══════════════════════════ SCRIPTS ══════════════════════════ -->
   <script>
-    // i18n
     let currentLang = 'ko';
     let translations = {};
-    let carouselIndex = 0;
-    let carouselInterval;
 
     async function loadTranslations(lang) {
       try {
-        const response = await fetch(`i18n/${lang}.json`);
-        if (!response.ok) throw new Error('Failed to load translations');
-        return await response.json();
-      } catch (error) {
-        console.error('Error loading translations:', error);
+        const res = await fetch(`i18n/${lang}.json`);
+        if (!res.ok) throw new Error('fetch failed');
+        return await res.json();
+      } catch {
         return null;
       }
     }
 
     function getNestedValue(obj, path) {
-      return path.split('.').reduce((current, key) => 
-        current && current[key] !== undefined ? current[key] : null, obj);
+      return path.split('.').reduce((cur, key) => cur?.[key] ?? null, obj);
     }
 
     function applyTranslations() {
       document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const value = getNestedValue(translations, key);
-        if (value) el.textContent = value;
+        const val = getNestedValue(translations, el.getAttribute('data-i18n'));
+        if (val) el.textContent = val;
       });
-
       document.querySelectorAll('[data-i18n-html]').forEach(el => {
-        const key = el.getAttribute('data-i18n-html');
-        const value = getNestedValue(translations, key);
-        if (value) el.innerHTML = value;
+        const val = getNestedValue(translations, el.getAttribute('data-i18n-html'));
+        if (val) el.innerHTML = val;
       });
-
       document.documentElement.lang = currentLang;
     }
 
-    // Hero text translations
     function updateHeroText(lang) {
-      const heroTitle = document.getElementById('hero-title');
-      const heroSubtitle = document.getElementById('hero-subtitle');
-      const heroMore = document.getElementById('hero-more');
-      const heroCta = document.querySelector('[data-i18n="hero.cta"]');
-      
-      if (lang === 'en') {
-        heroTitle.childNodes[0].textContent = 'Amatdda ';
-        heroSubtitle.textContent = 'Daily Life Manager';
-        heroMore.textContent = 'Learn more';
-        if (heroCta) heroCta.textContent = 'Start free today';
-      } else if (lang === 'ja') {
-        heroTitle.childNodes[0].textContent = '忘れないで ';
-        heroSubtitle.textContent = '日常管理の始まり';
-        heroMore.textContent = 'もっと見る';
-        if (heroCta) heroCta.textContent = '今すぐ無料で始める';
-      } else if (lang === 'zh') {
-        heroTitle.childNodes[0].textContent = '别忘记 ';
-        heroSubtitle.textContent = '日常管理的开始';
-        heroMore.textContent = '了解更多';
-        if (heroCta) heroCta.textContent = '立即免费开始';
-      } else {
-        heroTitle.childNodes[0].textContent = '까먹지마 ';
-        heroSubtitle.textContent = '일상 관리의 시작';
-        heroMore.textContent = '더 알아보기';
-        if (heroCta) heroCta.textContent = '지금 무료로 시작하세요';
-      }
-    }
-
-    // Carousel functions
-    function initCarousel() {
-      updateCarouselSlides();
-      startCarouselAutoplay();
-      
-      // Dot click handlers
-      document.querySelectorAll('.carousel-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-          const newIndex = parseInt(dot.dataset.index);
-          if (newIndex !== carouselIndex) {
-            carouselIndex = newIndex;
-            updateCarouselSlides();
-            resetCarouselAutoplay();
-          }
-        });
-      });
-      
-      // Touch swipe handlers
-      const carousel = document.getElementById('carousel');
-      let touchStartX = 0;
-      let touchEndX = 0;
-      
-      carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-      
-      carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, { passive: true });
-      
-      function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-          if (diff > 0) {
-            // Swipe left - next slide
-            nextSlide();
-            resetCarouselAutoplay();
-          } else {
-            // Swipe right - previous slide
-            carouselIndex = (carouselIndex - 1 + 3) % 3;
-            updateCarouselSlides();
-            resetCarouselAutoplay();
-          }
-        }
-      }
-    }
-
-    let prevCarouselIndex = 0;
-    
-    function updateCarouselSlides() {
-      const slides = document.querySelectorAll(`.carousel-slide[data-lang="${currentLang}"]`);
-      const allSlides = document.querySelectorAll('.carousel-slide');
-      const dots = document.querySelectorAll('.carousel-dot');
-      
-      // Hide all slides from other languages
-      allSlides.forEach(slide => {
-        if (slide.dataset.lang !== currentLang) {
-          slide.classList.remove('active', 'prev', 'next');
-          slide.style.display = 'none';
-        } else {
-          slide.style.display = '';
-        }
-      });
-      
-      // Remove all classes from current language slides
-      slides.forEach(slide => {
-        slide.classList.remove('active', 'prev', 'next');
-      });
-      
-      // Determine direction and apply classes
-      const totalSlides = slides.length;
-      
-      slides.forEach((slide, i) => {
-        if (i === carouselIndex) {
-          slide.classList.add('active');
-        } else if (i === prevCarouselIndex) {
-          // Previous active slide slides out
-          slide.classList.add('prev');
-        } else {
-          // Other slides wait on the right
-          slide.classList.add('next');
-        }
-      });
-      
-      // Update dots
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === carouselIndex);
-      });
-      
-      prevCarouselIndex = carouselIndex;
-    }
-
-    function nextSlide() {
-      carouselIndex = (carouselIndex + 1) % 3;
-      updateCarouselSlides();
-    }
-
-    function startCarouselAutoplay() {
-      carouselInterval = setInterval(nextSlide, 4500);
-    }
-
-    function resetCarouselAutoplay() {
-      clearInterval(carouselInterval);
-      startCarouselAutoplay();
+      const nameEl = document.getElementById('hero-app-name');
+      const taglineEl = document.getElementById('hero-tagline');
+      const moreEl = document.getElementById('hero-more');
+      const map = {
+        ko: ['까먹지마', '일상 관리의 시작', '스크롤'],
+        en: ['Amatdda', 'Daily Life Manager', 'Scroll'],
+        ja: ['忘れないで', '日常管理の始まり', 'スクロール'],
+        zh: ['别忘记', '日常管理的开始', '滚动'],
+      };
+      const [name, tagline, more] = map[lang] || map.ko;
+      if (nameEl) nameEl.textContent = name;
+      if (taglineEl) taglineEl.textContent = tagline;
+      if (moreEl) moreEl.textContent = more;
     }
 
     async function switchLanguage(lang) {
       if (lang === currentLang && Object.keys(translations).length > 0) return;
-      
-      const newTranslations = await loadTranslations(lang);
-      if (newTranslations) {
-        translations = newTranslations;
-        currentLang = lang;
-        applyTranslations();
-        updateHeroText(lang);
-        carouselIndex = 0;
-        updateCarouselSlides();
-        
-        // Update dropdown label
-        const langLabels = {
-          'ko': '한국어',
-          'en': 'English',
-          'ja': '日本語',
-          'zh': '中文'
-        };
-        const labelEl = document.getElementById('current-lang-label');
-        if (labelEl) {
-          labelEl.textContent = langLabels[lang] || '한국어';
-        }
-        
-        // Update active state in dropdown menu
-        document.querySelectorAll('.lang-option').forEach(option => {
-          option.classList.toggle('text-indigo-400', option.dataset.lang === lang);
-          option.classList.toggle('font-medium', option.dataset.lang === lang);
-        });
-        
-        localStorage.setItem('preferred-lang', lang);
+      const t = await loadTranslations(lang);
+      if (!t) return;
+      translations = t;
+      currentLang = lang;
+      applyTranslations();
+      updateHeroText(lang);
+      const labels = { ko: '한국어', en: 'English', ja: '日本語', zh: '中文' };
+      const labelEl = document.getElementById('current-lang-label');
+      if (labelEl) labelEl.textContent = labels[lang] || '한국어';
+      document.querySelectorAll('.lang-option').forEach(o => {
+        o.classList.toggle('text-indigo-400', o.dataset.lang === lang);
+        o.classList.toggle('font-semibold', o.dataset.lang === lang);
+      });
+      localStorage.setItem('preferred-lang', lang);
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+        requestAnimationFrame(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
       }
     }
 
-    // FAQ Toggle
-    function toggleFaq(button) {
-      const item = button.parentElement;
-      item.classList.toggle('active');
-      if (item.classList.contains('active')) {
-        requestAnimationFrame(() => {
-          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-      }
-    }
-
-    // Mobile Menu
     function initMobileMenu() {
-      const menuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const openIcon = document.getElementById('menu-icon-open');
-      const closeIcon = document.getElementById('menu-icon-close');
-      
-      if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-          const isOpen = !mobileMenu.classList.contains('hidden');
-          
-          if (isOpen) {
-            mobileMenu.classList.add('hidden');
-            openIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-          } else {
-            mobileMenu.classList.remove('hidden');
-            openIcon.classList.add('hidden');
-            closeIcon.classList.remove('hidden');
-          }
-        });
-      }
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const open = document.getElementById('menu-icon-open');
+      const close = document.getElementById('menu-icon-close');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', isOpen);
+        open.classList.toggle('hidden', !isOpen);
+        close.classList.toggle('hidden', isOpen);
+      });
     }
 
     function closeMobileMenu() {
-      const mobileMenu = document.getElementById('mobile-menu');
-      const openIcon = document.getElementById('menu-icon-open');
-      const closeIcon = document.getElementById('menu-icon-close');
-      
-      if (mobileMenu) {
-        mobileMenu.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
+      const menu = document.getElementById('mobile-menu');
+      const open = document.getElementById('menu-icon-open');
+      const close = document.getElementById('menu-icon-close');
+      if (menu) {
+        menu.classList.add('hidden');
+        open.classList.remove('hidden');
+        close.classList.add('hidden');
       }
     }
 
-    // Scroll animations
-    function handleScrollAnimations() {
-      const elements = document.querySelectorAll('.fade-up');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-      elements.forEach(el => observer.observe(el));
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', async () => {
-      const savedLang = localStorage.getItem('preferred-lang');
-      const browserLangCode = navigator.language.toLowerCase();
-      let browserLang = 'ko';
-      
-      if (browserLangCode.startsWith('ko')) {
-        browserLang = 'ko';
-      } else if (browserLangCode.startsWith('ja')) {
-        browserLang = 'ja';
-      } else if (browserLangCode.startsWith('zh')) {
-        browserLang = 'zh';
-      } else {
-        browserLang = 'en';
-      }
-      
-      const initialLang = savedLang || browserLang;
-      
-      initCarousel();
-      initMobileMenu();
-      initLanguageDropdown();
-      updateHeroText(initialLang);
-      await switchLanguage(initialLang);
-
-      handleScrollAnimations();
-    });
-    
-    // Language Dropdown functionality
     function initLanguageDropdown() {
-      const dropdownBtn = document.getElementById('lang-dropdown-btn');
-      const dropdownMenu = document.getElementById('lang-dropdown-menu');
-      const dropdownArrow = document.getElementById('dropdown-arrow');
-      const langOptions = document.querySelectorAll('.lang-option');
-      
-      // Toggle dropdown
-      dropdownBtn.addEventListener('click', (e) => {
+      const btn = document.getElementById('lang-dropdown-btn');
+      const menu = document.getElementById('lang-dropdown-menu');
+      const arrow = document.getElementById('dropdown-arrow');
+
+      function closeDropdown() {
+        menu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+      }
+
+      btn.addEventListener('click', e => {
         e.stopPropagation();
-        const isOpen = !dropdownMenu.classList.contains('hidden');
+        const isOpen = !menu.classList.contains('hidden');
         if (isOpen) {
           closeDropdown();
         } else {
-          dropdownMenu.classList.remove('hidden');
-          dropdownArrow.style.transform = 'rotate(180deg)';
+          menu.classList.remove('hidden');
+          arrow.style.transform = 'rotate(180deg)';
         }
       });
-      
-      // Language option click
-      langOptions.forEach(option => {
-        option.addEventListener('click', () => {
-          const lang = option.dataset.lang;
-          switchLanguage(lang);
+
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          switchLanguage(opt.dataset.lang);
           closeDropdown();
         });
       });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!document.getElementById('lang-dropdown-container').contains(e.target)) {
-          closeDropdown();
-        }
+
+      document.addEventListener('click', e => {
+        if (!document.getElementById('lang-dropdown-container').contains(e.target)) closeDropdown();
       });
-      
-      function closeDropdown() {
-        dropdownMenu.classList.add('hidden');
-        dropdownArrow.style.transform = 'rotate(0deg)';
-      }
     }
+
+    function initScrollAnimations() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      initMobileMenu();
+      initLanguageDropdown();
+      initScrollAnimations();
+
+      const saved = localStorage.getItem('preferred-lang');
+      const bl = navigator.language.toLowerCase();
+      let detected = 'en';
+      if (bl.startsWith('ko')) detected = 'ko';
+      else if (bl.startsWith('ja')) detected = 'ja';
+      else if (bl.startsWith('zh')) detected = 'zh';
+
+      const lang = saved || detected;
+      updateHeroText(lang);
+      await switchLanguage(lang);
+    });
   </script>
 
 </body>
