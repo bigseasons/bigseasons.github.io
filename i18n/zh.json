@@ -1,225 +1,175 @@
 {
   "nav": {
-    "about": "公司介绍",
-    "apps": "应用",
-    "tech": "技术",
-    "contact": "咨询"
+    "features": "功能",
+    "apps": "應用",
+    "faq": "FAQ",
+    "contact": "諮詢"
   },
   "hero": {
-    "title": "移动应用开发工作室 <span class=\"text-indigo-400\">BigSeasons</span>",
-    "subtitle": "让日常生活更便利",
-    "description": "简化复杂日常，记住容易忘记的事。<br/>BigSeasons致力于打造以用户为中心的移动应用。",
-    "cta": "立即免费开始"
+    "title": "行動應用開發工作室 <span class=\"text-indigo-400\">BigSeasons</span>",
+    "subtitle": "讓日常生活更便利",
+    "description": "D-day · 重複日程 · 快速備忘 · 時間表 — 一個應用智慧管理。",
+    "cta": "立即免費開始",
+    "pcWeb": "在網頁端開始",
+    "pcWebHint": "無需安裝即可在網頁體驗·編輯 · 通知·小工具請使用應用"
   },
   "stats": {
-    "apps": "已发布应用",
-    "downloads": "首月下载量",
-    "platform": "多平台",
-    "updates": "持续更新"
-  },
-  "about": {
-    "title": "公司介绍",
-    "description": "BigSeasons是以'实用性'和'完成度'为核心价值的个人开发工作室。<br/>我们专注于打造真正有用、能长期使用的应用，而非华而不实的产品。",
-    "values": {
-      "title": "核心价值",
-      "quality": {
-        "title": "品质优先",
-        "description": "通过严格的测试和代码审查，确保应用稳定无bug。"
-      },
-      "ux": {
-        "title": "用户体验",
-        "description": "设计直观的UX，让复杂功能也能轻松使用。"
-      },
-      "improvement": {
-        "title": "持续改进",
-        "description": "根据用户反馈不断改进应用。"
-      },
-      "privacy": {
-        "title": "隐私保护",
-        "description": "仅收集最少必要数据，尊重用户隐私。"
-      }
-    }
+    "apps": "已發布應用",
+    "downloads": "首月下載量",
+    "platform": "平台",
+    "platformLine": "iOS · Android · Web",
+    "updates": "持續更新"
   },
   "apps": {
-    "title": "我们的应用",
+    "title": "我們的應用",
     "amatdda": {
-      "name": "别忘记",
-      "description": "重复日程管理 + 强大提醒功能的周期管理应用。",
+      "name": "Amatdda",
+      "description": "重複日程、倒數日、隨手記與課程表一站管理，並配備強大提醒與小工具。",
       "badge": "NEW",
-      "badge2": "100% 免费",
-      "features": ["周期提醒", "小组件支持", "云端同步"]
+      "badge2": "100% 免費",
+      "platforms": "iOS · Android · 網頁",
+      "webCta": "在網頁（PC）開啟",
+      "features": [
+        "週期提醒",
+        "課程表",
+        "網頁+應用"
+      ]
     },
     "nopo": {
-      "name": "老铺地图",
-      "description": "探索全国各地老店的地图服务。",
-      "features": ["全国老铺信息", "地图搜索", "用户评价"]
+      "name": "老鋪地圖",
+      "description": "探索全國各地老店的地圖服務。",
+      "features": [
+        "全國老鋪資訊",
+        "地圖搜尋",
+        "使用者評價"
+      ]
     }
   },
   "features": {
-    "title": "别忘记的强大功能",
-    "subtitle": "智能管理重复日程",
+    "pill": "功能介紹",
+    "title": "強大功能",
+    "subtitle": "智慧管理重複日程",
     "list": {
       "cycle": {
-        "title": "智能周期管理",
-        "description": "设置每日、每周、每月或自定义周期的日程。"
+        "title": "智慧週期管理",
+        "description": "設定每日、每週、每月或自定義週期的日程。"
       },
       "notification": {
-        "title": "强大的提醒系统",
-        "description": "在指定时间准确接收提醒，错过的提醒也可重新查看。"
+        "title": "強大的提醒系統",
+        "description": "在指定時間準確接收提醒，錯過的提醒也可重新檢視。"
+      },
+      "timetable": {
+        "title": "課程表",
+        "description": "按星期整理課程與日常安排，應用與網頁端均可管理。"
       },
       "widget": {
-        "title": "主屏幕小组件",
-        "description": "无需打开应用，在主屏幕即可查看即将到来的日程。"
+        "title": "主螢幕小工具",
+        "description": "無需開啟應用，在主螢幕即可檢視即將到來的日程。"
       },
       "history": {
-        "title": "完成历史",
-        "description": "记录完成时间，一目了然地查看过往记录。"
-      }
-    }
-  },
-  "tech": {
-    "title": "技术栈",
-    "subtitle": "打造别忘记的技术",
-    "description": "使用经过验证的技术栈，确保稳定性和性能。",
-    "architecture": {
-      "title": "架构",
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "分层架构，实现关注点分离和易于测试"
-      },
-      "riverpod": {
-        "title": "Riverpod + Freezed",
-        "description": "类型安全的状态管理和不可变数据模型"
-      }
-    },
-    "frontend": {
-      "title": "前端",
-      "flutter": {
-        "title": "Flutter",
-        "description": "iOS/Android跨平台开发"
-      },
-      "kotlin": {
-        "title": "Kotlin Native",
-        "description": "Android原生小组件及通知"
-      },
-      "swift": {
-        "title": "Swift",
-        "description": "iOS小组件及系统集成"
-      }
-    },
-    "backend": {
-      "title": "后端",
-      "nodejs": {
-        "title": "Node.js",
-        "description": "基于Express的REST API服务器"
-      },
-      "prisma": {
-        "title": "Prisma ORM",
-        "description": "类型安全的数据库访问"
-      },
-      "postgresql": {
-        "title": "PostgreSQL",
-        "description": "稳定的关系型数据库"
-      }
-    },
-    "infra": {
-      "title": "基础设施",
-      "cloudrun": {
-        "title": "Cloud Run",
-        "description": "自动扩缩容无服务器部署"
-      },
-      "firebase": {
-        "title": "Firebase",
-        "description": "认证、推送通知、远程配置"
-      },
-      "cloudsql": {
-        "title": "Cloud SQL",
-        "description": "托管PostgreSQL数据库"
+        "title": "完成歷史",
+        "description": "記錄完成時間，一目瞭然地檢視過往記錄。"
       }
     }
   },
   "usecases": {
-    "title": "这些情况正合适！",
-    "subtitle": "日常容易忘记的事，别忘记帮您记住",
+    "pill": "使用場景",
+    "title": "這些情況正合適！",
+    "subtitle": "日常容易忘記的事，Amatdda 幫您記住",
     "coupon": {
-      "title": "便利店优惠券到期提醒",
-      "description": "注册移动优惠券、礼品卡有效期，到期前接收提醒。再也不会错过优惠券了。"
+      "title": "便利商店優惠券到期提醒",
+      "description": "註冊行動優惠券、禮品卡有效期，到期前接收提醒。再也不會錯過優惠券了。"
     },
     "items": {
-      "title": "日常用品更换周期",
-      "description": "牙刷、剃须刀、净水器滤芯...设置周期提醒，不错过更换时机。"
+      "title": "日常用品更換週期",
+      "description": "牙刷、刮鬍刀、淨水器濾心...設定週期提醒，不錯過更換時機。"
     },
     "birthday": {
-      "title": "父母农历生日也准确",
-      "description": "自动将农历纪念日转换为公历提醒。不要忘记重要的人的生日。"
+      "title": "父母農曆生日也準確",
+      "description": "自動將農曆紀念日轉換為國曆提醒。不要忘記重要的人的生日。"
     },
     "car": {
-      "title": "车辆检查 & 保养记录",
-      "description": "管理机油、轮胎、定期检查日程，一目了然地查看多年的保养记录。"
+      "title": "車輛檢查 & 保養記錄",
+      "description": "管理機油、輪胎、定期檢查日程，一目瞭然地檢視多年的保養記錄。"
     }
   },
   "faq": {
-    "title": "常见问题",
+    "pill": "FAQ",
+    "title": "常見問題",
+    "subtitle": "展開下方條目可閱讀完整回答。",
     "items": [
       {
-        "question": "别忘记是免费的吗？",
-        "answer": "是的，别忘记的所有基本功能都可以免费使用。为了顺利运营服务，部分功能包含广告。"
+        "question": "Amatdda 是免費的嗎？",
+        "answer": "是的，核心功能可免費使用。為維持服務，部分介面可能會展示廣告。"
       },
       {
-        "question": "数据存储在哪里？",
-        "answer": "默认存储在设备上，登录后可以安全地同步到云端。"
+        "question": "資料儲存在哪裡？",
+        "answer": "在應用與網頁中輸入的內容會關聯到您的帳號，並安全儲存在伺服器上同步。離線時部分功能可能受限。"
       },
       {
-        "question": "可以在多个设备上使用吗？",
-        "answer": "目前每个设备独立使用。数据存储在各设备上，云端同步功能正在准备中。"
+        "question": "應用和網頁（PC 瀏覽器）有什麼區別？",
+        "answer": "網頁適合在電腦上快速檢視與編輯；iOS 與 Android 應用更適合推送通知、主螢幕小工具等貼近系統的功能。使用同一帳號體驗最佳。"
+      },
+      {
+        "question": "課程表功能可以做什麼？",
+        "answer": "可按星期與節次（或時間段）填寫科目、地點與備註，以表格檢視一週安排。也適合按學期整理或與日常習慣一起使用。"
+      },
+      {
+        "question": "能在多台裝置上看到相同資料嗎？",
+        "answer": "使用同一帳號登入的 iOS、Android 與網頁可存取同步後的資料。請確認各裝置均已登入。"
+      },
+      {
+        "question": "網頁上出現體驗或受限提示是什麼原因？",
+        "answer": "未登入時，或某些功能需要與應用關聯時，可能會受到限制。請在應用中登入並完成關聯後重新開啟網頁，即可延續相同資料。"
       }
     ]
   },
   "contact": {
-    "title": "咨询",
-    "subtitle": "有什么疑问吗？",
-    "email_label": "邮箱",
-    "response_time": "工作日24小时内回复。"
+    "pill": "諮詢",
+    "title": "諮詢",
+    "subtitle": "有什麼疑問嗎？",
+    "email_label": "電子郵件",
+    "response_time": "工作日24小時內回覆。"
   },
   "roadmap": {
-    "title": "持续发展的应用",
-    "subtitle": "别忘记与您的反馈一起成长",
+    "pill": "路線圖",
+    "title": "持續發展的應用",
+    "subtitle": "Amatdda 與您的反饋一起成長",
     "status": {
       "completed": "已完成",
-      "inprogress": "进行中",
-      "planned": "计划中"
+      "inprogress": "進行中",
+      "planned": "規劃中"
     },
     "items": [
       {
-        "title": "应用发布",
-        "description": "iOS & Android 正式发布",
+        "title": "應用與網頁上線",
+        "description": "支援 iOS、Android 與網頁（PC 瀏覽器）",
         "status": "completed",
         "date": "2025.11"
       },
       {
-        "title": "提醒升级",
-        "description": "提供更准确的提醒与更多选项",
+        "title": "提醒升級",
+        "description": "提供更準確的提醒與更多選項",
         "status": "inprogress",
         "date": "2026 Q1"
       },
       {
-        "title": "云端同步",
-        "description": "在多个设备间安全同步数据",
+        "title": "雲端同步",
+        "description": "在多個裝置間安全同步資料",
         "status": "planned",
         "date": "2026 Q2-Q3"
       },
       {
-        "title": "多设备支持",
-        "description": "使用同一账号在多个设备上使用",
+        "title": "多裝置支援",
+        "description": "使用同一帳號在多個裝置上使用",
         "status": "planned",
         "date": "2026 Q4"
       }
     ]
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved.",
-    "privacy": "隐私政策",
-    "terms": "使用条款"
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
+    "privacy": "隱私政策",
+    "terms": "使用條款"
   }
 }
-

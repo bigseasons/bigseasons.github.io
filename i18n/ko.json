@@ -1,53 +1,35 @@
 {
   "nav": {
-    "about": "회사소개",
+    "features": "기능",
     "apps": "앱",
-    "tech": "기술",
+    "faq": "FAQ",
     "contact": "문의"
   },
   "hero": {
     "title": "모바일 앱 개발 스튜디오 <span class=\"text-indigo-400\">BigSeasons</span>",
     "subtitle": "실생활을 더 편리하게",
-    "description": "복잡한 일상을 단순하게, 잊기 쉬운 것들을 기억하게.<br/>BigSeasons는 사용자 중심의 모바일 앱을 만듭니다.",
-    "cta": "지금 무료로 시작하세요"
+    "description": "D-day · 반복 일정 · 빠른 메모 · 시간표를 한 앱에서 스마트하게 관리하세요.",
+    "cta": "지금 무료로 시작하세요",
+    "pcWeb": "웹에서 바로 시작",
+    "pcWebHint": "앱 없이 웹에서 체험·편집 가능 · 알림·위젯은 앱에서"
   },
   "stats": {
     "apps": "출시 앱",
     "downloads": "출시 한달 다운로드",
-    "platform": "멀티 플랫폼",
+    "platform": "플랫폼",
+    "platformLine": "iOS · Android · Web",
     "updates": "지속적인 업데이트"
-  },
-  "about": {
-    "title": "회사소개",
-    "description": "BigSeasons는 '실용성'과 '완성도'를 핵심 가치로 삼는 1인 개발 스튜디오입니다.<br/>화려함보다는 실제로 쓸모 있는, 오래 사용할 수 있는 앱을 만듭니다.",
-    "values": {
-      "title": "핵심 가치",
-      "quality": {
-        "title": "품질 우선",
-        "description": "버그 없는 안정적인 앱을 위해 철저한 테스트와 코드 리뷰를 거칩니다."
-      },
-      "ux": {
-        "title": "사용자 경험",
-        "description": "복잡한 기능도 직관적으로 사용할 수 있도록 UX를 설계합니다."
-      },
-      "improvement": {
-        "title": "지속적 개선",
-        "description": "사용자 피드백을 반영하여 끊임없이 앱을 발전시킵니다."
-      },
-      "privacy": {
-        "title": "개인정보 보호",
-        "description": "최소한의 데이터만 수집하고, 사용자의 프라이버시를 존중합니다."
-      }
-    }
   },
   "apps": {
     "title": "Our Apps",
     "amatdda": {
       "name": "까먹지마",
-      "description": "반복 일정 관리 + 강력한 알림 기능을 갖춘 주기 관리 앱.",
+      "description": "반복 일정·D-day·빠른 메모·시간표를 한곳에서. 강력한 알림과 위젯까지.",
       "badge": "NEW",
       "badge2": "100% 무료",
-      "features": ["주기별 알림", "위젯 지원", "클라우드 동기화"]
+      "platforms": "iOS · Android · 웹",
+      "webCta": "웹(PC)에서 열기",
+      "features": ["주기별 알림", "시간표", "웹 연동"]
     },
     "nopo": {
       "name": "노포지도",
@@ -56,7 +38,8 @@
     }
   },
   "features": {
-    "title": "까먹지마의 강력한 기능들",
+    "pill": "기능 소개",
+    "title": "강력한 기능들",
     "subtitle": "반복 일정을 스마트하게 관리하세요",
     "list": {
       "cycle": {
@@ -66,6 +49,10 @@
       "notification": {
         "title": "강력한 알림 시스템",
         "description": "지정된 시간에 정확히 알림을 받고, 놓친 알림도 다시 확인할 수 있습니다."
+      },
+      "timetable": {
+        "title": "시간표",
+        "description": "요일별 시간표로 수업·루틴을 한눈에 정리하고, 앱·웹에서 함께 관리하세요."
       },
       "widget": {
         "title": "홈 화면 위젯",
@@ -77,68 +64,8 @@
       }
     }
   },
-  "tech": {
-    "title": "기술 스택",
-    "subtitle": "까먹지마를 만드는 기술들",
-    "description": "안정성과 성능을 위해 검증된 기술 스택을 사용합니다.",
-    "architecture": {
-      "title": "아키텍처",
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "관심사 분리와 테스트 용이성을 위한 계층형 아키텍처"
-      },
-      "riverpod": {
-        "title": "Riverpod + Freezed",
-        "description": "타입 안전한 상태 관리와 불변 데이터 모델"
-      }
-    },
-    "frontend": {
-      "title": "프론트엔드",
-      "flutter": {
-        "title": "Flutter",
-        "description": "iOS/Android 크로스플랫폼 개발"
-      },
-      "kotlin": {
-        "title": "Kotlin Native",
-        "description": "Android 네이티브 위젯 및 알림"
-      },
-      "swift": {
-        "title": "Swift",
-        "description": "iOS 위젯 및 시스템 연동"
-      }
-    },
-    "backend": {
-      "title": "백엔드",
-      "nodejs": {
-        "title": "Node.js",
-        "description": "Express 기반 REST API 서버"
-      },
-      "prisma": {
-        "title": "Prisma ORM",
-        "description": "타입 안전한 데이터베이스 접근"
-      },
-      "postgresql": {
-        "title": "PostgreSQL",
-        "description": "안정적인 관계형 데이터베이스"
-      }
-    },
-    "infra": {
-      "title": "인프라",
-      "cloudrun": {
-        "title": "Cloud Run",
-        "description": "자동 스케일링 서버리스 배포"
-      },
-      "firebase": {
-        "title": "Firebase",
-        "description": "인증, 푸시 알림, 원격 설정"
-      },
-      "cloudsql": {
-        "title": "Cloud SQL",
-        "description": "관리형 PostgreSQL 데이터베이스"
-      }
-    }
-  },
   "usecases": {
+    "pill": "활용 사례",
     "title": "이런 상황에 딱!",
     "subtitle": "일상 속 깜빡하기 쉬운 것들, 까먹지마가 챙겨드려요",
     "coupon": {
@@ -156,32 +83,48 @@
     "car": {
       "title": "차량 점검 & 관리 내역",
       "description": "엔진오일, 타이어, 정기 점검 일정을 관리하고 수년간의 관리 내역을 한눈에 확인하세요."
-      }
+    }
   },
   "faq": {
+    "pill": "FAQ",
     "title": "자주 묻는 질문",
+    "subtitle": "아래를 펼쳐 전체 답변을 확인할 수 있어요.",
     "items": [
       {
         "question": "까먹지마는 무료인가요?",
-        "answer": "네, 까먹지마는 기본 기능 모두 무료로 사용할 수 있습니다. 다만, 원활한 서비스 운영을 위해 일부 광고가 포함되어 있습니다."
+        "answer": "네. 핵심 기능은 무료로 이용할 수 있으며, 서비스 운영을 위해 일부 화면에 광고가 포함될 수 있습니다."
       },
       {
         "question": "데이터는 어디에 저장되나요?",
-        "answer": "기본적으로 기기에 저장되며, 로그인하면 클라우드에 안전하게 동기화됩니다."
+        "answer": "앱·웹 모두에서 입력한 내용은 계정에 연결되어 서버에 안전하게 보관·동기화됩니다. 네트워크가 없을 때는 일부 화면에서 제한될 수 있어요."
       },
       {
-        "question": "여러 기기에서 사용할 수 있나요?",
-        "answer": "현재는 기기별로 독립적으로 사용하는 방식입니다. 데이터는 각 기기에 저장되며, 향후 클라우드 동기화 기능을 준비 중입니다."
+        "question": "앱과 웹(PC 브라우저)의 차이는 무엇인가요?",
+        "answer": "웹은 PC에서 빠르게 확인·편집하기 좋고, iOS·Android 앱은 푸시 알림·홈 화면 위젯 등 기기에 가까운 기능을 제공합니다. 같은 계정으로 연결해 함께 쓰면 가장 편해요."
+      },
+      {
+        "question": "시간표 기능은 무엇을 할 수 있나요?",
+        "answer": "요일·교시(또는 시간 블록) 기준으로 과목·장소·메모를 넣어 한 주 일정을 표로 볼 수 있습니다. 학기 단위로 정리하거나 루틴과 함께 쓰기에도 좋아요."
+      },
+      {
+        "question": "여러 기기에서 같은 데이터를 볼 수 있나요?",
+        "answer": "같은 계정으로 로그인한 iOS, Android, 웹에서 동기화된 데이터를 이용할 수 있습니다. 기기마다 로그인 상태를 확인해 주세요."
+      },
+      {
+        "question": "웹에서 ‘체험 모드’가 뜨는 이유는 무엇인가요?",
+        "answer": "로그인하지 않았거나, 앱과의 연결이 필요한 기능은 제한될 수 있습니다. 앱에서 로그인·연동 후 다시 웹을 열면 동일한 데이터로 이어질 수 있어요."
       }
     ]
   },
   "contact": {
+    "pill": "문의",
     "title": "문의",
     "subtitle": "궁금한 점이 있으신가요?",
     "email_label": "이메일",
     "response_time": "영업일 기준 24시간 내 답변드립니다."
   },
   "roadmap": {
+    "pill": "로드맵",
     "title": "계속 발전하는 앱",
     "subtitle": "까먹지마는 여러분의 피드백과 함께 성장합니다",
     "status": {
@@ -191,8 +134,8 @@
     },
     "items": [
       {
-        "title": "앱 출시",
-        "description": "iOS & Android 정식 출시",
+        "title": "앱·웹 출시",
+        "description": "iOS, Android 및 웹(PC 브라우저) 지원",
         "status": "completed",
         "date": "2025.11"
       },
@@ -217,7 +160,7 @@
     ]
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "개인정보처리방침",
     "terms": "이용약관"
   }

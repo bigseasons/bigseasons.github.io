@@ -1,53 +1,35 @@
 {
   "nav": {
-    "about": "会社紹介",
+    "features": "機能",
     "apps": "アプリ",
-    "tech": "技術",
+    "faq": "FAQ",
     "contact": "お問い合わせ"
   },
   "hero": {
     "title": "モバイルアプリ開発スタジオ <span class=\"text-indigo-400\">BigSeasons</span>",
     "subtitle": "日常生活をより便利に",
-    "description": "複雑な日常をシンプルに、忘れやすいことを記憶に。<br/>BigSeasonsはユーザー中心のモバイルアプリを作ります。",
-    "cta": "今すぐ無料で始める"
+    "description": "D-day · 繰り返し予定 · クイックメモ · 時間割 — スマートに一元管理。",
+    "cta": "今すぐ無料で始める",
+    "pcWeb": "Webで始める",
+    "pcWebHint": "アプリなしでWebで体験·編集 · 通知·ウィジェットはアプリで"
   },
   "stats": {
     "apps": "リリースアプリ",
     "downloads": "リリース1ヶ月のダウンロード",
-    "platform": "マルチプラットフォーム",
+    "platform": "プラットフォーム",
+    "platformLine": "iOS · Android · Web",
     "updates": "継続的なアップデート"
-  },
-  "about": {
-    "title": "会社紹介",
-    "description": "BigSeasonsは'実用性'と'完成度'を核心価値とする1人開発スタジオです。<br/>華やかさよりも実際に役立つ、長く使えるアプリを作ります。",
-    "values": {
-      "title": "核心価値",
-      "quality": {
-        "title": "品質優先",
-        "description": "バグのない安定したアプリのために、徹底的なテストとコードレビューを行います。"
-      },
-      "ux": {
-        "title": "ユーザー体験",
-        "description": "複雑な機能も直感的に使えるようUXを設計します。"
-      },
-      "improvement": {
-        "title": "継続的改善",
-        "description": "ユーザーフィードバックを反映し、絶えずアプリを発展させます。"
-      },
-      "privacy": {
-        "title": "個人情報保護",
-        "description": "最小限のデータのみ収集し、ユーザーのプライバシーを尊重します。"
-      }
-    }
   },
   "apps": {
     "title": "Our Apps",
     "amatdda": {
-      "name": "忘れないで",
-      "description": "繰り返しスケジュール管理 + 強力な通知機能を備えた周期管理アプリ。",
+      "name": "Amatdda",
+      "description": "繰り返し予定・D-day・メモ・時間割をまとめて。強力な通知とウィジェット付き。",
       "badge": "NEW",
       "badge2": "100% 無料",
-      "features": ["周期別通知", "ウィジェット対応", "クラウド同期"]
+      "platforms": "iOS · Android · Web",
+      "webCta": "Web（PC）で開く",
+      "features": ["周期通知", "時間割", "Web連携"]
     },
     "nopo": {
       "name": "老舗マップ",
@@ -56,7 +38,8 @@
     }
   },
   "features": {
-    "title": "忘れないでの強力な機能",
+    "pill": "機能紹介",
+    "title": "強力な機能",
     "subtitle": "繰り返しスケジュールをスマートに管理",
     "list": {
       "cycle": {
@@ -66,6 +49,10 @@
       "notification": {
         "title": "強力な通知システム",
         "description": "指定された時間に正確に通知を受け取り、見逃した通知も再確認できます。"
+      },
+      "timetable": {
+        "title": "時間割",
+        "description": "曜日ごとの時間割で授業やルーティンを整理。アプリとWebの両方で管理できます。"
       },
       "widget": {
         "title": "ホーム画面ウィジェット",
@@ -77,70 +64,10 @@
       }
     }
   },
-  "tech": {
-    "title": "技術スタック",
-    "subtitle": "忘れないでを作る技術",
-    "description": "安定性とパフォーマンスのために検証済みの技術スタックを使用します。",
-    "architecture": {
-      "title": "アーキテクチャ",
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "関心の分離とテスト容易性のための階層型アーキテクチャ"
-      },
-      "riverpod": {
-        "title": "Riverpod + Freezed",
-        "description": "型安全な状態管理と不変データモデル"
-      }
-    },
-    "frontend": {
-      "title": "フロントエンド",
-      "flutter": {
-        "title": "Flutter",
-        "description": "iOS/Androidクロスプラットフォーム開発"
-      },
-      "kotlin": {
-        "title": "Kotlin Native",
-        "description": "Androidネイティブウィジェット及び通知"
-      },
-      "swift": {
-        "title": "Swift",
-        "description": "iOSウィジェット及びシステム連携"
-      }
-    },
-    "backend": {
-      "title": "バックエンド",
-      "nodejs": {
-        "title": "Node.js",
-        "description": "ExpressベースのREST APIサーバー"
-      },
-      "prisma": {
-        "title": "Prisma ORM",
-        "description": "型安全なデータベースアクセス"
-      },
-      "postgresql": {
-        "title": "PostgreSQL",
-        "description": "安定したリレーショナルデータベース"
-      }
-    },
-    "infra": {
-      "title": "インフラ",
-      "cloudrun": {
-        "title": "Cloud Run",
-        "description": "自動スケーリングサーバーレスデプロイ"
-      },
-      "firebase": {
-        "title": "Firebase",
-        "description": "認証、プッシュ通知、リモート設定"
-      },
-      "cloudsql": {
-        "title": "Cloud SQL",
-        "description": "管理型PostgreSQLデータベース"
-      }
-    }
-  },
   "usecases": {
+    "pill": "活用事例",
     "title": "こんな状況にぴったり！",
-    "subtitle": "日常で忘れやすいこと、忘れないでがお手伝いします",
+    "subtitle": "日常で忘れやすいこと、Amatdda がお手伝いします",
     "coupon": {
       "title": "コンビニクーポン期限通知",
       "description": "モバイルクーポン、ギフトカードの有効期限を登録し、期限前に通知を受け取ってください。もうクーポンを見逃しません。"
@@ -159,31 +86,47 @@
     }
   },
   "faq": {
+    "pill": "FAQ",
     "title": "よくある質問",
+    "subtitle": "項目を開くと全文が表示されます。",
     "items": [
       {
-        "question": "忘れないでは無料ですか？",
-        "answer": "はい、忘れないでは基本機能すべて無料で使用できます。円滑なサービス運営のため、一部広告が含まれています。"
+        "question": "Amatdda は無料ですか？",
+        "answer": "はい。主要機能は無料で利用できます。運営のため一部画面に広告が表示される場合があります。"
       },
       {
         "question": "データはどこに保存されますか？",
-        "answer": "基本的にデバイスに保存され、ログインするとクラウドに安全に同期されます。"
+        "answer": "アプリとWebで入力した内容はアカウントに紐づき、サーバーに安全に保存・同期されます。オフライン時は一部機能が制限されることがあります。"
       },
       {
-        "question": "複数のデバイスで使用できますか？",
-        "answer": "現在はデバイスごとに独立して使用する方式です。データは各デバイスに保存され、今後クラウド同期機能を準備中です。"
+        "question": "アプリとWeb（PCブラウザ）の違いは？",
+        "answer": "WebはPCで素早く確認・編集するのに向いています。iOS/Androidアプリはプッシュ通知やホーム画面ウィジェットなど端末に近い機能が充実しています。同じアカウントで連携すると快適です。"
+      },
+      {
+        "question": "時間割機能で何ができますか？",
+        "answer": "曜日と時限（または時間ブロック）ごとに科目・場所・メモを入れ、1週間の表として見られます。学期単位の整理やルーティンとの併用にも便利です。"
+      },
+      {
+        "question": "複数端末で同じデータを見られますか？",
+        "answer": "同じアカウントでログインしたiOS、Android、Webで同期されたデータを利用できます。各端末のログイン状態をご確認ください。"
+      },
+      {
+        "question": "Webでプレビューや制限表示になるのはなぜ？",
+        "answer": "未ログインの場合や、アプリ連携が必要な機能では制限されることがあります。アプリでログイン・連携したあとWebを開き直すと、同じデータで続けられる場合があります。"
       }
     ]
   },
   "contact": {
+    "pill": "お問い合わせ",
     "title": "お問い合わせ",
     "subtitle": "ご質問がございますか？",
     "email_label": "メール",
     "response_time": "営業日基準24時間以内に回答いたします。"
   },
   "roadmap": {
+    "pill": "ロードマップ",
     "title": "継続的に発展するアプリ",
-    "subtitle": "忘れないでは皆様のフィードバックと共に成長します",
+    "subtitle": "Amatdda は皆様のフィードバックと共に成長します",
     "status": {
       "completed": "完了",
       "inprogress": "進行中",
@@ -191,8 +134,8 @@
     },
     "items": [
       {
-        "title": "アプリリリース",
-        "description": "iOS & Android正式リリース",
+        "title": "アプリ・Web公開",
+        "description": "iOS、Android、Web（PCブラウザ）対応",
         "status": "completed",
         "date": "2025.11"
       },
@@ -217,9 +160,8 @@
     ]
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "個人情報保護方針",
     "terms": "利用規約"
   }
 }
-

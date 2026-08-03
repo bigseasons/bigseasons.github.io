@@ -1,53 +1,35 @@
 {
   "nav": {
-    "about": "About",
+    "features": "Features",
     "apps": "Apps",
-    "tech": "Tech",
+    "faq": "FAQ",
     "contact": "Contact"
   },
   "hero": {
     "title": "Mobile App Studio <span class=\"text-indigo-400\">BigSeasons</span>",
     "subtitle": "Making everyday life easier",
-    "description": "Simplify the complex, remember the forgettable.<br/>BigSeasons creates user-centered mobile apps.",
-    "cta": "Start free today"
+    "description": "D-day · Recurring schedules · Quick notes · Timetable — all in one smart app.",
+    "cta": "Start free today",
+    "pcWeb": "Open in browser",
+    "pcWebHint": "Try & edit on the web — notifications & widgets available in the app."
   },
   "stats": {
     "apps": "Published Apps",
     "downloads": "Downloads in First Month",
-    "platform": "Multi-Platform",
+    "platform": "Platforms",
+    "platformLine": "iOS · Android · Web",
     "updates": "Continuous Updates"
-  },
-  "about": {
-    "title": "About Us",
-    "description": "BigSeasons is a solo development studio with 'practicality' and 'quality' as core values.<br/>We build apps that are genuinely useful and built to last, rather than flashy.",
-    "values": {
-      "title": "Core Values",
-      "quality": {
-        "title": "Quality First",
-        "description": "Thorough testing and code reviews for stable, bug-free apps."
-      },
-      "ux": {
-        "title": "User Experience",
-        "description": "Complex features designed to be intuitive and easy to use."
-      },
-      "improvement": {
-        "title": "Continuous Improvement",
-        "description": "Constantly evolving apps based on user feedback."
-      },
-      "privacy": {
-        "title": "Privacy Protection",
-        "description": "Minimal data collection with respect for user privacy."
-      }
-    }
   },
   "apps": {
     "title": "Our Apps",
     "amatdda": {
       "name": "Amatdda",
-      "description": "A cycle management app with recurring schedules and powerful notifications.",
+      "description": "Recurring schedules, D-days, quick notes, and timetables in one place—with powerful alerts and widgets.",
       "badge": "NEW",
       "badge2": "100% Free",
-      "features": ["Cycle Reminders", "Widget Support", "Cloud Sync"]
+      "platforms": "iOS · Android · Web",
+      "webCta": "Open on the web (PC)",
+      "features": ["Cycle reminders", "Timetable", "Web + app"]
     },
     "nopo": {
       "name": "Nopo Map",
@@ -56,7 +38,8 @@
     }
   },
   "features": {
-    "title": "Powerful Features of Amatdda",
+    "pill": "Features",
+    "title": "Powerful Features",
     "subtitle": "Manage recurring schedules smartly",
     "list": {
       "cycle": {
@@ -66,6 +49,10 @@
       "notification": {
         "title": "Powerful Notification System",
         "description": "Get notified exactly when scheduled, with missed notification recovery."
+      },
+      "timetable": {
+        "title": "Timetable",
+        "description": "Organize classes and routines by weekday in a clear grid—manage them in both the app and the web."
       },
       "widget": {
         "title": "Home Screen Widget",
@@ -77,68 +64,8 @@
       }
     }
   },
-  "tech": {
-    "title": "Tech Stack",
-    "subtitle": "Technologies behind Amatdda",
-    "description": "We use proven technologies for stability and performance.",
-    "architecture": {
-      "title": "Architecture",
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "Layered architecture for separation of concerns and testability"
-      },
-      "riverpod": {
-        "title": "Riverpod + Freezed",
-        "description": "Type-safe state management with immutable data models"
-      }
-    },
-    "frontend": {
-      "title": "Frontend",
-      "flutter": {
-        "title": "Flutter",
-        "description": "iOS/Android cross-platform development"
-      },
-      "kotlin": {
-        "title": "Kotlin Native",
-        "description": "Android native widgets and notifications"
-      },
-      "swift": {
-        "title": "Swift",
-        "description": "iOS widgets and system integration"
-      }
-    },
-    "backend": {
-      "title": "Backend",
-      "nodejs": {
-        "title": "Node.js",
-        "description": "Express-based REST API server"
-      },
-      "prisma": {
-        "title": "Prisma ORM",
-        "description": "Type-safe database access"
-      },
-      "postgresql": {
-        "title": "PostgreSQL",
-        "description": "Reliable relational database"
-      }
-    },
-    "infra": {
-      "title": "Infrastructure",
-      "cloudrun": {
-        "title": "Cloud Run",
-        "description": "Auto-scaling serverless deployment"
-      },
-      "firebase": {
-        "title": "Firebase",
-        "description": "Auth, push notifications, remote config"
-      },
-      "cloudsql": {
-        "title": "Cloud SQL",
-        "description": "Managed PostgreSQL database"
-      }
-    }
-  },
   "usecases": {
+    "pill": "Use Cases",
     "title": "Perfect for these situations!",
     "subtitle": "Amatdda helps you remember the things you easily forget in daily life",
     "coupon": {
@@ -159,29 +86,45 @@
     }
   },
   "faq": {
+    "pill": "FAQ",
     "title": "FAQ",
+    "subtitle": "Expand a question below to read the full answer.",
     "items": [
       {
         "question": "Is Amatdda free?",
-        "answer": "Yes, all basic features are free to use. Some ads are included to support smooth service operation."
+        "answer": "Yes. Core features are free. Some screens may include ads to help run the service."
       },
       {
         "question": "Where is my data stored?",
-        "answer": "Data is stored locally by default. Sign in to sync securely to the cloud."
+        "answer": "What you enter in the app and on the web is tied to your account and stored securely on our servers with sync. Some parts may be limited when you're offline."
       },
       {
-        "question": "Can I use it on multiple devices?",
-        "answer": "Currently, each device operates independently. Data is stored locally on each device, with cloud sync features coming soon."
+        "question": "What's the difference between the app and the web (PC browser)?",
+        "answer": "The web is great for quick checks and edits on a PC. The iOS and Android apps are best for push notifications, home screen widgets, and other device-native features. Use the same account for the smoothest experience."
+      },
+      {
+        "question": "What can I do with the timetable feature?",
+        "answer": "Build a weekly grid with periods or time blocks, and add subjects, places, and notes. Handy for a semester view or alongside your routines."
+      },
+      {
+        "question": "Can I see the same data on multiple devices?",
+        "answer": "Yes, when you're signed in with the same account on iOS, Android, and the web. Make sure each device stays logged in."
+      },
+      {
+        "question": "Why does the web show a preview or limited mode?",
+        "answer": "If you're not signed in, or a feature needs a link with the app, it may be restricted. Sign in and connect from the app, then reopen the web to continue with the same data."
       }
     ]
   },
   "contact": {
+    "pill": "Contact",
     "title": "Contact",
     "subtitle": "Have any questions?",
     "email_label": "Email",
     "response_time": "We respond within 24 business hours."
   },
   "roadmap": {
+    "pill": "Roadmap",
     "title": "Always Evolving",
     "subtitle": "Amatdda grows with your feedback",
     "status": {
@@ -191,8 +134,8 @@
     },
     "items": [
       {
-        "title": "App Launch",
-        "description": "Official iOS & Android release",
+        "title": "App & web launch",
+        "description": "iOS, Android, and web (PC browser) support",
         "status": "completed",
         "date": "2025.11"
       },
@@ -217,7 +160,7 @@
     ]
   },
   "footer": {
-    "copyright": "© 2025 BigSeasons. All rights reserved.",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   }
