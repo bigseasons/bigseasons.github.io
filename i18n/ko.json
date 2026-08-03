@@ -53,41 +53,6 @@
       }
     ]
   },
-  "roadmap": {
-    "pill": "로드맵",
-    "title": "계속 발전하는 앱",
-    "status": {
-      "completed": "완료",
-      "inprogress": "진행중",
-      "planned": "예정"
-    },
-    "items": [
-      {
-        "title": "앱·웹 출시",
-        "description": "iOS, Android 및 웹(PC 브라우저) 지원",
-        "status": "completed",
-        "date": "2025.11"
-      },
-      {
-        "title": "알림 고도화",
-        "description": "더 정확하고 다양한 알림 옵션 제공",
-        "status": "inprogress",
-        "date": "2026 Q1"
-      },
-      {
-        "title": "클라우드 동기화",
-        "description": "여러 기기에서 안전하게 데이터를 동기화",
-        "status": "planned",
-        "date": "2026 Q2-Q3"
-      },
-      {
-        "title": "다중기기 지원",
-        "description": "여러 기기에서 동일 계정으로 사용",
-        "status": "planned",
-        "date": "2026 Q4"
-      }
-    ]
-  },
   "contact": {
     "pill": "문의",
     "subtitle": "궁금한 점이 있으신가요?",
@@ -98,6 +63,12 @@
     "terms": "이용약관",
     "copyright": "© 2026 BigSeasons. All rights reserved.",
     "maker": "· 까먹지마를 만듭니다"
+  },
+  "brand": "까먹지마",
+  "next": {
+    "label": "앞으로",
+    "title": "다음은 말로 적어 두는 일입니다",
+    "body": "지금은 직접 입력해야 합니다. 앞으로는 사람에게 말하듯 이야기하면 앱이 알아서 항목으로 만들어 두는 방향을 보고 있습니다. 아직 정해진 일정은 없습니다. 혼자 만드는 앱이라, 쓰는 분이 늘고 앱이 스스로 버틸 수 있게 되면 그때 손을 댈 생각입니다."
   },
   "hero": {
     "claim": "까먹어도<br>괜찮게, <u>대신</u><br><u>기억합니다.</u>",

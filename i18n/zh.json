@@ -53,41 +53,6 @@
       }
     ]
   },
-  "roadmap": {
-    "pill": "路線圖",
-    "title": "持續發展的應用",
-    "status": {
-      "completed": "已完成",
-      "inprogress": "進行中",
-      "planned": "規劃中"
-    },
-    "items": [
-      {
-        "title": "應用與網頁上線",
-        "description": "支援 iOS、Android 與網頁（PC 瀏覽器）",
-        "status": "completed",
-        "date": "2025.11"
-      },
-      {
-        "title": "提醒升級",
-        "description": "提供更準確的提醒與更多選項",
-        "status": "inprogress",
-        "date": "2026 Q1"
-      },
-      {
-        "title": "雲端同步",
-        "description": "在多個裝置間安全同步資料",
-        "status": "planned",
-        "date": "2026 Q2-Q3"
-      },
-      {
-        "title": "多裝置支援",
-        "description": "使用同一帳號在多個裝置上使用",
-        "status": "planned",
-        "date": "2026 Q4"
-      }
-    ]
-  },
   "contact": {
     "pill": "諮詢",
     "subtitle": "有什麼疑問嗎？",
@@ -98,6 +63,12 @@
     "terms": "使用條款",
     "copyright": "© 2026 BigSeasons. All rights reserved.",
     "maker": "· Amatdda 的開發者"
+  },
+  "brand": "Amatdda",
+  "next": {
+    "label": "接下來",
+    "title": "下一步是「說一句就記下來」",
+    "body": "目前還需要您自己輸入。我們正在看的方向，是讓您像對人說話那樣說出來，由應用自動整理成項目。目前還沒有時程。這是一個人做的應用，等使用的人多到足以讓它自己撐下去，才會著手。"
   },
   "hero": {
     "claim": "忘了也沒關係，<br><u>我們替您</u><br><u>記住。</u>",

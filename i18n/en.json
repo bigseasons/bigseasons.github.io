@@ -53,41 +53,6 @@
       }
     ]
   },
-  "roadmap": {
-    "pill": "Roadmap",
-    "title": "Always Evolving",
-    "status": {
-      "completed": "Completed",
-      "inprogress": "In Progress",
-      "planned": "Planned"
-    },
-    "items": [
-      {
-        "title": "App & web launch",
-        "description": "iOS, Android, and web (PC browser) support",
-        "status": "completed",
-        "date": "2025.11"
-      },
-      {
-        "title": "Enhanced Notifications",
-        "description": "More accurate notifications and more options",
-        "status": "inprogress",
-        "date": "2026 Q1"
-      },
-      {
-        "title": "Cloud Synchronization",
-        "description": "Safely sync data across devices",
-        "status": "planned",
-        "date": "2026 Q2-Q3"
-      },
-      {
-        "title": "Multi-Device Support",
-        "description": "Use the same account across multiple devices",
-        "status": "planned",
-        "date": "2026 Q4"
-      }
-    ]
-  },
   "contact": {
     "pill": "Contact",
     "subtitle": "Have any questions?",
@@ -98,6 +63,12 @@
     "terms": "Terms of Service",
     "copyright": "© 2026 BigSeasons. All rights reserved.",
     "maker": "· makers of Amatdda"
+  },
+  "brand": "Amatdda",
+  "next": {
+    "label": "What's next",
+    "title": "Next: writing things down just by saying them",
+    "body": "Right now you type things in yourself. The direction we are looking at is letting you say it the way you would say it to a person, and having the app turn that into an item on its own. There is no date on this yet. It is built by one person, so it happens once enough people are using it for the app to stand on its own."
   },
   "hero": {
     "claim": "Forget freely.<br><u>We remember</u><br><u>for you.</u>",

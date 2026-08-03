@@ -53,41 +53,6 @@
       }
     ]
   },
-  "roadmap": {
-    "pill": "ロードマップ",
-    "title": "継続的に発展するアプリ",
-    "status": {
-      "completed": "完了",
-      "inprogress": "進行中",
-      "planned": "予定"
-    },
-    "items": [
-      {
-        "title": "アプリ・Web公開",
-        "description": "iOS、Android、Web（PCブラウザ）対応",
-        "status": "completed",
-        "date": "2025.11"
-      },
-      {
-        "title": "通知の高度化",
-        "description": "より正確な通知と多様なオプションを提供",
-        "status": "inprogress",
-        "date": "2026 Q1"
-      },
-      {
-        "title": "クラウド同期",
-        "description": "複数のデバイス間で安全にデータを同期",
-        "status": "planned",
-        "date": "2026 Q2-Q3"
-      },
-      {
-        "title": "複数デバイス対応",
-        "description": "同一アカウントで複数デバイスから利用",
-        "status": "planned",
-        "date": "2026 Q4"
-      }
-    ]
-  },
   "contact": {
     "pill": "お問い合わせ",
     "subtitle": "ご質問がございますか？",
@@ -98,6 +63,12 @@
     "terms": "利用規約",
     "copyright": "© 2026 BigSeasons. All rights reserved.",
     "maker": "· Amatdda をつくっています"
+  },
+  "brand": "Amatdda",
+  "next": {
+    "label": "これから",
+    "title": "次は「話すだけで書き留める」こと",
+    "body": "今はご自身で入力していただく必要があります。これからは、人に話しかけるように言えばアプリが項目にしてくれる方向を見ています。時期はまだ決まっていません。ひとりで作っているアプリなので、使ってくださる方が増えてアプリが自力で続けられるようになったら着手するつもりです。"
   },
   "hero": {
     "claim": "忘れても<br>大丈夫。<u>代わりに</u><br><u>覚えています。</u>",
