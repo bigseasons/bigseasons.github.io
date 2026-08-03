@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  이 사이트는 index.html 한 장으로 된 단일 페이지입니다.
+  언어 전환은 같은 URL에서 JS로 처리하므로 언어별 URL은 없습니다.
+  (도구 페이지들은 amatdda.bigseasons.co.kr/sitemap.xml 에 따로 있습니다.)
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bigseasons.co.kr/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
