@@ -1,81 +1,12 @@
 {
   "nav": {
     "features": "功能",
-    "apps": "應用",
     "faq": "FAQ",
     "contact": "諮詢"
-  },
-  "hero": {
-    "title": "行動應用開發工作室 <span class=\"text-indigo-400\">BigSeasons</span>",
-    "subtitle": "讓日常生活更便利",
-    "description": "D-day · 重複日程 · 快速備忘 · 時間表 — 一個應用智慧管理。",
-    "cta": "立即免費開始",
-    "pcWeb": "在網頁端開始",
-    "pcWebHint": "無需安裝即可在網頁體驗·編輯 · 通知·小工具請使用應用"
-  },
-  "stats": {
-    "apps": "已發布應用",
-    "downloads": "首月下載量",
-    "platform": "平台",
-    "platformLine": "iOS · Android · Web",
-    "updates": "持續更新"
-  },
-  "apps": {
-    "title": "我們的應用",
-    "amatdda": {
-      "name": "Amatdda",
-      "description": "重複日程、倒數日、隨手記與課程表一站管理，並配備強大提醒與小工具。",
-      "badge": "NEW",
-      "badge2": "100% 免費",
-      "platforms": "iOS · Android · 網頁",
-      "webCta": "在網頁（PC）開啟",
-      "features": [
-        "週期提醒",
-        "課程表",
-        "網頁+應用"
-      ]
-    },
-    "nopo": {
-      "name": "老鋪地圖",
-      "description": "探索全國各地老店的地圖服務。",
-      "features": [
-        "全國老鋪資訊",
-        "地圖搜尋",
-        "使用者評價"
-      ]
-    }
-  },
-  "features": {
-    "pill": "功能介紹",
-    "title": "強大功能",
-    "subtitle": "智慧管理重複日程",
-    "list": {
-      "cycle": {
-        "title": "智慧週期管理",
-        "description": "設定每日、每週、每月或自定義週期的日程。"
-      },
-      "notification": {
-        "title": "強大的提醒系統",
-        "description": "在指定時間準確接收提醒，錯過的提醒也可重新檢視。"
-      },
-      "timetable": {
-        "title": "課程表",
-        "description": "按星期整理課程與日常安排，應用與網頁端均可管理。"
-      },
-      "widget": {
-        "title": "主螢幕小工具",
-        "description": "無需開啟應用，在主螢幕即可檢視即將到來的日程。"
-      },
-      "history": {
-        "title": "完成歷史",
-        "description": "記錄完成時間，一目瞭然地檢視過往記錄。"
-      }
-    }
   },
   "usecases": {
     "pill": "使用場景",
     "title": "這些情況正合適！",
-    "subtitle": "日常容易忘記的事，Amatdda 幫您記住",
     "coupon": {
       "title": "便利商店優惠券到期提醒",
       "description": "註冊行動優惠券、禮品卡有效期，到期前接收提醒。再也不會錯過優惠券了。"
@@ -94,9 +25,7 @@
     }
   },
   "faq": {
-    "pill": "FAQ",
     "title": "常見問題",
-    "subtitle": "展開下方條目可閱讀完整回答。",
     "items": [
       {
         "question": "Amatdda 是免費的嗎？",
@@ -124,17 +53,9 @@
       }
     ]
   },
-  "contact": {
-    "pill": "諮詢",
-    "title": "諮詢",
-    "subtitle": "有什麼疑問嗎？",
-    "email_label": "電子郵件",
-    "response_time": "工作日24小時內回覆。"
-  },
   "roadmap": {
     "pill": "路線圖",
     "title": "持續發展的應用",
-    "subtitle": "Amatdda 與您的反饋一起成長",
     "status": {
       "completed": "已完成",
       "inprogress": "進行中",
@@ -167,9 +88,65 @@
       }
     ]
   },
+  "contact": {
+    "pill": "諮詢",
+    "subtitle": "有什麼疑問嗎？",
+    "response_time": "工作日24小時內回覆。"
+  },
   "footer": {
-    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "隱私政策",
-    "terms": "使用條款"
+    "terms": "使用條款",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
+    "maker": "· Amatdda 的開發者"
+  },
+  "hero": {
+    "claim": "忘了也沒關係，<br><u>我們替您</u><br><u>記住。</u>",
+    "lede": "生日與紀念日、機油更換、定期扣款日、孩子的補習班課表、禮金紀錄。只要記錄一次，時間到了就會提醒您。",
+    "web": "先在網頁試用"
+  },
+  "agenda": {
+    "label": "今天的清單",
+    "title": "這些事情由我們替您記住",
+    "r1": {
+      "t": "訂閱扣款日",
+      "d": "重複提醒・每月同一天"
+    },
+    "r2": {
+      "t": "媽媽的生日",
+      "d": "紀念日・每年・農曆自動換算"
+    },
+    "r3": {
+      "t": "機油更換",
+      "d": "車輛保養・行駛距離 34,200 公里"
+    },
+    "r4": {
+      "t": "游泳",
+      "d": "課表・孩子的補習班",
+      "k": "33 分鐘後"
+    },
+    "r5": {
+      "t": "記得帶傘",
+      "d": "快速記事・今天 09:00"
+    },
+    "r6": {
+      "t": "婚禮禮金",
+      "d": "紅白事帳・依收到的紀錄建議",
+      "k": "已記錄"
+    },
+    "r7": {
+      "t": "划船機 20 分鐘",
+      "d": "例行・每天 9 點・連續 1 天"
+    },
+    "note": "主畫面小工具讓您不用開啟應用也能查看這份清單，每次完成時還能留下記事與照片，供下次參考。"
+  },
+  "platforms": {
+    "label": "隨處可用",
+    "title": "從中斷的地方繼續",
+    "ios": "App Store・主畫面小工具・鎖定畫面記事",
+    "android": "Google Play・主畫面小工具・鎖定畫面記事",
+    "webLabel": "網頁",
+    "web": "免安裝，直接在瀏覽器查看與編輯",
+    "syncLabel": "同步",
+    "sync": "登入後換手機也能原樣還原"
   }
 }

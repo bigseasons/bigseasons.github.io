@@ -1,73 +1,12 @@
 {
   "nav": {
     "features": "기능",
-    "apps": "앱",
     "faq": "FAQ",
     "contact": "문의"
-  },
-  "hero": {
-    "title": "모바일 앱 개발 스튜디오 <span class=\"text-indigo-400\">BigSeasons</span>",
-    "subtitle": "실생활을 더 편리하게",
-    "description": "D-day · 반복 일정 · 빠른 메모 · 시간표를 한 앱에서 스마트하게 관리하세요.",
-    "cta": "지금 무료로 시작하세요",
-    "pcWeb": "웹에서 바로 시작",
-    "pcWebHint": "앱 없이 웹에서 체험·편집 가능 · 알림·위젯은 앱에서"
-  },
-  "stats": {
-    "apps": "출시 앱",
-    "downloads": "출시 한달 다운로드",
-    "platform": "플랫폼",
-    "platformLine": "iOS · Android · Web",
-    "updates": "지속적인 업데이트"
-  },
-  "apps": {
-    "title": "Our Apps",
-    "amatdda": {
-      "name": "까먹지마",
-      "description": "반복 일정·D-day·빠른 메모·시간표를 한곳에서. 강력한 알림과 위젯까지.",
-      "badge": "NEW",
-      "badge2": "100% 무료",
-      "platforms": "iOS · Android · 웹",
-      "webCta": "웹(PC)에서 열기",
-      "features": ["주기별 알림", "시간표", "웹 연동"]
-    },
-    "nopo": {
-      "name": "노포지도",
-      "description": "전국 오래된 가게를 탐험하는 지도 서비스.",
-      "features": ["전국 노포 정보", "지도 기반 탐색", "사용자 리뷰"]
-    }
-  },
-  "features": {
-    "pill": "기능 소개",
-    "title": "강력한 기능들",
-    "subtitle": "반복 일정을 스마트하게 관리하세요",
-    "list": {
-      "cycle": {
-        "title": "스마트 주기 관리",
-        "description": "매일, 매주, 매월 또는 커스텀 주기로 일정을 설정하세요."
-      },
-      "notification": {
-        "title": "강력한 알림 시스템",
-        "description": "지정된 시간에 정확히 알림을 받고, 놓친 알림도 다시 확인할 수 있습니다."
-      },
-      "timetable": {
-        "title": "시간표",
-        "description": "요일별 시간표로 수업·루틴을 한눈에 정리하고, 앱·웹에서 함께 관리하세요."
-      },
-      "widget": {
-        "title": "홈 화면 위젯",
-        "description": "앱을 열지 않아도 홈 화면에서 다가오는 일정을 확인하세요."
-      },
-      "history": {
-        "title": "완료 히스토리",
-        "description": "언제 완료했는지 기록이 남아 과거 내역을 한눈에 확인할 수 있습니다."
-      }
-    }
   },
   "usecases": {
     "pill": "활용 사례",
     "title": "이런 상황에 딱!",
-    "subtitle": "일상 속 깜빡하기 쉬운 것들, 까먹지마가 챙겨드려요",
     "coupon": {
       "title": "편의점 쿠폰 기한 알림",
       "description": "모바일 쿠폰, 기프티콘 유효기간을 등록하고 만료 전 알림을 받으세요. 더 이상 쿠폰을 놓치지 마세요."
@@ -86,9 +25,7 @@
     }
   },
   "faq": {
-    "pill": "FAQ",
     "title": "자주 묻는 질문",
-    "subtitle": "아래를 펼쳐 전체 답변을 확인할 수 있어요.",
     "items": [
       {
         "question": "까먹지마는 무료인가요?",
@@ -116,17 +53,9 @@
       }
     ]
   },
-  "contact": {
-    "pill": "문의",
-    "title": "문의",
-    "subtitle": "궁금한 점이 있으신가요?",
-    "email_label": "이메일",
-    "response_time": "영업일 기준 24시간 내 답변드립니다."
-  },
   "roadmap": {
     "pill": "로드맵",
     "title": "계속 발전하는 앱",
-    "subtitle": "까먹지마는 여러분의 피드백과 함께 성장합니다",
     "status": {
       "completed": "완료",
       "inprogress": "진행중",
@@ -159,9 +88,65 @@
       }
     ]
   },
+  "contact": {
+    "pill": "문의",
+    "subtitle": "궁금한 점이 있으신가요?",
+    "response_time": "영업일 기준 24시간 내 답변드립니다."
+  },
   "footer": {
-    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "개인정보처리방침",
-    "terms": "이용약관"
+    "terms": "이용약관",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
+    "maker": "· 까먹지마를 만듭니다"
+  },
+  "hero": {
+    "claim": "까먹어도<br>괜찮게, <u>대신</u><br><u>기억합니다.</u>",
+    "lede": "생일과 기념일, 엔진오일 교체, 정기 결제일, 아이 학원 시간표, 축의금 기록까지. 한 번 적어 두면 때가 됐을 때 알려 드립니다.",
+    "web": "웹에서 먼저 써 보기"
+  },
+  "agenda": {
+    "label": "오늘의 목록",
+    "title": "이런 것들을 대신 기억합니다",
+    "r1": {
+      "t": "구독 결제일",
+      "d": "반복 알림 · 매달 같은 날"
+    },
+    "r2": {
+      "t": "엄마 생일",
+      "d": "기념일 · 매년 · 음력도 자동 변환"
+    },
+    "r3": {
+      "t": "엔진오일 교체",
+      "d": "차량 정비 · 주행거리 34,200km 기준"
+    },
+    "r4": {
+      "t": "수영",
+      "d": "시간표 · 아이 학원",
+      "k": "33분 후"
+    },
+    "r5": {
+      "t": "우산 챙기기",
+      "d": "빠른 메모 · 오늘 09:00"
+    },
+    "r6": {
+      "t": "결혼식 축의금",
+      "d": "경조사 장부 · 받은 기록 기준으로 추천",
+      "k": "기록됨"
+    },
+    "r7": {
+      "t": "로잉머신 20분",
+      "d": "루틴 · 매일 9시 · 1일 연속"
+    },
+    "note": "홈 화면 위젯으로 앱을 열지 않고도 이 목록을 볼 수 있고, 완료할 때마다 메모와 사진을 남겨 다음 관리에 씁니다."
+  },
+  "platforms": {
+    "label": "어디서든",
+    "title": "쓰던 그대로 이어집니다",
+    "ios": "App Store · 홈 화면 위젯 · 잠금화면 메모",
+    "android": "Google Play · 홈 위젯 · 잠금화면 메모",
+    "webLabel": "웹",
+    "web": "설치 없이 브라우저에서 바로 확인하고 편집",
+    "syncLabel": "동기화",
+    "sync": "로그인하면 기기를 바꿔도 그대로 복원"
   }
 }

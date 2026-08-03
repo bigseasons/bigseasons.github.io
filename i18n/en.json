@@ -1,73 +1,12 @@
 {
   "nav": {
     "features": "Features",
-    "apps": "Apps",
     "faq": "FAQ",
     "contact": "Contact"
-  },
-  "hero": {
-    "title": "Mobile App Studio <span class=\"text-indigo-400\">BigSeasons</span>",
-    "subtitle": "Making everyday life easier",
-    "description": "D-day · Recurring schedules · Quick notes · Timetable — all in one smart app.",
-    "cta": "Start free today",
-    "pcWeb": "Open in browser",
-    "pcWebHint": "Try & edit on the web — notifications & widgets available in the app."
-  },
-  "stats": {
-    "apps": "Published Apps",
-    "downloads": "Downloads in First Month",
-    "platform": "Platforms",
-    "platformLine": "iOS · Android · Web",
-    "updates": "Continuous Updates"
-  },
-  "apps": {
-    "title": "Our Apps",
-    "amatdda": {
-      "name": "Amatdda",
-      "description": "Recurring schedules, D-days, quick notes, and timetables in one place—with powerful alerts and widgets.",
-      "badge": "NEW",
-      "badge2": "100% Free",
-      "platforms": "iOS · Android · Web",
-      "webCta": "Open on the web (PC)",
-      "features": ["Cycle reminders", "Timetable", "Web + app"]
-    },
-    "nopo": {
-      "name": "Nopo Map",
-      "description": "A map service for exploring long-established shops across the country.",
-      "features": ["Nationwide Info", "Map-based Search", "User Reviews"]
-    }
-  },
-  "features": {
-    "pill": "Features",
-    "title": "Powerful Features",
-    "subtitle": "Manage recurring schedules smartly",
-    "list": {
-      "cycle": {
-        "title": "Smart Cycle Management",
-        "description": "Set schedules for daily, weekly, monthly, or custom cycles."
-      },
-      "notification": {
-        "title": "Powerful Notification System",
-        "description": "Get notified exactly when scheduled, with missed notification recovery."
-      },
-      "timetable": {
-        "title": "Timetable",
-        "description": "Organize classes and routines by weekday in a clear grid—manage them in both the app and the web."
-      },
-      "widget": {
-        "title": "Home Screen Widget",
-        "description": "Check upcoming schedules from your home screen without opening the app."
-      },
-      "history": {
-        "title": "Completion History",
-        "description": "Track when tasks were completed and view past records at a glance."
-      }
-    }
   },
   "usecases": {
     "pill": "Use Cases",
     "title": "Perfect for these situations!",
-    "subtitle": "Amatdda helps you remember the things you easily forget in daily life",
     "coupon": {
       "title": "Convenience Store Coupon Expiration Alerts",
       "description": "Register mobile coupons and gift cards to get notifications before they expire. Never miss a coupon again."
@@ -86,9 +25,7 @@
     }
   },
   "faq": {
-    "pill": "FAQ",
     "title": "FAQ",
-    "subtitle": "Expand a question below to read the full answer.",
     "items": [
       {
         "question": "Is Amatdda free?",
@@ -116,17 +53,9 @@
       }
     ]
   },
-  "contact": {
-    "pill": "Contact",
-    "title": "Contact",
-    "subtitle": "Have any questions?",
-    "email_label": "Email",
-    "response_time": "We respond within 24 business hours."
-  },
   "roadmap": {
     "pill": "Roadmap",
     "title": "Always Evolving",
-    "subtitle": "Amatdda grows with your feedback",
     "status": {
       "completed": "Completed",
       "inprogress": "In Progress",
@@ -159,9 +88,65 @@
       }
     ]
   },
+  "contact": {
+    "pill": "Contact",
+    "subtitle": "Have any questions?",
+    "response_time": "We respond within 24 business hours."
+  },
   "footer": {
-    "copyright": "© 2026 BigSeasons. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "copyright": "© 2026 BigSeasons. All rights reserved.",
+    "maker": "· makers of Amatdda"
+  },
+  "hero": {
+    "claim": "Forget freely.<br><u>We remember</u><br><u>for you.</u>",
+    "lede": "Birthdays and anniversaries, engine oil changes, subscription renewals, your kids' academy timetable, gift money records. Write it down once and we tell you when the time comes.",
+    "web": "Try it on the web"
+  },
+  "agenda": {
+    "label": "Today's list",
+    "title": "These are the things we remember for you",
+    "r1": {
+      "t": "Subscription renewal",
+      "d": "Recurring · same day every month"
+    },
+    "r2": {
+      "t": "Mom's birthday",
+      "d": "Anniversary · yearly · lunar dates converted"
+    },
+    "r3": {
+      "t": "Engine oil change",
+      "d": "Car maintenance · odometer at 34,200 km"
+    },
+    "r4": {
+      "t": "Swimming",
+      "d": "Timetable · kids' academy",
+      "k": "in 33 min"
+    },
+    "r5": {
+      "t": "Take an umbrella",
+      "d": "Quick memo · today 09:00"
+    },
+    "r6": {
+      "t": "Wedding gift money",
+      "d": "Gift ledger · suggested from what you received",
+      "k": "Logged"
+    },
+    "r7": {
+      "t": "Rowing, 20 min",
+      "d": "Routine · daily at 9 · 1-day streak"
+    },
+    "note": "A home screen widget shows this list without opening the app, and each time you finish something you can leave a note and a photo for next time."
+  },
+  "platforms": {
+    "label": "Everywhere",
+    "title": "Pick up right where you left off",
+    "ios": "App Store · home screen widget · lock screen memo",
+    "android": "Google Play · home widget · lock screen memo",
+    "webLabel": "Web",
+    "web": "View and edit in the browser, no install needed",
+    "syncLabel": "Sync",
+    "sync": "Sign in and everything restores on a new device"
   }
 }
