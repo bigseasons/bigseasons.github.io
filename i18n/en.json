@@ -51,7 +51,9 @@
     "timetableValue": "Today 2",
     "vehicle": "Vehicle",
     "gifts": "Gifts",
-    "giftsValue": "14 people"
+    "giftsValue": "14 people",
+    "section": "Life tools",
+    "hint": "Tap to see the screen"
   },
   "drawers": {
     "title": "Four life tools, all in one app",
@@ -59,7 +61,8 @@
     "altMemo": "Memo: lock memos like passwords, show important ones on the lock screen",
     "altTimetable": "Timetable: classes and weekly schedule on one page",
     "altVehicle": "Vehicle: reminds you of oil changes by mileage",
-    "altGifts": "Gifts: what you gave and received in one log"
+    "altGifts": "Gifts: what you gave and received in one log",
+    "tabsLabel": "Choose a life tool screen"
   },
   "closing": {
     "title": "Leave the remembering to us. Take a breather."

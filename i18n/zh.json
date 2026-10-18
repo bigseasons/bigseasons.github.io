@@ -51,7 +51,9 @@
     "timetableValue": "今天 2",
     "vehicle": "車輛",
     "gifts": "禮金",
-    "giftsValue": "14人"
+    "giftsValue": "14人",
+    "section": "生活工具",
+    "hint": "點一下看畫面"
   },
   "drawers": {
     "title": "四種生活工具，都在同一個 App",
@@ -59,7 +61,8 @@
     "altMemo": "備忘錄：密碼之類的備忘可以上鎖，重要的放在鎖定畫面",
     "altTimetable": "課程表：上課和每週行程一張搞定",
     "altVehicle": "車輛：換機油也依里程提醒",
-    "altGifts": "禮金：送出和收到的金額記在同一本帳"
+    "altGifts": "禮金：送出和收到的金額記在同一本帳",
+    "tabsLabel": "選擇生活工具畫面"
   },
   "closing": {
     "title": "記事交給我們，你放空一下。"

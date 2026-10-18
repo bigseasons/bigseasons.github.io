@@ -51,7 +51,9 @@
     "timetableValue": "오늘 2",
     "vehicle": "자동차",
     "gifts": "경조사",
-    "giftsValue": "14명"
+    "giftsValue": "14명",
+    "section": "생활 도구",
+    "hint": "눌러서 화면 보기"
   },
   "drawers": {
     "title": "생활 도구 넷이 함께 들어 있어요",
@@ -59,7 +61,8 @@
     "altMemo": "메모: 비밀번호 같은 메모는 잠그고, 중요한 건 잠금화면에",
     "altTimetable": "시간표: 수업과 주간 일정을 한 장에",
     "altVehicle": "자동차: 엔진오일 교체도 주행거리로 알려 줌",
-    "altGifts": "경조사: 보낸 금액과 받은 금액을 한 장부에"
+    "altGifts": "경조사: 보낸 금액과 받은 금액을 한 장부에",
+    "tabsLabel": "생활 도구 화면 고르기"
   },
   "closing": {
     "title": "기억은 맡기고, 잠깐 멍."
