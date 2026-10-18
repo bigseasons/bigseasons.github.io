@@ -78,6 +78,7 @@
     --text: #1B1917; --muted: #6B6558; --faint: #9A9385; --line: #E2DDD3;
     --ink: #A85C18; --face: #E9A040; --onface: #2A2410;
     --late: #DC2626; --streak: #4E7A4A;
+    --notif: #58798A; --achieve: #2E7D32;   /* 앱 notificationIndicator · achievementColor */
 
     --sans: "IBM Plex Sans KR", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
             "PingFang TC", "Noto Sans TC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -90,6 +91,7 @@
       --bg: #17181C; --bg2: #1F2024; --card: #222328;
       --text: #F6F3F5; --muted: #B8B4B8; --faint: #7E7B80; --line: #3F3F44;
       --ink: #F5C377; --late: #F87171; --streak: #9CC796;
+      --notif: #8FAEBD; --achieve: #81C784;
     }
   }
 
@@ -204,6 +206,12 @@
   /* ── 앱 홈 브리핑 ──────────────────────────── */
   .briefing { padding: 0 0 112px; }
   .briefing h2.sec { margin-bottom: 36px; }
+  /* 앱 HomeElapsedCounterSection: 날짜 위 「지난 날」 칸 최대 셋. 이름(13·보조색) 위 / D+N(20·본문색) 아래.
+     숫자는 귤이 아니라 본문색 — 재촉이 아니라 정체성 면이다. */
+  .elapsed { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .elapsed div { min-width: 0; }
+  .elapsed span { display: block; font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .elapsed b { display: block; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .stamp { display: flex; align-items: flex-end; gap: 12px; }
   .stamp .day { font-size: clamp(64px, 9vw, 84px); font-weight: 600; letter-spacing: -.045em; line-height: .86; font-variant-numeric: tabular-nums; }
   .stamp .when { font-size: clamp(18px, 2.2vw, 21px); font-weight: 600; padding-bottom: 4px; }
@@ -213,13 +221,53 @@
 
   .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .row .t { font-size: 17px; font-weight: 600; }
-  .row .d { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .row .d .streak { color: var(--streak); }
+  .row .d { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.2; display: flex; align-items: center; min-width: 0; white-space: nowrap; overflow: hidden; }
+  /* 앱 PlateRowStyle: 메타 12, 아이콘 12. 루틴 줄(_RoutineStripMetaLine)은 13·w600 */
+  .row .d.routine { font-size: 13px; font-weight: 600; }
+  .row .d .mi { width: 12px; height: 12px; flex: none; fill: currentColor; }
+  .row .d .bell { color: var(--notif); margin-right: 6px; }
+  .row .d .cat { color: var(--muted); margin-right: 4px; }
+  .row .d .fire { margin-right: 3px; color: var(--achieve); }
+  .row .d .fire.zero { color: var(--faint); opacity: .55; }
+  .row .d .txt { overflow: hidden; text-overflow: ellipsis; }
+  .row .d .pre { white-space: pre; }   /* flex 안에서는 글 끝 공백이 지워져 「· ♡」가 붙는다 */
   .row.done .t { color: var(--faint); text-decoration: line-through; }
   .row .k { font-size: 16px; font-weight: 600; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
   .k.ink { color: var(--ink); } .k.late { color: var(--late); }
   .circle { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted); }
   .rows-end { height: 2px; background: var(--line); }
+
+  /* 「5km 러닝」 줄: 누르면 앱 항목 상세의 「최근 7일」(RoutineRhythmCard)을 펼친다. 처음엔 펼쳐 둔다. */
+  .row.tap { cursor: pointer; border-radius: 6px; }
+  .row.tap:hover .t { color: var(--ink); }
+  .row.tap .t svg { vertical-align: -2px; margin-left: 4px; color: var(--muted); transition: transform .25s var(--ease); }
+  .row.tap[aria-expanded="false"] .t svg { transform: rotate(-90deg); }
+  button.circle { background: transparent; cursor: pointer; padding: 0; font: inherit; }
+  .row.done button.circle, .row.done .circle { border-color: var(--muted); }
+  .detail { padding: 18px 0 20px; border-bottom: 1px solid var(--line); }
+  .detail .dh { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -.02em; }
+  .detail .dm { font-size: 13px; color: var(--muted); margin: 2px 0 14px; }
+  .rhythm { padding: 16px; border-radius: 16px; background: var(--bg2); }
+  .rh-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .rh-top b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .rh-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); align-items: end; margin-top: 14px; }
+  .rh-days > div { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .rh-days span { font-size: 12px; color: var(--faint); white-space: nowrap; }
+  .rh-days span.today { color: var(--ink); font-weight: 700; }
+  .rh-dot { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--line); }
+  .rh-dot.on { background: var(--face); border-color: var(--face); }
+  .rh-today {
+    width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; color: var(--ink);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
+    transition: background-color .2s, border-color .2s, transform .12s;
+  }
+  .rh-today:active { transform: scale(.94); }
+  .rh-today[aria-pressed="true"] { background: var(--face); border-color: var(--face); color: var(--onface); }
+  .rh-cap { margin: 14px 0 0; font-size: 13px; color: var(--muted); line-height: 1.4; }
+  @media (prefers-reduced-motion: no-preference) {
+    .rh-today[aria-pressed="true"] { animation: pop .3s var(--ease); }
+    .detail:not([hidden]) { animation: enter .3s var(--ease) both; }
+  }
 
   /* 생활 도구 4칸. 앱에서는 요약 칸이지만 여기서는 아래 화면으로 가는 버튼이라, 제목줄과 화살표로
      누를 수 있다는 것을 드러낸다. */
@@ -413,19 +461,36 @@
   <section class="briefing" aria-labelledby="briefing-title">
     <div class="wrap narrow">
       <h2 class="sec sv-rise" id="briefing-title" data-i18n="briefing.title">앱을 열면, 오늘이 이렇게 보여요</h2>
+      <div class="elapsed sv-rise">
+        <div><span data-i18n="briefing.e1">일기 쓴 지</span><b>D+365</b></div>
+        <div><span data-i18n="briefing.e2">결혼</span><b>D+356</b></div>
+        <div><span data-i18n="briefing.e3">금연</span><b>D+88</b></div>
+      </div>
       <div class="stamp sv-rise">
         <span class="day" id="today-day">18</span>
         <span class="when"><em id="today-dow">일요일</em><i id="today-mon"> · 10월</i></span>
       </div>
       <div class="rule head-rule sv-rule"></div>
 
-      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r1t">오리발 챙기기</div><div class="d" data-i18n="briefing.r1d">수영 강습 · 1학기 시간표</div></div><span class="k ink" data-i18n="briefing.r1k">화</span></div>
-      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r2t">구독 결제일</div><div class="d" data-i18n="briefing.r2d">생활용품 · 1개월마다</div></div><span class="k ink">D-4</span></div>
-      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r3t">엄마 생신</div><div class="d" data-i18n="briefing.r3d">생일 · 음력 3월 5일</div></div><span class="k ink">D-12</span></div>
-      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r4t">엔진오일 교체</div><div class="d" data-i18n="briefing.r4d">자동차 · 5,000km마다</div></div><span class="k late">D+61</span></div>
-      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r5t">일기 쓰기</div><div class="d" data-i18n="briefing.r5d">오늘 시작 · 매일 21시</div></div><span class="circle" aria-hidden="true"></span></div>
-      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r6t">5km 러닝</div><div class="d"><span class="streak" data-i18n="briefing.r6s">1일 연속</span> · <span data-i18n="briefing.r6d">운동</span></div></div><span class="circle" aria-hidden="true"></span></div>
-      <div class="row done sv-rise"><div><div class="t" data-i18n="briefing.r7t">물 마시기</div><div class="d"><span class="streak" data-i18n="briefing.r7s">1일 연속</span> · <span data-i18n="briefing.r7d">매일 9시</span></div></div><span class="circle" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r1t">오리발 챙기기</div><div class="d" data-i18n="briefing.r1d">수영 강습 · 1학기 시간표</div></div><span class="k ink" id="tt-date">10/20</span></div>
+      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r2t">구독 결제일</div><div class="d" data-meta="briefing.r2d" data-icon="home" data-bell="1">생활용품 · 1개월마다</div></div><span class="k ink">D-4</span></div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r3t">엄마 생신</div><div class="d" data-meta="briefing.r3d" data-icon="cake" data-bell="1">생일 · 1년마다 · 뱀</div></div><span class="k ink">D-12</span></div>
+      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r4t">엔진오일 교체</div><div class="d" data-meta="briefing.r4d" data-icon="car" data-bell="1">패밀리카 · 6개월마다</div></div><span class="k late">D+61</span></div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r5t">영양제 먹기</div><div class="d routine" data-meta="briefing.r5d" data-icon="heart" data-cat="briefing.r5cat" data-fire="0">오늘 시작 · 매일 21시 · 건강</div></div><span class="circle" aria-hidden="true"></span></div>
+      <div class="row tap sv-rise s2" id="run-row" role="button" tabindex="0" aria-expanded="true" aria-controls="run-detail">
+        <div><div class="t"><span data-i18n="briefing.r6t">5km 러닝</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div><div class="d routine" id="run-meta" data-icon="dumbbell" data-cat="briefing.runCategory" data-fire="1">6일 연속 · 매일 7시 · 운동</div></div>
+        <button class="circle" type="button" id="run-check" aria-pressed="false" aria-label="5km 러닝"></button>
+      </div>
+      <div class="detail" id="run-detail">
+        <p class="dh" data-i18n="briefing.r6t">5km 러닝</p>
+        <p class="dm" data-i18n="briefing.r6meta">루틴 · 매일 · 운동</p>
+        <div class="rhythm">
+          <div class="rh-top"><span data-i18n="rhythm.title">최근 7일</span><b id="rh-count">7일간 6회</b></div>
+          <div class="rh-days" id="rh-days"></div>
+          <p class="rh-cap" id="rh-cap"></p>
+        </div>
+      </div>
+      <div class="row done sv-rise"><div><div class="t" data-i18n="briefing.r7t">물 마시기</div><div class="d routine" data-meta="briefing.r7d" data-icon="category" data-cat="briefing.r7cat" data-fire="1">1일 연속 · 매일 9시 · 기타</div></div><span class="circle" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
       <div class="rows-end"></div>
 
       <div class="tools-head sv-rise"><h3 data-i18n="tools.section">생활 도구</h3><span data-i18n="tools.hint">눌러서 화면 보기</span></div>
@@ -661,6 +726,92 @@
   pickFromHash();
   window.addEventListener('hashchange', pickFromHash);
 
+  /* ── 브리핑 메타 줄 ─────────────────────────────
+     앱 _BriefingRowMeta(일반 항목: 알림 종 · 카테고리 아이콘 + 「카테고리 · 주기 · 띠」)와
+     _RoutineStripMetaLine(루틴: 불꽃 + 「연속 · 시각 · 」 + 카테고리 아이콘 + 카테고리)을 그대로 옮겼다.
+     아이콘은 앱 웹 빌드의 폰트(lucide.ttf · MaterialIcons · CupertinoIcons)에서 같은 글리프를 꺼낸 것. */
+  var ICONS = {"home":{"d":"M249 10Q259 7 268 13Q273 16 367.0 89.5Q461 163 463 164Q467 169 468 174Q469 177 469.0 298.5Q469 420 469 425Q465 445 450.5 460.0Q436 475 415 478Q410 479 256.0 479.0Q102 479 97 478Q77 475 62 461Q50 448 44 430L43 425V301Q43 177 44.0 173.5Q45 170 47.0 167.5Q49 165 144.5 90.5Q240 16 243.0 14.0Q246 12 249 10ZM171 124 85 190V305L86 420L87 423Q91 430 97 433Q102 436 137 436H171V338Q171 241 172 238Q175 227 185 224Q189 223 256.0 223.0Q323 223 326 224Q337 227 340 238Q341 241 341 338V436H375Q408 436 410 435Q423 432 426 419Q427 416 427 303V190L342 124Q257 58 256.5 58.0Q256 58 171 124ZM213 351V436H256H299V351V265H256H213V351Z","vb":"0 0 512 508"},"heart":{"d":"M149 31Q153 31 161.5 31.0Q170 31 175 31Q217 35 253 63L256 66L257 64Q295 35 338 31Q357 30 373 32Q418 39 450 71Q481 103 489 145Q500 214 441 280Q435 287 352.0 370.0Q269 453 267 454Q255 462 244 454Q242 452 156.5 366.5Q71 281 66 275Q26 228 22 181Q20 165 23 148Q30 104 62 72Q80 53 104 43Q125 33 149 31ZM150 74Q133 76 118 83Q88 98 74 128Q50 177 83 226Q91 239 104.5 253.5Q118 268 180 330L256 406L330 332Q404 258 409 252Q439 218 446 188Q456 143 424 106Q412 92 394 83Q370 71 340 74Q307 77 277 104Q267 114 262 115Q256 117 249 115Q245 113 235 104Q209 80 183 75Q166 72 150 74Z","vb":"0 0 512 508"},"dumbbell":{"d":"M121 10Q131 7 140.0 13.5Q149 20 149 31Q149 37 146 42Q145 44 101.0 88.0Q57 132 55 134Q52 135 49 136Q39 140 30.0 133.5Q21 127 21 116Q21 109 25 105Q26 103 40 88L55 73L51 69Q45 63 44 59Q40 46 49.0 37.0Q58 28 71 32Q75 33 81 39L85 43L100 28Q115 14 116.5 13.0Q118 12 121 10ZM207 32Q217 28 226.0 34.5Q235 41 235 52Q235 59 231 63Q230 65 200 96L169 127L271 229L373 331L404 300Q435 270 436.5 269.0Q438 268 441 266Q454 262 463.0 271.5Q472 281 468 293Q467 296 466.0 298.0Q465 300 389.0 376.0Q313 452 311 454Q308 455 305 456Q295 460 286.0 453.5Q277 447 277 436Q277 429 281 425Q282 423 312 392L343 361L241 259L139 157L108 188Q77 218 75.5 219.0Q74 220 71 222Q58 226 49.0 216.5Q40 207 44 195Q45 192 46.0 190.0Q47 188 123.0 112.0Q199 36 201 34Q204 33 207 32ZM463 352Q460 353 457 354Q455 356 411.0 400.0Q367 444 366.0 446.0Q365 448 364 451Q360 463 369.0 472.5Q378 482 391 478Q394 476 395.5 475.0Q397 474 412 460L427 445L431 449Q437 455 441 456Q454 460 463.0 451.0Q472 442 468 429Q467 425 461 419L457 415L472 400Q486 385 487 383Q491 379 491 372Q491 361 482.0 354.5Q473 348 463 352Z","vb":"0 0 512 508"},"cake":{"d":"M143 53Q151 50 159 54Q166 57 169 64Q170 68 170.0 73.5Q170 79 169 82Q164 93 152.0 94.5Q140 96 132 86Q126 77 129.0 67.0Q132 57 143 53ZM249 53Q258 50 265 54Q272 57 275 64Q277 68 277.0 73.5Q277 79 275 82Q270 93 258.0 94.5Q246 96 239 86Q232 77 235.5 67.0Q239 57 249 53ZM356 53Q364 50 372 54Q379 57 382 64Q384 68 384.0 73.5Q384 79 382 82Q377 93 365.0 94.5Q353 96 345 86Q339 77 342.5 67.0Q346 57 356 53ZM143 138Q151 136 159.0 140.0Q167 144 170 152Q171 156 171 178V201H203H235V178Q235 156 236 152Q240 137 256.0 137.0Q272 137 276 152Q277 156 277 178V201H309H341V178Q341 152 345 146Q352 137 362.5 137.0Q373 137 380 146Q384 152 384 178V201L389 202Q412 203 428 219Q441 232 446 250L448 255V335V415H460Q472 415 476 416Q491 420 491.0 436.0Q491 452 476 456Q472 457 256 457H39L36 456Q24 452 22.0 439.5Q20 427 30 419Q36 415 52 415H64V335V255L66 250Q68 241 72 235Q89 204 123 202L128 201V178Q128 156 129 152Q132 142 143 138ZM123 245Q113 247 109 256L107 260V275L108 289Q121 285 137 287Q156 291 183 312Q201 326 208 328Q214 330 220.5 327.5Q227 325 242 313Q254 304 260 300Q299 274 338 300Q344 304 354 312Q369 324 375.0 327.0Q381 330 389 329Q397 328 402 325L405 322V293Q405 264 405 261Q402 248 389 245Q386 244 255.5 244.0Q125 244 123 245ZM122 330Q115 331 110 334L107 336V375V415H256H405V392L404 370Q399 371 388 372Q371 373 356 365Q346 360 328 346Q311 333 304 330Q299 329 293 330Q286 333 268 347Q258 355 253 359Q213 385 174 359Q169 355 157 346Q142 334 135.5 331.5Q129 329 122 330Z","vb":"0 0 512 508"},"category":{"d":"M256 43 139 235H373L256 43ZM277 373C277 320 320 277 373 277C426 277 469 320 469 373C469 426 426 469 373 469C320 469 277 426 277 373ZM64 288H235V459H64V288Z","vb":"0 0 512 512"},"fire":{"d":"M256 275 213 318C203 328 195 340 193 353C186 393 217 427 256 427C295 427 326 393 319 354C317 340 309 328 299 318L256 275ZM332 140C307 171 256 153 256 113V80C256 63 237 53 223 63C173 96 85 170 85 277C85 340 119 394 168 424C153 402 146 374 151 345C155 323 167 303 183 287L241 230C249 222 263 222 271 230L329 288C345 303 357 323 361 345C366 374 359 401 344 423C385 398 415 358 423 310C436 240 406 174 355 137C348 132 338 133 332 140Z","vb":"0 0 512 512"},"bell":{"d":"M256 469C279 469 299 450 299 427H213C213 450 233 469 256 469ZM384 341V235C384 169 349 114 288 100V85C288 68 274 53 256 53C238 53 224 68 224 85V100C163 114 128 169 128 235V341L85 384V405H427V384L384 341ZM341 363H171V235C171 182 203 139 256 139C309 139 341 182 341 235V363ZM162 87 131 57C80 96 46 156 43 224H86C89 167 118 118 162 87ZM426 224H469C465 156 432 96 381 57L351 87C394 118 423 167 426 224Z","vb":"0 0 512 512"},"car":{"d":"M509 397V405V406V409Q509 410 508.5 411.0Q508 412 508 413V416Q506 435 502 436Q498 438 492 438H449Q439 438 438 422V414Q470 412 490 414Q503 414 506 408ZM3 397 6 408Q9 414 22 414Q42 412 74 414V422Q73 438 63 438H20Q14 438 10 436Q5 433 3 416V409V406V405ZM512 303Q512 329 511.0 345.0Q510 361 510 371Q510 384 509 389L506 400Q503 406 490 406Q470 404 438 406Q427 406 418.0 407.0Q409 408 399 408Q383 409 376 406Q372 404 365 404Q350 404 323.0 405.0Q296 406 256 406Q215 406 188.0 405.0Q161 404 146 404Q140 404 136 406Q129 410 112 408Q102 408 94.0 407.0Q86 406 74 406Q42 404 22 406Q9 406 6 400L3 389Q2 384 2 371Q2 361 1.0 345.0Q0 329 0 303Q0 248 6 239Q9 235 32 218Q34 217 40 213Q51 207 52 200L48 198Q46 197 45 197Q43 197 41 198Q37 200 33 200Q10 200 5.0 195.0Q0 190 0 187Q0 182 5 174Q8 170 32 167Q38 166 44 168L46 172Q47 174 47 177V183V188V190L56 191Q56 190 57.0 188.0Q58 186 59.0 182.5Q60 179 61 175Q64 166 70 150Q72 146 80 129Q95 103 112 97Q116 96 160 91Q213 86 256 86Q300 86 352 91Q396 96 400 97Q417 103 432 129Q440 146 442 150Q448 166 451 175Q452 179 453.0 182.5Q454 186 455.0 188.0Q456 190 456 191L465 190Q463 170 468 168Q474 166 480 167Q504 170 507 174Q512 182 512 187Q512 190 507.0 195.0Q502 200 479 200Q475 200 471 198Q469 197 467 197Q466 197 464 198L460 200Q461 204 464 207L480 218Q503 235 506 239Q512 248 512 303ZM86 151Q73 179 76 187Q78 192 91 191Q139 188 256.0 188.0Q373 188 421 191Q434 192 436 187Q439 179 426 151Q412 122 400 114Q386 106 346 105Q295 102 256.0 102.0Q217 102 166 105Q126 106 112 114Q99 122 86 151ZM123 276 134 274Q118 258 86 249Q47 237 20 239Q17 256 20 266Q21 275 36 278Q37 279 38 279Q40 280 41 280L46 282H49H52L55 280L60 278H64L82 280L102 282Q108 282 110 281Q114 279 117 278ZM358 355Q370 354 380 342Q388 333 379 322Q366 307 359 304Q358 303 324 298Q293 294 256.0 294.0Q219 294 188 298Q154 303 153 304Q146 307 133 322Q124 333 132 342Q142 354 154 355Q175 358 256.0 358.0Q337 358 358 355ZM492 266V239Q465 237 426 249Q414 253 400.0 260.0Q386 267 383 270L378 275Q380 274 389 276L410 282L430 280Q434 280 438.5 279.5Q443 279 446 278H448H452Q455 278 457.0 280.0Q459 282 460 282L476 278Q491 275 492 266Z","vb":"0 0 512 528"}};
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function iconEl(name, cls) {
+    var g = ICONS[name], svg = document.createElementNS(SVGNS, 'svg'), path = document.createElementNS(SVGNS, 'path');
+    svg.setAttribute('viewBox', g.vb); svg.setAttribute('class', 'mi ' + cls); svg.setAttribute('aria-hidden', 'true');
+    path.setAttribute('d', g.d); svg.appendChild(path);
+    return svg;
+  }
+  function txt(s) { var e = document.createElement('span'); e.className = 'txt'; e.textContent = s; return e; }
+  function paintMetaEl(el, text) {
+    el.textContent = '';
+    if (el.classList.contains('routine')) {
+      el.appendChild(iconEl('fire', 'fire' + (el.getAttribute('data-fire') === '1' ? '' : ' zero')));
+      var cat = pick(t, el.getAttribute('data-cat')) || '';
+      var at = cat ? text.lastIndexOf(cat) : -1;
+      if (at < 0) { el.appendChild(txt(text)); return; }
+      var pre = document.createElement('span'); pre.className = 'pre'; pre.textContent = text.slice(0, at);
+      el.appendChild(pre);
+      el.appendChild(iconEl(el.getAttribute('data-icon'), 'cat'));
+      el.appendChild(txt(text.slice(at)));
+      return;
+    }
+    if (el.getAttribute('data-bell') === '1') { el.appendChild(iconEl('bell', 'bell')); }
+    el.appendChild(iconEl(el.getAttribute('data-icon'), 'cat'));
+    el.appendChild(txt(text));
+  }
+  function paintMetas() {
+    document.querySelectorAll('[data-meta]').forEach(function (el) {
+      paintMetaEl(el, pick(t, el.getAttribute('data-meta')) || el.textContent);
+    });
+  }
+
+  /* ── 5km 러닝: 앱 RoutineRhythmCard 와 같은 「최근 7일」 ───────────────
+     지난 6일은 다 했고 오늘만 남은 상태. 오늘 칸(또는 목록의 동그라미)을 누르면 7일 연속이 된다. */
+  var runDone = false;
+  var CHECK_SVG = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  var SMALL_CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  function fillCount(tpl, n) { return tpl.replace('{count}', String(n)); }
+  function paintRun() {
+    if (!t) { return; }
+    var R = t.rhythm, loc = LANGS[lang].locale;
+    var days = $('rh-days');
+    days.textContent = '';
+    var fmt = new Intl.DateTimeFormat(loc, { weekday: 'short' });
+    for (var i = 6; i >= 1; i--) {
+      var col = document.createElement('div');
+      var lb = document.createElement('span'); lb.textContent = fmt.format(new Date(Date.now() - i * 86400000));
+      var dot = document.createElement('i'); dot.className = 'rh-dot on';
+      col.appendChild(lb); col.appendChild(dot); days.appendChild(col);
+    }
+    var col7 = document.createElement('div');
+    var lb7 = document.createElement('span'); lb7.className = 'today'; lb7.textContent = R.today;
+    var tg = document.createElement('button');
+    tg.type = 'button'; tg.className = 'rh-today'; tg.setAttribute('aria-pressed', String(runDone));
+    tg.setAttribute('aria-label', R.today); tg.innerHTML = CHECK_SVG;
+    tg.addEventListener('click', function (e) { e.stopPropagation(); toggleRun(); });
+    col7.appendChild(lb7); col7.appendChild(tg); days.appendChild(col7);
+    $('rh-count').textContent = fillCount(R.last7Count, runDone ? 7 : 6);
+    $('rh-cap').textContent = runDone ? fillCount(R.streakNow, 7) : fillCount(R.streakAndResetHint, 7);
+    /* 앱 홈 루틴 줄: 「연속 · 시각」 + metaWithCategory(카테고리) */
+    var B = t.briefing;
+    paintMetaEl($('run-meta'), B.metaWithCategory
+      .replace('{meta}', fillCount(B.streak, runDone ? 7 : 6) + ' · ' + B.runSchedule)
+      .replace('{category}', B.runCategory));
+    var row = $('run-row'), chk = $('run-check');
+    row.classList.toggle('done', runDone);
+    chk.setAttribute('aria-pressed', String(runDone));
+    chk.setAttribute('aria-label', t.briefing.r6t);
+    chk.innerHTML = runDone ? SMALL_CHECK_SVG : '';
+  }
+  function toggleRun() { runDone = !runDone; paintRun(); }
+  $('run-check').addEventListener('click', function (e) { e.stopPropagation(); toggleRun(); });
+  function toggleDetail() {
+    var open = $('run-row').getAttribute('aria-expanded') !== 'true';
+    $('run-row').setAttribute('aria-expanded', String(open));
+    $('run-detail').hidden = !open;
+  }
+  $('run-row').addEventListener('click', toggleDetail);
+  $('run-row').addEventListener('keydown', function (e) {
+    if (e.target === $('run-row') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleDetail(); }
+  });
+
   $('dock').addEventListener('input', paintEntry);
   /* 키보드 완료(Enter) = 빠른 할 일 추가, 앱과 같다. 한글 조합 중의 Enter 는 무시. */
   $('dock').addEventListener('keydown', function (e) {
@@ -682,6 +833,9 @@
 
   function paintToday() {
     var now = new Date(), loc = LANGS[lang].locale;
+    /* 시간표 할 일 줄 오른쪽은 앱처럼 M/D (모레) */
+    var due = new Date(now.getTime() + 2 * 86400000);
+    $('tt-date').textContent = (due.getMonth() + 1) + '/' + due.getDate();
     $('today-day').textContent = String(now.getDate());
     $('today-dow').textContent = new Intl.DateTimeFormat(loc, { weekday: 'long' }).format(now);
     $('today-mon').textContent = ' · ' + new Intl.DateTimeFormat(loc, { month: 'long' }).format(now);
@@ -721,7 +875,7 @@
       b.setAttribute('aria-current', String(b.getAttribute('data-lang') === code));
     });
     $('dock').value = '';
-    paintToday(); paintChips(); paintFaq(); paintEntry();
+    paintToday(); paintChips(); paintFaq(); paintEntry(); paintMetas(); paintRun();
   }
 
   function load(code) {
