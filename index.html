@@ -103,6 +103,8 @@
   }
   ::selection { background: rgba(233, 160, 64, .3); }
   a { color: var(--ink); }
+  /* keep-all 은 한국어 어절용. 일본어·중국어에 걸면 문장부호에서만 줄이 바뀌어 들쭉날쭉해진다. */
+  html:lang(ja) body, html:lang(zh-TW) body { word-break: normal; line-break: strict; }
   :focus-visible { outline: 3px solid var(--face); outline-offset: 3px; border-radius: 4px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
@@ -448,8 +450,8 @@
   <div class="wrap">
     <div><b>BigSeasons</b> <span data-i18n="footer.maker">· 까먹지마를 만듭니다</span></div>
     <nav>
-      <a href="https://github.com/femeenhan/privacy-policy/blob/main/index2.md" target="_blank" rel="noopener noreferrer" data-i18n="footer.privacy">개인정보처리방침</a>
-      <a href="https://github.com/femeenhan/privacy-policy/blob/main/index2.md" target="_blank" rel="noopener noreferrer" data-i18n="footer.terms">이용약관</a>
+      <a href="privacy.html" data-i18n="footer.privacy">개인정보처리방침</a>
+      <a href="terms.html" data-i18n="footer.terms">이용약관</a>
       <span data-i18n="footer.copyright">© 2026 BigSeasons. All rights reserved.</span>
     </nav>
   </div>
@@ -577,17 +579,19 @@
   }
 
   /* ── 체험 안내 ─────────────────────────────────
-     버튼 넷 어느 것을 눌러도 같은 안내. 「네」는 웹 버전으로(입력한 글은 넘기지 않는다),
+     버튼 넷 어느 것을 눌러도 같은 안내. 「네」는 웹 버전을 새 탭으로 연다 — 써 보다가
+     홈페이지 탭으로 바로 돌아올 수 있게(입력한 글은 넘기지 않는다),
      「아니요」·Esc·바깥 누르기는 닫고 홈페이지를 계속 본다. */
   var dlg = $('trial');
+  function openWeb() { window.open(WEB_URL, '_blank', 'noopener'); }
   function openTrial() {
     if (typeof dlg.showModal === 'function') { dlg.showModal(); }
-    else if (window.confirm(t.trial.title + '\n' + t.trial.body)) { location.href = WEB_URL; }
+    else if (window.confirm(t.trial.title + '\n' + t.trial.body)) { openWeb(); }
   }
   $('panel').addEventListener('click', function (e) {
     if (e.target.closest('button[data-act]')) { openTrial(); }
   });
-  $('trial-yes').addEventListener('click', function () { location.href = WEB_URL; });
+  $('trial-yes').addEventListener('click', function () { openWeb(); dlg.close(); });
   $('trial-no').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });
   dlg.addEventListener('close', function () { $('dock').focus({ preventScroll: true }); });

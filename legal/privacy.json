@@ -1,0 +1,202 @@
+{
+ "ko": {
+  "title": "Amatdda(까먹지마, 이하 「서비스」) 개인정보처리방침",
+  "meta": "<p>운영자: 빅시즌스 · 시행일: 2026년 10월 14일</p><p>공식 웹사이트 · 본 방침 게시</p><p><a href=\"https://bigseasons.co.kr\">https://bigseasons.co.kr</a></p><p>본 개인정보처리방침은 같은 내용의 사본으로 위 웹사이트 또는 모바일 앱(iOS·Android), 웹 등 서비스를 제공하는 쪽에 게시합니다.</p>",
+  "sections": [
+   {
+    "h": "제1조 (개인정보의 처리 목적)",
+    "html": "<p>서비스는 다음 목적을 위해 필요한 범위에서만 개인정보를 처리합니다.</p><ul><li>회원 식별 및 소셜 로그인(Apple, Google, 카카오) 계정 연동</li><li>이용자가 입력한 데이터의 저장, 기기 간 동기화, 기기 변경 시 복원, 클라우드 백업</li><li>일정·루틴 알림 등 푸시 알림 발송</li><li>보호자 시간표 공유 등 이용자가 선택한 다른 이용자와의 공유 기능 제공</li><li>유료 기능(까먹지마+) 이용 자격·구독 상태 확인 및 App Store·Google Play 결제 검증</li><li>광고 게재 및 광고·부정 이용 측정(무료 이용 시 Google AdMob)</li><li>서비스 운영·유지보수, 장애 대응, 부정 이용 방지, 보안, 이용 통계 분석</li></ul>"
+   },
+   {
+    "h": "제2조 (처리하는 개인정보 항목)",
+    "html": "<h3>1) 계정·식별 정보</h3><ul><li>기기 기반 식별자, Firebase Authentication 식별자</li><li>소셜 로그인 시: 로그인 제공자 고유 식별자, 이메일, 표시 이름(제공자가 제공하는 범위)</li></ul><h3>2) 이용자가 입력하는 데이터</h3><ul><li>루틴·알림 항목과 완료 기록, 빠른 할 일, 메모, 시간표와 수업 메모</li><li>차량 정보: 차량명, 주행거리, 정비 기록, 보험사 이름·전화번호, 보험 기간, 보험료</li><li>경조사 기록: 인맥의 이름·관계·전화번호, 행사, 주고받은 금액</li><li>첨부한 사진</li></ul><p>위 데이터는 로그인 여부와 관계없이 기기 간 동기화와 데이터 보존을 위해 서버에 자동으로 저장됩니다. 별도로 켜고 끄는 설정은 없습니다.</p><p>경조사 인맥처럼 다른 사람의 정보를 입력하는 경우, 이용자는 해당 정보를 정당하게 보유하고 있어야 합니다.</p><h3>3) 공유 기능 이용 시</h3><ul><li>공유 그룹 구성원의 계정 식별자·표시 이름, 공유한 시간표와 관련 기록, 참여 요청·승인 기록</li></ul><h3>4) 알림</h3><ul><li>푸시 알림 토큰(Firebase Cloud Messaging), 알림 설정</li></ul><h3>5) 유료 기능</h3><ul><li>구독 상태, 구매 검증 기록(거래 식별자 등)</li><li>카드번호 등 결제 수단 정보는 App Store·Google Play가 처리하며, 서비스는 받지 않습니다.</li></ul><h3>6) 광고·이용 통계</h3><ul><li>광고 식별자(iOS IDFA, Android 광고 ID — 이용자가 허용한 경우), 광고 노출·클릭 관련 기록(Google AdMob)</li><li>Firebase Analytics 앱 인스턴스 식별자, 화면·기능 이용 기록, 기기 모델, 운영체제·앱 버전</li><li>iOS에서는 앱 추적 투명성(ATT)에 따라 추적 허용 여부를 선택할 수 있으며, 일부 지역에서는 Google User Messaging Platform(UMP)을 통한 동의 절차가 표시될 수 있습니다.</li></ul><h3>7) 클라우드 백업</h3><ul><li>이용자가 백업을 실행하면, 이용자의 복구 키로 기기에서 암호화한 백업 파일이 저장됩니다. 서비스 운영자는 복구 키 없이 백업 내용을 볼 수 없습니다.</li></ul>"
+   },
+   {
+    "h": "제3조 (보유 및 이용 기간)",
+    "html": "<p>개인정보는 회원 탈퇴 시까지 보유·이용합니다. 탈퇴하면 계정과 연결된 서버 데이터를 즉시 삭제하기 시작하며, 서버·백업 데이터 정리는 통상 수일 이내, 늦어도 30일 이내에 완료합니다. 단, 관계 법령에 따라 보관할 의무가 있는 정보는 해당 기간 동안 보존합니다.</p>"
+   },
+   {
+    "h": "제4조 (파기 절차 및 방법)",
+    "html": "<p>보유 기간이 끝났거나 처리 목적이 달성된 정보는 지체 없이 파기합니다. 전자적 파일은 복구할 수 없는 방식으로 삭제하고, 기기에 저장된 정보는 앱 삭제 또는 앱 내 데이터 삭제로 지워집니다.</p>"
+   },
+   {
+    "h": "제5조 (개인정보의 제3자 제공 및 처리위탁)",
+    "html": "<h3>1) 제3자 제공</h3><p>서비스는 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만 이용자가 보호자 시간표 공유 등 공유 기능으로 직접 지정한 다른 이용자에게는 공유한 범위의 정보가 표시됩니다. 법령에 따라 요구되는 경우는 예외로 합니다.</p><h3>2) 처리위탁</h3><ul><li>Google LLC (Google Firebase: 인증, 데이터베이스, 파일 저장, 서버 기능, 푸시 알림, 이용 통계) — 서비스 데이터 저장·처리</li><li>Google LLC (Google AdMob) — 광고 게재 및 측정</li><li>Apple Inc., Google LLC(Google Play) — 결제 및 구독 검증</li></ul><p>로그인 제공자(Apple, Google, 카카오)는 이용자가 해당 제공자와 맺은 약관에 따라 로그인 정보를 처리합니다.</p>"
+   },
+   {
+    "h": "제6조 (개인정보의 국외 이전)",
+    "html": "<p>서비스는 데이터 저장과 서버 기능 제공을 위해 다음과 같이 개인정보를 국외로 이전합니다. 이는 서비스 제공 계약의 이행을 위한 처리위탁·보관에 해당합니다.</p><ul><li>이전받는 자: Google LLC (개인정보 문의: https://support.google.com/policies/contact/general_privacy_form)</li><li>이전 국가: 미국(Firestore 데이터베이스). 사진·백업 파일과 서버 기능은 대한민국(서울 리전)에서 처리되며, 이용 통계·광고·푸시 알림은 Google의 전 세계 인프라에서 처리될 수 있습니다.</li><li>이전 항목: 제2조의 개인정보 항목</li><li>이전 시기 및 방법: 서비스 이용 시 네트워크를 통해 수시로 암호화 전송</li><li>이용 목적 및 보유 기간: 제1조의 목적, 제3조의 기간</li><li>거부 방법 및 효과: 국외 이전을 원하지 않으면 서비스 이용을 중단하고 탈퇴할 수 있습니다. 데이터 저장이 서비스의 핵심 기능이므로, 이전을 거부하면 서비스를 이용할 수 없습니다.</li></ul>"
+   },
+   {
+    "h": "제7조 (개인정보의 안전성 확보 조치)",
+    "html": "<ul><li>전송 구간 암호화(HTTPS/TLS)와 저장 데이터 암호화(Google Cloud 기본 암호화)를 적용합니다.</li><li>클라우드 백업은 이용자의 복구 키로 기기에서 암호화한 뒤 저장합니다.</li><li>데이터 접근은 보안 규칙으로 본인(및 이용자가 지정한 공유 구성원)에게만 허용합니다.</li><li>동기화 데이터는 종단간 암호화되어 있지 않아 기술적으로는 서비스 운영자가 접근할 수 있습니다. 운영자는 장애 대응이나 이용자 요청 처리 등 꼭 필요한 경우에만 최소 범위로 접근하며, 관리 권한을 가진 인원을 최소로 제한합니다.</li></ul>"
+   },
+   {
+    "h": "제8조 (이용자의 권리와 행사 방법)",
+    "html": "<p>이용자는 언제든지 개인정보 열람·정정·삭제·처리 정지 및 동의 철회를 요청할 수 있습니다. 앱에서 직접 수정·삭제하거나, 앱의 「불편신고 및 개선요청」 메뉴 또는 아래 이메일로 요청할 수 있으며, 서비스는 지체 없이 조치합니다.</p>"
+   },
+   {
+    "h": "제9조 (개인정보 보호책임자)",
+    "html": "<ul><li>개인정보 보호책임자: 빅시즌스</li><li>이메일: <a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a></li></ul><p>개인정보 관련 문의, 불만 처리, 피해 구제는 위 연락처로 문의해 주시기 바랍니다. 그 밖에 개인정보 침해에 대한 신고나 상담은 개인정보침해신고센터(privacy.kisa.or.kr, 국번 없이 118), 개인정보분쟁조정위원회(www.kopico.go.kr, 1833-6972)에 문의할 수 있습니다.</p>"
+   },
+   {
+    "h": "제10조 (계정 및 데이터 삭제)",
+    "html": "<p>앱에서 직접 계정과 연동 데이터를 삭제할 수 있습니다.</p><p>1. 까먹지마 앱 실행 → 2. 하단 「내 까먹지마」 탭 → 3. 화면 맨 아래 「탈퇴」 선택 → 4. 안내 확인 후 화면에 표시된 확인 키워드 입력</p><ul><li>삭제되는 데이터: 루틴·알림 항목, 메모, 시간표, 차량 정보, 경조사 기록, 로그인 연동 프로필, 동기화·백업 데이터, 구독 자격 정보, 알림 설정, 기기 등록 정보 등 계정에 연결된 서비스 데이터</li><li>별도 보관: App Store·Google Play 결제 기록은 각 스토어 정책에 따르며, 탈퇴만으로 구독이 해지되지 않습니다. 결제를 중단하려면 스토어의 구독 관리에서 취소해 주세요. Google Firebase·AdMob의 집계·로그 데이터는 각 업체 정책에 따라 보관될 수 있습니다.</li><li>앱을 사용할 수 없으면 <a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a> 으로 로그인 제공자와 계정 식별에 필요한 최소 정보를 알려 주시면 삭제해 드립니다.</li></ul>"
+   },
+   {
+    "h": "제11조 (방침의 변경)",
+    "html": "<p>본 방침이 변경되면 시행 7일 전부터 앱 공지 또는 공식 웹사이트를 통해 알립니다. 이용자 권리에 중요한 변경은 30일 전에 알립니다.</p>"
+   }
+  ]
+ },
+ "en": {
+  "title": "Privacy Policy · Amatdda (the “Service”)",
+  "meta": "<p>Operator: BigSeasons · Effective date: October 14, 2026</p><p>Official website · Publication of this policy</p><p><a href=\"https://bigseasons.co.kr\">https://bigseasons.co.kr</a></p><p>This Privacy Policy is published on the website above and within the apps (iOS, Android) and web surfaces that deliver the Service.</p>",
+  "sections": [
+   {
+    "h": "1. Purposes of processing",
+    "html": "<p>We process personal information only as needed to:</p><ul><li>Identify users and link sign-in accounts (Apple, Google, Kakao)</li><li>Store your data, sync it across devices, restore it on a new device, and provide cloud backups</li><li>Send push notifications such as schedule and routine reminders</li><li>Provide sharing features with other users you choose, such as guardian timetable sharing</li><li>Verify Amatdda+ entitlement and subscription status with the App Store and Google Play</li><li>Show ads and measure ad performance and abuse (Google AdMob, for free usage)</li><li>Operate, maintain, and secure the Service, respond to incidents, prevent abuse, and analyse usage</li></ul>"
+   },
+   {
+    "h": "2. Information we process",
+    "html": "<h3>1) Account and identifiers</h3><ul><li>Device-based identifier, Firebase Authentication identifier</li><li>With social sign-in: the provider&#x27;s user identifier, email, and display name (as shared by the provider)</li></ul><h3>2) Content you enter</h3><ul><li>Routine and reminder items and their completion history, quick to-dos, memos, timetables and class notes</li><li>Vehicle information: name, odometer, maintenance records, insurer name and phone number, policy period, premium</li><li>Gift ledger records: contacts&#x27; names, relationships and phone numbers, occasions, amounts given and received</li><li>Photos you attach</li></ul><p>This content is automatically stored on our servers, whether or not you sign in, so that it can sync across devices and be preserved. There is no separate on/off setting.</p><p>When you enter information about other people (such as ledger contacts), you are responsible for holding it lawfully.</p><h3>3) Sharing</h3><ul><li>Account identifiers and display names of sharing-group members, shared timetables and related records, join requests and approvals</li></ul><h3>4) Notifications</h3><ul><li>Push notification token (Firebase Cloud Messaging), notification settings</li></ul><h3>5) Paid features</h3><ul><li>Subscription status, purchase verification records (such as transaction identifiers)</li><li>Payment card details are handled by the App Store and Google Play; we never receive them.</li></ul><h3>6) Ads and analytics</h3><ul><li>Advertising identifiers (iOS IDFA, Android Advertising ID — where you allow it) and ad impression/click records (Google AdMob)</li><li>Firebase Analytics app instance ID, screen and feature usage, device model, OS and app version</li><li>On iOS, App Tracking Transparency (ATT) lets you choose whether to allow tracking. In some regions a consent flow via Google&#x27;s User Messaging Platform (UMP) may appear.</li></ul><h3>7) Cloud backups</h3><ul><li>When you run a backup, the file is encrypted on your device with your recovery key before upload. The operator cannot read backup contents without that key.</li></ul>"
+   },
+   {
+    "h": "3. Retention",
+    "html": "<p>We keep personal information until you delete your account. When you delete your account, deletion of the server data linked to it starts immediately; server and backup cleanup usually completes within a few days and at most within 30 days. Information we must keep by law is retained for the legally required period.</p>"
+   },
+   {
+    "h": "4. Destruction",
+    "html": "<p>Information is destroyed without delay once the retention period ends or the purpose is fulfilled. Electronic files are deleted so they cannot be recovered; data stored on your device is removed by deleting the app or using in-app data deletion.</p>"
+   },
+   {
+    "h": "5. Third-party provision and processors",
+    "html": "<h3>1) Provision to third parties</h3><p>We do not provide your personal information to third parties. However, information you share through sharing features (such as guardian timetable sharing) is visible to the other users you designate. Disclosures required by law are an exception.</p><h3>2) Processors</h3><ul><li>Google LLC (Google Firebase: authentication, database, file storage, server functions, push notifications, analytics) — storing and processing Service data</li><li>Google LLC (Google AdMob) — ad delivery and measurement</li><li>Apple Inc., Google LLC (Google Play) — payments and subscription verification</li></ul><p>Sign-in providers (Apple, Google, Kakao) process sign-in information under the terms you agreed to with them.</p>"
+   },
+   {
+    "h": "6. International transfers",
+    "html": "<p>To store data and run server functions, we transfer personal information abroad as follows, as processing and storage entrusted to perform our service agreement with you.</p><ul><li>Recipient: Google LLC (privacy contact: https://support.google.com/policies/contact/general_privacy_form)</li><li>Country: United States (Firestore database). Photos, backup files, and server functions are processed in South Korea (Seoul region). Analytics, ads, and push notifications may be processed on Google&#x27;s global infrastructure.</li><li>Items: the information listed in Section 2</li><li>When and how: transmitted over the network, encrypted, whenever you use the Service</li><li>Purpose and retention: as in Sections 1 and 3</li><li>How to refuse: if you do not want your data transferred abroad, you can stop using the Service and delete your account. Because data storage is a core function, the Service cannot be used without the transfer.</li></ul>"
+   },
+   {
+    "h": "7. Security measures",
+    "html": "<ul><li>Data is encrypted in transit (HTTPS/TLS) and at rest (Google Cloud default encryption).</li><li>Cloud backups are encrypted on your device with your recovery key before storage.</li><li>Security rules allow access only to you (and to sharing members you designate).</li><li>Synced data is not end-to-end encrypted, so the operator can technically access it. The operator accesses it only when strictly necessary, such as to resolve incidents or handle your requests, and limits administrative access to the minimum number of people.</li></ul>"
+   },
+   {
+    "h": "8. Your rights",
+    "html": "<p>You may request access, correction, deletion, suspension of processing, or withdrawal of consent at any time. You can edit or delete data directly in the app, or contact us via the in-app &quot;Feedback &amp; Requests&quot; menu or the email below. We act on requests without delay.</p>"
+   },
+   {
+    "h": "9. Privacy officer",
+    "html": "<ul><li>Privacy officer: BigSeasons</li><li>Email: <a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a></li></ul><p>Please contact us at the address above for privacy enquiries, complaints, or remedies. Korean users may also contact the Personal Information Infringement Report Center (privacy.kisa.or.kr, call 118) or the Personal Information Dispute Mediation Committee (www.kopico.go.kr, 1833-6972).</p>"
+   },
+   {
+    "h": "10. Account and data deletion",
+    "html": "<p>You can delete your account and linked data directly in the app.</p><p>1. Open Amatdda → 2. Open the &quot;My&quot; tab at the bottom → 3. Tap &quot;Delete account&quot; at the bottom of the screen → 4. Review the notice and type the confirmation keyword shown</p><ul><li>Deleted: routine and reminder items, memos, timetables, vehicle information, gift ledger records, linked sign-in profile, sync and backup data, subscription entitlement data, notification settings, device registrations, and other Service data linked to your account</li><li>Kept separately: App Store and Google Play payment records follow each store&#x27;s policy, and deleting your account does not cancel your subscription — cancel it in the store&#x27;s subscription settings. Aggregated and log data held by Google Firebase and AdMob may be retained under their policies.</li><li>If you cannot use the app, email <a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a> with your sign-in provider and the minimum details needed to identify your account, and we will delete it.</li></ul>"
+   },
+   {
+    "h": "11. Changes to this policy",
+    "html": "<p>We will announce changes through the app or the official website at least 7 days before they take effect, and at least 30 days before for changes that materially affect your rights.</p>"
+   }
+  ]
+ },
+ "ja": {
+  "title": "プライバシーポリシー · Amatdda（アマットダ、「本サービス」）",
+  "meta": "<p>運営者：BigSeasons（빅시즌스）· 施行日：2026年10月14日</p><p>公式サイト · 本ポリシーの公開</p><p><a href=\"https://bigseasons.co.kr\">https://bigseasons.co.kr</a></p><p>本プライバシーポリシーは、上記サイトおよび本サービスを提供するアプリ（iOS・Android）、Web 等に掲載します。</p>",
+  "sections": [
+   {
+    "h": "1. 個人情報の取扱いの目的",
+    "html": "<p>本サービスは、次の目的に必要な範囲でのみ個人情報を取り扱います。</p><ul><li>利用者の識別およびソーシャルログイン（Apple、Google、Kakao）のアカウント連携</li><li>入力データの保存、端末間同期、機種変更時の復元、クラウドバックアップ</li><li>予定・ルーティンのリマインダーなどのプッシュ通知の送信</li><li>保護者向け時間割共有など、利用者が選んだ他の利用者との共有機能の提供</li><li>有料機能（Amatdda+）の利用資格・購読状態の確認、App Store・Google Play での購入検証</li><li>広告の配信および広告効果・不正利用の計測（無料利用時、Google AdMob）</li><li>本サービスの運用・保守、障害対応、不正防止、セキュリティ、利用統計の分析</li></ul>"
+   },
+   {
+    "h": "2. 取り扱う個人情報の項目",
+    "html": "<h3>1) アカウント・識別情報</h3><ul><li>端末ベースの識別子、Firebase Authentication の識別子</li><li>ソーシャルログイン時：ログイン提供元の識別子、メールアドレス、表示名（提供元が提供する範囲）</li></ul><h3>2) 利用者が入力するデータ</h3><ul><li>ルーティン・リマインダー項目と完了履歴、クイック ToDo、メモ、時間割と授業メモ</li><li>車両情報：車両名、走行距離、整備記録、保険会社名・電話番号、保険期間、保険料</li><li>冠婚葬祭の記録：知人の氏名・関係・電話番号、行事、やり取りした金額</li><li>添付した写真</li></ul><p>これらのデータは、ログインの有無にかかわらず、端末間同期とデータ保全のためにサーバーへ自動的に保存されます。個別にオン・オフする設定はありません。</p><p>知人など他人の情報を入力する場合、利用者はその情報を正当に保有している必要があります。</p><h3>3) 共有機能の利用時</h3><ul><li>共有グループメンバーのアカウント識別子・表示名、共有した時間割と関連記録、参加リクエスト・承認の記録</li></ul><h3>4) 通知</h3><ul><li>プッシュ通知トークン（Firebase Cloud Messaging）、通知設定</li></ul><h3>5) 有料機能</h3><ul><li>購読状態、購入検証の記録（取引識別子など）</li><li>カード番号などの決済情報は App Store・Google Play が処理し、本サービスは受け取りません。</li></ul><h3>6) 広告・利用統計</h3><ul><li>広告 ID（iOS の IDFA、Android の広告 ID — 利用者が許可した場合）、広告の表示・クリックに関する記録（Google AdMob）</li><li>Firebase Analytics のアプリインスタンス ID、画面・機能の利用記録、端末モデル、OS・アプリのバージョン</li><li>iOS では App Tracking Transparency（ATT）によりトラッキングの許可を選択できます。地域によっては Google User Messaging Platform（UMP）による同意画面が表示される場合があります。</li></ul><h3>7) クラウドバックアップ</h3><ul><li>バックアップを実行すると、利用者の復元キーで端末上で暗号化したバックアップファイルが保存されます。運営者は復元キーなしにバックアップの内容を見ることはできません。</li></ul>"
+   },
+   {
+    "h": "3. 保有期間",
+    "html": "<p>個人情報は退会時まで保有・利用します。退会すると、アカウントに紐づくサーバーデータの削除を直ちに開始し、サーバー・バックアップデータの整理は通常数日以内、遅くとも30日以内に完了します。ただし、法令により保管義務がある情報は、その期間保存します。</p>"
+   },
+   {
+    "h": "4. 廃棄の手続きと方法",
+    "html": "<p>保有期間が終了した情報や利用目的を達成した情報は、遅滞なく廃棄します。電子ファイルは復元できない方法で削除し、端末に保存された情報はアプリの削除またはアプリ内のデータ削除によって消去されます。</p>"
+   },
+   {
+    "h": "5. 第三者提供および業務委託",
+    "html": "<h3>1) 第三者提供</h3><p>本サービスは利用者の個人情報を第三者に提供しません。ただし、保護者向け時間割共有などの共有機能で利用者自身が指定した他の利用者には、共有した範囲の情報が表示されます。法令に基づく場合は除きます。</p><h3>2) 業務委託</h3><ul><li>Google LLC（Google Firebase：認証、データベース、ファイル保存、サーバー機能、プッシュ通知、利用統計）— サービスデータの保存・処理</li><li>Google LLC（Google AdMob）— 広告の配信および計測</li><li>Apple Inc.、Google LLC（Google Play）— 決済および購読の検証</li></ul><p>ログイン提供元（Apple、Google、Kakao）は、利用者が各提供元と合意した規約に従ってログイン情報を処理します。</p>"
+   },
+   {
+    "h": "6. 個人情報の国外移転",
+    "html": "<p>本サービスは、データ保存とサーバー機能の提供のため、次のとおり個人情報を国外へ移転します。これはサービス提供契約の履行のための委託・保管に当たります。</p><ul><li>移転先：Google LLC（プライバシーに関するお問い合わせ：https://support.google.com/policies/contact/general_privacy_form）</li><li>移転先の国：米国（Firestore データベース）。写真・バックアップファイルとサーバー機能は韓国（ソウルリージョン）で処理され、利用統計・広告・プッシュ通知は Google のグローバルインフラで処理される場合があります。</li><li>移転する項目：第2条の個人情報</li><li>移転の時期と方法：サービス利用時にネットワーク経由で随時、暗号化して送信</li><li>利用目的と保有期間：第1条の目的、第3条の期間</li><li>拒否の方法と影響：国外移転を望まない場合は、サービスの利用を中止して退会できます。データ保存はサービスの中核機能のため、移転を拒否するとサービスを利用できません。</li></ul>"
+   },
+   {
+    "h": "7. 安全管理措置",
+    "html": "<ul><li>通信の暗号化（HTTPS/TLS）と保存データの暗号化（Google Cloud の標準暗号化）を適用しています。</li><li>クラウドバックアップは、利用者の復元キーで端末上で暗号化してから保存します。</li><li>セキュリティルールにより、データへのアクセスは本人（および利用者が指定した共有メンバー）にのみ許可しています。</li><li>同期データはエンドツーエンド暗号化されていないため、技術的には運営者がアクセスできます。運営者は、障害対応や利用者からの依頼への対応など、真に必要な場合に限り最小限の範囲でアクセスし、管理権限を持つ人員を最小限に制限しています。</li></ul>"
+   },
+   {
+    "h": "8. 利用者の権利と行使方法",
+    "html": "<p>利用者はいつでも、個人情報の開示・訂正・削除・処理の停止および同意の撤回を請求できます。アプリで直接編集・削除するか、アプリの「不便報告と改善要請」メニューまたは下記メールアドレスからご依頼ください。遅滞なく対応します。</p>"
+   },
+   {
+    "h": "9. 個人情報保護責任者",
+    "html": "<ul><li>個人情報保護責任者：BigSeasons（빅시즌스）</li><li>メール：<a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a></li></ul><p>個人情報に関するお問い合わせ、苦情、被害救済は上記までご連絡ください。</p>"
+   },
+   {
+    "h": "10. アカウントおよびデータの削除",
+    "html": "<p>アプリから直接アカウントと連携データを削除できます。</p><p>1. Amatdda を起動 → 2. 下部の「マイ」タブ → 3. 画面最下部の「アカウント削除」を選択 → 4. 案内を確認し、表示された確認キーワードを入力</p><ul><li>削除されるデータ：ルーティン・リマインダー項目、メモ、時間割、車両情報、冠婚葬祭の記録、ログイン連携プロフィール、同期・バックアップデータ、購読資格情報、通知設定、端末登録情報など、アカウントに紐づくサービスデータ</li><li>別途保管されるもの：App Store・Google Play の決済記録は各ストアのポリシーに従い、退会しても購読は解約されません。支払いを止めるには各ストアの購読管理で解約してください。Google Firebase・AdMob の集計・ログデータは各社のポリシーに従って保管される場合があります。</li><li>アプリを利用できない場合は、<a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a> にログイン提供元とアカウントの識別に必要な最小限の情報をお知らせいただければ削除します。</li></ul>"
+   },
+   {
+    "h": "11. 本ポリシーの変更",
+    "html": "<p>本ポリシーを変更する場合は、施行の7日前までにアプリまたは公式サイトでお知らせします。利用者の権利に重要な影響を与える変更は30日前までにお知らせします。</p>"
+   }
+  ]
+ },
+ "zh": {
+  "title": "隱私政策 · Amatdda（“本服務”“까먹지마”）",
+  "meta": "<p>運營者：BigSeasons（빅시즌스）· 生效日期：2026年10月14日</p><p>官方網站 · 政策的發佈地址</p><p><a href=\"https://bigseasons.co.kr\">https://bigseasons.co.kr</a></p><p>本隱私政策發佈於上述官方網站及提供本服務的應用（iOS、Android）和網頁等渠道。</p>",
+  "sections": [
+   {
+    "h": "1. 個人信息處理目的",
+    "html": "<p>我們僅在實現下列目的的必要範圍內處理個人信息：</p><ul><li>識別用戶，綁定社交登錄帳號（Apple、Google、Kakao）</li><li>保存您輸入的數據，跨設備同步，換機時恢復，以及雲端備份</li><li>發送日程、例行事項提醒等推送通知</li><li>提供與您選擇的其他用戶之間的共享功能，例如監護人課表共享</li><li>核驗付費權益（Amatdda+）及訂閱狀態，與 App Store、Google Play 進行購買校驗</li><li>投放廣告並衡量廣告效果與濫用情況（免費使用時，Google AdMob）</li><li>服務運營與維護、故障處理、防止濫用、安全保障、使用統計分析</li></ul>"
+   },
+   {
+    "h": "2. 處理的個人信息類型",
+    "html": "<h3>1) 帳號與標識信息</h3><ul><li>基於設備的標識符、Firebase Authentication 標識符</li><li>使用社交登錄時：登錄提供方的用戶標識符、電子郵箱、顯示名稱（以提供方提供的範圍為準）</li></ul><h3>2) 您輸入的數據</h3><ul><li>例行事項與提醒項目及完成記錄、快速待辦、備忘、課表及課程筆記</li><li>車輛信息：車輛名稱、行駛里程、保養記錄、保險公司名稱與電話、保險期間、保費</li><li>禮金往來記錄：聯繫人的姓名、關係、電話號碼，活動，收付金額</li><li>您附加的照片</li></ul><p>無論是否登錄，上述數據都會為實現跨設備同步與數據保存而自動存儲到服務器，沒有單獨的開啟/關閉設置。</p><p>當您輸入他人信息（例如禮金聯繫人）時，應確保您合法持有該等信息。</p><h3>3) 使用共享功能時</h3><ul><li>共享組成員的帳號標識符與顯示名稱、共享的課表及相關記錄、加入請求與批准記錄</li></ul><h3>4) 通知</h3><ul><li>推送通知令牌（Firebase Cloud Messaging）、通知設置</li></ul><h3>5) 付費功能</h3><ul><li>訂閱狀態、購買校驗記錄（如交易標識符）</li><li>銀行卡號等支付信息由 App Store、Google Play 處理，本服務不會獲取。</li></ul><h3>6) 廣告與使用統計</h3><ul><li>廣告標識符（iOS 的 IDFA、Android 廣告 ID——在您允許的情況下）、廣告展示與點擊記錄（Google AdMob）</li><li>Firebase Analytics 應用實例標識符、頁面與功能使用記錄、設備型號、操作系統與應用版本</li><li>在 iOS 上，您可依據應用跟蹤透明度（ATT）選擇是否允許跟蹤；在部分地區，可能會通過 Google User Messaging Platform（UMP）展示同意流程。</li></ul><h3>7) 雲端備份</h3><ul><li>當您執行備份時，備份文件會先在您的設備上用您的恢復密鑰加密後再保存。運營者在沒有恢復密鑰的情況下無法查看備份內容。</li></ul>"
+   },
+   {
+    "h": "3. 保存期限",
+    "html": "<p>我們在您註銷帳號之前保存和使用個人信息。註銷後，將立即開始刪除與帳號關聯的服務器數據，服務器與備份數據的清理通常在數日內完成，最遲不超過30日。法律規定必須保存的信息，在法定期限內保存。</p>"
+   },
+   {
+    "h": "4. 銷燬程序與方法",
+    "html": "<p>保存期限屆滿或處理目的已實現的信息將及時銷燬。電子文件以無法恢復的方式刪除；存儲在設備上的信息可通過卸載應用或在應用內刪除數據清除。</p>"
+   },
+   {
+    "h": "5. 向第三方提供及委託處理",
+    "html": "<h3>1) 向第三方提供</h3><p>我們不會向第三方提供您的個人信息。但通過監護人課表共享等共享功能，您主動指定的其他用戶可以看到您共享範圍內的信息。法律另有規定的除外。</p><h3>2) 委託處理</h3><ul><li>Google LLC（Google Firebase：認證、數據庫、文件存儲、服務器功能、推送通知、使用統計）——存儲與處理服務數據</li><li>Google LLC（Google AdMob）——廣告投放與衡量</li><li>Apple Inc.、Google LLC（Google Play）——支付與訂閱校驗</li></ul><p>登錄提供方（Apple、Google、Kakao）依據您與其約定的條款處理登錄信息。</p>"
+   },
+   {
+    "h": "6. 個人信息的跨境傳輸",
+    "html": "<p>為存儲數據和提供服務器功能，我們按以下方式將個人信息傳輸至境外，這屬於為履行服務合同而進行的委託處理與存儲。</p><ul><li>接收方：Google LLC（隱私諮詢：https://support.google.com/policies/contact/general_privacy_form）</li><li>接收國家：美國（Firestore 數據庫）。照片、備份文件和服務器功能在韓國（首爾區域）處理；使用統計、廣告和推送通知可能在 Google 的全球基礎設施上處理。</li><li>傳輸項目：第2條所列個人信息</li><li>傳輸時間與方式：使用服務時通過網絡隨時加密傳輸</li><li>使用目的與保存期限：第1條所述目的，第3條所述期限</li><li>拒絕方式及影響：如不希望跨境傳輸，您可以停止使用本服務並註銷帳號。由於數據存儲是本服務的核心功能，拒絕傳輸將無法使用本服務。</li></ul>"
+   },
+   {
+    "h": "7. 安全保障措施",
+    "html": "<ul><li>對傳輸中的數據（HTTPS/TLS）和存儲的數據（Google Cloud 默認加密）進行加密。</li><li>雲端備份在您的設備上用您的恢復密鑰加密後保存。</li><li>通過安全規則，僅允許您本人（及您指定的共享成員）訪問數據。</li><li>同步數據未採用端到端加密，因此運營者在技術上可以訪問。運營者僅在處理故障、響應您的請求等確有必要時以最小範圍訪問，並將擁有管理權限的人員限制在最少。</li></ul>"
+   },
+   {
+    "h": "8. 您的權利及行使方式",
+    "html": "<p>您可隨時請求查閱、更正、刪除個人信息、停止處理及撤回同意。您可以直接在應用中修改或刪除，也可通過應用中的「反饋和改進請求」菜單或下方電子郵箱提出請求，我們將及時處理。</p>"
+   },
+   {
+    "h": "9. 個人信息保護負責人",
+    "html": "<ul><li>個人信息保護負責人：BigSeasons（빅시즌스）</li><li>電子郵箱：<a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a></li></ul><p>如有隱私諮詢、投訴或救濟需求，請通過上述方式聯繫我們。</p>"
+   },
+   {
+    "h": "10. 帳號及數據刪除",
+    "html": "<p>您可以在應用內直接刪除帳號及關聯數據。</p><p>1. 打開 Amatdda → 2. 底部「我的」標籤 → 3. 點擊頁面最底部的「註銷帳號」→ 4. 確認提示後輸入頁面顯示的確認關鍵詞</p><ul><li>刪除的數據：例行事項與提醒項目、備忘、課表、車輛信息、禮金往來記錄、登錄綁定資料、同步與備份數據、訂閱權益信息、通知設置、設備註冊信息等與帳號關聯的服務數據</li><li>另行保存：App Store、Google Play 的支付記錄依各商店政策處理，註銷帳號不會自動取消訂閱，如需停止扣費請在商店的訂閱管理中取消。Google Firebase、AdMob 的彙總與日誌數據可能依其政策保存。</li><li>如無法使用應用，請發送郵件至 <a href=\"mailto:bigseasons.dev@gmail.com\">bigseasons.dev@gmail.com</a>，告知登錄提供方及識別帳號所需的最少信息，我們將為您刪除。</li></ul>"
+   },
+   {
+    "h": "11. 政策變更",
+    "html": "<p>本政策如有變更，我們將在生效前至少7日通過應用或官方網站公告；對您的權利有重大影響的變更，將在生效前至少30日公告。</p>"
+   }
+  ]
+ }
+}

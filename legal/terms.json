@@ -1,0 +1,138 @@
+{
+ "ko": {
+  "title": "서비스 이용약관",
+  "meta": "<p>본 이용약관은 Amatdda(까먹지마, 이하 ‘서비스’)를 이용할 때 적용됩니다.</p>",
+  "sections": [
+   {
+    "h": "계정 및 로그인",
+    "html": "<p>Apple·Google·카카오 등 사용자가 선택하면 소셜 로그인·계정 연동을 제공할 수 있으며 연동하지 않은 경우 로컬·기반 세션으로 일부 기능을 이용할 수 있습니다. 처리되는 정보는 개인정보처리방침에 따릅니다.</p>"
+   },
+   {
+    "h": "서비스 내용 및 변경",
+    "html": "<p>기능·UI·플랜은 업데이트로 변경되거나 제공이 중단·조정될 수 있습니다.</p>"
+   },
+   {
+    "h": "유료 기능(예: 까먹지마+)",
+    "html": "<p>가격·갱신·철회·환불은 App Store 이용약관·Apple 결제 규약을 따르고 과금 처리는 플랫폼 또는 위탁 업체 규약에 따라 이루어질 수 있습니다.</p>"
+   },
+   {
+    "h": "데이터·저장물",
+    "html": "<p>선택한 기능(예: 동기화·클라우드 백업)에 따라 데이터가 처리·저장될 수 있습니다. 저장물의 무결성 또는 외부 환경에 따른 결과는 사용자가 기능을 활성화한 범위 내에서 제공됩니다.</p>"
+   },
+   {
+    "h": "이용자 의무 및 금지",
+    "html": "<p>타인에게 피해를 주거나 법령·공서양속 위반 행위, 서비스·시스템을 비정상적인 방식으로 교란·우회 시도 및 지적재산 침해 등 금지됩니다.</p>"
+   },
+   {
+    "h": "책임의 한계",
+    "html": "<p>관련 법령이 허용하는 최대 한도까지 서비스는 제공되는 상태를 기준으로 하며 간접·특별·예상 손실 등에는 책임이 제한될 수 있습니다.</p>"
+   },
+   {
+    "h": "이용 제한·중단 및 해지",
+    "html": "<p>약관·법령 위반 시 이용을 제한·중단할 수 있으며 중요 변경 시 가능한 방법으로 안내합니다.</p>"
+   }
+  ]
+ },
+ "en": {
+  "title": "Terms of Service",
+  "meta": "<p>These Terms apply when you use Amatdda (“the Service”).</p>",
+  "sections": [
+   {
+    "h": "Accounts and sign-in",
+    "html": "<p>You may link an account via Apple, Google, Kakao where offered, or use local/device-level sessions without linking. Related data processing follows the Privacy Policy.</p>"
+   },
+   {
+    "h": "Service content and changes",
+    "html": "<p>Features, UX, pricing, naming, subscriptions, entitlement and availability may change or be discontinued with updates.</p>"
+   },
+   {
+    "h": "Paid features (e.g. Amatdda+)",
+    "html": "<p>pricing, renewal, cancellations, refunds, and StoreKit flows follow platform rules including the Apple App Store. Payment processing follows those policies.</p>"
+   },
+   {
+    "h": "Data and uploads",
+    "html": "<p>Selected features—such as sync or backups—transmit and store content you create. Responsibility for lawful use and accuracy of imported data rests with you.</p>"
+   },
+   {
+    "h": "User conduct",
+    "html": "<p>No misuse, interference, unauthorised access, circumventing safeguards, infringing rights, harming others’ data, transmitting malware, scraping at scale or other unlawful/abusive behaviour.</p>"
+   },
+   {
+    "h": "Limitations of liability",
+    "html": "<p>To the fullest extent permitted by applicable law we limit liability particularly for consequential and indirect losses and for issues outside our reasonable control.</p>"
+   },
+   {
+    "h": "Suspension / termination",
+    "html": "<p>Violations may result in restricting or terminating access or accounts. Important changes will be communicated by reasonable notices where appropriate.</p>"
+   }
+  ]
+ },
+ "ja": {
+  "title": "利用規約",
+  "meta": "<p>Amatdda（本サービス）の利用に適用されます。</p>",
+  "sections": [
+   {
+    "h": "アカウントおよびログイン",
+    "html": "<p>Apple、Google、Kakao 等でソーシャルログイン・連携を提供する場合があり、連携しない場合は端末またはセッションに基づき一部機能のみ利用できる場合があります。個人情報の取扱いは別途ポリシーに従います。</p>"
+   },
+   {
+    "h": "サービスの内容および変更",
+    "html": "<p>機能・UI・料金プランナはアップデートで変更または提供終了することがあります。</p>"
+   },
+   {
+    "h": "",
+    "html": "<p>有料機能（例: Amatdda+）の料金・更新・撤回・返金については App Store の約款および Apple の決済ルールが適用され、プラットフォーム側で処理されます。</p>"
+   },
+   {
+    "h": "データ・保存",
+    "html": "<p>ユーザーがオンにした同期・クラウドバックアップ等によりデータが伝送・保存されることがあります。保存内容の適法性・正当性および外部要因により生じる結果についてユーザー責務が及ぶ場合があります。</p>"
+   },
+   {
+    "h": "利用者義務および禁止事項",
+    "html": "<p>法令・他人の権利・公序良俗に反する行為や、サービスの安全・運営を害する試み、権利侵害、不正プログラム配布等は禁止されます。</p>"
+   },
+   {
+    "h": "責任の制限",
+    "html": "<p>強行法規が許す範囲でサービスは現状に基づき提供されるものとし、間接・特別損害等について責を制限することがあります。</p>"
+   },
+   {
+    "h": "アクセス停止・規約変更",
+    "html": "<p>違反時は利用停止等を行える場合があります。重要な規約変更は適切な方法で通知します。</p>"
+   }
+  ]
+ },
+ "zh": {
+  "title": "服務條款",
+  "meta": "<p>本條款適用於您使用 Amatdda（下稱“服務”）。</p>",
+  "sections": [
+   {
+    "h": "帳戶與登入",
+    "html": "<p>在提供時將支援 Apple、Google、Kakao 等第三方帳號登入與綁定；不綁定時可使用基於裝置的本機會話等部分功能。個人資訊的處理方式以應用的《隱私政策》為準。</p>"
+   },
+   {
+    "h": "服務內容與變更",
+    "html": "<p>功能、介面、方案等可透過更新進行調整、停用或更名。</p>"
+   },
+   {
+    "h": "付費功能（例如 Amatdda+）",
+    "html": "<p>價格、續訂、解約、退款等遵循 Apple App Store 條款與支付規則，並由相應平台或其合作方完成支付。</p>"
+   },
+   {
+    "h": "與使用者資料",
+    "html": "<p>您開啟同步、備份等功能時會產生傳輸與雲端儲存；您對自身內容的合法性、準確性以及在適用情形下的風險提示承擔責任。</p>"
+   },
+   {
+    "h": "使用者義務",
+    "html": "<p>不得從事違法侵權、妨害安全與正常執行、未經許可抓取或破壞系統等行為。</p>"
+   },
+   {
+    "h": "責任限制",
+    "html": "<p>在適用法律允許的最大範圍內，服務按需“現狀提供”，對間接損害、附帶損害等可依法律予以限制。</p>"
+   },
+   {
+    "h": "停用與條款變更",
+    "html": "<p>出現違約等情形我們可能限制訪問；重大事項我們將以適當方式另行通知。</p>"
+   }
+  ]
+ }
+}

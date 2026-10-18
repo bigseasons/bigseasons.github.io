@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  이 사이트는 index.html 한 장으로 된 단일 페이지입니다.
+  홈(index.html)과 개인정보처리방침·이용약관 페이지로 되어 있습니다.
   언어 전환은 같은 URL에서 JS로 처리하므로 언어별 URL은 없습니다.
   (도구 페이지들은 amatdda.bigseasons.co.kr/sitemap.xml 에 따로 있습니다.)
 -->
@@ -10,5 +10,17 @@
     <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bigseasons.co.kr/privacy.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://bigseasons.co.kr/terms.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
