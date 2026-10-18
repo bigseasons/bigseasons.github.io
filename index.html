@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>까먹지마 — D-day·반복 일정·시간표·차량 정비</title>
-<meta name="description" content="생일과 기념일, 엔진오일 교체, 정기 결제일, 학원 시간표, 축의금 기록까지. 한 번 적어 두면 때가 됐을 때 알려 드립니다. iOS · Android · 웹." />
+<title>까먹지마 | 할 일·루틴·기념일·시간표·자동차·경조사·메모를 한 앱에</title>
+<meta name="description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 한 줄로 적으면 알아서 제자리에 나눠 담고, 때가 되면 알려 드립니다. iOS · Android." />
 <link rel="canonical" href="https://bigseasons.co.kr/" />
+<meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#17181C" media="(prefers-color-scheme: dark)" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="까먹지마" />
-<meta property="og:title" content="까먹지마 — 까먹어도 괜찮게, 대신 기억합니다" />
-<meta property="og:description" content="생일과 기념일, 엔진오일 교체, 정기 결제일, 학원 시간표, 축의금 기록까지. 한 번 적어 두면 때가 됐을 때 알려 드립니다." />
+<meta property="og:title" content="까먹지마 | 까먹기 전에, 한 줄만" />
+<meta property="og:description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 적으면 알아서 제자리에 나눠 담습니다." />
 <meta property="og:url" content="https://bigseasons.co.kr/" />
 <meta property="og:image" content="https://bigseasons.co.kr/assets/amatdda_icon.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -43,10 +45,10 @@
       "alternateName": "Amatdda",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "iOS, Android, Web",
-      "description": "생일과 기념일, 엔진오일 교체, 정기 결제일, 학원 시간표, 축의금 기록까지. 한 번 적어 두면 때가 됐을 때 알려 드립니다.",
+      "description": "할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 한 줄로 적으면 알아서 제자리에 나눠 담고, 때가 되면 알려 드립니다.",
       "url": "https://amatdda.bigseasons.co.kr/",
       "image": "https://bigseasons.co.kr/assets/amatdda_icon.png",
-      "screenshot": "https://bigseasons.co.kr/assets/landing/ko_1.png",
+      "screenshot": "https://bigseasons.co.kr/assets/landing/home_ko.jpg",
       "installUrl": [
         "https://apps.apple.com/kr/app/id6751563264",
         "https://play.google.com/store/apps/details?id=com.bigseasons.amatdda"
@@ -63,230 +65,280 @@
 <link rel="icon" href="assets/amatdda_icon.png" />
 <link rel="apple-touch-icon" href="assets/amatdda_icon.png" />
 
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" />
 
 <style>
+  /* 색은 앱(lib/app/theme/color_scheme.dart)의 값 그대로다. 브랜드색은 귤 하나:
+     귤 잉크(--ink)는 글자·선, 귤 면(--face)은 주요 버튼·밑줄 같은 「주요 이벤트」 전용.
+     귤을 넓게 깔지 않는다 — 따뜻한 종이 위에서 베이지+오렌지가 된다. */
   :root {
-    --paper: #faf8f4;
-    --ink: #1c1d21;
-    --indigo: #5b63d3;
-    --rule: #e5e3dd;
-    --muted: #5c5d66;
-    --late: #c2452d;
-    --soon: #b4600e;
-    --done: #3d7a52;
+    --bg: #FAF8F4; --bg2: #F4F1EB; --card: #FFFFFF;
+    --text: #1B1917; --muted: #6B6558; --line: #E2DDD3;
+    --ink: #A85C18; --face: #E9A040; --onface: #2A2410;
+    --late: #DC2626; --near: #C8441C; --streak: #4E7A4A; --frame: #1B1917;
 
-    --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-            "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: "IBM Plex Sans KR", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
+            "PingFang TC", "Noto Sans TC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181C; --bg2: #1F2024; --card: #222328;
+      --text: #F6F3F5; --muted: #B8B4B8; --line: #3F3F44;
+      --ink: #F5C377; --late: #F87171; --near: #FF8A50; --streak: #9CC796; --frame: #313238;
+    }
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
   body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    line-height: 1.65;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
+    margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans);
+    line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere;
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: #dfe1fa; }
-
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-  a { color: inherit; }
-
-  .label {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .05em;
-    text-transform: uppercase; color: var(--muted); margin: 0 0 4px;
-  }
+  ::selection { background: rgba(233, 160, 64, .3); }
+  a { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--face); outline-offset: 3px; border-radius: 4px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .mono { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+  .narrow { max-width: 820px; }
+  .rule { height: 3px; background: var(--face); border-radius: 2px; transform-origin: left; }
+  h2.sec { font-size: clamp(24px, 3.4vw, 32px); font-weight: 700; letter-spacing: -.03em; margin: 0; text-wrap: balance; }
 
   /* ── 상단 ─────────────────────────────────── */
-  .top .wrap {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px; height: 68px;
-  }
-  .brand { font-weight: 800; font-size: 17px; letter-spacing: -.03em; text-decoration: none; }
-  .top nav { display: none; gap: 22px; margin-left: auto; margin-right: 4px; }
-  @media (min-width: 720px) { .top nav { display: flex; } }
-  .top nav a { font-size: 14px; color: var(--muted); text-decoration: none; }
-  .top nav a:hover { color: var(--ink); }
-
-  .lang { position: relative; }
+  .top { border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 700; font-size: 17px; }
+  .brand img { width: 28px; height: 28px; border-radius: 8px; }
+  .top nav { display: none; gap: 28px; margin-left: auto; font-size: 14px; }
+  @media (min-width: 860px) { .top nav { display: flex; } }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--text); }
+  .lang { position: relative; margin-left: auto; }
+  @media (min-width: 860px) { .lang { margin-left: 16px; } }
   .lang > button {
-    font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
-    display: flex; align-items: center; gap: 6px;
-    background: transparent; border: 1px solid var(--rule); border-radius: 999px;
-    padding: 7px 13px; color: var(--ink);
+    font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer;
+    background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px;
   }
-  .lang > button:hover { border-color: var(--ink); }
+  .lang > button:hover { border-color: var(--face); }
   .lang menu {
     display: none; position: absolute; right: 0; top: calc(100% + 6px); z-index: 30;
-    margin: 0; padding: 5px; list-style: none; min-width: 158px;
-    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(28, 29, 33, .1);
+    margin: 0; padding: 5px; list-style: none; min-width: 150px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 12px 30px -12px rgba(60, 40, 10, .25);
   }
   .lang menu.open { display: block; }
   .lang menu button {
-    font: inherit; font-size: 13.5px; cursor: pointer;
-    display: flex; align-items: center; gap: 8px;
-    width: 100%; border: none; background: transparent; color: var(--ink);
-    border-radius: 7px; padding: 9px 10px; text-align: left;
+    font: inherit; font-size: 14px; cursor: pointer; width: 100%; text-align: left;
+    border: none; background: transparent; color: var(--text); border-radius: 8px; padding: 10px 12px;
   }
-  .lang menu button:hover { background: #f1efe9; }
-  .lang menu button[aria-current="true"] { font-weight: 700; }
+  .lang menu button:hover { background: var(--bg2); }
+  .lang menu button[aria-current="true"] { font-weight: 700; color: var(--ink); }
 
-  :focus-visible { outline: 3px solid var(--indigo); outline-offset: 3px; border-radius: 2px; }
+  /* ── 첫 화면: 통합 입력창 ──────────────────── */
+  .hero { padding: 56px 0 88px; }
+  .stamp { display: flex; align-items: baseline; gap: 10px; }
+  .stamp .day { font-size: 40px; letter-spacing: -.04em; }
+  .stamp .when { font-size: 17px; font-weight: 600; }
+  .stamp .when em { font-style: normal; color: var(--ink); }
+  .stamp .when i { font-style: normal; color: var(--muted); font-weight: 500; }
+  .hero h1 {
+    font-size: clamp(34px, 5.4vw, 48px); line-height: 1.2; letter-spacing: -.035em; font-weight: 700;
+    margin: 36px 0 0; text-wrap: balance;
+  }
+  .hero h1 span { color: var(--ink); white-space: nowrap; }
+  .lede { font-size: clamp(16px, 1.9vw, 17px); line-height: 1.7; color: var(--muted); margin: 14px 0 0; max-width: 46ch; }
 
-  /* ── 히어로 ───────────────────────────────── */
-  .hero { padding: 54px 0 0; }
-  .stamp { display: flex; align-items: flex-end; gap: 18px; }
-  .stamp .num {
-    font-size: clamp(84px, 19vw, 176px); font-weight: 900; letter-spacing: -.06em;
-    line-height: .82; font-variant-numeric: tabular-nums;
+  .dock {
+    display: flex; align-items: center; gap: 12px; height: 64px; margin-top: 28px;
+    padding: 0 10px 0 20px; border: 2px solid var(--face); border-radius: 18px; background: var(--card);
+    box-shadow: 0 18px 40px -24px rgba(168, 92, 24, .45);
   }
-  .stamp .when { padding-bottom: clamp(9px, 1.8vw, 20px); }
-  .stamp .when em {
-    font-style: normal; color: var(--indigo); font-weight: 800;
-    font-size: clamp(18px, 3.2vw, 26px); letter-spacing: -.02em;
+  .dock svg { color: var(--ink); flex: none; }
+  .dock input {
+    flex: 1; min-width: 0; border: none; outline: none; background: transparent;
+    font: inherit; font-size: 18px; color: var(--text);
   }
-  .stamp .when i {
-    font-style: normal; color: var(--muted); font-weight: 500;
-    font-size: clamp(18px, 3.2vw, 26px);
+  .dock input::placeholder { color: var(--muted); }
+  .go {
+    font: inherit; font-weight: 700; font-size: 15px; border: none; border-radius: 12px;
+    background: var(--face); color: var(--onface); padding: 0 18px; height: 44px; cursor: pointer; white-space: nowrap;
   }
-  .hr-indigo { height: 2px; background: var(--indigo); margin-top: 15px; }
+  .go:active, .pill:active, .chip:active { transform: translateY(1px); }
 
-  .claim {
-    font-size: clamp(30px, 5.6vw, 58px); font-weight: 900; letter-spacing: -.045em;
-    line-height: 1.14; margin: 38px 0 0; text-wrap: balance; max-width: 15ch;
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip {
+    font: inherit; font-size: 13px; color: var(--text); background: transparent; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; min-height: 40px;
+    transition: border-color .2s, transform .15s;
   }
-  .claim u { text-decoration: none; color: var(--indigo); }
-  .lede {
-    margin: 20px 0 0; font-size: clamp(16px, 1.9vw, 18px); color: var(--muted);
-    max-width: 46ch;
-  }
+  .chip:hover { border-color: var(--face); }
+  .chip b { color: var(--ink); font-weight: 600; margin-right: 6px; }
+  .chip.all { border-color: var(--face); font-weight: 600; }
 
-  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0 0; }
-  .cta a {
-    text-decoration: none; font-weight: 700; font-size: 14.5px; white-space: nowrap;
-    padding: 13px 22px; border-radius: 999px;
-    border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
-    transition: transform .15s ease;
-  }
-  .cta a.ghost { background: transparent; color: var(--ink); }
-  .cta a:hover { transform: translateY(-2px); }
-  @media (prefers-reduced-motion: reduce) { .cta a:hover { transform: none; } }
+  .board { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; margin-top: 56px; }
+  .board h2 { font-size: 20px; font-weight: 700; margin: 0; }
+  .board-head { display: flex; align-items: baseline; justify-content: space-between; min-height: 44px; }
+  .clear { font: inherit; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; min-height: 44px; }
+  .board .rule { margin: 10px 0 0; }
+  .empty { margin: 0; padding: 28px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; }
 
-  /* ── 공통 섹션 ─────────────────────────────── */
-  section + section { margin-top: clamp(72px, 11vw, 108px); }
-  h2.sec {
-    font-size: clamp(22px, 3.4vw, 30px); font-weight: 800; letter-spacing: -.03em;
-    margin: 0 0 24px; text-wrap: balance;
-  }
+  .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .row .t { font-size: 17px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .d { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .row .d b { color: var(--ink); font-weight: 600; }
+  /* 오른쪽 값은 「33분 후」처럼 글자가 섞여 고정폭 글꼴을 쓰지 않는다(한글이 벌어진다). 숫자만 같은 폭으로. */
+  .row .k { font-size: 15px; font-weight: 600; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .k.ink { color: var(--ink); } .k.near { color: var(--near); } .k.late { color: var(--late); } .k.plain { color: var(--text); }
+  .circle { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--muted); opacity: .6; display: block; }
 
-  /* ── 항목 행 (기능 = 앱의 목록) ─────────────── */
-  .row {
-    display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center;
-    padding: 18px 0; border-bottom: 1px solid var(--rule);
+  .after { margin-top: 24px; padding: 24px; border-radius: 18px; background: var(--bg2); }
+  .after p { margin: 0; }
+  .after .h { font-size: 18px; font-weight: 700; }
+  .after .b { margin-top: 6px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .stores { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
+  .pill {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap;
+    padding: 14px 24px; border-radius: 999px; background: var(--face); color: var(--onface);
+    transition: transform .15s;
   }
-  .rows .row:first-child { border-top: 1px solid var(--rule); }
-  .row .t { font-size: clamp(16.5px, 2.1vw, 19px); font-weight: 700; letter-spacing: -.02em; }
-  .row .d { font-size: 13.5px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
-  .row .k {
-    font-family: var(--mono); font-size: 15px; font-weight: 700;
-    font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
-  .row .k.late { color: var(--late); }
-  .row .k.soon { color: var(--soon); }
-  .row .k.ok   { color: var(--done); }
-  .circle {
-    width: 20px; height: 20px; border: 1.5px solid var(--rule);
-    border-radius: 50%; display: block; margin-left: auto;
-  }
-  .note {
-    margin: 26px 0 0; font-size: 14px; color: var(--muted);
-    border-left: 2px solid var(--indigo); padding-left: 14px; max-width: 52ch;
-  }
+  .pill:hover { color: var(--onface); transform: translateY(-1px); }
+  .textlink { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--face); padding: 10px 2px; }
 
-  /* ── 사용 사례 ─────────────────────────────── */
-  .case { padding: 20px 0; border-bottom: 1px solid var(--rule); }
-  .cases .case:first-child { border-top: 1px solid var(--rule); }
-  .case h3 { font-size: clamp(16.5px, 2.1vw, 19px); font-weight: 700; margin: 0 0 4px; letter-spacing: -.02em; }
-  .case p { margin: 0; color: var(--muted); font-size: 14.5px; max-width: 62ch; }
+  .drawers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  .drawer {
+    border: 1.5px solid var(--line); border-radius: 16px; padding: 16px; background: var(--card); opacity: .72;
+    transition: border-color .3s, transform .3s var(--ease), opacity .3s;
+  }
+  .drawer.filled { opacity: 1; }
+  .drawer.hot { border-color: var(--face); transform: translateY(-2px); }
+  .drawer .top-line { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .drawer .n { font-size: 15px; font-weight: 700; }
+  .drawer .c { font-size: 14px; color: var(--ink); }
+  .drawer .l { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .drawers-note { font-size: 13px; color: var(--muted); margin: 14px 0 0; line-height: 1.6; }
 
-  /* ── FAQ ──────────────────────────────────── */
-  details { border-bottom: 1px solid var(--rule); }
-  details:first-of-type { border-top: 1px solid var(--rule); }
+  /* ── 여섯 서랍 ─────────────────────────────── */
+  .domains { padding: 96px 0 40px; background: var(--bg2); }
+  .band { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 48px; padding: 40px 0; border-bottom: 1px solid var(--line); }
+  .band:last-child { border-bottom: none; }
+  .band h3 { font-size: 24px; font-weight: 700; margin: 0; }
+  .band .rule { width: 56px; margin-top: 12px; }
+  .band p { font-size: 15px; color: var(--muted); line-height: 1.7; margin: 14px 0 0; }
+  .band .row .t { font-size: 16px; }
+  .band .streak { color: var(--streak); }
+
+  .shots-sec { padding: 112px 0 0; text-align: center; }
+  .shots-sec .b { font-size: 16px; color: var(--muted); margin: 12px auto 48px; max-width: 40ch; }
+  .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; max-width: 720px; margin: 0 auto; }
+  .shots figure { margin: 0; }
+  .shots figure + figure { padding-top: 64px; }
+  .shots img { width: 100%; height: auto; border-radius: 36px; border: 7px solid var(--frame); display: block; }
+  .shots figcaption { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+  .closing { padding: 112px 0 0; text-align: center; }
+  .closing h2 { font-size: clamp(28px, 4vw, 36px); font-weight: 700; letter-spacing: -.03em; margin: 0; }
+  .closing .stores { justify-content: center; margin-top: 28px; }
+
+  .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; padding-top: 112px; }
+  .split h2 { font-size: 22px; font-weight: 700; margin: 0; }
+  .split .rule { margin-top: 12px; }
+  details { border-bottom: 1px solid var(--line); }
   summary {
-    cursor: pointer; list-style: none; padding: 18px 0;
-    font-weight: 700; font-size: clamp(15.5px, 2vw, 17px); letter-spacing: -.02em;
+    cursor: pointer; list-style: none; padding: 16px 0; font-weight: 600; font-size: 16px;
     display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
   }
   summary::-webkit-details-marker { display: none; }
   summary::after { content: "+"; font-family: var(--mono); color: var(--muted); font-weight: 400; }
-  details[open] summary::after { content: "–"; }
-  details p { margin: 0 0 20px; color: var(--muted); font-size: 14.5px; max-width: 62ch; }
+  details[open] summary::after { content: "-"; }
+  details p { margin: 0 0 18px; font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 60ch; }
+  .contact p { font-size: 15px; color: var(--muted); margin: 20px 0 10px; line-height: 1.7; }
+  .mail { font-family: var(--mono); font-size: 16px; color: var(--text); text-decoration: none; border-bottom: 2px solid var(--face); }
 
-  /* ── 앞으로 ───────────────────────────────── */
-  /* 다른 섹션이 전부 줄로 나뉜 목록이라, 이 문단만 줄 없이 열어 두어
-     "확정된 항목이 아니라 방향"이라는 성격을 형태로 드러낸다. */
-  .next p {
-    margin: 0; color: var(--muted); font-size: clamp(15.5px, 1.9vw, 17px);
-    max-width: 54ch; line-height: 1.75;
-  }
-
-  /* ── 플랫폼 ───────────────────────────────── */
-  .plat div {
-    display: grid; grid-template-columns: 108px 1fr; gap: 16px;
-    padding: 15px 0; border-bottom: 1px solid var(--rule); font-size: 15px;
-  }
-  .plat div:first-child { border-top: 1px solid var(--rule); }
-  .plat b {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .05em;
-    text-transform: uppercase; color: var(--muted); font-weight: 500; padding-top: 3px;
-  }
-
-  /* ── 문의 · 푸터 ───────────────────────────── */
-  .contact p { margin: 0 0 6px; color: var(--muted); }
-  .contact a.mail {
-    font-family: var(--mono); font-size: 16px; font-weight: 500;
-    color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--indigo);
-  }
-  footer.site { margin-top: clamp(72px, 11vw, 108px); border-top: 2px solid var(--ink); }
+  footer.site { margin-top: 112px; border-top: 2px solid var(--text); }
   footer.site .wrap {
     display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between;
-    padding-top: 26px; padding-bottom: 60px; font-size: 13px; color: var(--muted);
+    padding-top: 24px; padding-bottom: 56px; font-size: 13px; color: var(--muted);
   }
-  footer.site b { color: var(--ink); font-weight: 700; }
-  footer.site nav { display: flex; gap: 18px; flex-wrap: wrap; }
-  footer.site a { text-decoration: none; }
-  footer.site a:hover { color: var(--ink); }
+  footer.site b { color: var(--text); }
+  footer.site nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer.site a { color: var(--muted); text-decoration: none; }
+  footer.site a:hover { color: var(--text); }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding-top: 40px; }
+    .board, .band, .split { grid-template-columns: 1fr; gap: 24px; }
+    .board { margin-top: 44px; gap: 40px; }
+    .dock { height: 58px; padding-left: 14px; gap: 10px; }
+    .dock input { font-size: 16px; }
+    .go { padding: 0 14px; }
+    /* 폰에서는 예시 칩을 한 줄로 밀어 보게 해서 입력창 아래가 길어지지 않게, 「전부 한 번에」는 맨 앞으로 */
+    .chips { flex-wrap: nowrap; overflow-x: auto; margin: 14px -16px 0; padding: 0 16px 4px; scrollbar-width: none; scroll-snap-type: x proximity; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: none; scroll-snap-align: start; }
+    .chip.all { order: -1; }
+    .shots { gap: 16px; }
+    .shots figure + figure { padding-top: 40px; }
+    .shots img { border-radius: 24px; border-width: 5px; }
+  }
+
+  /* ── 움직임 ───────────────────────────────────
+     모두 의미가 있는 자리에만: 귤 밑줄이 그어지는 것은 앱의 「오늘」 밑줄, 줄이 올라오는 것은
+     목록에 항목이 놓이는 동작. 반복 애니메이션은 없다. 동작 줄이기 설정이면 전부 정지. */
+  @keyframes enter { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+  @keyframes rise  { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes draw  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes pop   { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .enter { animation: enter .5s var(--ease) both; }
+    .intro { animation: rise .7s var(--ease) both; }
+    .intro.d1 { animation-delay: .08s; } .intro.d2 { animation-delay: .16s; }
+    .intro.d3 { animation-delay: .24s; } .intro.d4 { animation-delay: .32s; }
+    .hero-rule { animation: draw .9s .1s var(--ease) both; }
+
+    /* 스크롤 타임라인이 되는 브라우저(Chrome, Safari 26+)는 스크롤에 붙여서 */
+    @supports (animation-timeline: view()) {
+      .sv-rule { animation: draw linear both; animation-timeline: view(); animation-range: entry 30% cover 40%; }
+      .sv-rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+      .sv-rise.s2 { animation-range: entry 10% cover 34%; }
+      .sv-pop { animation: pop linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+    }
+    /* 안 되는 브라우저는 화면에 들어올 때 한 번 (스크립트가 .io 를 붙인다) */
+    @supports not (animation-timeline: view()) {
+      .io .sv-rise, .io .sv-pop { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+      .io .sv-pop { transform: scale(.94); }
+      .io .sv-rise.s2 { transition-delay: .1s; }
+      .io .sv-rule { transform: scaleX(0); transition: transform .9s .15s var(--ease); }
+      .io .in.sv-rise, .io .in.sv-pop, .io .in .sv-rule, .io .in.sv-rule { opacity: 1; transform: none; }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body id="top">
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" data-i18n="brand">까먹지마</a>
+    <a class="brand" href="#top"><img src="assets/amatdda_icon.png" alt="" width="28" height="28" /><span data-i18n="brand">까먹지마</span></a>
     <nav>
-      <a href="#features" data-i18n="nav.features">기능</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      <a href="#contact" data-i18n="nav.contact">문의</a>
+      <a href="#drawers" data-i18n="nav.drawers">여섯 서랍</a>
+      <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
+      <a href="#get" data-i18n="nav.get">앱 받기</a>
     </nav>
     <div class="lang">
-      <button id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
-        <span id="lang-flag">🇰🇷</span><span id="lang-name">한국어</span>
-      </button>
+      <button id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">한국어</button>
       <menu id="lang-menu">
-        <li><button type="button" data-lang="ko"><span>🇰🇷</span> 한국어</button></li>
-        <li><button type="button" data-lang="en"><span>🇺🇸</span> English</button></li>
-        <li><button type="button" data-lang="ja"><span>🇯🇵</span> 日本語</button></li>
-        <li><button type="button" data-lang="zh"><span>🇹🇼</span> 繁體中文</button></li>
+        <li><button type="button" data-lang="ko">한국어</button></li>
+        <li><button type="button" data-lang="en">English</button></li>
+        <li><button type="button" data-lang="ja">日本語</button></li>
+        <li><button type="button" data-lang="zh">繁體中文</button></li>
       </menu>
     </div>
   </div>
@@ -295,151 +347,145 @@
 <main>
 
   <section class="hero">
-    <div class="wrap">
-      <div class="stamp">
-        <div class="num" id="today-day">3</div>
-        <div class="when"><em id="today-dow">월요일</em> <i id="today-mon">· 8월</i></div>
+    <div class="wrap narrow">
+      <div class="stamp intro">
+        <span class="day mono" id="today-day">18</span>
+        <span class="when"><em id="today-dow">토요일</em><i id="today-mon"> · 10월</i></span>
       </div>
-      <div class="hr-indigo"></div>
+      <div class="rule hero-rule" style="margin-top:10px"></div>
 
-      <h1 class="claim" data-i18n-html="hero.claim">까먹어도<br>괜찮게, <u>대신</u><br><u>기억합니다.</u></h1>
-      <p class="lede" data-i18n="hero.lede">생일과 기념일, 엔진오일 교체, 정기 결제일, 아이 학원 시간표, 축의금 기록까지. 한 번 적어 두면 때가 됐을 때 알려 드립니다.</p>
+      <h1 class="intro d1" data-i18n-html="hero.title">까먹기 전에, <span>한 줄만</span> 적어 보세요.</h1>
+      <p class="lede intro d2" data-i18n="hero.lede">할 일, 생일, 정비, 경조사, 메모, 시간표. 입력창 하나에 적으면 알아서 제자리에 나눠 담습니다.</p>
 
-      <div class="cta">
-        <a href="https://apps.apple.com/kr/app/id6751563264" target="_blank" rel="noopener">App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener">Google Play</a>
-        <a class="ghost" href="https://amatdda.bigseasons.co.kr/" target="_blank" rel="noopener" data-i18n="hero.web">웹에서 먼저 써 보기</a>
+      <form class="intro d3" id="dock-form" autocomplete="off">
+        <label class="sr" for="dock" data-i18n="hero.inputLabel">한 줄 입력</label>
+        <div class="dock">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+          <input id="dock" type="text" enterkeyhint="done" maxlength="80" placeholder="까먹기 전에 한 줄 적어두세요" />
+          <button class="go" type="submit" data-i18n="hero.submit">적기</button>
+        </div>
+      </form>
+      <div class="chips intro d4" id="chips"></div>
+    </div>
+
+    <div class="wrap board">
+      <div>
+        <div class="board-head">
+          <h2 data-i18n="board.listTitle">오늘의 목록</h2>
+          <button class="clear" type="button" id="clear" hidden data-i18n="board.clear">비우기</button>
+        </div>
+        <div class="rule"></div>
+        <div id="list" aria-live="polite">
+          <p class="empty" id="empty" data-i18n="board.empty">아직 비어 있어요. 위에 한 줄 적거나 예시를 눌러 보세요.</p>
+        </div>
+        <div class="after enter" id="after" hidden>
+          <p class="h" data-i18n="board.ctaTitle">때가 되면 알려 드릴게요.</p>
+          <p class="b" data-i18n="board.ctaBody">알림은 앱에서 옵니다. 적은 것들을 앱에서 이어서 관리하세요.</p>
+          <div class="stores">
+            <a class="pill" href="https://apps.apple.com/kr/app/id6751563264" target="_blank" rel="noopener">App Store</a>
+            <a class="pill" href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener">Google Play</a>
+            <a class="textlink" id="web-link" href="https://amatdda.bigseasons.co.kr/" target="_blank" rel="noopener" data-i18n="board.web">웹에서 이어서 써 보기</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="drawers">
+        <div class="board-head"><h2 data-i18n="board.drawersTitle">제자리</h2></div>
+        <div class="rule"></div>
+        <div class="drawers" id="drawer-grid"></div>
+        <p class="drawers-note" data-i18n="board.drawersNote">따로 앱을 깔 필요 없이, 한 앱 안에 여섯 서랍.</p>
       </div>
     </div>
   </section>
 
-  <section id="features">
+  <section class="domains" id="domains">
     <div class="wrap">
-      <p class="label" data-i18n="agenda.label">오늘의 목록</p>
-      <h2 class="sec" data-i18n="agenda.title">이런 것들을 대신 기억합니다</h2>
+      <h2 class="sec sv-rise" data-i18n="domains.title">흩어져 있던 기억할 일이 한곳에 모입니다</h2>
 
-      <div class="rows">
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r1.t">구독 결제일</div>
-            <div class="d" data-i18n="agenda.r1.d">반복 알림 · 매달 같은 날</div>
-          </div>
-          <div class="k">D-31</div>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r2.t">엄마 생일</div>
-            <div class="d" data-i18n="agenda.r2.d">기념일 · 매년 · 음력도 자동 변환</div>
-          </div>
-          <div class="k">D-259</div>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r3.t">엔진오일 교체</div>
-            <div class="d" data-i18n="agenda.r3.d">차량 정비 · 주행거리 34,200km 기준</div>
-          </div>
-          <div class="k late">D+61</div>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r4.t">수영</div>
-            <div class="d" data-i18n="agenda.r4.d">시간표 · 아이 학원</div>
-          </div>
-          <div class="k soon" data-i18n="agenda.r4.k">33분 후</div>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r5.t">우산 챙기기</div>
-            <div class="d" data-i18n="agenda.r5.d">빠른 메모 · 오늘 09:00</div>
-          </div>
-          <span class="circle" aria-hidden="true"></span>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r6.t">결혼식 축의금</div>
-            <div class="d" data-i18n="agenda.r6.d">경조사 장부 · 받은 기록 기준으로 추천</div>
-          </div>
-          <div class="k ok" data-i18n="agenda.r6.k">기록됨</div>
-        </div>
-        <div class="row">
-          <div>
-            <div class="t" data-i18n="agenda.r7.t">로잉머신 20분</div>
-            <div class="d" data-i18n="agenda.r7.d">루틴 · 매일 9시 · 1일 연속</div>
-          </div>
-          <span class="circle" aria-hidden="true"></span>
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.rt.title">할 일과 루틴</h3><div class="rule sv-rule"></div><p data-i18n="domains.rt.body">매일 체크한 날만 연속으로 셉니다. 놓친 알림은 다음에 열 때 다시 보여 드려요.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.rt.r1t">로잉머신 20분</div><div class="d"><span class="streak" data-i18n="domains.rt.r1s">12일 연속</span> · <span data-i18n="domains.rt.r1d">매일 9시</span></div></div><span class="circle" aria-hidden="true"></span></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.rt.r2t">정수기 필터 교체</div><div class="d" data-i18n="domains.rt.r2d">생활용품 · 3개월마다</div></div><span class="k ink">D-6</span></div>
         </div>
       </div>
 
-      <p class="note" data-i18n="agenda.note">홈 화면 위젯으로 앱을 열지 않고도 이 목록을 볼 수 있고, 완료할 때마다 메모와 사진을 남겨 다음 관리에 씁니다.</p>
-    </div>
-  </section>
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.ann.title">기념일</h3><div class="rule sv-rule"></div><p data-i18n="domains.ann.body">음력 생일은 해마다 양력으로 바꿔서, 지난 날은 D+로 셉니다.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.ann.r1t">엄마 생신</div><div class="d" data-i18n="domains.ann.r1d">매년 · 음력 3월 5일</div></div><span class="k">D-149</span></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.ann.r2t">우리 처음 만난 날</div><div class="d" data-i18n="domains.ann.r2d">지난 날 세기 · 홈에 D+ 표시</div></div><span class="k ink">D+1,204</span></div>
+        </div>
+      </div>
 
-  <section id="usecases">
-    <div class="wrap">
-      <p class="label" data-i18n="usecases.pill">사용 사례</p>
-      <h2 class="sec" data-i18n="usecases.title">이런 때 딱 좋아요!</h2>
-      <div class="cases">
-        <div class="case">
-          <h3 data-i18n="usecases.coupon.title">편의점 쿠폰 만료 알림</h3>
-          <p data-i18n="usecases.coupon.description">모바일 쿠폰, 기프티콘 유효기간을 등록하고 만료 전에 알림을 받으세요.</p>
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.tt.title">시간표</h3><div class="rule sv-rule"></div><p data-i18n="domains.tt.body">아이 학원부터 내 수업까지. 보호자와 함께 볼 수 있어요.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.tt.r1t">수영</div><div class="d" data-i18n="domains.tt.r1d">화·목 16:00 · 오리발 챙기기</div></div><span class="k near" data-i18n="domains.tt.r1k">33분 후</span></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.tt.r2t">피아노</div><div class="d" data-i18n="domains.tt.r2d">월·수·금 17:30</div></div><span class="k" data-i18n="domains.tt.r2k">월</span></div>
         </div>
-        <div class="case">
-          <h3 data-i18n="usecases.items.title">생활용품 교체 주기</h3>
-          <p data-i18n="usecases.items.description">칫솔, 면도날, 정수기 필터… 주기 알림으로 교체 시기를 놓치지 마세요.</p>
+      </div>
+
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.car.title">자동차</h3><div class="rule sv-rule"></div><p data-i18n="domains.car.body">주행거리를 넣으면 정비 때를 계산하고, 보험 만기도 챙깁니다.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.car.r1t">엔진오일 교체</div><div class="d" data-i18n="domains.car.r1d">34,200km 기준 · 5,000km마다</div></div><span class="k late">D+61</span></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.car.r2t">자동차 보험 만기</div><div class="d" data-i18n="domains.car.r2d">매년 · 갱신 전 알림</div></div><span class="k">D-94</span></div>
         </div>
-        <div class="case">
-          <h3 data-i18n="usecases.birthday.title">부모님 음력 생신도 정확하게</h3>
-          <p data-i18n="usecases.birthday.description">음력 기념일을 양력으로 자동 변환해 알려드립니다.</p>
+      </div>
+
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.gt.title">경조사</h3><div class="rule sv-rule"></div><p data-i18n="domains.gt.body">주고받은 기록이 쌓이면, 다음에 얼마를 할지 가늠이 섭니다.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.gt.r1t">민수 결혼식</div><div class="d" data-i18n="domains.gt.r1d">보냄 · 지난번 받은 10만원 기준</div></div><span class="k plain" data-i18n="domains.gt.r1k">100,000</span></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.gt.r2t">나의 행사 · 돌잔치</div><div class="d" data-i18n="domains.gt.r2d">받음 · 14명</div></div><span class="k" data-i18n="domains.gt.r2k">기록됨</span></div>
         </div>
-        <div class="case">
-          <h3 data-i18n="usecases.car.title">자동차 점검 &amp; 정비 기록</h3>
-          <p data-i18n="usecases.car.description">엔진오일, 타이어, 정기점검 일정을 관리하고 수년치 정비 기록을 한눈에 확인하세요.</p>
+      </div>
+
+      <div class="band">
+        <div class="sv-rise"><h3 data-i18n="domains.memo.title">메모</h3><div class="rule sv-rule"></div><p data-i18n="domains.memo.body">폴더로 나누고, 비밀번호 같은 건 잠가 둡니다. 잠금화면에서도 봅니다.</p></div>
+        <div>
+          <div class="row sv-rise"><div><div class="t" data-i18n="domains.memo.r1t">현관 비밀번호</div><div class="d" data-i18n="domains.memo.r1d">잠금 · 집</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--muted)"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.memo.r2t">아이 신발 사이즈</div><div class="d" data-i18n="domains.memo.r2d">가족 · 어제 고침</div></div><span class="k" data-i18n="domains.memo.r2k">메모</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="faq">
+  <section class="shots-sec">
     <div class="wrap">
-      <p class="label">FAQ</p>
-      <h2 class="sec" data-i18n="faq.title">자주 묻는 질문</h2>
+      <h2 class="sec sv-rise" data-i18n="shots.title">앱을 열지 않아도 보입니다</h2>
+      <p class="b sv-rise s2" data-i18n="shots.body">오늘의 목록은 홈 화면 위젯으로, 메모는 잠금화면으로.</p>
+      <div class="shots">
+        <figure class="sv-pop"><img data-shot="home" src="assets/landing/home_ko.jpg" width="640" height="1391" loading="lazy" alt="까먹지마 오늘 화면" data-i18n-alt="shots.alt1" /><figcaption data-i18n="shots.cap1">오늘 화면</figcaption></figure>
+        <figure class="sv-pop"><img data-shot="widget" src="assets/landing/widget_ko.jpg" width="640" height="1391" loading="lazy" alt="까먹지마 홈 화면 위젯" data-i18n-alt="shots.alt2" /><figcaption data-i18n="shots.cap2">홈 화면 위젯</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" id="get">
+    <div class="wrap narrow">
+      <h2 class="sv-rise" data-i18n="closing.title">기억은 맡기고, 잠깐 멍.</h2>
+      <div class="stores sv-rise s2">
+        <a class="pill" href="https://apps.apple.com/kr/app/id6751563264" target="_blank" rel="noopener">App Store</a>
+        <a class="pill" href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener">Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap split">
+    <section id="faq" class="sv-rise">
+      <h2 data-i18n="faq.title">자주 묻는 질문</h2>
+      <div class="rule sv-rule"></div>
       <div id="faq-list"></div>
-    </div>
-  </section>
-
-  <section id="next" class="next">
-    <div class="wrap">
-      <p class="label" data-i18n="next.label">앞으로</p>
-      <h2 class="sec" data-i18n="next.title">다음은 말로 적어 두는 일입니다</h2>
-      <p data-i18n="next.body">지금은 직접 입력해야 합니다. 앞으로는 사람에게 말하듯 이야기하면 앱이 알아서 항목으로 만들어 두는 방향을 보고 있습니다. 아직 정해진 일정은 없습니다. 혼자 만드는 앱이라, 쓰는 분이 늘고 앱이 스스로 버틸 수 있게 되면 그때 손을 댈 생각입니다.</p>
-    </div>
-  </section>
-
-  <section id="platforms">
-    <div class="wrap">
-      <p class="label" data-i18n="platforms.label">어디서든</p>
-      <h2 class="sec" data-i18n="platforms.title">쓰던 그대로 이어집니다</h2>
-      <div class="plat">
-        <div><b>iOS</b><span data-i18n="platforms.ios">App Store · 홈 화면 위젯 · 잠금화면 메모</span></div>
-        <div><b>Android</b><span data-i18n="platforms.android">Google Play · 홈 위젯 · 잠금화면 메모</span></div>
-        <div><b data-i18n="platforms.webLabel">웹</b><span data-i18n="platforms.web">설치 없이 브라우저에서 바로 확인하고 편집</span></div>
-        <div><b data-i18n="platforms.syncLabel">동기화</b><span data-i18n="platforms.sync">로그인하면 기기를 바꿔도 그대로 복원</span></div>
-      </div>
-      <div class="cta">
-        <a href="https://apps.apple.com/kr/app/id6751563264" target="_blank" rel="noopener">App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener">Google Play</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <div class="wrap">
-      <p class="label" data-i18n="contact.pill">문의</p>
-      <h2 class="sec" data-i18n="contact.subtitle">궁금한 점이 있으신가요?</h2>
-      <p data-i18n="contact.response_time">평일 24시간 이내 답변드립니다.</p>
-      <p><a class="mail" href="mailto:bigseasons.dev@gmail.com">bigseasons.dev@gmail.com</a></p>
-    </div>
-  </section>
+    </section>
+    <section id="contact" class="contact sv-rise s2">
+      <h2 data-i18n="contact.title">문의</h2>
+      <div class="rule sv-rule"></div>
+      <p data-i18n="contact.body">혼자 만드는 앱입니다. 평일 24시간 이내 직접 답장드려요.</p>
+      <a class="mail" href="mailto:bigseasons.dev@gmail.com">bigseasons.dev@gmail.com</a>
+    </section>
+  </div>
 
 </main>
 
@@ -459,94 +505,403 @@
   'use strict';
 
   var LANGS = {
-    ko: { flag: '🇰🇷', name: '한국어',   locale: 'ko-KR' },
-    en: { flag: '🇺🇸', name: 'English',  locale: 'en-US' },
-    ja: { flag: '🇯🇵', name: '日本語',   locale: 'ja-JP' },
-    zh: { flag: '🇹🇼', name: '繁體中文', locale: 'zh-TW' }
+    ko: { name: '한국어',   locale: 'ko-KR' },
+    en: { name: 'English',  locale: 'en-US' },
+    ja: { name: '日本語',   locale: 'ja-JP' },
+    zh: { name: '繁體中文', locale: 'zh-TW' }
   };
+  var DRAWER_IDS = ['rt', 'ann', 'tt', 'car', 'gt', 'memo'];
   var cache = {};
+  var t = null;          // 현재 언어의 번역
+  var lang = 'ko';
+  var items = [];        // 입력창에 적은 것들 (페이지 안에서만, 저장하지 않는다)
+  var hot = null;        // 방금 채워진 서랍
+  var phIndex = 0;
+  var demoTimers = [];
 
+  function $(id) { return document.getElementById(id); }
   function pick(obj, path) {
-    return path.split('.').reduce(function (o, k) {
-      return (o && o[k] !== undefined) ? o[k] : undefined;
-    }, obj);
+    return path.split('.').reduce(function (o, k) { return (o && o[k] !== undefined) ? o[k] : undefined; }, obj);
+  }
+  function fill(tpl, vars) {
+    return String(tpl).replace(/\{(\w+)\}/g, function (_, k) { return vars[k] !== undefined ? vars[k] : ''; });
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text !== undefined) { e.textContent = text; }
+    return e;
   }
 
-  /* 히어로의 날짜는 고정 이미지가 아니라 방문한 그날이다. */
-  function paintToday(lang) {
+  /* ── 한 줄 알아듣기 ─────────────────────────────
+     앱의 낱말 인식(quick_entry_keywords.json)을 홈페이지 체험용으로 줄인 것.
+     서랍 판정 → 날짜·시각·금액·거리를 뽑아 앱과 같은 한 줄(제목 · 설명 · 오른쪽 값)로 만든다. */
+  var RULES = {
+    ko: {
+      gt: /결혼식|돌잔치|장례|부고|조문|축의|부의|청첩|경조사/,
+      car: /엔진오일|타이어|정비|주유|보험|세차|km|자동차|차량|와이퍼|브레이크/i,
+      tt: /학원|수업|강의|교시|레슨|과외/,
+      memo: /메모|비번|비밀번호|계좌|사이즈|주소/,
+      ann: /생일|생신|기념일|제사|음력|추모|기일/,
+      rt: /매일|매주|매달|매월|마다/,
+      lunar: /음력/, locked: /비번|비밀번호|계좌/,
+      freq: /매일|매주|매달|매월/,
+      amount: /(\d[\d,]*)\s*만\s*원/, amountFmt: '{n}만원',
+      km: /([\d,]+)\s*km/i,
+      md: /(\d{1,2})\s*월\s*(\d{1,2})\s*일/,
+      rel: [[/모레/, 2], [/내일/, 1], [/오늘/, 0]],
+      weekday: /([일월화수목금토])요일/, weekdays: '일월화수목금토',
+      ttDays: function (s) { var m = s.match(/(?:^|\s)([월화수목금토일]{1,3})(?=\s|요일|$)/); return m ? m[1].split('') : []; },
+      time: function (s) {
+        var m = s.match(/(오전|오후|아침|저녁|밤)?\s*(\d{1,2})\s*시(?:\s*(\d{1,2})\s*분)?/);
+        return m ? [m[1] && /오후|저녁|밤/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
+      }
+    },
+    ja: {
+      gt: /結婚式|披露宴|ご祝儀|祝儀|香典|葬儀|通夜|告別式|出産祝い|慶弔/,
+      car: /オイル|タイヤ|車検|点検|給油|保険|洗車|km|キロ|車/i,
+      tt: /教室|塾|授業|レッスン|講義|習い事|スクール/,
+      memo: /メモ|暗証番号|パスワード|口座|サイズ/,
+      ann: /誕生日|記念日|命日|法事|旧暦/,
+      rt: /毎日|毎朝|毎晩|毎週|毎月|ごと/,
+      lunar: /旧暦/, locked: /暗証番号|パスワード|口座/,
+      freq: /毎日|毎朝|毎晩|毎週|毎月/,
+      amount: /(\d[\d,]*)\s*万円/, amountFmt: '{n}万円',
+      km: /([\d,]+)\s*(?:km|キロ)/i,
+      md: /(\d{1,2})\s*月\s*(\d{1,2})\s*日/,
+      rel: [[/明後日|あさって/, 2], [/明日|あした/, 1], [/今日|きょう/, 0]],
+      weekday: /([日月火水木金土])曜/, weekdays: '日月火水木金土',
+      ttDays: function (s) { var m = s.match(/(?:^|\s)([月火水木金土日]{1,3})(?=\s|曜|$)/); return m ? m[1].split('') : []; },
+      time: function (s) {
+        var m = s.match(/(午前|午後|朝|夜|夕方)?\s*(\d{1,2})\s*時(?:\s*(\d{1,2})\s*分)?/);
+        return m ? [m[1] && /午後|夜|夕方/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
+      }
+    },
+    zh: {
+      gt: /婚禮|喜宴|禮金|紅包|白包|喪禮|告別式|奠儀|滿月|彌月/,
+      car: /機油|輪胎|保養|加油|保險|洗車|公里|km|車/i,
+      tt: /補習|才藝|課|教室/,
+      memo: /備忘|密碼|帳號|尺寸|地址/,
+      ann: /生日|紀念日|忌日|農曆/,
+      rt: /每天|每日|每週|每月|每隔|每/,
+      lunar: /農曆/, locked: /密碼|帳號/,
+      freq: /每天|每日|每週|每月/,
+      amount: /(\d[\d,]*)\s*元/, amountFmt: '{n} 元',
+      km: /([\d,]+)\s*(?:公里|km)/i,
+      md: /(\d{1,2})\s*月\s*(\d{1,2})\s*[日號]/,
+      rel: [[/後天/, 2], [/明天/, 1], [/今天/, 0]],
+      weekday: /(?:週|星期)([日一二三四五六天])/, weekdays: '日一二三四五六',
+      ttDays: function (s) {
+        var out = [], re = /(?:週|星期)([一二三四五六日天])/g, m;
+        while ((m = re.exec(s))) { out.push('週' + (m[1] === '天' ? '日' : m[1])); }
+        return out;
+      },
+      time: function (s) {
+        var m = s.match(/(上午|下午|早上|晚上|中午)?\s*(\d{1,2})\s*[點点](?:\s*(\d{1,2})\s*分)?/);
+        return m ? [m[1] && /下午|晚上/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
+      }
+    },
+    en: {
+      gt: /wedding|funeral|condolence|baby shower|bridal shower|gift money|memorial service/i,
+      car: /oil change|engine oil|tire|tyre|car service|inspection|insurance|car wash|\bkm\b|\d\s*km|miles|vehicle|\bcar\b/i,
+      tt: /class|lesson|lecture|tutor|practice/i,
+      memo: /memo|note|password|passcode|door code|\bpin\b|account|size/i,
+      ann: /birthday|anniversary|memorial/i,
+      rt: /every|daily|weekly|monthly/i,
+      lunar: /lunar/i, locked: /password|passcode|door code|\bpin\b|account/i,
+      freq: /every day|every morning|every night|every week|every month|daily|weekly|monthly/i,
+      amount: /\$\s?(\d[\d,]*)/, amountFmt: '${n}',
+      km: /([\d,]+)\s*(?:km|miles?)/i,
+      md: null,
+      rel: [[/tomorrow/i, 1], [/today|tonight/i, 0]],
+      weekday: null, weekdays: 'sun mon tue wed thu fri sat',
+      ttDays: function (s) {
+        var out = [], re = /\b(mon|tue|wed|thu|fri|sat|sun)[a-z]*/gi, m;
+        while ((m = re.exec(s))) { out.push(m[1].charAt(0).toUpperCase() + m[1].slice(1, 3).toLowerCase()); }
+        return out;
+      },
+      time: function (s) {
+        var m = s.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i);
+        return m ? [m[3].toLowerCase(), +m[1], m[2] ? +m[2] : 0] : null;
+      }
+    }
+  };
+  var EN_MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+  function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function daysUntil(d) { return Math.round((startOfDay(d) - startOfDay(new Date())) / 86400000); }
+  function nextOccurrence(month, day) {
     var now = new Date();
-    var loc = LANGS[lang].locale;
-    document.getElementById('today-day').textContent = String(now.getDate());
-    document.getElementById('today-dow').textContent =
-      new Intl.DateTimeFormat(loc, { weekday: 'long' }).format(now);
-    document.getElementById('today-mon').textContent =
-      '· ' + new Intl.DateTimeFormat(loc, { month: 'long' }).format(now);
+    var d = new Date(now.getFullYear(), month - 1, day);
+    return daysUntil(d) < 0 ? new Date(now.getFullYear() + 1, month - 1, day) : d;
+  }
+  function addDays(n) { return new Date(Date.now() + n * 86400000); }
+
+  /* 날짜: 「11월 8일」·「내일」·「토요일」 같은 말. 월/일 숫자도 같이 돌려준다(음력 표기용). */
+  function findDate(s, R) {
+    var m, i;
+    if (R.md && (m = s.match(R.md))) { return { date: nextOccurrence(+m[1], +m[2]), m: +m[1], d: +m[2] }; }
+    if (!R.md) {
+      m = s.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})\b/i);
+      if (m) { var mo = EN_MONTHS.indexOf(m[1].toLowerCase()) + 1; return { date: nextOccurrence(mo, +m[2]), m: mo, d: +m[2] }; }
+      m = s.match(/\b(\d{1,2})\/(\d{1,2})\b/);
+      if (m) { return { date: nextOccurrence(+m[1], +m[2]), m: +m[1], d: +m[2] }; }
+    }
+    for (i = 0; i < R.rel.length; i++) { if (R.rel[i][0].test(s)) { return { date: addDays(R.rel[i][1]) }; } }
+    var idx = -1;
+    if (R.weekday && (m = s.match(R.weekday))) { idx = R.weekdays.indexOf(m[1] === '天' ? '日' : m[1]); }
+    if (!R.weekday && (m = s.match(/\b(?:on|this|next)\s+(sun|mon|tue|wed|thu|fri|sat)[a-z]*/i))) {
+      idx = R.weekdays.split(' ').indexOf(m[1].toLowerCase());
+    }
+    if (idx >= 0) { return { date: addDays((idx - new Date().getDay() + 7) % 7) }; }
+    return null;
   }
 
-  function paintFaq(t) {
-    var list = document.getElementById('faq-list');
-    var items = pick(t, 'faq.items') || [];
-    if (!items.length) { return; }
+  /* 시각: 「4시」처럼 오전·오후가 없는 1~7시는 오후로 읽는다(학원·약속 시간의 흔한 쓰임). */
+  function findTime(s, R) {
+    var m = s.match(/\b(\d{1,2}):(\d{2})\b/);
+    if (m) { return pad(+m[1]) + ':' + m[2]; }
+    var r = R.time(s);
+    if (!r) { return null; }
+    var h = r[1];
+    if (r[0] === 'pm' && h < 12) { h += 12; }
+    if (r[0] === 'am' && h === 12) { h = 0; }
+    if (!r[0] && h >= 1 && h <= 7) { h += 12; }
+    return pad(h) + ':' + pad(r[2]);
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function classify(s, R) {
+    var order = ['gt', 'car', 'tt', 'memo', 'ann', 'rt'];
+    for (var i = 0; i < order.length; i++) { if (R[order[i]].test(s)) { return order[i]; } }
+    return 'todo';
+  }
+  function dday(n) { return n === 0 ? t.parse.today : (n > 0 ? 'D-' + n : 'D+' + (-n)); }
+  function tone(n) { return n < 0 ? 'late' : n <= 3 ? 'near' : n <= 14 ? 'ink' : ''; }
+
+  function parse(raw) {
+    var s = raw.trim();
+    var R = RULES[lang];
+    var P = t.parse;
+    var cat = classify(s, R);
+    var when = findDate(s, R);
+    var time = findTime(s, R);
+    var n = when ? daysUntil(when.date) : null;
+    var it = { title: s, drawer: cat === 'todo' ? 'rt' : cat, cat: P.cats[cat], meta: '', right: '', tone: '', circle: false };
+    var m;
+    switch (cat) {
+      case 'gt':
+        m = s.match(R.amount);
+        it.meta = m ? fill(P.gtAmount, { amt: fill(R.amountFmt, { n: m[1] }) }) : P.gt;
+        it.right = n !== null ? dday(n) : P.recorded;
+        break;
+      case 'car':
+        m = s.match(R.km);
+        it.meta = m ? fill(P.carKm, { km: m[1] }) : P.car;
+        it.right = m ? m[1] + (lang === 'zh' ? ' 公里' : 'km') : P.carRight;
+        break;
+      case 'tt':
+        var days = R.ttDays(s);
+        it.meta = fill(P.tt, { days: days.length ? days.join(P.daySep) : P.weekly, time: time ? ' ' + time : '' });
+        it.right = days.length ? days[0] : P.weekly;
+        break;
+      case 'memo':
+        it.meta = R.locked.test(s) ? P.memoLocked : P.memo;
+        it.right = P.memoRight;
+        break;
+      case 'ann':
+        var lunar = R.lunar.test(s);
+        it.meta = lunar ? P.annLunar : P.ann;
+        it.right = lunar && when && when.m ? fill(P.lunarRight, { m: when.m, d: when.d }) : (n !== null ? dday(n) : P.yearly);
+        if (lunar) { n = null; }
+        break;
+      case 'rt':
+        m = s.match(R.freq);
+        it.meta = fill(P.rt, { freq: m ? m[0] : P.repeat, time: time ? ' ' + time : '' });
+        it.circle = true;
+        break;
+      default:
+        it.meta = when ? P.todo + (time ? ' · ' + time : '') : P.todoToday;
+        if (n !== null && n > 0) { it.right = dday(n); } else { it.circle = true; }
+    }
+    if (n !== null && it.right && !it.circle) { it.tone = tone(n); }
+    it.meta = it.meta.charAt(0).toUpperCase() + it.meta.slice(1);
+    return it;
+  }
+
+  /* ── 그리기 ─────────────────────────────────── */
+  function rowEl(it) {
+    var row = el('div', 'row enter');
+    var left = el('div');
+    left.appendChild(el('div', 't', it.title));
+    var d = el('div', 'd');
+    d.appendChild(el('b', '', it.cat));
+    d.appendChild(document.createTextNode(t.parse.sep + it.meta));
+    left.appendChild(d);
+    row.appendChild(left);
+    if (it.circle) {
+      var c = el('span', 'circle'); c.setAttribute('aria-hidden', 'true'); row.appendChild(c);
+    } else {
+      row.appendChild(el('span', 'k' + (it.tone ? ' ' + it.tone : ''), it.right));
+    }
+    return row;
+  }
+
+  function paintBoard(newOnly) {
+    var list = $('list');
+    $('empty').hidden = items.length > 0;
+    $('clear').hidden = items.length === 0;
+    $('after').hidden = items.length === 0;
+    if (newOnly) {
+      list.appendChild(rowEl(items[items.length - 1]));
+    } else {
+      Array.prototype.slice.call(list.querySelectorAll('.row')).forEach(function (r) { r.remove(); });
+      items.forEach(function (it) { list.appendChild(rowEl(it)); });
+    }
+    var last = items.length ? items[items.length - 1].title : '';
+    $('web-link').href = 'https://amatdda.bigseasons.co.kr/' + (last ? '?q=' + encodeURIComponent(last) : '');
+    paintDrawers();
+  }
+
+  function paintDrawers() {
+    var grid = $('drawer-grid');
+    grid.textContent = '';
+    DRAWER_IDS.forEach(function (id, i) {
+      var mine = items.filter(function (it) { return it.drawer === id; });
+      var box = el('div', 'drawer' + (mine.length ? ' filled' : '') + (hot === id ? ' hot' : ''));
+      var top = el('div', 'top-line');
+      top.appendChild(el('span', 'n', t.drawers[i].name));
+      top.appendChild(el('span', 'c mono', String(mine.length)));
+      box.appendChild(top);
+      box.appendChild(el('div', 'l', mine.length ? mine[mine.length - 1].title : t.drawers[i].hint));
+      grid.appendChild(box);
+    });
+  }
+
+  function paintChips() {
+    var wrap = $('chips');
+    wrap.textContent = '';
+    t.examples.forEach(function (ex) {
+      var b = el('button', 'chip');
+      b.type = 'button';
+      b.appendChild(el('b', '', ex.cat));
+      b.appendChild(document.createTextNode(ex.text));
+      b.addEventListener('click', function () { add(ex.text); });
+      wrap.appendChild(b);
+    });
+    var all = el('button', 'chip all', t.hero.all);
+    all.type = 'button';
+    all.addEventListener('click', function () {
+      demoTimers.forEach(clearTimeout);
+      demoTimers = t.examples.map(function (ex, i) { return setTimeout(function () { add(ex.text); }, i * 420); });
+    });
+    wrap.appendChild(all);
+  }
+
+  function add(text) {
+    if (!text || !text.trim()) { return; }
+    var it = parse(text);
+    items.push(it);
+    var trimmed = items.length > 8;
+    if (trimmed) { items.shift(); }
+    hot = it.drawer;
+    paintBoard(!trimmed);
+  }
+
+  function paintFaq() {
+    var list = $('faq-list');
     list.textContent = '';
-    items.forEach(function (it) {
-      var d = document.createElement('details');
-      var s = document.createElement('summary');
-      s.textContent = it.question;
-      var p = document.createElement('p');
-      p.textContent = it.answer;
-      d.appendChild(s); d.appendChild(p); list.appendChild(d);
+    (t.faq.items || []).forEach(function (it) {
+      var d = el('details'), s = el('summary', '', it.question);
+      d.appendChild(s); d.appendChild(el('p', '', it.answer)); list.appendChild(d);
     });
   }
 
-  function apply(t, lang) {
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var v = pick(t, el.getAttribute('data-i18n'));
-      if (typeof v === 'string') { el.textContent = v; }
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      var v = pick(t, el.getAttribute('data-i18n-html'));
-      if (typeof v === 'string') { el.innerHTML = v; }
-    });
-    paintFaq(t);
-    paintToday(lang);
+  function paintToday() {
+    var now = new Date(), loc = LANGS[lang].locale;
+    $('today-day').textContent = String(now.getDate());
+    $('today-dow').textContent = new Intl.DateTimeFormat(loc, { weekday: 'long' }).format(now);
+    $('today-mon').textContent = ' · ' + new Intl.DateTimeFormat(loc, { month: 'long' }).format(now);
+  }
 
-    document.documentElement.lang = LANGS[lang].locale;
-    document.getElementById('lang-flag').textContent = LANGS[lang].flag;
-    document.getElementById('lang-name').textContent = LANGS[lang].name;
+  function rotatePlaceholder() {
+    if (!t) { return; }
+    var input = $('dock');
+    var exs = t.examples;
+    input.placeholder = t.hero.placeholderPrefix + exs[phIndex % exs.length].text;
+  }
+
+  function apply(next, code) {
+    t = next; lang = code;
+    document.querySelectorAll('[data-i18n]').forEach(function (e) {
+      var v = pick(t, e.getAttribute('data-i18n'));
+      if (typeof v === 'string') { e.textContent = v; }
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (e) {
+      var v = pick(t, e.getAttribute('data-i18n-html'));
+      if (typeof v === 'string') { e.innerHTML = v; }
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (e) {
+      var v = pick(t, e.getAttribute('data-i18n-alt'));
+      if (typeof v === 'string') { e.alt = v; }
+    });
+    document.querySelectorAll('img[data-shot]').forEach(function (img) {
+      img.src = 'assets/landing/' + img.getAttribute('data-shot') + '_' + code + '.jpg';
+    });
+    document.title = t.meta.title;
+    document.documentElement.lang = LANGS[code].locale;
+    $('lang-btn').textContent = LANGS[code].name;
     document.querySelectorAll('#lang-menu button').forEach(function (b) {
-      b.setAttribute('aria-current', String(b.getAttribute('data-lang') === lang));
+      b.setAttribute('aria-current', String(b.getAttribute('data-lang') === code));
     });
+    /* 언어를 바꾸면 적어 둔 줄은 비운다 — 다른 언어로 적은 문장은 새 언어의 규칙으로 못 읽는다. */
+    demoTimers.forEach(clearTimeout);
+    items = []; hot = null;
+    paintToday(); paintChips(); paintFaq(); rotatePlaceholder(); paintBoard(false);
   }
 
-  function load(lang) {
-    if (cache[lang]) { return Promise.resolve(cache[lang]); }
-    return fetch('i18n/' + lang + '.json').then(function (r) {
-      if (!r.ok) { throw new Error('i18n ' + lang + ' ' + r.status); }
+  function load(code) {
+    if (cache[code]) { return Promise.resolve(cache[code]); }
+    return fetch('i18n/' + code + '.json').then(function (r) {
+      if (!r.ok) { throw new Error('i18n ' + code + ' ' + r.status); }
       return r.json();
-    }).then(function (j) { cache[lang] = j; return j; });
+    }).then(function (j) { cache[code] = j; return j; });
   }
 
-  function switchTo(lang) {
-    if (!LANGS[lang]) { lang = 'ko'; }
-    return load(lang).then(function (t) {
-      apply(t, lang);
-      try { localStorage.setItem('preferred-lang', lang); } catch (e) { /* 저장 불가 시 무시 */ }
+  function switchTo(code) {
+    if (!LANGS[code]) { code = 'ko'; }
+    return load(code).then(function (j) {
+      apply(j, code);
+      try { localStorage.setItem('preferred-lang', code); } catch (e) { /* 저장 불가 시 무시 */ }
     }).catch(function () {
       /* 번역을 못 불러오면 HTML에 적힌 한국어 기본값을 그대로 둔다. */
-      paintToday(LANGS[lang] ? lang : 'ko');
+      if (code !== 'ko') { return switchTo('ko'); }
     });
   }
 
-  var btn = document.getElementById('lang-btn');
-  var menu = document.getElementById('lang-menu');
-  function closeMenu() {
-    menu.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-  }
+  /* ── 입력 ─────────────────────────────────── */
+  $('dock-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!t) { return; }
+    var input = $('dock');
+    add(input.value);
+    input.value = '';
+  });
+  $('clear').addEventListener('click', function () {
+    demoTimers.forEach(clearTimeout);
+    items = []; hot = null; paintBoard(false);
+  });
+  setInterval(function () {
+    if (document.hidden || document.activeElement === $('dock')) { return; }
+    phIndex += 1; rotatePlaceholder();
+  }, 2600);
+
+  /* ── 언어 메뉴 ───────────────────────────────── */
+  var btn = $('lang-btn'), menu = $('lang-menu');
+  function closeMenu() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
-    var open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-expanded', String(menu.classList.toggle('open')));
   });
   menu.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-lang]');
@@ -555,16 +910,23 @@
     closeMenu();
   });
   document.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeMenu(); }
-  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); } });
+
+  /* ── 스크롤 타임라인이 없는 브라우저: 화면에 들어올 때 한 번 ── */
+  if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) && 'IntersectionObserver' in window) {
+    document.body.classList.add('io');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.sv-rise, .sv-pop, .sv-rule').forEach(function (n) { io.observe(n); });
+  }
 
   var saved = null;
   try { saved = localStorage.getItem('preferred-lang'); } catch (e) { /* 접근 불가 시 무시 */ }
-  var code = (navigator.language || 'ko').toLowerCase();
-  var detected = code.indexOf('ko') === 0 ? 'ko'
-               : code.indexOf('ja') === 0 ? 'ja'
-               : code.indexOf('zh') === 0 ? 'zh' : 'en';
+  var nav = (navigator.language || 'ko').toLowerCase();
+  var detected = nav.indexOf('ko') === 0 ? 'ko' : nav.indexOf('ja') === 0 ? 'ja' : nav.indexOf('zh') === 0 ? 'zh' : 'en';
   switchTo(saved || detected);
 })();
 </script>
