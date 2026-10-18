@@ -123,8 +123,12 @@
   @media (min-width: 860px) { .top nav { display: flex; } }
   .top nav a { color: var(--muted); text-decoration: none; }
   .top nav a:hover { color: var(--text); }
-  .lang { position: relative; margin-left: auto; }
+  .lang { position: relative; }
   @media (min-width: 860px) { .lang { margin-left: 16px; } }
+  /* 폰에서는 메뉴가 숨으니 「앱 받기」 하나만 머리말에 */
+  .get-m { margin-left: auto; font-size: 13px; font-weight: 700; text-decoration: none; color: var(--onface); background: var(--face); border-radius: 999px; padding: 9px 14px; min-height: 40px; display: inline-flex; align-items: center; }
+  .get-m:hover { color: var(--onface); }
+  @media (min-width: 860px) { .get-m { display: none; } }
   .lang > button {
     font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer;
     background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px;
@@ -241,12 +245,11 @@
   .row.tap { cursor: pointer; border-radius: 6px; }
   .row.tap:hover .t { color: var(--ink); }
   .row.tap .t svg { vertical-align: -2px; margin-left: 4px; color: var(--muted); transition: transform .25s var(--ease); }
-  .row.tap[aria-expanded="false"] .t svg { transform: rotate(-90deg); }
+  .row.tap .rowbtn[aria-expanded="false"] svg { transform: rotate(-90deg); }
+  .rowbtn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
   button.circle { background: transparent; cursor: pointer; padding: 0; font: inherit; }
   .row.done button.circle, .row.done .circle { border-color: var(--muted); }
-  .detail { padding: 18px 0 20px; border-bottom: 1px solid var(--line); }
-  .detail .dh { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -.02em; }
-  .detail .dm { font-size: 13px; color: var(--muted); margin: 2px 0 14px; }
+  .detail { padding: 4px 0 16px; border-bottom: 1px solid var(--line); }
   .rhythm { padding: 16px; border-radius: 16px; background: var(--bg2); }
   .rh-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
   .rh-top b { font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -370,6 +373,9 @@
     .gallery figure { flex: 0 0 72%; scroll-snap-align: center; }
     .gallery.picked figure.on img { transform: none; }
     .wrap.split { grid-template-columns: 1fr; gap: 56px; padding-top: 88px; }
+    .closing .stores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 360px; margin-left: auto; margin-right: auto; }
+    .closing .stores .pill { text-align: center; padding-left: 12px; padding-right: 12px; }
+    .closing .stores .pill.ghost { grid-column: 1 / -1; }
   }
 
   /* ── 움직임 ───────────────────────────────────
@@ -415,6 +421,7 @@
       <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
       <a href="#get" data-i18n="nav.get">앱 받기</a>
     </nav>
+    <a class="get-m" href="#get" data-i18n="nav.get">앱 받기</a>
     <div class="lang">
       <button id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">한국어</button>
       <menu id="lang-menu">
@@ -482,13 +489,11 @@
       <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r3t">엄마 생신</div><div class="d" data-meta="briefing.r3d" data-icon="cake" data-bell="1">생일 · 1년마다 · 뱀</div></div><span class="k ink">D-12</span></div>
       <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r4t">엔진오일 교체</div><div class="d" data-meta="briefing.r4d" data-icon="car" data-bell="1">패밀리카 · 6개월마다</div></div><span class="k late">D+61</span></div>
       <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r5t">영양제 먹기</div><div class="d routine" data-meta="briefing.r5d" data-icon="heart" data-cat="briefing.r5cat" data-fire="0">오늘 시작 · 매일 21시 · 건강</div></div><span class="circle" aria-hidden="true"></span></div>
-      <div class="row tap sv-rise s2" id="run-row" role="button" tabindex="0" aria-expanded="true" aria-controls="run-detail">
-        <div><div class="t"><span data-i18n="briefing.r6t">5km 러닝</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div><div class="d routine" id="run-meta" data-icon="dumbbell" data-cat="briefing.runCategory" data-fire="1">6일 연속 · 매일 7시 · 운동</div></div>
+      <div class="row tap sv-rise s2" id="run-row">
+        <div><div class="t"><button type="button" class="rowbtn" id="run-toggle" aria-expanded="true" aria-controls="run-detail"><span data-i18n="briefing.r6t">5km 러닝</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="d routine" id="run-meta" data-icon="dumbbell" data-cat="briefing.runCategory" data-fire="1">6일 연속 · 매일 7시 · 운동</div></div>
         <button class="circle" type="button" id="run-check" aria-pressed="false" aria-label="5km 러닝"></button>
       </div>
       <div class="detail" id="run-detail">
-        <p class="dh" data-i18n="briefing.r6t">5km 러닝</p>
-        <p class="dm" data-i18n="briefing.r6meta">루틴 · 매일 · 운동</p>
         <div class="rhythm">
           <div class="rh-top"><span data-i18n="rhythm.title">최근 7일</span><b id="rh-count">7일간 6회</b></div>
           <div class="rh-days" id="rh-days"></div>
@@ -809,13 +814,13 @@
   function toggleRun() { runDone = !runDone; paintRun(); }
   $('run-check').addEventListener('click', function (e) { e.stopPropagation(); toggleRun(); });
   function toggleDetail() {
-    var open = $('run-row').getAttribute('aria-expanded') !== 'true';
-    $('run-row').setAttribute('aria-expanded', String(open));
+    var open = $('run-toggle').getAttribute('aria-expanded') !== 'true';
+    $('run-toggle').setAttribute('aria-expanded', String(open));
     $('run-detail').hidden = !open;
   }
-  $('run-row').addEventListener('click', toggleDetail);
-  $('run-row').addEventListener('keydown', function (e) {
-    if (e.target === $('run-row') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleDetail(); }
+  /* 줄 어디를 눌러도 펼치고 접는다(동그라미는 체크). 키보드는 제목 버튼이 받는다. */
+  $('run-row').addEventListener('click', function (e) {
+    if (!e.target.closest('#run-check')) { toggleDetail(); }
   });
 
   $('dock').addEventListener('input', paintEntry);
