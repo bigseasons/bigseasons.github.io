@@ -511,6 +511,8 @@
     zh: { name: '繁體中文', locale: 'zh-TW' }
   };
   var DRAWER_IDS = ['rt', 'ann', 'tt', 'car', 'gt', 'memo'];
+  /* 예전 사이트의 'preferred-lang' 은 자동 판정 값까지 저장돼 있어서 읽지 않는다. */
+  var LANG_KEY = 'site-lang';
   var cache = {};
   var t = null;          // 현재 언어의 번역
   var lang = 'ko';
@@ -872,7 +874,6 @@
     if (!LANGS[code]) { code = 'ko'; }
     return load(code).then(function (j) {
       apply(j, code);
-      try { localStorage.setItem('preferred-lang', code); } catch (e) { /* 저장 불가 시 무시 */ }
     }).catch(function () {
       /* 번역을 못 불러오면 HTML에 적힌 한국어 기본값을 그대로 둔다. */
       if (code !== 'ko') { return switchTo('ko'); }
@@ -906,7 +907,10 @@
   menu.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-lang]');
     if (!b) { return; }
-    switchTo(b.getAttribute('data-lang'));
+    var code = b.getAttribute('data-lang');
+    switchTo(code);
+    /* 저장은 메뉴에서 직접 고를 때만. 자동 판정까지 저장하면 한 번 본 언어가 영영 고정된다. */
+    try { localStorage.setItem(LANG_KEY, code); } catch (err) { /* 저장 불가 시 무시 */ }
     closeMenu();
   });
   document.addEventListener('click', closeMenu);
@@ -924,7 +928,7 @@
   }
 
   var saved = null;
-  try { saved = localStorage.getItem('preferred-lang'); } catch (e) { /* 접근 불가 시 무시 */ }
+  try { saved = localStorage.getItem(LANG_KEY); } catch (e) { /* 접근 불가 시 무시 */ }
   var nav = (navigator.language || 'ko').toLowerCase();
   var detected = nav.indexOf('ko') === 0 ? 'ko' : nav.indexOf('ja') === 0 ? 'ja' : nav.indexOf('zh') === 0 ? 'zh' : 'en';
   switchTo(saved || detected);
