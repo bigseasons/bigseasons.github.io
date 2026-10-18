@@ -4,177 +4,62 @@
   },
   "brand": "Amatdda",
   "nav": {
-    "drawers": "Six drawers",
+    "tools": "Life tools",
     "faq": "FAQ",
     "get": "Get the app"
   },
   "hero": {
     "title": "Before you forget, <span>jot down one line.</span>",
-    "lede": "To-dos, birthdays, car service, gifts, memos, timetables. Type it into one box and it lands in the right place.",
-    "inputLabel": "Jot down one line",
-    "submit": "Add",
-    "placeholderPrefix": "e.g. ",
-    "all": "Try them all at once"
+    "lede": "To-dos, birthdays, oil changes and more. It is the same input box as in the app.",
+    "inputLabel": "Jot down one line"
   },
-  "examples": [
-    {
-      "cat": "Gifts",
-      "text": "Chris's wedding Nov 8, gift $100"
-    },
-    {
-      "cat": "Vehicle",
-      "text": "Oil change every 5,000 km"
-    },
-    {
-      "cat": "Timetable",
-      "text": "Swim class Tue Thu 4pm"
-    },
-    {
-      "cat": "Routine",
-      "text": "Drink water every day at 9am"
-    },
-    {
-      "cat": "Anniversary",
-      "text": "Mom's birthday May 12"
-    },
-    {
-      "cat": "Memo",
-      "text": "Front door code memo"
-    }
+  "chips": [
+    "Take an umbrella tomorrow",
+    "Mom's birthday May 12",
+    "Oil change",
+    "Drink water every morning"
   ],
-  "drawers": [
-    {
-      "name": "To-dos & routines",
-      "hint": "Drink water daily at 9am"
-    },
-    {
-      "name": "Anniversaries",
-      "hint": "Mom's birthday May 12"
-    },
-    {
-      "name": "Timetable",
-      "hint": "Swim class Tue Thu 4pm"
-    },
-    {
-      "name": "Vehicle",
-      "hint": "Oil change every 5,000 km"
-    },
-    {
-      "name": "Gifts",
-      "hint": "Chris's wedding, $100"
-    },
-    {
-      "name": "Memo",
-      "hint": "Front door code"
-    }
-  ],
-  "board": {
-    "listTitle": "Today's list",
-    "clear": "Clear",
-    "empty": "Nothing here yet. Type a line above or tap an example.",
-    "ctaTitle": "We'll remind you when it's time.",
-    "ctaBody": "Reminders come from the app. Keep managing everything you wrote there.",
-    "web": "Keep trying it on the web",
-    "drawersTitle": "Where it goes",
-    "drawersNote": "No separate apps to install. Six drawers in one."
+  "trial": {
+    "title": "Try the same features as the app, before you download it.",
+    "body": "Want to try it on the web right now, no install needed?",
+    "yes": "Yes, try it on the web",
+    "no": "No, keep looking around"
   },
-  "parse": {
-    "cats": {
-      "gt": "Gifts",
-      "car": "Vehicle",
-      "tt": "Timetable",
-      "memo": "Memo",
-      "ann": "Anniversary",
-      "rt": "Routine",
-      "todo": "To-do"
-    },
-    "sep": " · ",
-    "today": "Today",
-    "recorded": "Logged",
-    "gt": "Added to your gift log",
-    "gtAmount": "Gave {amt} · added to your gift log",
-    "car": "Service record",
-    "carKm": "Every {km} km · based on mileage",
-    "carRight": "Service",
-    "tt": "{days}{time} · added to timetable",
-    "daySep": "·",
-    "weekly": "Weekly",
+  "briefing": {
+    "title": "Open the app and here's your day",
+    "r1t": "Pack swim fins",
+    "r1d": "Swim class · Spring timetable",
+    "r1k": "Tue",
+    "r2t": "Subscription renewal",
+    "r2d": "Household · every month",
+    "r3t": "Mom's birthday",
+    "r3d": "Birthday · May 12",
+    "r4t": "Engine oil change",
+    "r4d": "Car · every 5,000 km",
+    "r5t": "Write in journal",
+    "r5d": "Starts today · daily at 21:00",
+    "r6t": "5km run",
+    "r6s": "1-day streak",
+    "r6d": "Fitness",
+    "r7t": "Drink water",
+    "r7s": "1-day streak",
+    "r7d": "Daily at 9:00"
+  },
+  "tools": {
     "memo": "Memo",
-    "memoLocked": "Locked memo",
-    "memoRight": "Memo",
-    "ann": "Every year",
-    "annLunar": "Every year · lunar date converted",
-    "lunarRight": "Lunar {m}/{d}",
-    "yearly": "Yearly",
-    "rt": "{freq}{time} · check off to build a streak",
-    "repeat": "Repeats",
-    "todo": "Quick to-do",
-    "todoToday": "Quick to-do · today"
+    "timetable": "Timetable",
+    "timetableValue": "Today 2",
+    "vehicle": "Vehicle",
+    "gifts": "Gifts",
+    "giftsValue": "14 people"
   },
-  "domains": {
-    "title": "Everything you need to remember, in one place",
-    "rt": {
-      "title": "To-dos & routines",
-      "body": "Only the days you check off count toward your streak. Missed reminders show up again the next time you open the app.",
-      "r1t": "Rowing, 20 min",
-      "r1s": "12-day streak",
-      "r1d": "Daily at 9:00",
-      "r2t": "Water filter change",
-      "r2d": "Household · every 3 months"
-    },
-    "ann": {
-      "title": "Anniversaries",
-      "body": "Counts down to birthdays and anniversaries, and counts up the days since with D+.",
-      "r1t": "Mom's birthday",
-      "r1d": "Every year · May 12",
-      "r2t": "The day we met",
-      "r2d": "Days since · D+ on your home screen"
-    },
-    "tt": {
-      "title": "Timetable",
-      "body": "From your kid's lessons to your own classes. Share it with a guardian.",
-      "r1t": "Swimming",
-      "r1d": "Tue·Thu 16:00 · pack swim fins",
-      "r1k": "in 33 min",
-      "r2t": "Piano",
-      "r2d": "Mon·Wed·Fri 17:30",
-      "r2k": "Mon"
-    },
-    "car": {
-      "title": "Vehicle",
-      "body": "Enter your mileage and it works out when service is due. Insurance renewal, too.",
-      "r1t": "Engine oil change",
-      "r1d": "From 34,200 km · every 5,000 km",
-      "r2t": "Car insurance renewal",
-      "r2d": "Yearly · reminder before renewal"
-    },
-    "gt": {
-      "title": "Gifts",
-      "body": "As your record of gifts given and received grows, you'll know what feels right next time.",
-      "r1t": "Chris's wedding",
-      "r1d": "Given · based on the $100 you received",
-      "r1k": "$100",
-      "r2t": "My event · baby shower",
-      "r2d": "Received · 14 people",
-      "r2k": "Logged"
-    },
-    "memo": {
-      "title": "Memo",
-      "body": "Sort into folders and lock things like passwords. See them on your lock screen, too.",
-      "r1t": "Front door code",
-      "r1d": "Locked · Home",
-      "r2t": "Kid's shoe size",
-      "r2d": "Family · edited yesterday",
-      "r2k": "Memo"
-    }
-  },
-  "shots": {
-    "title": "See it without opening the app",
-    "body": "Today's list on your home screen widget, memos on your lock screen.",
-    "cap1": "Today screen",
-    "cap2": "Home screen widget",
-    "alt1": "Amatdda today screen",
-    "alt2": "Amatdda home screen widget"
+  "drawers": {
+    "title": "Four life tools, all in one app",
+    "body": "Open them right from the bottom of the home screen. No extra apps to install.",
+    "altMemo": "Memo: lock memos like passwords, show important ones on the lock screen",
+    "altTimetable": "Timetable: classes and weekly schedule on one page",
+    "altVehicle": "Vehicle: reminds you of oil changes by mileage",
+    "altGifts": "Gifts: what you gave and received in one log"
   },
   "closing": {
     "title": "Leave the remembering to us. Take a breather."
@@ -203,6 +88,34 @@
   "contact": {
     "title": "Contact",
     "body": "Amatdda is made by one person. I reply personally within 24 hours on weekdays."
+  },
+  "entry": {
+    "placeholder": "Jot it down before you forget",
+    "todo": "Add quick to-do",
+    "item": "Make a schedule",
+    "itemAs": "Make a {label} schedule",
+    "routine": "Make it a routine",
+    "memo": "Keep writing as a memo",
+    "memorial": "Memorial",
+    "cats": {
+      "마트": "Grocery",
+      "전자기기": "Devices",
+      "생활용품": "Home",
+      "자동차": "Car",
+      "건강": "Health",
+      "반려동물": "Pets",
+      "화장품": "Cosmetics",
+      "운동": "Fitness",
+      "음식": "Food",
+      "청소": "Cleaning",
+      "원예": "Gardening",
+      "의류": "Clothes",
+      "기념일": "Anniversary",
+      "여행": "Travel",
+      "시험": "Exam",
+      "회의": "Meeting",
+      "생일": "Birthday"
+    }
   },
   "footer": {
     "privacy": "Privacy Policy",

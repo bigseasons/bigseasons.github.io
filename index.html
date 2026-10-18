@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>까먹지마 | 할 일·루틴·기념일·시간표·자동차·경조사·메모를 한 앱에</title>
-<meta name="description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 한 줄로 적으면 알아서 제자리에 나눠 담고, 때가 되면 알려 드립니다. iOS · Android." />
+<meta name="description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창에 한 줄 적어 두면 때가 됐을 때 알려 드립니다. 설치 전에 웹에서 먼저 써 볼 수 있어요. iOS · Android." />
 <link rel="canonical" href="https://bigseasons.co.kr/" />
 <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#17181C" media="(prefers-color-scheme: dark)" />
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="까먹지마" />
 <meta property="og:title" content="까먹지마 | 까먹기 전에, 한 줄만" />
-<meta property="og:description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 적으면 알아서 제자리에 나눠 담습니다." />
+<meta property="og:description" content="할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창에 한 줄 적어 두면 때가 됐을 때 알려 드립니다." />
 <meta property="og:url" content="https://bigseasons.co.kr/" />
 <meta property="og:image" content="https://bigseasons.co.kr/assets/amatdda_icon.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -45,10 +45,10 @@
       "alternateName": "Amatdda",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "iOS, Android, Web",
-      "description": "할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창 하나에 한 줄로 적으면 알아서 제자리에 나눠 담고, 때가 되면 알려 드립니다.",
+      "description": "할 일, 생일, 엔진오일, 경조사, 메모, 학원 시간표. 입력창에 한 줄 적어 두면 때가 됐을 때 알려 드립니다.",
       "url": "https://amatdda.bigseasons.co.kr/",
       "image": "https://bigseasons.co.kr/assets/amatdda_icon.png",
-      "screenshot": "https://bigseasons.co.kr/assets/landing/home_ko.jpg",
+      "screenshot": "https://bigseasons.co.kr/assets/landing/drawer_memo_ko.jpg",
       "installUrl": [
         "https://apps.apple.com/kr/app/id6751563264",
         "https://play.google.com/store/apps/details?id=com.bigseasons.amatdda"
@@ -67,17 +67,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" />
 
 <style>
   /* 색은 앱(lib/app/theme/color_scheme.dart)의 값 그대로다. 브랜드색은 귤 하나:
      귤 잉크(--ink)는 글자·선, 귤 면(--face)은 주요 버튼·밑줄 같은 「주요 이벤트」 전용.
-     귤을 넓게 깔지 않는다 — 따뜻한 종이 위에서 베이지+오렌지가 된다. */
+     귤을 넓게 깔지 않는다(따뜻한 종이 위에서 베이지+오렌지가 된다). */
   :root {
     --bg: #FAF8F4; --bg2: #F4F1EB; --card: #FFFFFF;
-    --text: #1B1917; --muted: #6B6558; --line: #E2DDD3;
+    --text: #1B1917; --muted: #6B6558; --faint: #9A9385; --line: #E2DDD3;
     --ink: #A85C18; --face: #E9A040; --onface: #2A2410;
-    --late: #DC2626; --near: #C8441C; --streak: #4E7A4A; --frame: #1B1917;
+    --late: #DC2626; --streak: #4E7A4A;
 
     --sans: "IBM Plex Sans KR", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
             "PingFang TC", "Noto Sans TC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -88,12 +88,13 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #17181C; --bg2: #1F2024; --card: #222328;
-      --text: #F6F3F5; --muted: #B8B4B8; --line: #3F3F44;
-      --ink: #F5C377; --late: #F87171; --near: #FF8A50; --streak: #9CC796; --frame: #313238;
+      --text: #F6F3F5; --muted: #B8B4B8; --faint: #7E7B80; --line: #3F3F44;
+      --ink: #F5C377; --late: #F87171; --streak: #9CC796;
     }
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans);
@@ -104,9 +105,8 @@
   a { color: var(--ink); }
   :focus-visible { outline: 3px solid var(--face); outline-offset: 3px; border-radius: 4px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .mono { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
-  .narrow { max-width: 820px; }
+  .narrow { max-width: 680px; }
   .rule { height: 3px; background: var(--face); border-radius: 2px; transform-origin: left; }
   h2.sec { font-size: clamp(24px, 3.4vw, 32px); font-weight: 700; letter-spacing: -.03em; margin: 0; text-wrap: balance; }
 
@@ -140,110 +140,111 @@
   .lang menu button:hover { background: var(--bg2); }
   .lang menu button[aria-current="true"] { font-weight: 700; color: var(--ink); }
 
-  /* ── 첫 화면: 통합 입력창 ──────────────────── */
-  .hero { padding: 56px 0 88px; }
-  .stamp { display: flex; align-items: baseline; gap: 10px; }
-  .stamp .day { font-size: 40px; letter-spacing: -.04em; }
-  .stamp .when { font-size: 17px; font-weight: 600; }
-  .stamp .when em { font-style: normal; color: var(--ink); }
-  .stamp .when i { font-style: normal; color: var(--muted); font-weight: 500; }
+  /* ── 첫 화면: 앱과 같은 통합 입력창 ─────────────── */
+  .hero { padding: 72px 0 96px; }
   .hero h1 {
     font-size: clamp(34px, 5.4vw, 48px); line-height: 1.2; letter-spacing: -.035em; font-weight: 700;
-    margin: 36px 0 0; text-wrap: balance;
+    margin: 0; text-wrap: balance;
   }
   .hero h1 span { color: var(--ink); white-space: nowrap; }
   .lede { font-size: clamp(16px, 1.9vw, 17px); line-height: 1.7; color: var(--muted); margin: 14px 0 0; max-width: 46ch; }
 
   .dock {
-    display: flex; align-items: center; gap: 12px; height: 64px; margin-top: 28px;
-    padding: 0 10px 0 20px; border: 2px solid var(--face); border-radius: 18px; background: var(--card);
-    box-shadow: 0 18px 40px -24px rgba(168, 92, 24, .45);
+    display: flex; align-items: center; gap: 12px; height: 60px; margin-top: 32px;
+    padding: 0 20px; border: 1.5px solid var(--face); border-radius: 16px; background: var(--card);
+    box-shadow: 0 18px 40px -26px rgba(168, 92, 24, .5);
   }
   .dock svg { color: var(--ink); flex: none; }
   .dock input {
     flex: 1; min-width: 0; border: none; outline: none; background: transparent;
-    font: inherit; font-size: 18px; color: var(--text);
+    font: inherit; font-size: 17px; color: var(--text);
   }
   .dock input::placeholder { color: var(--muted); }
-  .go {
-    font: inherit; font-weight: 700; font-size: 15px; border: none; border-radius: 12px;
-    background: var(--face); color: var(--onface); padding: 0 18px; height: 44px; cursor: pointer; white-space: nowrap;
-  }
-  .go:active, .pill:active, .chip:active { transform: translateY(1px); }
 
+  /* 빈 입력: 예시 칩. 누르면 입력창을 채울 뿐 저장하지 않는다(버튼이 바뀌는 순간을 보여 주려고). */
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .chip {
-    font: inherit; font-size: 13px; color: var(--text); background: transparent; cursor: pointer;
-    border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; min-height: 40px;
-    transition: border-color .2s, transform .15s;
+    font: inherit; font-size: 14px; color: var(--text); background: transparent; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px;
+    transition: border-color .2s;
   }
   .chip:hover { border-color: var(--face); }
-  .chip b { color: var(--ink); font-weight: 600; margin-right: 6px; }
-  .chip.all { border-color: var(--face); font-weight: 600; }
 
-  .board { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; margin-top: 56px; }
-  .board h2 { font-size: 20px; font-weight: 700; margin: 0; }
-  .board-head { display: flex; align-items: baseline; justify-content: space-between; min-height: 44px; }
-  .clear { font: inherit; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; min-height: 44px; }
-  .board .rule { margin: 10px 0 0; }
-  .empty { margin: 0; padding: 28px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  /* 한 글자라도 적으면: 앱 QuickEntryTodoPanel 과 같은 네 버튼(시각 레일은 뺐다).
+     높이 44·글자 16·간격 8, 주 버튼만 잉크 채움, 셋은 1 두께 잉크 테두리, 모서리 8. */
+  .panel { display: grid; gap: 8px; margin-top: 14px; }
+  .panel button {
+    font: inherit; font-size: 16px; font-weight: 600; letter-spacing: .3px; cursor: pointer;
+    min-height: 44px; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--text); background: transparent; color: var(--text);
+    transition: transform .12s, background-color .2s;
+  }
+  .panel button.primary { background: var(--text); color: var(--bg); }
+  .panel button:hover:not(.primary) { background: var(--bg2); }
+  .panel button:active { transform: translateY(1px); }
+  .panel button .hit { color: var(--ink); }
+
+  /* ── 체험 안내 창 ────────────────────────────── */
+  dialog.trial {
+    width: min(400px, calc(100% - 32px)); padding: 28px 24px 20px; border: none; border-radius: 16px;
+    background: var(--card); color: var(--text); box-shadow: 0 30px 80px -20px rgba(20, 15, 5, .45);
+  }
+  dialog.trial::backdrop { background: rgba(20, 18, 15, .45); }
+  dialog.trial h2 { font-size: 20px; line-height: 1.4; font-weight: 700; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  dialog.trial p { margin: 10px 0 0; font-size: 15px; color: var(--muted); line-height: 1.6; }
+  dialog.trial .rule { margin: 18px 0 20px; }
+  dialog.trial .acts { display: grid; gap: 8px; }
+  dialog.trial .acts button { min-height: 44px; }
+  @media (prefers-reduced-motion: no-preference) {
+    dialog.trial[open] { animation: pop .28s var(--ease) both; }
+  }
+
+  /* ── 앱 홈 브리핑 ──────────────────────────── */
+  .briefing { padding: 0 0 112px; }
+  .briefing h2.sec { margin-bottom: 36px; }
+  .stamp { display: flex; align-items: flex-end; gap: 12px; }
+  .stamp .day { font-size: clamp(64px, 9vw, 84px); font-weight: 600; letter-spacing: -.045em; line-height: .86; font-variant-numeric: tabular-nums; }
+  .stamp .when { font-size: clamp(18px, 2.2vw, 21px); font-weight: 600; padding-bottom: 4px; }
+  .stamp .when em { font-style: normal; color: var(--ink); }
+  .stamp .when i { font-style: normal; color: var(--muted); font-weight: 500; }
+  .briefing .head-rule { margin-top: 12px; }
 
   .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .row .t { font-size: 17px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .t { font-size: 17px; font-weight: 600; }
   .row .d { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .row .d b { color: var(--ink); font-weight: 600; }
-  /* 오른쪽 값은 「33분 후」처럼 글자가 섞여 고정폭 글꼴을 쓰지 않는다(한글이 벌어진다). 숫자만 같은 폭으로. */
-  .row .k { font-size: 15px; font-weight: 600; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .k.ink { color: var(--ink); } .k.near { color: var(--near); } .k.late { color: var(--late); } .k.plain { color: var(--text); }
-  .circle { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--muted); opacity: .6; display: block; }
+  .row .d .streak { color: var(--streak); }
+  .row.done .t { color: var(--faint); text-decoration: line-through; }
+  .row .k { font-size: 16px; font-weight: 600; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .k.ink { color: var(--ink); } .k.late { color: var(--late); }
+  .circle { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted); }
+  .rows-end { height: 2px; background: var(--line); }
 
-  .after { margin-top: 24px; padding: 24px; border-radius: 18px; background: var(--bg2); }
-  .after p { margin: 0; }
-  .after .h { font-size: 18px; font-weight: 700; }
-  .after .b { margin-top: 6px; font-size: 14px; color: var(--muted); line-height: 1.6; }
-  .stores { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
-  .pill {
-    display: inline-block; text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap;
-    padding: 14px 24px; border-radius: 999px; background: var(--face); color: var(--onface);
-    transition: transform .15s;
+  .tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
+  .tool {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 76px;
+    border: 1.5px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--text);
+    transition: border-color .2s, transform .2s var(--ease);
   }
-  .pill:hover { color: var(--onface); transform: translateY(-1px); }
-  .textlink { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--face); padding: 10px 2px; }
+  .tool:hover { border-color: var(--face); transform: translateY(-2px); color: var(--text); }
+  .tool b { font-size: 16px; font-weight: 600; }
+  .tool span { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
-  .drawers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-  .drawer {
-    border: 1.5px solid var(--line); border-radius: 16px; padding: 16px; background: var(--card); opacity: .72;
-    transition: border-color .3s, transform .3s var(--ease), opacity .3s;
-  }
-  .drawer.filled { opacity: 1; }
-  .drawer.hot { border-color: var(--face); transform: translateY(-2px); }
-  .drawer .top-line { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-  .drawer .n { font-size: 15px; font-weight: 700; }
-  .drawer .c { font-size: 14px; color: var(--ink); }
-  .drawer .l { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .drawers-note { font-size: 13px; color: var(--muted); margin: 14px 0 0; line-height: 1.6; }
-
-  /* ── 여섯 서랍 ─────────────────────────────── */
-  .domains { padding: 96px 0 40px; background: var(--bg2); }
-  .band { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 48px; padding: 40px 0; border-bottom: 1px solid var(--line); }
-  .band:last-child { border-bottom: none; }
-  .band h3 { font-size: 24px; font-weight: 700; margin: 0; }
-  .band .rule { width: 56px; margin-top: 12px; }
-  .band p { font-size: 15px; color: var(--muted); line-height: 1.7; margin: 14px 0 0; }
-  .band .row .t { font-size: 16px; }
-  .band .streak { color: var(--streak); }
-
-  .shots-sec { padding: 112px 0 0; text-align: center; }
-  .shots-sec .b { font-size: 16px; color: var(--muted); margin: 12px auto 48px; max-width: 40ch; }
-  .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; max-width: 720px; margin: 0 auto; }
-  .shots figure { margin: 0; }
-  .shots figure + figure { padding-top: 64px; }
-  .shots img { width: 100%; height: auto; border-radius: 36px; border: 7px solid var(--frame); display: block; }
-  .shots figcaption { font-size: 14px; color: var(--muted); margin-top: 14px; }
+  /* ── 생활 도구 넷: 스토어 화면 그대로 ─────────────── */
+  .drawers { padding: 104px 0 0; background: var(--bg2); padding-bottom: 104px; }
+  .drawers .b { font-size: 16px; color: var(--muted); margin: 12px 0 40px; max-width: 46ch; }
+  .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .gallery figure { margin: 0; scroll-margin-top: 24px; }
+  .gallery img { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 24px 48px -28px rgba(30, 20, 5, .5); }
 
   .closing { padding: 112px 0 0; text-align: center; }
   .closing h2 { font-size: clamp(28px, 4vw, 36px); font-weight: 700; letter-spacing: -.03em; margin: 0; }
-  .closing .stores { justify-content: center; margin-top: 28px; }
+  .stores { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 28px; }
+  .pill {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap;
+    padding: 14px 24px; border-radius: 999px; background: var(--face); color: var(--onface); transition: transform .15s;
+  }
+  .pill:hover { color: var(--onface); transform: translateY(-1px); }
+  .pill:active { transform: translateY(1px); }
 
   .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; padding-top: 112px; }
   .split h2 { font-size: 22px; font-weight: 700; margin: 0; }
@@ -272,51 +273,48 @@
 
   @media (max-width: 860px) {
     .wrap { padding: 0 16px; }
-    .hero { padding-top: 40px; }
-    .board, .band, .split { grid-template-columns: 1fr; gap: 24px; }
-    .board { margin-top: 44px; gap: 40px; }
-    .dock { height: 58px; padding-left: 14px; gap: 10px; }
+    .hero { padding: 44px 0 80px; }
+    .dock { height: 56px; padding: 0 16px; }
     .dock input { font-size: 16px; }
-    .go { padding: 0 14px; }
-    /* 폰에서는 예시 칩을 한 줄로 밀어 보게 해서 입력창 아래가 길어지지 않게, 「전부 한 번에」는 맨 앞으로 */
-    .chips { flex-wrap: nowrap; overflow-x: auto; margin: 14px -16px 0; padding: 0 16px 4px; scrollbar-width: none; scroll-snap-type: x proximity; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; margin: 14px -16px 0; padding: 0 16px 4px; scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
-    .chip { flex: none; scroll-snap-align: start; }
-    .chip.all { order: -1; }
-    .shots { gap: 16px; }
-    .shots figure + figure { padding-top: 40px; }
-    .shots img { border-radius: 24px; border-width: 5px; }
+    .chip { flex: none; }
+    .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* 폰에서는 네 화면을 옆으로 밀어 본다 */
+    .gallery { display: flex; overflow-x: auto; gap: 12px; margin: 0 -16px; padding: 0 16px 12px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery figure { flex: 0 0 72%; scroll-snap-align: center; }
+    .split { grid-template-columns: 1fr; gap: 56px; }
   }
 
   /* ── 움직임 ───────────────────────────────────
-     모두 의미가 있는 자리에만: 귤 밑줄이 그어지는 것은 앱의 「오늘」 밑줄, 줄이 올라오는 것은
+     의미가 있는 자리에만: 귤 밑줄이 그어지는 것은 앱의 「오늘」 밑줄, 줄이 올라오는 것은
      목록에 항목이 놓이는 동작. 반복 애니메이션은 없다. 동작 줄이기 설정이면 전부 정지. */
-  @keyframes enter { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
-  @keyframes rise  { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-  @keyframes draw  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  @keyframes pop   { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes pop  { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  @keyframes enter { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
   @media (prefers-reduced-motion: no-preference) {
-    .enter { animation: enter .5s var(--ease) both; }
     .intro { animation: rise .7s var(--ease) both; }
-    .intro.d1 { animation-delay: .08s; } .intro.d2 { animation-delay: .16s; }
-    .intro.d3 { animation-delay: .24s; } .intro.d4 { animation-delay: .32s; }
-    .hero-rule { animation: draw .9s .1s var(--ease) both; }
+    .intro.d1 { animation-delay: .08s; } .intro.d2 { animation-delay: .16s; } .intro.d3 { animation-delay: .24s; }
+    .panel:not([hidden]) button { animation: enter .35s var(--ease) both; }
+    .panel button:nth-child(2) { animation-delay: .03s; } .panel button:nth-child(3) { animation-delay: .06s; } .panel button:nth-child(4) { animation-delay: .09s; }
 
     /* 스크롤 타임라인이 되는 브라우저(Chrome, Safari 26+)는 스크롤에 붙여서 */
     @supports (animation-timeline: view()) {
       .sv-rule { animation: draw linear both; animation-timeline: view(); animation-range: entry 30% cover 40%; }
-      .sv-rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
-      .sv-rise.s2 { animation-range: entry 10% cover 34%; }
-      .sv-pop { animation: pop linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+      .sv-rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
+      .sv-rise.s2 { animation-range: entry 8% cover 30%; }
+      .sv-pop { animation: pop linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
     }
     /* 안 되는 브라우저는 화면에 들어올 때 한 번 (스크립트가 .io 를 붙인다) */
     @supports not (animation-timeline: view()) {
       .io .sv-rise, .io .sv-pop { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-      .io .sv-pop { transform: scale(.94); }
+      .io .sv-pop { transform: scale(.96); }
       .io .sv-rise.s2 { transition-delay: .1s; }
       .io .sv-rule { transform: scaleX(0); transition: transform .9s .15s var(--ease); }
-      .io .in.sv-rise, .io .in.sv-pop, .io .in .sv-rule, .io .in.sv-rule { opacity: 1; transform: none; }
+      .io .in.sv-rise, .io .in.sv-pop, .io .in.sv-rule { opacity: 1; transform: none; }
     }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -328,7 +326,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/amatdda_icon.png" alt="" width="28" height="28" /><span data-i18n="brand">까먹지마</span></a>
     <nav>
-      <a href="#drawers" data-i18n="nav.drawers">여섯 서랍</a>
+      <a href="#tools" data-i18n="nav.tools">생활 도구</a>
       <a href="#faq" data-i18n="nav.faq">자주 묻는 질문</a>
       <a href="#get" data-i18n="nav.get">앱 받기</a>
     </nav>
@@ -348,117 +346,74 @@
 
   <section class="hero">
     <div class="wrap narrow">
-      <div class="stamp intro">
-        <span class="day mono" id="today-day">18</span>
-        <span class="when"><em id="today-dow">토요일</em><i id="today-mon"> · 10월</i></span>
-      </div>
-      <div class="rule hero-rule" style="margin-top:10px"></div>
+      <h1 class="intro" data-i18n-html="hero.title">까먹기 전에, <span>한 줄만</span> 적어 보세요.</h1>
+      <p class="lede intro d1" data-i18n="hero.lede">할 일, 생일, 엔진오일 교체까지. 앱과 똑같은 입력창이에요.</p>
 
-      <h1 class="intro d1" data-i18n-html="hero.title">까먹기 전에, <span>한 줄만</span> 적어 보세요.</h1>
-      <p class="lede intro d2" data-i18n="hero.lede">할 일, 생일, 정비, 경조사, 메모, 시간표. 입력창 하나에 적으면 알아서 제자리에 나눠 담습니다.</p>
-
-      <form class="intro d3" id="dock-form" autocomplete="off">
+      <div class="intro d2">
         <label class="sr" for="dock" data-i18n="hero.inputLabel">한 줄 입력</label>
         <div class="dock">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
-          <input id="dock" type="text" enterkeyhint="done" maxlength="80" placeholder="까먹기 전에 한 줄 적어두세요" />
-          <button class="go" type="submit" data-i18n="hero.submit">적기</button>
-        </div>
-      </form>
-      <div class="chips intro d4" id="chips"></div>
-    </div>
-
-    <div class="wrap board">
-      <div>
-        <div class="board-head">
-          <h2 data-i18n="board.listTitle">오늘의 목록</h2>
-          <button class="clear" type="button" id="clear" hidden data-i18n="board.clear">비우기</button>
-        </div>
-        <div class="rule"></div>
-        <div id="list" aria-live="polite">
-          <p class="empty" id="empty" data-i18n="board.empty">아직 비어 있어요. 위에 한 줄 적거나 예시를 눌러 보세요.</p>
-        </div>
-        <div class="after enter" id="after" hidden>
-          <p class="h" data-i18n="board.ctaTitle">때가 되면 알려 드릴게요.</p>
-          <p class="b" data-i18n="board.ctaBody">알림은 앱에서 옵니다. 적은 것들을 앱에서 이어서 관리하세요.</p>
-          <div class="stores">
-            <a class="pill" href="https://apps.apple.com/kr/app/id6751563264" target="_blank" rel="noopener">App Store</a>
-            <a class="pill" href="https://play.google.com/store/apps/details?id=com.bigseasons.amatdda" target="_blank" rel="noopener">Google Play</a>
-            <a class="textlink" id="web-link" href="https://amatdda.bigseasons.co.kr/" target="_blank" rel="noopener" data-i18n="board.web">웹에서 이어서 써 보기</a>
-          </div>
+          <input id="dock" type="text" enterkeyhint="done" maxlength="80" autocomplete="off" placeholder="까먹기 전에 한 줄 적어두세요" aria-controls="panel" />
         </div>
       </div>
 
-      <div id="drawers">
-        <div class="board-head"><h2 data-i18n="board.drawersTitle">제자리</h2></div>
-        <div class="rule"></div>
-        <div class="drawers" id="drawer-grid"></div>
-        <p class="drawers-note" data-i18n="board.drawersNote">따로 앱을 깔 필요 없이, 한 앱 안에 여섯 서랍.</p>
+      <div class="chips intro d3" id="chips"></div>
+
+      <div class="panel" id="panel" hidden>
+        <button class="primary" type="button" data-act="todo">빠른 할 일 추가</button>
+        <button type="button" data-act="item" id="item-btn">일정 만들기</button>
+        <button type="button" data-act="routine">루틴으로 만들기</button>
+        <button type="button" data-act="memo">메모로 계속 적기</button>
       </div>
     </div>
   </section>
 
-  <section class="domains" id="domains">
-    <div class="wrap">
-      <h2 class="sec sv-rise" data-i18n="domains.title">흩어져 있던 기억할 일이 한곳에 모입니다</h2>
+  <dialog class="trial" id="trial" aria-labelledby="trial-title">
+    <h2 id="trial-title" data-i18n="trial.title">앱과 똑같은 기능을, 앱을 받기 전에 체험해 볼 수 있어요.</h2>
+    <p data-i18n="trial.body">설치 없이 웹에서 바로 써 보시겠어요?</p>
+    <div class="rule"></div>
+    <div class="acts panel">
+      <button class="primary" type="button" id="trial-yes" data-i18n="trial.yes">네, 웹에서 써 볼게요</button>
+      <button type="button" id="trial-no" data-i18n="trial.no">아니요, 더 둘러볼게요</button>
+    </div>
+  </dialog>
 
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.rt.title">할 일과 루틴</h3><div class="rule sv-rule"></div><p data-i18n="domains.rt.body">매일 체크한 날만 연속으로 셉니다. 놓친 알림은 다음에 열 때 다시 보여 드려요.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.rt.r1t">로잉머신 20분</div><div class="d"><span class="streak" data-i18n="domains.rt.r1s">12일 연속</span> · <span data-i18n="domains.rt.r1d">매일 9시</span></div></div><span class="circle" aria-hidden="true"></span></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.rt.r2t">정수기 필터 교체</div><div class="d" data-i18n="domains.rt.r2d">생활용품 · 3개월마다</div></div><span class="k ink">D-6</span></div>
-        </div>
+  <section class="briefing" aria-labelledby="briefing-title">
+    <div class="wrap narrow">
+      <h2 class="sec sv-rise" id="briefing-title" data-i18n="briefing.title">앱을 열면, 오늘이 이렇게 보여요</h2>
+      <div class="stamp sv-rise">
+        <span class="day" id="today-day">18</span>
+        <span class="when"><em id="today-dow">일요일</em><i id="today-mon"> · 10월</i></span>
       </div>
+      <div class="rule head-rule sv-rule"></div>
 
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.ann.title">기념일</h3><div class="rule sv-rule"></div><p data-i18n="domains.ann.body">음력 생일은 해마다 양력으로 바꿔서, 지난 날은 D+로 셉니다.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.ann.r1t">엄마 생신</div><div class="d" data-i18n="domains.ann.r1d">매년 · 음력 3월 5일</div></div><span class="k">D-149</span></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.ann.r2t">우리 처음 만난 날</div><div class="d" data-i18n="domains.ann.r2d">지난 날 세기 · 홈에 D+ 표시</div></div><span class="k ink">D+1,204</span></div>
-        </div>
-      </div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r1t">오리발 챙기기</div><div class="d" data-i18n="briefing.r1d">수영 강습 · 1학기 시간표</div></div><span class="k ink" data-i18n="briefing.r1k">화</span></div>
+      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r2t">구독 결제일</div><div class="d" data-i18n="briefing.r2d">생활용품 · 1개월마다</div></div><span class="k ink">D-4</span></div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r3t">엄마 생신</div><div class="d" data-i18n="briefing.r3d">생일 · 음력 3월 5일</div></div><span class="k ink">D-12</span></div>
+      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r4t">엔진오일 교체</div><div class="d" data-i18n="briefing.r4d">자동차 · 5,000km마다</div></div><span class="k late">D+61</span></div>
+      <div class="row sv-rise"><div><div class="t" data-i18n="briefing.r5t">일기 쓰기</div><div class="d" data-i18n="briefing.r5d">오늘 시작 · 매일 21시</div></div><span class="circle" aria-hidden="true"></span></div>
+      <div class="row sv-rise s2"><div><div class="t" data-i18n="briefing.r6t">5km 러닝</div><div class="d"><span class="streak" data-i18n="briefing.r6s">1일 연속</span> · <span data-i18n="briefing.r6d">운동</span></div></div><span class="circle" aria-hidden="true"></span></div>
+      <div class="row done sv-rise"><div><div class="t" data-i18n="briefing.r7t">물 마시기</div><div class="d"><span class="streak" data-i18n="briefing.r7s">1일 연속</span> · <span data-i18n="briefing.r7d">매일 9시</span></div></div><span class="circle" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
+      <div class="rows-end"></div>
 
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.tt.title">시간표</h3><div class="rule sv-rule"></div><p data-i18n="domains.tt.body">아이 학원부터 내 수업까지. 보호자와 함께 볼 수 있어요.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.tt.r1t">수영</div><div class="d" data-i18n="domains.tt.r1d">화·목 16:00 · 오리발 챙기기</div></div><span class="k near" data-i18n="domains.tt.r1k">33분 후</span></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.tt.r2t">피아노</div><div class="d" data-i18n="domains.tt.r2d">월·수·금 17:30</div></div><span class="k" data-i18n="domains.tt.r2k">월</span></div>
-        </div>
-      </div>
-
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.car.title">자동차</h3><div class="rule sv-rule"></div><p data-i18n="domains.car.body">주행거리를 넣으면 정비 때를 계산하고, 보험 만기도 챙깁니다.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.car.r1t">엔진오일 교체</div><div class="d" data-i18n="domains.car.r1d">34,200km 기준 · 5,000km마다</div></div><span class="k late">D+61</span></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.car.r2t">자동차 보험 만기</div><div class="d" data-i18n="domains.car.r2d">매년 · 갱신 전 알림</div></div><span class="k">D-94</span></div>
-        </div>
-      </div>
-
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.gt.title">경조사</h3><div class="rule sv-rule"></div><p data-i18n="domains.gt.body">주고받은 기록이 쌓이면, 다음에 얼마를 할지 가늠이 섭니다.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.gt.r1t">민수 결혼식</div><div class="d" data-i18n="domains.gt.r1d">보냄 · 지난번 받은 10만원 기준</div></div><span class="k plain" data-i18n="domains.gt.r1k">100,000</span></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.gt.r2t">나의 행사 · 돌잔치</div><div class="d" data-i18n="domains.gt.r2d">받음 · 14명</div></div><span class="k" data-i18n="domains.gt.r2k">기록됨</span></div>
-        </div>
-      </div>
-
-      <div class="band">
-        <div class="sv-rise"><h3 data-i18n="domains.memo.title">메모</h3><div class="rule sv-rule"></div><p data-i18n="domains.memo.body">폴더로 나누고, 비밀번호 같은 건 잠가 둡니다. 잠금화면에서도 봅니다.</p></div>
-        <div>
-          <div class="row sv-rise"><div><div class="t" data-i18n="domains.memo.r1t">현관 비밀번호</div><div class="d" data-i18n="domains.memo.r1d">잠금 · 집</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--muted)"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-          <div class="row sv-rise s2"><div><div class="t" data-i18n="domains.memo.r2t">아이 신발 사이즈</div><div class="d" data-i18n="domains.memo.r2d">가족 · 어제 고침</div></div><span class="k" data-i18n="domains.memo.r2k">메모</span></div>
-        </div>
+      <div class="tools sv-rise">
+        <a class="tool" href="#tool-memo"><b data-i18n="tools.memo">메모</b><span>3</span></a>
+        <a class="tool" href="#tool-timetable"><b data-i18n="tools.timetable">시간표</b><span data-i18n="tools.timetableValue">오늘 2</span></a>
+        <a class="tool" href="#tool-vehicle"><b data-i18n="tools.vehicle">자동차</b><span>D-94</span></a>
+        <a class="tool" href="#tool-gifts"><b data-i18n="tools.gifts">경조사</b><span data-i18n="tools.giftsValue">14명</span></a>
       </div>
     </div>
   </section>
 
-  <section class="shots-sec">
+  <section class="drawers" id="tools">
     <div class="wrap">
-      <h2 class="sec sv-rise" data-i18n="shots.title">앱을 열지 않아도 보입니다</h2>
-      <p class="b sv-rise s2" data-i18n="shots.body">오늘의 목록은 홈 화면 위젯으로, 메모는 잠금화면으로.</p>
-      <div class="shots">
-        <figure class="sv-pop"><img data-shot="home" src="assets/landing/home_ko.jpg" width="640" height="1391" loading="lazy" alt="까먹지마 오늘 화면" data-i18n-alt="shots.alt1" /><figcaption data-i18n="shots.cap1">오늘 화면</figcaption></figure>
-        <figure class="sv-pop"><img data-shot="widget" src="assets/landing/widget_ko.jpg" width="640" height="1391" loading="lazy" alt="까먹지마 홈 화면 위젯" data-i18n-alt="shots.alt2" /><figcaption data-i18n="shots.cap2">홈 화면 위젯</figcaption></figure>
+      <h2 class="sec sv-rise" data-i18n="drawers.title">생활 도구 넷이 함께 들어 있어요</h2>
+      <p class="b sv-rise s2" data-i18n="drawers.body">홈 아래 칸에서 바로 열립니다. 따로 앱을 깔 필요가 없어요.</p>
+      <div class="gallery">
+        <figure class="sv-pop" id="tool-memo"><img data-shot="drawer_memo" src="assets/landing/drawer_memo_ko.jpg" width="660" height="1434" loading="lazy" alt="메모: 비밀번호 같은 메모는 잠그고, 중요한 건 잠금화면에" data-i18n-alt="drawers.altMemo" /></figure>
+        <figure class="sv-pop" id="tool-timetable"><img data-shot="drawer_timetable" src="assets/landing/drawer_timetable_ko.jpg" width="660" height="1434" loading="lazy" alt="시간표: 수업과 주간 일정을 한 장에" data-i18n-alt="drawers.altTimetable" /></figure>
+        <figure class="sv-pop" id="tool-vehicle"><img data-shot="drawer_vehicle" src="assets/landing/drawer_vehicle_ko.jpg" width="660" height="1434" loading="lazy" alt="자동차: 엔진오일 교체도 주행거리로 알려 줌" data-i18n-alt="drawers.altVehicle" /></figure>
+        <figure class="sv-pop" id="tool-gifts"><img data-shot="drawer_gifts" src="assets/landing/drawer_gifts_ko.jpg" width="660" height="1434" loading="lazy" alt="경조사: 보낸 금액과 받은 금액을 한 장부에" data-i18n-alt="drawers.altGifts" /></figure>
       </div>
     </div>
   </section>
@@ -504,318 +459,155 @@
 (function () {
   'use strict';
 
+  var WEB_URL = 'https://amatdda.bigseasons.co.kr/';
   var LANGS = {
     ko: { name: '한국어',   locale: 'ko-KR' },
     en: { name: 'English',  locale: 'en-US' },
     ja: { name: '日本語',   locale: 'ja-JP' },
     zh: { name: '繁體中文', locale: 'zh-TW' }
   };
-  var DRAWER_IDS = ['rt', 'ann', 'tt', 'car', 'gt', 'memo'];
   /* 예전 사이트의 'preferred-lang' 은 자동 판정 값까지 저장돼 있어서 읽지 않는다. */
   var LANG_KEY = 'site-lang';
   var cache = {};
-  var t = null;          // 현재 언어의 번역
+  var t = null;
   var lang = 'ko';
-  var items = [];        // 입력창에 적은 것들 (페이지 안에서만, 저장하지 않는다)
-  var hot = null;        // 방금 채워진 서랍
-  var phIndex = 0;
-  var demoTimers = [];
+  var keywords = [];
 
   function $(id) { return document.getElementById(id); }
   function pick(obj, path) {
     return path.split('.').reduce(function (o, k) { return (o && o[k] !== undefined) ? o[k] : undefined; }, obj);
   }
-  function fill(tpl, vars) {
-    return String(tpl).replace(/\{(\w+)\}/g, function (_, k) { return vars[k] !== undefined ? vars[k] : ''; });
-  }
-  function el(tag, cls, text) {
-    var e = document.createElement(tag);
-    if (cls) { e.className = cls; }
-    if (text !== undefined) { e.textContent = text; }
-    return e;
-  }
 
-  /* ── 한 줄 알아듣기 ─────────────────────────────
-     앱의 낱말 인식(quick_entry_keywords.json)을 홈페이지 체험용으로 줄인 것.
-     서랍 판정 → 날짜·시각·금액·거리를 뽑아 앱과 같은 한 줄(제목 · 설명 · 오른쪽 값)로 만든다. */
-  var RULES = {
-    ko: {
-      gt: /결혼식|돌잔치|장례|부고|조문|축의|부의|청첩|경조사/,
-      car: /엔진오일|타이어|정비|주유|보험|세차|km|자동차|차량|와이퍼|브레이크/i,
-      tt: /학원|수업|강의|교시|레슨|과외/,
-      memo: /메모|비번|비밀번호|계좌|사이즈|주소/,
-      ann: /생일|생신|기념일|제사|음력|추모|기일/,
-      rt: /매일|매주|매달|매월|마다/,
-      lunar: /음력/, locked: /비번|비밀번호|계좌/,
-      freq: /매일|매주|매달|매월/,
-      amount: /(\d[\d,]*)\s*만\s*원/, amountFmt: '{n}만원',
-      km: /([\d,]+)\s*km/i,
-      md: /(\d{1,2})\s*월\s*(\d{1,2})\s*일/,
-      rel: [[/모레/, 2], [/내일/, 1], [/오늘/, 0]],
-      weekday: /([일월화수목금토])요일/, weekdays: '일월화수목금토',
-      ttDays: function (s) { var m = s.match(/(?:^|\s)([월화수목금토일]{1,3})(?=\s|요일|$)/); return m ? m[1].split('') : []; },
-      time: function (s) {
-        var m = s.match(/(오전|오후|아침|저녁|밤)?\s*(\d{1,2})\s*시(?:\s*(\d{1,2})\s*분)?/);
-        return m ? [m[1] && /오후|저녁|밤/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
+  /* ── 낱말 인식 ─────────────────────────────────
+     앱 QuickEntryKeywordResolver(lib/core/services/quick_entry/) 를 그대로 옮긴 것.
+     사전은 앱의 assets/data/quick_entry_keywords.json 사본(assets/data/)이다 — 앱에서 낱말을
+     고치면 여기도 복사해야 같아진다.
+     - 정규화: trim, 소문자, 연속 공백 1칸.
+     - ko/ja/zh: 어절에 낱말이 들어 있으면 인정. 그 어절에 exclude 글이 있으면 버린다.
+     - en: 단어 경계.
+     - 여럿 걸리면 뒤 어절 승, 같은 어절이면 날짜형 > 주기형, 그래도 같으면 사전 순서. */
+  function norm(s) { return s.trim().toLowerCase().replace(/\s+/g, ' '); }
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function matchEnds(text, word, code) {
+    var ends = [], m, at, from = 0;
+    if (code === 'en') {
+      var re = new RegExp('\\b' + escRe(word) + '\\b', 'gi');
+      while ((m = re.exec(text))) { ends.push(m.index + m[0].length); }
+      return ends;
+    }
+    while ((at = text.indexOf(word, from)) >= 0) { ends.push(at + word.length); from = at + 1; }
+    return ends;
+  }
+  function tokenAt(text, end) {
+    var n = 0;
+    for (var i = 0; i < end; i++) { if (text.charCodeAt(i) === 0x20) { n++; } }
+    return n;
+  }
+  function resolve(query) {
+    var text = norm(query);
+    if (!text) { return null; }
+    var best = null, bestToken = -1;
+    keywords.forEach(function (e) {
+      var words = (e.words || {})[lang];
+      if (!words || !words.length) { return; }
+      var ex = ((e.exclude || {})[lang] || []).map(norm);
+      var latest = -1;
+      words.forEach(function (w0) {
+        var w = norm(w0);
+        if (!w) { return; }
+        matchEnds(text, w, lang).forEach(function (end) {
+          var tok = tokenAt(text, end);
+          var word = text.split(' ')[tok];
+          if (ex.some(function (x) { return x && word.indexOf(x) >= 0; })) { return; }
+          if (tok > latest) { latest = tok; }
+        });
+      });
+      if (latest < 0) { return; }
+      if (!best || latest > bestToken || (latest === bestToken && e.kind === 'date' && best.kind === 'cycle')) {
+        best = e; bestToken = latest;
       }
-    },
-    ja: {
-      gt: /結婚式|披露宴|ご祝儀|祝儀|香典|葬儀|通夜|告別式|出産祝い|慶弔/,
-      car: /オイル|タイヤ|車検|点検|給油|保険|洗車|km|キロ|車/i,
-      tt: /教室|塾|授業|レッスン|講義|習い事|スクール/,
-      memo: /メモ|暗証番号|パスワード|口座|サイズ/,
-      ann: /誕生日|記念日|命日|法事|旧暦/,
-      rt: /毎日|毎朝|毎晩|毎週|毎月|ごと/,
-      lunar: /旧暦/, locked: /暗証番号|パスワード|口座/,
-      freq: /毎日|毎朝|毎晩|毎週|毎月/,
-      amount: /(\d[\d,]*)\s*万円/, amountFmt: '{n}万円',
-      km: /([\d,]+)\s*(?:km|キロ)/i,
-      md: /(\d{1,2})\s*月\s*(\d{1,2})\s*日/,
-      rel: [[/明後日|あさって/, 2], [/明日|あした/, 1], [/今日|きょう/, 0]],
-      weekday: /([日月火水木金土])曜/, weekdays: '日月火水木金土',
-      ttDays: function (s) { var m = s.match(/(?:^|\s)([月火水木金土日]{1,3})(?=\s|曜|$)/); return m ? m[1].split('') : []; },
-      time: function (s) {
-        var m = s.match(/(午前|午後|朝|夜|夕方)?\s*(\d{1,2})\s*時(?:\s*(\d{1,2})\s*分)?/);
-        return m ? [m[1] && /午後|夜|夕方/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
-      }
-    },
-    zh: {
-      gt: /婚禮|喜宴|禮金|紅包|白包|喪禮|告別式|奠儀|滿月|彌月/,
-      car: /機油|輪胎|保養|加油|保險|洗車|公里|km|車/i,
-      tt: /補習|才藝|課|教室/,
-      memo: /備忘|密碼|帳號|尺寸|地址/,
-      ann: /生日|紀念日|忌日|農曆/,
-      rt: /每天|每日|每週|每月|每隔|每/,
-      lunar: /農曆/, locked: /密碼|帳號/,
-      freq: /每天|每日|每週|每月/,
-      amount: /(\d[\d,]*)\s*元/, amountFmt: '{n} 元',
-      km: /([\d,]+)\s*(?:公里|km)/i,
-      md: /(\d{1,2})\s*月\s*(\d{1,2})\s*[日號]/,
-      rel: [[/後天/, 2], [/明天/, 1], [/今天/, 0]],
-      weekday: /(?:週|星期)([日一二三四五六天])/, weekdays: '日一二三四五六',
-      ttDays: function (s) {
-        var out = [], re = /(?:週|星期)([一二三四五六日天])/g, m;
-        while ((m = re.exec(s))) { out.push('週' + (m[1] === '天' ? '日' : m[1])); }
-        return out;
-      },
-      time: function (s) {
-        var m = s.match(/(上午|下午|早上|晚上|中午)?\s*(\d{1,2})\s*[點点](?:\s*(\d{1,2})\s*分)?/);
-        return m ? [m[1] && /下午|晚上/.test(m[1]) ? 'pm' : (m[1] ? 'am' : ''), +m[2], m[3] ? +m[3] : 0] : null;
-      }
-    },
-    en: {
-      gt: /wedding|funeral|condolence|baby shower|bridal shower|gift money|memorial service/i,
-      car: /oil change|engine oil|tire|tyre|car service|inspection|insurance|car wash|\bkm\b|\d\s*km|miles|vehicle|\bcar\b/i,
-      tt: /class|lesson|lecture|tutor|practice/i,
-      memo: /memo|note|password|passcode|door code|\bpin\b|account|size/i,
-      ann: /birthday|anniversary|memorial/i,
-      rt: /every|daily|weekly|monthly/i,
-      lunar: /lunar/i, locked: /password|passcode|door code|\bpin\b|account/i,
-      freq: /every day|every morning|every night|every week|every month|daily|weekly|monthly/i,
-      amount: /\$\s?(\d[\d,]*)/, amountFmt: '${n}',
-      km: /([\d,]+)\s*(?:km|miles?)/i,
-      md: null,
-      rel: [[/tomorrow/i, 1], [/today|tonight/i, 0]],
-      weekday: null, weekdays: 'sun mon tue wed thu fri sat',
-      ttDays: function (s) {
-        var out = [], re = /\b(mon|tue|wed|thu|fri|sat|sun)[a-z]*/gi, m;
-        while ((m = re.exec(s))) { out.push(m[1].charAt(0).toUpperCase() + m[1].slice(1, 3).toLowerCase()); }
-        return out;
-      },
-      time: function (s) {
-        var m = s.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i);
-        return m ? [m[3].toLowerCase(), +m[1], m[2] ? +m[2] : 0] : null;
-      }
-    }
-  };
-  var EN_MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-
-  function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
-  function daysUntil(d) { return Math.round((startOfDay(d) - startOfDay(new Date())) / 86400000); }
-  function nextOccurrence(month, day) {
-    var now = new Date();
-    var d = new Date(now.getFullYear(), month - 1, day);
-    return daysUntil(d) < 0 ? new Date(now.getFullYear() + 1, month - 1, day) : d;
-  }
-  function addDays(n) { return new Date(Date.now() + n * 86400000); }
-
-  /* 날짜: 「11월 8일」·「내일」·「토요일」 같은 말. 월/일 숫자도 같이 돌려준다(음력 표기용). */
-  function findDate(s, R) {
-    var m, i;
-    if (R.md && (m = s.match(R.md))) { return { date: nextOccurrence(+m[1], +m[2]), m: +m[1], d: +m[2] }; }
-    if (!R.md) {
-      m = s.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})\b/i);
-      if (m) { var mo = EN_MONTHS.indexOf(m[1].toLowerCase()) + 1; return { date: nextOccurrence(mo, +m[2]), m: mo, d: +m[2] }; }
-      m = s.match(/\b(\d{1,2})\/(\d{1,2})\b/);
-      if (m) { return { date: nextOccurrence(+m[1], +m[2]), m: +m[1], d: +m[2] }; }
-    }
-    for (i = 0; i < R.rel.length; i++) { if (R.rel[i][0].test(s)) { return { date: addDays(R.rel[i][1]) }; } }
-    var idx = -1;
-    if (R.weekday && (m = s.match(R.weekday))) { idx = R.weekdays.indexOf(m[1] === '天' ? '日' : m[1]); }
-    if (!R.weekday && (m = s.match(/\b(?:on|this|next)\s+(sun|mon|tue|wed|thu|fri|sat)[a-z]*/i))) {
-      idx = R.weekdays.split(' ').indexOf(m[1].toLowerCase());
-    }
-    if (idx >= 0) { return { date: addDays((idx - new Date().getDay() + 7) % 7) }; }
-    return null;
-  }
-
-  /* 시각: 「4시」처럼 오전·오후가 없는 1~7시는 오후로 읽는다(학원·약속 시간의 흔한 쓰임). */
-  function findTime(s, R) {
-    var m = s.match(/\b(\d{1,2}):(\d{2})\b/);
-    if (m) { return pad(+m[1]) + ':' + m[2]; }
-    var r = R.time(s);
-    if (!r) { return null; }
-    var h = r[1];
-    if (r[0] === 'pm' && h < 12) { h += 12; }
-    if (r[0] === 'am' && h === 12) { h = 0; }
-    if (!r[0] && h >= 1 && h <= 7) { h += 12; }
-    return pad(h) + ':' + pad(r[2]);
-  }
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-
-  function classify(s, R) {
-    var order = ['gt', 'car', 'tt', 'memo', 'ann', 'rt'];
-    for (var i = 0; i < order.length; i++) { if (R[order[i]].test(s)) { return order[i]; } }
-    return 'todo';
-  }
-  function dday(n) { return n === 0 ? t.parse.today : (n > 0 ? 'D-' + n : 'D+' + (-n)); }
-  function tone(n) { return n < 0 ? 'late' : n <= 3 ? 'near' : n <= 14 ? 'ink' : ''; }
-
-  function parse(raw) {
-    var s = raw.trim();
-    var R = RULES[lang];
-    var P = t.parse;
-    var cat = classify(s, R);
-    var when = findDate(s, R);
-    var time = findTime(s, R);
-    var n = when ? daysUntil(when.date) : null;
-    var it = { title: s, drawer: cat === 'todo' ? 'rt' : cat, cat: P.cats[cat], meta: '', right: '', tone: '', circle: false };
-    var m;
-    switch (cat) {
-      case 'gt':
-        m = s.match(R.amount);
-        it.meta = m ? fill(P.gtAmount, { amt: fill(R.amountFmt, { n: m[1] }) }) : P.gt;
-        it.right = n !== null ? dday(n) : P.recorded;
-        break;
-      case 'car':
-        m = s.match(R.km);
-        it.meta = m ? fill(P.carKm, { km: m[1] }) : P.car;
-        it.right = m ? m[1] + (lang === 'zh' ? ' 公里' : 'km') : P.carRight;
-        break;
-      case 'tt':
-        var days = R.ttDays(s);
-        it.meta = fill(P.tt, { days: days.length ? days.join(P.daySep) : P.weekly, time: time ? ' ' + time : '' });
-        it.right = days.length ? days[0] : P.weekly;
-        break;
-      case 'memo':
-        it.meta = R.locked.test(s) ? P.memoLocked : P.memo;
-        it.right = P.memoRight;
-        break;
-      case 'ann':
-        var lunar = R.lunar.test(s);
-        it.meta = lunar ? P.annLunar : P.ann;
-        it.right = lunar && when && when.m ? fill(P.lunarRight, { m: when.m, d: when.d }) : (n !== null ? dday(n) : P.yearly);
-        if (lunar) { n = null; }
-        break;
-      case 'rt':
-        m = s.match(R.freq);
-        it.meta = fill(P.rt, { freq: m ? m[0] : P.repeat, time: time ? ' ' + time : '' });
-        it.circle = true;
-        break;
-      default:
-        it.meta = when ? P.todo + (time ? ' · ' + time : '') : P.todoToday;
-        if (n !== null && n > 0) { it.right = dday(n); } else { it.circle = true; }
-    }
-    if (n !== null && it.right && !it.circle) { it.tone = tone(n); }
-    it.meta = it.meta.charAt(0).toUpperCase() + it.meta.slice(1);
-    return it;
-  }
-
-  /* ── 그리기 ─────────────────────────────────── */
-  function rowEl(it) {
-    var row = el('div', 'row enter');
-    var left = el('div');
-    left.appendChild(el('div', 't', it.title));
-    var d = el('div', 'd');
-    d.appendChild(el('b', '', it.cat));
-    d.appendChild(document.createTextNode(t.parse.sep + it.meta));
-    left.appendChild(d);
-    row.appendChild(left);
-    if (it.circle) {
-      var c = el('span', 'circle'); c.setAttribute('aria-hidden', 'true'); row.appendChild(c);
-    } else {
-      row.appendChild(el('span', 'k' + (it.tone ? ' ' + it.tone : ''), it.right));
-    }
-    return row;
-  }
-
-  function paintBoard(newOnly) {
-    var list = $('list');
-    $('empty').hidden = items.length > 0;
-    $('clear').hidden = items.length === 0;
-    $('after').hidden = items.length === 0;
-    if (newOnly) {
-      list.appendChild(rowEl(items[items.length - 1]));
-    } else {
-      Array.prototype.slice.call(list.querySelectorAll('.row')).forEach(function (r) { r.remove(); });
-      items.forEach(function (it) { list.appendChild(rowEl(it)); });
-    }
-    var last = items.length ? items[items.length - 1].title : '';
-    $('web-link').href = 'https://amatdda.bigseasons.co.kr/' + (last ? '?q=' + encodeURIComponent(last) : '');
-    paintDrawers();
-  }
-
-  function paintDrawers() {
-    var grid = $('drawer-grid');
-    grid.textContent = '';
-    DRAWER_IDS.forEach(function (id, i) {
-      var mine = items.filter(function (it) { return it.drawer === id; });
-      var box = el('div', 'drawer' + (mine.length ? ' filled' : '') + (hot === id ? ' hot' : ''));
-      var top = el('div', 'top-line');
-      top.appendChild(el('span', 'n', t.drawers[i].name));
-      top.appendChild(el('span', 'c mono', String(mine.length)));
-      box.appendChild(top);
-      box.appendChild(el('div', 'l', mine.length ? mine[mine.length - 1].title : t.drawers[i].hint));
-      grid.appendChild(box);
     });
+    return best;
+  }
+
+  /* 한국어 조사 로/으로: 마지막 글자에 받침이 없거나 ㄹ 받침이면 「로」, 그 외 「으로」. */
+  function particle(label) {
+    var c = label.trim().charCodeAt(label.trim().length - 1);
+    if (!(c >= 0xAC00 && c <= 0xD7A3)) { return '로'; }
+    var jong = (c - 0xAC00) % 28;
+    return (jong === 0 || jong === 8) ? '로' : '으로';
+  }
+
+  /* 둘째 버튼 문구: 인식 없음이면 「일정 만들기」, 인식하면 「생일로 일정 만들기」(앱 itemButtonLabel). */
+  function paintItemButton() {
+    var btn = $('item-btn');
+    var hit = resolve($('dock').value);
+    if (!hit) { btn.textContent = t.entry.item; return; }
+    var label = hit.anniversaryType === 'memorial' ? t.entry.memorial : (t.entry.cats[hit.category] || hit.category);
+    if (lang === 'ko') { label += particle(label); }
+    var parts = t.entry.itemAs.split('{label}');
+    btn.textContent = '';
+    btn.appendChild(document.createTextNode(parts[0]));
+    var s = document.createElement('span'); s.className = 'hit'; s.textContent = label;
+    btn.appendChild(s);
+    btn.appendChild(document.createTextNode(parts[1] || ''));
+  }
+
+  function paintEntry() {
+    var has = $('dock').value.trim().length > 0;
+    $('panel').hidden = !has;
+    $('chips').hidden = has;
+    if (has) { paintItemButton(); }
   }
 
   function paintChips() {
     var wrap = $('chips');
     wrap.textContent = '';
-    t.examples.forEach(function (ex) {
-      var b = el('button', 'chip');
-      b.type = 'button';
-      b.appendChild(el('b', '', ex.cat));
-      b.appendChild(document.createTextNode(ex.text));
-      b.addEventListener('click', function () { add(ex.text); });
+    t.chips.forEach(function (text) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = text;
+      b.addEventListener('click', function () {
+        var input = $('dock');
+        input.value = text;
+        paintEntry();
+        input.focus();
+      });
       wrap.appendChild(b);
     });
-    var all = el('button', 'chip all', t.hero.all);
-    all.type = 'button';
-    all.addEventListener('click', function () {
-      demoTimers.forEach(clearTimeout);
-      demoTimers = t.examples.map(function (ex, i) { return setTimeout(function () { add(ex.text); }, i * 420); });
-    });
-    wrap.appendChild(all);
   }
 
-  function add(text) {
-    if (!text || !text.trim()) { return; }
-    var it = parse(text);
-    items.push(it);
-    var trimmed = items.length > 8;
-    if (trimmed) { items.shift(); }
-    hot = it.drawer;
-    paintBoard(!trimmed);
+  /* ── 체험 안내 ─────────────────────────────────
+     버튼 넷 어느 것을 눌러도 같은 안내. 「네」는 웹 버전으로(입력한 글은 넘기지 않는다),
+     「아니요」·Esc·바깥 누르기는 닫고 홈페이지를 계속 본다. */
+  var dlg = $('trial');
+  function openTrial() {
+    if (typeof dlg.showModal === 'function') { dlg.showModal(); }
+    else if (window.confirm(t.trial.title + '\n' + t.trial.body)) { location.href = WEB_URL; }
   }
+  $('panel').addEventListener('click', function (e) {
+    if (e.target.closest('button[data-act]')) { openTrial(); }
+  });
+  $('trial-yes').addEventListener('click', function () { location.href = WEB_URL; });
+  $('trial-no').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });
+  dlg.addEventListener('close', function () { $('dock').focus({ preventScroll: true }); });
 
+  $('dock').addEventListener('input', paintEntry);
+  /* 키보드 완료(Enter) = 빠른 할 일 추가, 앱과 같다. 한글 조합 중의 Enter 는 무시. */
+  $('dock').addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) { return; }
+    e.preventDefault();
+    if ($('dock').value.trim()) { openTrial(); }
+  });
+
+  /* ── 번역 적용 ─────────────────────────────────── */
   function paintFaq() {
     var list = $('faq-list');
     list.textContent = '';
     (t.faq.items || []).forEach(function (it) {
-      var d = el('details'), s = el('summary', '', it.question);
-      d.appendChild(s); d.appendChild(el('p', '', it.answer)); list.appendChild(d);
+      var d = document.createElement('details'), s = document.createElement('summary'), p = document.createElement('p');
+      s.textContent = it.question; p.textContent = it.answer;
+      d.appendChild(s); d.appendChild(p); list.appendChild(d);
     });
   }
 
@@ -824,13 +616,6 @@
     $('today-day').textContent = String(now.getDate());
     $('today-dow').textContent = new Intl.DateTimeFormat(loc, { weekday: 'long' }).format(now);
     $('today-mon').textContent = ' · ' + new Intl.DateTimeFormat(loc, { month: 'long' }).format(now);
-  }
-
-  function rotatePlaceholder() {
-    if (!t) { return; }
-    var input = $('dock');
-    var exs = t.examples;
-    input.placeholder = t.hero.placeholderPrefix + exs[phIndex % exs.length].text;
   }
 
   function apply(next, code) {
@@ -850,16 +635,20 @@
     document.querySelectorAll('img[data-shot]').forEach(function (img) {
       img.src = 'assets/landing/' + img.getAttribute('data-shot') + '_' + code + '.jpg';
     });
+    var labels = { todo: t.entry.todo, routine: t.entry.routine, memo: t.entry.memo };
+    document.querySelectorAll('#panel button[data-act]').forEach(function (b) {
+      var v = labels[b.getAttribute('data-act')];
+      if (v) { b.textContent = v; }
+    });
+    $('dock').placeholder = t.entry.placeholder;
     document.title = t.meta.title;
     document.documentElement.lang = LANGS[code].locale;
     $('lang-btn').textContent = LANGS[code].name;
     document.querySelectorAll('#lang-menu button').forEach(function (b) {
       b.setAttribute('aria-current', String(b.getAttribute('data-lang') === code));
     });
-    /* 언어를 바꾸면 적어 둔 줄은 비운다 — 다른 언어로 적은 문장은 새 언어의 규칙으로 못 읽는다. */
-    demoTimers.forEach(clearTimeout);
-    items = []; hot = null;
-    paintToday(); paintChips(); paintFaq(); rotatePlaceholder(); paintBoard(false);
+    $('dock').value = '';
+    paintToday(); paintChips(); paintFaq(); paintEntry();
   }
 
   function load(code) {
@@ -872,30 +661,11 @@
 
   function switchTo(code) {
     if (!LANGS[code]) { code = 'ko'; }
-    return load(code).then(function (j) {
-      apply(j, code);
-    }).catch(function () {
+    return load(code).then(function (j) { apply(j, code); }).catch(function () {
       /* 번역을 못 불러오면 HTML에 적힌 한국어 기본값을 그대로 둔다. */
       if (code !== 'ko') { return switchTo('ko'); }
     });
   }
-
-  /* ── 입력 ─────────────────────────────────── */
-  $('dock-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!t) { return; }
-    var input = $('dock');
-    add(input.value);
-    input.value = '';
-  });
-  $('clear').addEventListener('click', function () {
-    demoTimers.forEach(clearTimeout);
-    items = []; hot = null; paintBoard(false);
-  });
-  setInterval(function () {
-    if (document.hidden || document.activeElement === $('dock')) { return; }
-    phIndex += 1; rotatePlaceholder();
-  }, 2600);
 
   /* ── 언어 메뉴 ───────────────────────────────── */
   var btn = $('lang-btn'), menu = $('lang-menu');
@@ -926,6 +696,11 @@
     }, { threshold: 0.15 });
     document.querySelectorAll('.sv-rise, .sv-pop, .sv-rule').forEach(function (n) { io.observe(n); });
   }
+
+  fetch('assets/data/quick_entry_keywords.json').then(function (r) { return r.json(); }).then(function (j) {
+    keywords = j.entries || [];
+    if (t) { paintEntry(); }
+  }).catch(function () { /* 사전을 못 불러오면 둘째 버튼은 「일정 만들기」 그대로 */ });
 
   var saved = null;
   try { saved = localStorage.getItem(LANG_KEY); } catch (e) { /* 접근 불가 시 무시 */ }
