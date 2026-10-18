@@ -71,7 +71,8 @@
     "tabsLabel": "Choose a life tool screen"
   },
   "closing": {
-    "title": "Leave the remembering to us. Take a breather."
+    "title": "Leave the remembering to us. Take a breather.",
+    "web": "Try on the web"
   },
   "faq": {
     "title": "FAQ",
@@ -90,7 +91,8 @@
       },
       {
         "question": "What is the web version?",
-        "answer": "A trial you can use before installing. Reminders and syncing across devices are available in the iOS and Android apps."
+        "answer": "A trial you can use before installing. Reminders and syncing across devices are available in the iOS and Android apps.",
+        "link": "Open the web version"
       }
     ]
   },
